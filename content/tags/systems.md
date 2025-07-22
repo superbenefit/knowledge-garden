@@ -63,6 +63,6 @@ These approaches help practitioners identify emergent properties, anticipate uni
 
 ## References and Resources
 
-- [DAOs - From fractal primitives to network scale.](../artifacts/articles/network-evolution/DAOs%2520-%2520From%2520fractal%2520primitives%2520to%2520network%2520scale..md#)
-- [Scale and the levers that provide DAOs their power](../artifacts/articles/network-evolution/Scale%2520and%2520the%2520levers%2520that%2520provide%2520DAOs%2520their%2520power.md#)
-- [Governance for better futures - Meta-governance](../artifacts/articles/governance-for-better-futures/Governance%2520for%2520better%2520futures%2520-%2520Meta-governance.md#)
+- [DAOs - From fractal primitives to network scale.](artifacts/articles/network-evolution%201/DAOs%20-%20From%20fractal%20primitives%20to%20network%20scale..md)
+- [Scale and the levers that provide DAOs their power](artifacts/articles/network-evolution%201/Scale%20and%20the%20levers%20that%20provide%20DAOs%20their%20power.md)
+- [Governance for better futures - Meta-governance](artifacts/articles/governance-for-better-futures%201/Governance%20for%20better%20futures%20-%20Meta-governance.md)
