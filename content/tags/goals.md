@@ -48,5 +48,5 @@ Impact-oriented goals often incorporate both quantitative metrics and qualitativ
 ## References and Resources
 
 - [DAO Primitives Framework](../notes/dao-primitives/framework/index.md#): Provides context for how goals function within decentralized organizations
-- [Building DAOs as scalable networks](../artifacts/articles/network-evolution/Building%2520DAOs%2520as%2520scalable%2520networks.md#): Explores how goals support coordination across autonomous teams
-- [Scale and the levers that provide DAOs their power](../artifacts/articles/network-evolution/Scale%2520and%2520the%2520levers%2520that%2520provide%2520DAOs%2520their%2520power.md#): Discusses how goals contribute to organizational effectiveness at different scales
+- [Building DAOs as scalable networks](artifacts/articles/network-evolution%201/Building%20DAOs%20as%20scalable%20networks.md): Explores how goals support coordination across autonomous teams
+- [Scale and the levers that provide DAOs their power](artifacts/articles/network-evolution%201/Scale%20and%20the%20levers%20that%20provide%20DAOs%20their%20power.md): Discusses how goals contribute to organizational effectiveness at different scales
