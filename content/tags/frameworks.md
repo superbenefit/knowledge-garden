@@ -56,5 +56,5 @@ Several key frameworks are documented and developed within the SuperBenefit ecos
 
 - **[DAO Primitives Framework](../notes/dao-primitives/framework/index.md#)**: A conceptual model for understanding and designing decentralized autonomous organizations
 - **[Anticapture](../links/Anticapture.md#.md#)**: A framework for designing governance systems resistant to power concentration and exploitation
-- **[Modular Politics](../links/Modular%2520Politics.md#)**: An approach to governance that emphasizes composable, interchangeable components
-- **[The Blockchain Governance Toolkit](../links/The%2520Blockchain%2520Governance%2520Toolkit.md#)**: A resource for implementing effective governance in blockchain-based systems
+- **[Modular Politics](../links/trash/Modular%2520Politics.md#)**: An approach to governance that emphasizes composable, interchangeable components
+- **[The Blockchain Governance Toolkit](notes/links/to-review/The%20Blockchain%20Governance%20Toolkit.md)**: A resource for implementing effective governance in blockchain-based systems
