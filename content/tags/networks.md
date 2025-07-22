@@ -56,7 +56,7 @@ The [cosmolocalism](./cosmolocalism.md#) framework demonstrates how networks can
 - [Flows](tags/flows.md): The movement of resources, information, and value through networks
 - [Governance](./governance.md): The frameworks and processes for collective decision-making in networks
 - [Primitives](./primitives.md): Network structures can be built from foundational building blocks
-- [Cells](tags/cells.md): Autonomous teams that form the nodes of DAO networks
+- cells: Autonomous teams that form the nodes of DAO networks
 - [Coordination](./coordination.md): The processes through which network participants align their actions
 - [Community](tags/communities.md): The social fabric that enables trust and collaboration in networks
 
