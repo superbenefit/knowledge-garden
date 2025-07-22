@@ -13,12 +13,77 @@ aliases:
   - Reimagine Institute
   - Reimagine Institute for Community Sustainability
 publish: "true"
-type: note
+type: entity
 ---
 
 # Institute for Community Sustainability (ICS)
 
 The Institute for Community Sustainability (ICS) is a federal not-for-profit organization based in London, Ontario in the Carolinian Canada bioregion. 
+
+%% Begin Waypoint %%
+- **[ics](index.md)**
+  - **about**
+    - ics-business-description
+    - ics-community-exchange
+    - ics-discovery-report
+    - ics-experiment-scoping
+    - ics-implementation-plan
+  - **ccc**
+  - **city-grant-reporting**
+    - 0 - Full Year Data
+    - 1 - Project Impact on Equity-Denied Groups
+    - 2 - Supporting Anti-Racism and Inclusion
+    - 3 - Community Impact Story
+    - 4 - Additional Comments
+  - earthfest-greenpill-booth
+  - **gg23**
+    - gg23-project-description
+    - gg23-shill-plan
+    - **graphics**
+      - graphics-guide
+    - master-execution-plan
+    - **newsletters**
+      - ics-newsletter
+      - reimagine-newsletter
+    - **outreach**
+      - community-groups
+      - core-narrative
+      - newsletter-copy-updated
+      - newsletter-copy
+      - outreach-templates
+      - personal-templates
+      - priority-contacts
+      - team-template
+      - thank-you
+    - progress
+    - shill-plan
+    - **social-media**
+      - facebook-instagram-posts
+      - farcaster-strategy
+    - **tweets**
+      - additional-strategic-tweets
+      - core-tweets
+      - enhanced-tweets
+      - mention-tweets
+      - non-web3-audience-tweets
+      - transformative-impact-threads
+      - tweet-analysis
+      - twitter-threads
+    - updated-strategy-fixed
+    - updated-strategy
+    - **website**
+      - web3-page-content
+      - web3-page-updated
+      - web3-page
+      - website-analysis
+      - website-review
+  - greenpill-london-application
+  - **rpp-reporting**
+    - continuation-prompt
+    - ics-experiment-reflection-draft
+  - Web3 & Regenerative Finance
+
+%% End Waypoint %%
 
 ## History and Background
 
