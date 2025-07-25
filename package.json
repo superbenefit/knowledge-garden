@@ -107,6 +107,6 @@
     "esbuild": "^0.19.9",
     "prettier": "^3.5.3",
     "tsx": "^4.19.2",
-    "typescript": "^5.8.2"
+    "typescript": "^5.8.3"
   }
 }
