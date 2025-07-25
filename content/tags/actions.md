@@ -34,7 +34,7 @@ In decentralized autonomous organizations, actions manifest through multiple mec
 - **Contributory actions**: Tasks and deliverables created by community members that advance the DAO's purpose
 - **Governance actions**: Processes like proposals, voting, and [delegation](./delegation.md#) that shape the direction and rules of the organization
 
-What distinguishes actions in DAOs is their permissionless nature combined with transparent accountability. As noted in [Minimum Viable Permissionless-ness](../artifacts/articles/network-evolution/Minimum%2520Viable%2520Permissionless-ness.md#), the ability for participants to take autonomous action without prior approval—while still being accountable to the network—is fundamental to generating decentralized intelligence.
+What distinguishes actions in DAOs is their permissionless nature combined with transparent accountability. As noted in [Minimum Viable Permissionless-ness](artifacts/articles/network-evolution%201/Minimum%20Viable%20Permissionless-ness.md), the ability for participants to take autonomous action without prior approval—while still being accountable to the network—is fundamental to generating decentralized intelligence.
 
 ### Actions in Social Impact
 
@@ -45,7 +45,7 @@ In social impact contexts, actions focus on creating measurable positive change 
 - **Advocacy actions**: Efforts to transform structures and policies that create or perpetuate harm
 - **Regenerative actions**: Interventions that restore and enhance social and ecological systems
 
-The [Reimagining Power](../artifacts/articles/Reimagining%2520Power%2520-%2520How%2520Web3%2520Can%2520Transform%2520Impact.md#) initiative specifically examines how web3 technologies can enable more equitable, community-driven action by redistributing power and resources to those most affected by social challenges.
+The [Reimagining Power](../artifacts/Reimagining%2520Power%2520-%2520How%2520Web3%2520Can%2520Transform%2520Impact.md#) initiative specifically examines how web3 technologies can enable more equitable, community-driven action by redistributing power and resources to those most affected by social challenges.
 
 ## Related Concepts
 

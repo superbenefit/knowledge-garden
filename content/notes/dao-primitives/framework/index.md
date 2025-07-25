@@ -2,12 +2,31 @@
 title: DAO Primitives Conceptual Framework
 description: A comprehensive framework for designing decentralized organizations as networks
 publish: "true"
-type: note
+type: pattern
 ---
 
 # DAO Primitives Conceptual Framework
 
 The DAO Primitives Framework provides a systematic approach to designing and implementing decentralized organizations as purpose-aligned networks. Building on the overview provided in the [DAO Primitives Project](../index.md#), this framework offers a deeper exploration of the key concepts, dimensions, and components that enable effective decentralized coordination.
+
+%% Begin Waypoint %%
+- **[framework](index.md)**
+  - [DAO Primitives Group Facilitation Guide](./group-facilitation.md)
+  - **[group-phase](./group-phase/index.md)**
+    - completion
+    - [Conversation Phase](./group-phase/conversation.md)
+    - coordination
+    - formation
+    - organization
+  - **group-primitives**
+  - **[group-scale](./group-scale/index.md)**
+    - [Collaboration Scale](./group-scale/collaboration.md)
+    - [Constituency Scale](./group-scale/constituency.md)
+    - coordination
+    - [Network Scale](./group-scale/network.md)
+  - [Group State](./group-state.md)
+
+%% End Waypoint %%
 
 ## Framework Overview
 
@@ -91,7 +110,7 @@ These primitives can be combined in various ways to create organizational system
 
 ## Group Facilitation - A Framework for Implementation
 
-The framework is designed to be practical and applicable. The group-facilitation provides a structured methodology for applying these concepts to real-world organizational challenges.
+The framework is designed to be practical and applicable. The [Group Facilitation Guide](./group-facilitation.md#) provides a structured methodology for applying these concepts to real-world organizational challenges.
 
 The facilitation process typically involves:
 
@@ -125,7 +144,7 @@ For networks of organizations working together, the framework provides:
 - Shared language and concepts for designing collaborative structures
 - Interoperability standards that enable effective coordination
 - Scalable governance patterns for managing network-level decisions
-- See rpp-governance-design
+- See rpp-governance-design-study
 
 ## Enabling Collective Intelligence
 
@@ -133,7 +152,7 @@ A central goal of the framework is to enable emergent collective intelligence in
 
 ### Permissionless Network Access
 
-As outlined in [Minimum Viable Permissionless-ness](../../../artifacts/articles/network-evolution/Minimum%2520Viable%2520Permissionless-ness.md#), the framework emphasizes three essential freedoms:
+As outlined in [Minimum Viable Permissionless-ness](artifacts/articles/network-evolution%201/Minimum%20Viable%20Permissionless-ness.md), the framework emphasizes three essential freedoms:
 
 1. The freedom to work on something without requiring permission
 2. The ability to attract others to work on a project

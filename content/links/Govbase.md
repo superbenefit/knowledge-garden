@@ -7,7 +7,7 @@ tags:
 publish: "true"
 ---
 
-A community-governance, by [Metagov](./Metagov.md).
+A [warehouse of datasets](https://airtable.com/appx3e9Przn9iprkU/shrgnUrj0dqzZDsOd/tblXLaQeoKygb4ais/viw3rNQQfK1S6ipfe) related to online [community governance](../tags/community-governance.md#), by [Metagov](./Metagov.md).
 
 ---
 

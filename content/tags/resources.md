@@ -23,7 +23,7 @@ In the DAO Primitives Framework, resources are fundamental building blocks that 
 
 In [Anticapture](../links/Anticapture.md), _resources_ are defined as anything that can be used to achieve desired outcomes, including tangible assets like food, money, and energy, as well as intangible ones like attention and social reputation. The term distinguishes between _private resources_, controlled by a single [agents](./agents.md), and _shared resources_, governed by a network of agents. Shared resources are particularly vulnerable to capture, making decentralized governance essential to protect them from misuse or control by bad actors
 
-![links/Anticapture](../links/Anticapture.md#^f53fa2)
+![Anticapture](../links/Anticapture.md#^f53fa2)
 
 ### In Web3 Governance
 

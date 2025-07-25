@@ -11,9 +11,9 @@ Welcome to the SuperBenefit artifacts repository! This section contains the fini
 
 This repository is organized into thematic sections, each representing a different type of knowledge resource. These artifacts are intended to inspire, educate, and provide actionable tools for community-driven change.
 
-* **articles:** Essays and reflections that distill key ideas and spark dialogue about the future of DAOs, governance, and organizational design.
+* **[articles](./articles/index.md#):** Essays and reflections that distill key ideas and spark dialogue about the future of DAOs, governance, and organizational design.
 
-* **patterns:** Practical templates and models for solving common challenges in decentralized and community-driven contexts.
+* **[patterns](./patterns/index.md#):** Practical templates and models for solving common challenges in decentralized and community-driven contexts.
 
 * **[playbooks](../tags/playbooks.md#):** Step-by-step guides that empower communities to experiment with new tools, practices, and protocols.
 

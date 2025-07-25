@@ -19,10 +19,38 @@ Here, you'll find:
 
 ## Project Workspaces
 
+%% Begin Waypoint %%
+- **[notes](index.md)**
+  - **aifs**
+  - **archive**
+    - **charmverse**
+    - **clarity**
+  - **cxi**
+  - **[dao-primitives](./dao-primitives/index.md)**
+  - **general-circle**
+  - **[ics](./ics/index.md)**
+  - **library**
+    - current-status
+    - daily-checklist
+    - evaluation-template
+    - final-ready-to-write
+    - [link-analysis-progress.json](../../attachments/link-analysis-progress.json.md)
+    - link-analysis-usage-guide
+    - processing-status
+    - ready-to-write
+    - rejected-articles-log
+    - rigorous-curation-strategy
+    - start-link-analysis
+    - [superbenefit-discord-urls-updated.csv](../../attachments/superbenefit-discord-urls-updated.csv.md)
+    - [superbenefit-discord-urls.csv](../../attachments/superbenefit-discord-urls.csv.md)
+    - valuable-articles
+    - values-concerns
+    - web-scraping-method-reliability-guide
+    - web3-library-workflow
+  - **[rpp](./rpp/index.md)**
+  - **wp**
 
-### [DAO Primitives Project](./dao-primitives/index.md#)
-
-This section explores the fundamental building blocks of effective organizations.  We investigate core concepts, frameworks for understanding organizational context, and the relationships between these building blocks and practical solutions.  Learn about governance mechanisms, operational functions, organizational structures, and coordination tools.
+%% End Waypoint %%
 
 ---
 
