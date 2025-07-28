@@ -36,7 +36,7 @@ Organizations can benefit from primitives by leveraging these basic building blo
 
 These elements are simple, repeatable, and can be applied across different departments or projects, allowing the organization to maintain consistency while adapting to various challenges. By utilizing these foundational building blocks, organizations can ensure that their operations are efficient, flexible, and aligned with their strategic goals.
 
-At SuperBenefit, we're exploring the potential and practical uses of web3 primitives in the [DAO Primitives Project](../notes/dao-primitives/index.md). For help choosing the patterns, practices and primitives for your project, check out the [group facilitation framework](../artifacts/guides/dao-primitives-framework/group-facilitation.md). You can learn more about our approach in the [conceptual framework](../artifacts/guides/dao-primitives-framework/index.md).
+At SuperBenefit, we're exploring the potential and practical uses of web3 primitives in the [DAO Primitives Project](/content/notes/dao-primitives/index.md). For help choosing the patterns, practices and primitives for your project, check out the [group facilitation framework](/content/artifacts/guides/dao-primitives-framework/group-facilitation.md). You can learn more about our approach in the [conceptual framework](/content/artifacts/guides/dao-primitives-framework/index.md).
 
 ---
 
@@ -44,4 +44,4 @@ At SuperBenefit, we're exploring the potential and practical uses of web3 primit
 
 Some notes in this knowledge garden represent primitives, and include metadata to help you navigate and discover them.
 
-Notes which represent #primitives are indicated using the [primitive](tools/types/primitive.md) file class (`type: primitive`). This file class (a subclass of [resource](tools/types/resource/resource.md) and link ) contains several metadata fields which are either inherited or unique.
+Notes which represent #primitives are indicated using the [primitive](tools/types/primitive.md) file class (`type: primitive`). This file class (a subclass of [resource](tools/types/resource/resource.md) and [link](/link.md) ) contains several metadata fields which are either inherited or unique.
