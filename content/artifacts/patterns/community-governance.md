@@ -59,20 +59,20 @@ Implementation succeeds through iterative development with continuous community 
 Community governance manifests differently based on geographical scope and coordination needs. Organizations should select patterns matching their operational context:
 
 **Local Community Patterns** focus on geographically concentrated communities:
-- **local-nodes**: Semi-autonomous groups coordinating through shared protocols while maintaining independence. Enable decentralized decision-making with network benefits.
+- **[Local Nodes](/local-nodes.md)**: Semi-autonomous groups coordinating through shared protocols while maintaining independence. Enable decentralized decision-making with network benefits.
 - **Local Hubs**: Central coordination points facilitating collaboration between initiatives through physical spaces and hybrid governance models.
-- **complementary-currencies**: Local economic systems using alternative exchange mechanisms for community value creation and resilience.
+- **[Complementary Economics](/complementary-currencies.md)**: Local economic systems using alternative exchange mechanisms for community value creation and resilience.
 
 **Cosmolocal Coordination Patterns** bridge local and global scales:
-- **biofi**: Financial systems aligned with ecological boundaries using place-based investment and multi-stakeholder governance.
+- **[Bioregional Finance](/biofi.md)**: Financial systems aligned with ecological boundaries using place-based investment and multi-stakeholder governance.
 - **Public Goods Funding**: Quadratic funding and participatory budgeting for collectively managing shared resources and infrastructure.
-- **municipal-mycofi**: Networked financial systems connecting municipal initiatives through cross-jurisdiction coordination and shared investment.
+- **[Municipal MycoFi](/municipal-mycofi.md)**: Networked financial systems connecting municipal initiatives through cross-jurisdiction coordination and shared investment.
 
 **Global Network Patterns** enable coordination across boundaries:
 - **DePINs**: Networks combining physical infrastructure with digital coordination through distributed ownership and incentive alignment.
-- **[Defi](../../tags/defi.md)**: Transparent financial operations through automated market mechanisms and smart contract governance.
+- **[Defi](/content/tags/defi.md)**: Transparent financial operations through automated market mechanisms and smart contract governance.
 - **Digital Democracy**: Tools for democratic participation including voting systems, delegation, forums, and proposal mechanisms.
-- **coordi-nations**: Large-scale coordination frameworks using identity systems, reputation mechanisms, and scalable decision-making.
+- **[coordi-nations\Coordi-nations](/coordi-nations.md)**: Large-scale coordination frameworks using identity systems, reputation mechanisms, and scalable decision-making.
 - **Knowledge Commons**: Shared information resources with collaborative creation, peer review, and community moderation.
 
 ### Cultural and Technical Foundations
@@ -100,10 +100,10 @@ Community governance draws from diverse traditions including commons management,
 Foundational frameworks include Ostrom's work on commons governance principles, sociocracy and consent-based decision systems, platform cooperativism governance models, and DAO governance experiments. Each contributes insights while synthesis creates new possibilities.
 
 Related patterns that complement community governance:
-- **operational-governance**: Execution frameworks operating within community-set boundaries
+- **[operational-governance|Operational Governance](/operational-governance.md)**: Execution frameworks operating within community-set boundaries
 - **Participatory governance**: Deep involvement of affected communities in decisions
-- **coordi-nations**: Network-scale coordination maintaining local autonomy
-- **[Token based governance](../../notes/rpp/rpp-working-docs/token-based-governance.md)**: Digital tools enabling scaled participation
+- **[coordi-nations|Coordi-nations](/coordi-nations.md)**: Network-scale coordination maintaining local autonomy
+- **[Token based governance](/content/notes/rpp/rpp-working-docs/token-based-governance.md)**: Digital tools enabling scaled participation
 
 Practitioners should engage with communities advancing governance innovation including the Metagovernance Project researching digital governance systems, Platform Cooperativism Consortium documenting cooperative governance, various DAO governance working groups experimenting with mechanisms, and indigenous governance networks sharing traditional practices. As communities seek alternatives to extractive governance models, these patterns provide pathways toward authentic collective stewardship.
 
