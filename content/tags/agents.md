@@ -28,7 +28,7 @@ The [Anticapture framework](../links/Anticapture.md#) describes agents as decisi
 
 ### Agents in DAOs and Web3
 
-In cell-working-group) that participate in network governance and operations. These agents interact through transparent [protocols](./protocols.md#) and operate with varying levels of [autonomy](./autonomy.md#) while remaining aligned with collective [purpose](./purpose.md#).
+In cell) that participate in network governance and operations. These agents interact through transparent [protocols](./protocols.md#) and operate with varying levels of [autonomy](./autonomy.md#) while remaining aligned with collective [purpose](./purpose.md#).
 
 As described in [DAOs aren't things... they are flows](artifacts/articles/network-evolution%201/DAOs%20aren't%20things...%20they%20are%20flows..md), DAOs function as "purpose-aligned networks of small autonomous teams" where these agent-teams self-organize around opportunities while maintaining coherence within the broader network. These agents exercise their agency through mechanisms like submitting proposals, contributing to projects, participating in governance, and allocating [resources](./resources.md#).
 

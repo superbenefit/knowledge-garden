@@ -29,7 +29,6 @@ This lexicon provides:
   - [Authorities](./authorities.md)
   - [Autonomy](./autonomy.md)
   - [Blockchain](./blockchain.md)
-  - [Community Governance](./community-governance.md)
   - [Community](./community.md)
   - complementary-currencies
   - [Consensus](./consensus.md)
@@ -52,6 +51,7 @@ This lexicon provides:
   - [Decentralized Governance](./governance.md)
   - [Grants](./grants.md)
   - [Groups](./groups.md)
+  - [impact-attestations](./impact-attestations.md)
   - [Impact](./impact.md)
   - local-nodes
   - [Localism](./localism.md)
@@ -59,6 +59,8 @@ This lexicon provides:
   - mutual-aid
   - [Networks](./networks.md)
   - [Non-Fungible Tokens (NFTs)](./nfts.md)
+  - [p2p-payments](./p2p-payments.md)
+  - [participatory-governance](./participatory-governance.md)
   - [Patterns](./Patterns.md)
   - [Payments](./payments.md)
   - [Permissions](./permissions.md)
@@ -70,8 +72,8 @@ This lexicon provides:
   - [Primitives](./primitives.md)
   - [Privacy](./privacy.md)
   - [Progress](./progress.md)
+  - proto-dao
   - [Protocols](./protocols.md)
-  - protodao
   - [Purpose](./purpose.md)
   - refi
   - [Refizz](./refizz.md)

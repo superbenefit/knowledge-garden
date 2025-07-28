@@ -30,7 +30,6 @@ Resources exploring decentralized decision-making, coordination mechanisms, and 
   - [Decentralised Tech & the Future of Organising](./Decentralised%20Tech%20&%20the%20Future%20of%20Organising.md)
   - [Ethereum Localism](./ethereum-localism.md)
   - [Govbase](./Govbase.md)
-  - [Local Nodes](./local-nodes.md)
   - [Metagov](./Metagov.md)
   - [Modular Politics - Toward a Governance Layer for Online Communities](./modular-politics-toward-a-governance-layer-for-online-communities.md)
   - [Municipal MycoFi](./municipal-mycofi.md)
@@ -57,10 +56,10 @@ Resources exploring decentralized decision-making, coordination mechanisms, and 
     - [Modular Politics - Toward a Governance Layer for Online Communities](./trash/Modular%20Politics%20-%20Toward%20a%20Governance%20Layer%20for%20Online%20Communities.md)
     - [Modular Politics - Toward a Governance Layer for Online Communities](./trash/Modular%20Politics.md)
     - [Municipal MycoFi](./trash/Municipal%20MycoFi.md)
-    - [P2P Foundation Wiki 2](./trash/P2P%20Foundation%20Wiki%202.md)
+    - [P2P Foundation Wiki](./trash/P2P%20Foundation%20Wiki%202.md)
     - [P2P Foundation Wiki](./trash/P2P%20Foundation%20Wiki.md)
     - [Pre-Constitutional Governance](./trash/Pre-Constitutional%20Governance.md)
-    - [The Blockchain Governance Toolkit 2](./trash/The%20Blockchain%20Governance%20Toolkit%202.md)
+    - [The Blockchain Governance Toolkit](./trash/The%20Blockchain%20Governance%20Toolkit%202.md)
 
 %% End Waypoint %%
 - **[links](index.md)**
@@ -76,7 +75,7 @@ Resources exploring decentralized decision-making, coordination mechanisms, and 
   - [Decentralised Tech & the Future of Organising](./Decentralised%20Tech%20&%20the%20Future%20of%20Organising.md)
   - [Ethereum Localism](./ethereum-localism.md)
   - [Govbase](./Govbase.md)
-  - [Local Nodes](./local-nodes.md)
+  - [Local Nodes](links/local-nodes.md)
   - [Metagov](./Metagov.md)
   - [Modular Politics - Toward a Governance Layer for Online Communities](./trash/Modular%20Politics.md)
   - [Modular Politics - Toward a Governance Layer for Online Communities](./modular-politics-toward-a-governance-layer-for-online-communities.md)
