@@ -27,7 +27,7 @@ This model transforms funding from a top-down directive into a bottom-up, commun
 
 ### As a Primary Tool for Treasury Deployment
 
-For any [DAO](./daos.md), the [treasury](./treasury.md) is its central economic engine, and grants are the primary vehicle for deploying its capital. The [governance](./governance.md) process is often centered on evaluating grant proposals to decide how to allocate these shared [resources](./resources.md) effectively. A DAO's grants program is a direct reflection of its strategic priorities and its ability to execute on its mission.
+For any [DAO](/content/tags/daos.md), the [treasury](/content/tags/treasury.md) is its central economic engine, and grants are the primary vehicle for deploying its capital. The [governance](/content/tags/governance.md) process is often centered on evaluating grant proposals to decide how to allocate these shared [resources](/content/tags/resources.md) effectively. A DAO's grants program is a direct reflection of its strategic priorities and its ability to execute on its mission.
 
 ### As a Foundational Mechanism in DAO Frameworks
 
@@ -37,12 +37,12 @@ As noted in [A Pocket Guide to DAO Frameworks](notes/links/to-review/A%20Pocket%
 
 ### To Fund Autonomous Teams in Scalable Networks
 
-In the scalable network model described in [Building DAOs as scalable networks](artifacts/articles/network-evolution%201/Building%20DAOs%20as%20scalable%20networks.md), grants are essential for resourcing the small, autonomous teams (test-pattern) that perform the network's work. Rather than receiving a salary from a central authority, Cells or individuals can submit proposals to the DAO's governance bodies to receive grants for specific projects. This model also supports innovative funding mechanisms like retroactive public goods funding, a type of grant that rewards past work that has proven valuable to the network, thereby incentivizing permissionless innovation.
+In the scalable network model described in [Building DAOs as scalable networks](artifacts/articles/network-evolution%201/Building%20DAOs%20as%20scalable%20networks.md), grants are essential for resourcing the small, autonomous teams ([Cells](/test-pattern.md)) that perform the network's work. Rather than receiving a salary from a central authority, Cells or individuals can submit proposals to the DAO's governance bodies to receive grants for specific projects. This model also supports innovative funding mechanisms like retroactive public goods funding, a type of grant that rewards past work that has proven valuable to the network, thereby incentivizing permissionless innovation.
 
 ## Related Concepts
 
-- [Treasury](./treasury.md): The collective pool of assets from which grants are funded.
-- [Governance](./governance.md): The decision-making process through which grant proposals are reviewed and approved.
-- [DAOs](./daos.md): The organizations that operate grants programs to achieve their goals.
-- [Resources](./resources.md): Grants are the mechanism for allocating a DAO's financial resources to contributors.
-- test-pattern: The autonomous teams and working groups that are often the recipients of grants.
+- [Treasury](/content/tags/treasury.md): The collective pool of assets from which grants are funded.
+- [Governance](/content/tags/governance.md): The decision-making process through which grant proposals are reviewed and approved.
+- [DAOs](/content/tags/daos.md): The organizations that operate grants programs to achieve their goals.
+- [Resources](/content/tags/resources.md): Grants are the mechanism for allocating a DAO's financial resources to contributors.
+- [Cells](/test-pattern.md): The autonomous teams and working groups that are often the recipients of grants.
