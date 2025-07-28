@@ -1,7 +1,6 @@
 ---
 title: Primitives
 description: Index and overview of the core organizing structures used in the DAO Primitives framework
-author: []
 tags:
   - primitives
   - dao-primitives
@@ -24,7 +23,7 @@ For designing [governance](../../../../tags/governance.md) and operational struc
 
 ## Primitives
 
-- [Cells (Primitive)](./cells.md)
+- cells
 - [DAOs (Primitive)](./daos.md)
 - [Roles (Primitive)](./roles.md)
 - [Tasks (Primitive)](./tasks.md)
@@ -47,10 +46,10 @@ This [transparency](../../../../tags/transparency.md) allows for decentralized [
 
 %% Begin Waypoint %%
 - **[group-primitives](index.md)**
-  - [cells](./cells.md)
+  - cells
   - [daos](./daos.md)
   - [roles](./roles.md)
   - [tasks](./tasks.md)
 
 %% End Waypoint %%
-- *[Cells (Primitive)](./cells.md)[DAOs (Primitive)](rDAOs%20(Primitive).md) (P[Roles (Primitive)](notes/dao-primitives/dao-primitives-framework/group-primitives/roles.md)s/dao-primitives/dao-primitives-framework/group-primitives/tasks|Tasks (Primitive)]]
+- *cells[DAOs (Primitive)](rDAOs%20(Primitive).md) (P[Roles (Primitive)](notes/dao-primitives/dao-primitives-framework/group-primitives/roles.md)s/dao-primitives/dao-primitives-framework/group-primitives/tasks|Tasks (Primitive)]]

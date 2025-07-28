@@ -45,28 +45,36 @@ This lexicon provides:
   - [Decentralized Finance (DeFi)](./defi.md)
   - [Delegation](./delegation.md)
   - digital-rights
+  - distributed
   - [Eligibility](./eligibility.md)
+  - emergence
+  - fractal
   - [Frameworks](./frameworks.md)
   - [Goals](./goals.md)
   - [Decentralized Governance](./governance.md)
   - [Grants](./grants.md)
   - [Groups](./groups.md)
-  - [impact-attestations](./impact-attestations.md)
+  - [Impact Attestations](./impact-attestations.md)
   - [Impact](./impact.md)
+  - local-first
   - local-nodes
   - [Localism](./localism.md)
   - [Modules](./modules.md)
   - mutual-aid
+  - mutual-credit
+  - mutualism
   - [Networks](./networks.md)
   - [Non-Fungible Tokens (NFTs)](./nfts.md)
-  - [p2p-payments](./p2p-payments.md)
-  - [participatory-governance](./participatory-governance.md)
+  - [Peer to Peer Payments](./p2p-payments.md)
+  - [Participatory Governance](./participatory-governance.md)
   - [Patterns](./Patterns.md)
   - [Payments](./payments.md)
+  - peer-to-peer
   - [Permissions](./permissions.md)
   - [Platforms](./platforms.md)
   - [Playbooks](./playbooks.md)
   - [Policies](./policies.md)
+  - polycentric
   - [Power](./power.md)
   - [Practices](./practices.md)
   - [Primitives](./primitives.md)
@@ -82,7 +90,9 @@ This lexicon provides:
   - [Responsibilities](./responsibilities.md)
   - [Roles](./roles.md)
   - [Scale](./scale.md)
+  - self-governance
   - [Semiotic Bridging](./semiotic-bridging.md)
+  - solidarity-economics
   - solidarity
   - [Sustainability](./sustainability.md)
   - [Systems](./systems.md)

@@ -1,8 +1,6 @@
 ---
-title: Guides
+title: Experiment Case Studies
 description: 
-tags:
-  - guides
 publish: true
 type: index
 ---
