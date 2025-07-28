@@ -1,8 +1,6 @@
 ---
-title: 
+title: Guides
 description: 
-author:
-  - yeoro.eth
 tags:
   - guides
 publish: true
