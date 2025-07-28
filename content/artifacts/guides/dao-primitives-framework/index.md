@@ -1,7 +1,7 @@
 ---
 title: DAO Primitives Conceptual Framework
 description: A comprehensive framework for designing decentralized organizations as networks of small autonomous teams
-publish: "true"
+publish: true
 type: guide
 tags:
   - cell
@@ -19,23 +19,23 @@ The DAO Primitives Framework provides a systematic approach to designing and imp
 %% Begin Waypoint %%
 - **[dao-primitives-framework](index.md)**
   - **[dao-primitives-implemention](./dao-primitives-implemention/index.md)**
-    - [implementation-guide-community-governance](./dao-primitives-implemention/implementation-guide-community-governance.md)
-    - [implementation-guide-multi-stakeholder-governance](./dao-primitives-implemention/implementation-guide-multi-stakeholder-governance.md)
-    - [implementation-guide-operational-governance](./dao-primitives-implemention/implementation-guide-operational-governance.md)
-  - [group-facilitation](./group-facilitation.md)
+    - [Implementation Guide for Community Governance](./dao-primitives-implemention/implementation-guide-community-governance.md)
+    - [Implementation Guide for Multi-Stakeholder Governance](./dao-primitives-implemention/implementation-guide-multi-stakeholder-governance.md)
+    - [Implementation Guide for Operational Governance](./dao-primitives-implemention/implementation-guide-operational-governance.md)
+  - [DAO Primitives Group Facilitation Guide](./group-facilitation.md)
   - **[group-phase](./group-phase/index.md)**
-    - [completion-phase](./group-phase/completion-phase.md)
-    - [conversation-phase](./group-phase/conversation-phase.md)
-    - [coordination-phase](./group-phase/coordination-phase.md)
-    - [formation-phase](./group-phase/formation-phase.md)
-    - [organization-phase](./group-phase/organization-phase.md)
+    - [Completion Phase](./group-phase/completion-phase.md)
+    - [Conversation Phase](./group-phase/conversation-phase.md)
+    - [Coordination Phase](./group-phase/coordination-phase.md)
+    - [Formation Phase](./group-phase/formation-phase.md)
+    - [Organization Phase](./group-phase/organization-phase.md)
   - **[group-primitives](./group-primitives/index.md)**
   - **[group-scale](./group-scale/index.md)**
-    - [collaboration-scale](./group-scale/collaboration-scale.md)
-    - [constituency-scale](./group-scale/constituency-scale.md)
-    - [coordination-scale](./group-scale/coordination-scale.md)
-    - [network-scale](./group-scale/network-scale.md)
-  - [group-state](./group-state.md)
+    - [Collaboration Scale](./group-scale/collaboration-scale.md)
+    - [Constituency Scale](./group-scale/constituency-scale.md)
+    - [Coordination Scale](./group-scale/coordination-scale.md)
+    - [Network Scale](./group-scale/network-scale.md)
+  - [Group State](./group-state.md)
 
 %% End Waypoint %%
 
