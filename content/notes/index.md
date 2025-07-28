@@ -32,21 +32,24 @@ Here, you'll find:
   - **library**
     - current-status
     - daily-checklist
+    - discord-candidates-evaluation
+    - discord-link-scraper-project-plan
     - evaluation-template
     - final-ready-to-write
     - [link-analysis-progress.json](../../attachments/link-analysis-progress.json.md)
     - link-analysis-usage-guide
+    - PLEASE-MOVE-THIS-FOLDER
     - processing-status
     - ready-to-write
     - rejected-articles-log
     - rigorous-curation-strategy
     - start-link-analysis
-    - [superbenefit-discord-urls-updated.csv](../../attachments/superbenefit-discord-urls-updated.csv.md)
     - [superbenefit-discord-urls.csv](../../attachments/superbenefit-discord-urls.csv.md)
     - valuable-articles
     - values-concerns
     - web-scraping-method-reliability-guide
     - web3-library-workflow
+  - **links**
   - **[rpp](./rpp/index.md)**
   - **wp**
 
