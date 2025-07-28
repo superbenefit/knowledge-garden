@@ -114,8 +114,8 @@ As we find our way through these experiments, we will need deeper and clearer th
 
 ## You may also be interested in…
 
-- [Governance for better futures - Meta-governance](./Governance%2520for%2520better%2520futures%2520-%2520Meta-governance.md#)
-- [Governance for better futures - DAO 2 DAO Co-operation](./Governance%2520for%2520better%2520futures%2520-%2520DAO%25202%2520DAO%2520Co-operation.md#)
+- [Governance for better futures - Meta-governance](/content/artifacts/articles/governance-for-better-futures/Governance%2520for%2520better%2520futures%2520-%2520Meta-governance.md#)
+- [Governance for better futures - DAO 2 DAO Co-operation](/content/artifacts/articles/governance-for-better-futures/Governance%2520for%2520better%2520futures%2520-%2520DAO%25202%2520DAO%2520Co-operation.md#)
 
 **Summary produced by:** [@AlexHannant](https://twitter.com/AlexHannant) and [@TarynLucas6](https://twitter.com/TarynLucas6)
 
