@@ -18,7 +18,7 @@ tags:
   - coordination
 ---
 
-Modular Politics presents a comprehensive vision for digital governance that moves beyond platform-specific approaches toward interoperable, composable governance systems. Developed by a multidisciplinary team of researchers including Nathan Schneider and Primavera De Filippi, this framework proposes creating a governance layer for online communities that allows them to mix and match governance components across different platforms and contexts. Connected to the [Metagov](./Metagov.md#) research initiative, this paper outlines both the theoretical foundations and practical design considerations for implementing modular governance systems.
+Modular Politics presents a comprehensive vision for digital governance that moves beyond platform-specific approaches toward interoperable, composable governance systems. Developed by a multidisciplinary team of researchers including Nathan Schneider and Primavera De Filippi, this framework proposes creating a governance layer for online communities that allows them to mix and match governance components across different platforms and contexts. Connected to the [Metagov](/content/links/Metagov.md#) research initiative, this paper outlines both the theoretical foundations and practical design considerations for implementing modular governance systems.
 
 ### Key Highlights
 - **Governance Composability**: The framework introduces the concept of governance as modular components that can be combined like building blocks, allowing communities to create customized governance systems by selecting, configuring, and arranging various governance elements.
@@ -81,4 +81,4 @@ The framework is particularly valuable for communities that need to adapt their 
 
 ![Modular Politics Discussion](https://www.youtube.com/watch?v=981FhtbX8vU)
 
-![modular-politics](../../attachments/modular-politics.pdf)
+![modular-politics](/attachments/modular-politics.pdf)
