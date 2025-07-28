@@ -19,15 +19,15 @@ Beyond the governance of orgs, communities, and networks, we’ll probe the noti
 
 ## Three conversations
 
-Over three conversations, we engaged with people who bring different and complementary perspectives to governance. This included experience and views from [daos](../../../tags/daos.md#), other decentralised networks, the co-operative movement, Indigenous cultures, purpose-led business, and civic and systems innovation.
+Over three conversations, we engaged with people who bring different and complementary perspectives to governance. This included experience and views from [daos](/content/tags/daos.md#), other decentralised networks, the co-operative movement, Indigenous cultures, purpose-led business, and civic and systems innovation.
 
 We explored perspectives on the essential functions and attributes of governance, and the design implications for governance arrangements that seek to foster decentralisation, pluralism, and regeneration.
 
 Each of the conversations were framed around a question:
 
-- **[June 2, 2022](./Governance%2520for%2520better%2520futures%2520-%2520DAO%25202%2520DAO%2520Co-operation.md#):** Metagovernance - what is it and what’s its potential?
-- **[June 16, 2022](./Governance%2520for%2520better%2520futures%2520-%2520Meta-governance.md#):** DAO to DAO - what are we seeing and learning from inter-DAO cooperation?
-- **[June 30, 2022](./Governance%2520for%2520better%2520futures%2520-%2520New%2520and%2520Old.md#):** New and old - what can Web3 learn from and contribute to existing governance perspectives and practices?
+- **[June 2, 2022](/content/artifacts/articles/governance-for-better-futures/Governance%2520for%2520better%2520futures%2520-%2520DAO%25202%2520DAO%2520Co-operation.md#):** Metagovernance - what is it and what’s its potential?
+- **[June 16, 2022](/content/artifacts/articles/governance-for-better-futures/Governance%2520for%2520better%2520futures%2520-%2520Meta-governance.md#):** DAO to DAO - what are we seeing and learning from inter-DAO cooperation?
+- **[June 30, 2022](/content/artifacts/articles/governance-for-better-futures/Governance%2520for%2520better%2520futures%2520-%2520New%2520and%2520Old.md#):** New and old - what can Web3 learn from and contribute to existing governance perspectives and practices?
     
 All Twitter Spaces took place from 6:30 to 7:30 pm EST and were hosted on the [SuperBenefit Twitter account.](https://twitter.com/superbenefitdao)
 
