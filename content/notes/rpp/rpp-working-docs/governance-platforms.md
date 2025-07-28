@@ -62,5 +62,5 @@ By combining these platforms, a DAO can create a robust and transparent governan
 
 ## References
 
-*   **[on-chain-vs.-off-chain-governance](./on-chain-vs.-off-chain-governance.md):** This pattern provides the conceptual underpinning for *why* a multi-platform stack is necessary, separating the domains of signaling and execution.
-*   **[token-based-governance](./token-based-governance.md):** Platforms like Snapshot and Tally are the primary user interfaces for exercising token-based voting rights.
+*   **[on-chain-vs.-off-chain-governance](/content/notes/rpp/rpp-working-docs/on-chain-vs.-off-chain-governance.md):** This pattern provides the conceptual underpinning for *why* a multi-platform stack is necessary, separating the domains of signaling and execution.
+*   **[token-based-governance](/content/notes/rpp/rpp-working-docs/token-based-governance.md):** Platforms like Snapshot and Tally are the primary user interfaces for exercising token-based voting rights.

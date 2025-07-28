@@ -17,5 +17,5 @@ description:
 Metagov has created:
 
 - [Modular Politics](links/Modular%20Politics.md)
-- [DAOstar](./DAOstar.md#)
-- [Govbase](./Govbase.md)
+- [DAOstar](/content/links/DAOstar.md#)
+- [Govbase](/content/links/Govbase.md)

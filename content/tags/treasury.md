@@ -33,21 +33,21 @@ As highlighted in [A Pocket Guide to DAO Frameworks](notes/links/to-review/A%20P
 
 In scalable network models, as described in [Building DAOs as scalable networks](artifacts/articles/network-evolution%201/Building%20DAOs%20as%20scalable%20networks.md), the treasury is the critical resource that fuels the entire system. It is managed through a multi-layered governance approach:
 - **Community Governance** acts as a safeguard, holding ultimate authority by approving the overall operational budget from the main treasury. This ensures all operations remain aligned with the network's long-term purpose.
-- **Operational Governance**, carried out by coordinating test-pattern, then has the autonomy to allocate this budgeted capital to specific projects and contributors, enabling agility and innovation at the team scale.
+- **Operational Governance**, carried out by coordinating [Cells](/test-pattern.md), then has the autonomy to allocate this budgeted capital to specific projects and contributors, enabling agility and innovation at the team scale.
 
 ### As the Subject of Governance and Resource Allocation
 
-The treasury is the primary [shared resource](./resources.md) that a DAO's [governance](./governance.md) processes are designed to manage. Collective decision-making is fundamentally about how to best allocate the treasury's assets to achieve the DAO's goals. Proposals, votes, and debates within a DAO very often revolve around a single question: "How should we use our collective treasury?" This makes the treasury the practical nexus of power, coordination, and purpose within the organization.
+The treasury is the primary [shared resource](/content/tags/resources.md) that a DAO's [governance](/content/tags/governance.md) processes are designed to manage. Collective decision-making is fundamentally about how to best allocate the treasury's assets to achieve the DAO's goals. Proposals, votes, and debates within a DAO very often revolve around a single question: "How should we use our collective treasury?" This makes the treasury the practical nexus of power, coordination, and purpose within the organization.
 
 ## Related Concepts
 
-- [Governance](./governance.md): The set of processes used to manage and allocate the treasury's assets.
-- [DAOs](./daos.md): The organizations that collectively own and are powered by a treasury.
-- [Resources](./resources.md): The treasury is the primary financial resource pool for a DAO.
-- [Wallets](./wallets.md): The treasury itself is often a multi-signature wallet or smart contract, and members use their personal wallets to vote on its use.
+- [Governance](/content/tags/governance.md): The set of processes used to manage and allocate the treasury's assets.
+- [DAOs](/content/tags/daos.md): The organizations that collectively own and are powered by a treasury.
+- [Resources](/content/tags/resources.md): The treasury is the primary financial resource pool for a DAO.
+- [Wallets](/content/tags/wallets.md): The treasury itself is often a multi-signature wallet or smart contract, and members use their personal wallets to vote on its use.
 <<<<<<< HEAD
-- test-pattern: The autonomous operational units often funded by the DAO's treasury to perform work.
-- [A Pocket Guide to DAO Frameworks](../links/trash/A%20Pocket%20Guide%20to%20DAO%20Frameworks.md): An overview of technical systems that define how a treasury can be managed.
+- [Cells](/test-pattern.md): The autonomous operational units often funded by the DAO's treasury to perform work.
+- [A Pocket Guide to DAO Frameworks](/A%20Pocket%20Guide%20to%20DAO%20Frameworks.md): An overview of technical systems that define how a treasury can be managed.
 =======
 - [Cells](notes/dao-primitives/test-resources/test-pattern.md): The autonomous operational units often funded by the DAO's treasury to perform work.
 - [A Pocket Guide to DAO Frameworks](notes/links/to-review/A%20Pocket%20Guide%20to%20DAO%20Frameworks.md): An overview of technical systems that define how a treasury can be managed.
