@@ -21,47 +21,21 @@ Here, you'll find:
 
 %% Begin Waypoint %%
 - **[notes](index.md)**
-  - **aifs**
-  - **archive**
-    - **charmverse**
-    - **clarity**
-  - **cxi**
-  - **[dao-primitives](./dao-primitives/index.md)**
-  - **general-circle**
-  - **[ics](./ics/index.md)**
-  - **library**
-    - current-status
-    - daily-checklist
-    - discord-candidates-evaluation
-    - discord-link-scraper-project-plan
-    - evaluation-template
-    - final-ready-to-write
-    - [link-analysis-progress.json](../../attachments/link-analysis-progress.json.md)
-    - link-analysis-usage-guide
-    - PLEASE-MOVE-THIS-FOLDER
-    - processing-status
-    - ready-to-write
-    - rejected-articles-log
-    - rigorous-curation-strategy
-    - start-link-analysis
-    - [superbenefit-discord-urls.csv](../../attachments/superbenefit-discord-urls.csv.md)
-    - valuable-articles
-    - values-concerns
-    - web-scraping-method-reliability-guide
-    - web3-library-workflow
-  - **otf-reporting**
-    - OTF Final Report - Full Story Version
-    - OTF Report Questions and Requirements
-    - OTF Report Working Document
-  - **[rpp](./rpp/index.md)**
-  - **wp**
+  - **[aifs](/aifs.md)**
+  - **[archive](/archive.md)**
+    - **[charmverse](/charmverse.md)**
+    - **[clarity](/clarity.md)**
+  - **[cxi](/cxi.md)**
+  - **[dao-primitives](/content/notes/dao-primitives/index.md)**
+  - **[general-circle](/general-circle.md)**
+  - **[ics](/content/notes/ics/index.md)**
+  - **[rpp](/content/notes/rpp/index.md)**
+  - **[wp](/wp.md)**
 
 %% End Waypoint %%
 
 ---
 
-## Related Resources
-
-* **[Library](../links/index.md#):**  External resources and references that inform our work.
-* **[Lexicon](../tags/index.md#):**  Our shared vocabulary and conceptual framework.
-* **[Artifacts](../artifacts/index.md#):**  Published, refined content representing our collective understanding.
+## Related R[valuable-articles](/valuable-articles.md)y](link[values-concerns](/values-concerns.md)ernal r[web-scraping-method-reliability-guide](/web-scraping-method-reliability-guide.md)ork.
+* [web3-library-workflow](/web3-library-workflow.md):**  Our shared vocabulary and conceptual framework.
+* **[Artifacts](/content/artifacts/index.md#):**  Published, refined content representing our collective understanding.
