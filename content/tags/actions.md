@@ -30,7 +30,7 @@ Organizations can be understood as networks of coordinated actions that allow di
 In decentralized autonomous organizations, actions manifest through multiple mechanisms:
 
 - **On-chain actions**: Transactions, votes, and interactions with smart contracts that are cryptographically verified and permanently recorded on the blockchain
-- **Coordination actions**: Communications, decisions, and agreements that coordinate activity across autonomous teams or cell-working-group
+- **Coordination actions**: Communications, decisions, and agreements that coordinate activity across autonomous teams or cell
 - **Contributory actions**: Tasks and deliverables created by community members that advance the DAO's purpose
 - **Governance actions**: Processes like proposals, voting, and [delegation](./delegation.md#) that shape the direction and rules of the organization
 
@@ -45,7 +45,7 @@ In social impact contexts, actions focus on creating measurable positive change 
 - **Advocacy actions**: Efforts to transform structures and policies that create or perpetuate harm
 - **Regenerative actions**: Interventions that restore and enhance social and ecological systems
 
-The [Reimagining Power](../artifacts/Reimagining%2520Power%2520-%2520How%2520Web3%2520Can%2520Transform%2520Impact.md#) initiative specifically examines how web3 technologies can enable more equitable, community-driven action by redistributing power and resources to those most affected by social challenges.
+The [Reimagining Power](../artifacts/articles/Reimagining%2520Power%2520-%2520How%2520Web3%2520Can%2520Transform%2520Impact.md#) initiative specifically examines how web3 technologies can enable more equitable, community-driven action by redistributing power and resources to those most affected by social challenges.
 
 ## Related Concepts
 
