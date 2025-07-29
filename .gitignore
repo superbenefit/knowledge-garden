@@ -9,6 +9,7 @@ tsconfig.tsbuildinfo
 private/
 .replit
 replit.nix
+.claude
 
 
 # Ignore Python virtual environment
