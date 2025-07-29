@@ -39,11 +39,11 @@ Effective impact visions connect individual and community aspirations to broader
 
 ## Related Concepts
 
-- **[Purpose](/content/tags/purpose.md#)**: The fundamental reason for existence that vision makes concrete and observable
-- **[Values](/content/tags/values.md#)**: The principles and beliefs that shape how vision is pursued and realized
-- **[Goals](/content/tags/goals.md#)**: Specific, measurable objectives that mark progress toward realizing the vision
-- **[Transformation](/content/tags/transformation.md#)**: The process of fundamental change that vision seeks to create
-- **[Agreements](/content/tags/agreements.md#)**: Shared understandings that include commitment to collective vision
+- **[Purpose](./purpose.md#)**: The fundamental reason for existence that vision makes concrete and observable
+- **[Values](./values.md#)**: The principles and beliefs that shape how vision is pursued and realized
+- **[Goals](./goals.md#)**: Specific, measurable objectives that mark progress toward realizing the vision
+- **[Transformation](./transformation.md#)**: The process of fundamental change that vision seeks to create
+- **[Agreements](./agreements.md#)**: Shared understandings that include commitment to collective vision
 
 ## References and Resources
 

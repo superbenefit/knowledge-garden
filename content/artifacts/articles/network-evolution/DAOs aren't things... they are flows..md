@@ -115,4 +115,4 @@ And to do this DAOs have to be able to leverage **both** Dynamic-One **and** Dyn
 
 ### Article Series
 
-- Next: [Scale and the levers that provide DAOs their power](/content/artifacts/articles/network-evolution/Scale%2520and%2520the%2520levers%2520that%2520provide%2520DAOs%2520their%2520power.md#)
+- Next: [Scale and the levers that provide DAOs their power](./Scale%2520and%2520the%2520levers%2520that%2520provide%2520DAOs%2520their%2520power.md#)

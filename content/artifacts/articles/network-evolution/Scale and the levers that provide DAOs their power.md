@@ -16,7 +16,7 @@ _Rowan is a contributor to [SuperBenefitDAO](https://www.superbenefit.org/) and 
 
 ### Goodbye “business model”. Hello “network economy”
 
-As we described in our recent article [DAOs aren't things... they are flows.](/content/artifacts/articles/network-evolution/DAOs%2520aren't%2520things...%2520they%2520are%2520flows..md#), Web3 presents the possibility of a new paradigm to replace the company-centric paradigm that has been evolving over the past 400 years.
+As we described in our recent article [DAOs aren't things... they are flows.](./DAOs%2520aren't%2520things...%2520they%2520are%2520flows..md#), Web3 presents the possibility of a new paradigm to replace the company-centric paradigm that has been evolving over the past 400 years.
 
 ![](https://superbenefit.mirror.xyz/_next/image?url=https%3A%2F%2Fimages.mirror-media.xyz%2Fpublication-images%2FwzujkB3B59tUd80JEcLsV.png&w=3840&q=75)
 
@@ -115,4 +115,4 @@ And to do this DAOs have to be able to leverage **both** Dynamic-One **and** Dyn
 ### Article Series
 
 - Previous: [DAOs aren't things, they are flows](DAOs%20aren't%20things,%20they%20are%20flows)
-- Next: [DAOs - From fractal primitives to network scale.](/content/artifacts/articles/network-evolution/DAOs%2520-%2520From%2520fractal%2520primitives%2520to%2520network%2520scale..md#)
+- Next: [DAOs - From fractal primitives to network scale.](./DAOs%2520-%2520From%2520fractal%2520primitives%2520to%2520network%2520scale..md#)

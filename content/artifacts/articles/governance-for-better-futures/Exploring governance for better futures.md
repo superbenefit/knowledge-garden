@@ -19,7 +19,7 @@ Beyond the governance of orgs, communities, and networks, we’ll probe the noti
 
 ## Three conversations
 
-Over three conversations, we engaged with people who bring different and complementary perspectives to governance. This included experience and views from [daos](/content/tags/daos.md#), other decentralised networks, the co-operative movement, Indigenous cultures, purpose-led business, and civic and systems innovation.
+Over three conversations, we engaged with people who bring different and complementary perspectives to governance. This included experience and views from [daos](../../../tags/daos.md#), other decentralised networks, the co-operative movement, Indigenous cultures, purpose-led business, and civic and systems innovation.
 
 We explored perspectives on the essential functions and attributes of governance, and the design implications for governance arrangements that seek to foster decentralisation, pluralism, and regeneration.
 

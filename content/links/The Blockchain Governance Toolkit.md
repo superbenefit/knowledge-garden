@@ -71,4 +71,4 @@ The toolkit advocates for governance systems customized to fit specific project 
 
 ---
 
-![](/attachments/PL_Toolkit_Report_v7.pdf)
+![](../../attachments/PL_Toolkit_Report_v7.pdf)

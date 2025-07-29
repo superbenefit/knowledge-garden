@@ -25,13 +25,13 @@ Frameworks serve distinct yet complementary purposes across different domains: i
 
 In organizational contexts, frameworks provide structured approaches to governance, coordination, and development. They offer conceptual models for understanding key components and relationships in organizational systems, helping stakeholders visualize complex interactions and design coherent structures.
 
-The [DAO Primitives Framework](/content/artifacts/guides/dao-primitives-framework/index.md#) exemplifies this approach, providing foundational concepts and patterns for building decentralized organizations. As noted in the knowledge base, this framework explores how DAOs function as "purpose-aligned networks of small autonomous teams" and offers tools for facilitating group development across different phases and scales. This framework helps practitioners design organizations that balance autonomy with coordination, creating systems that can scale while maintaining alignment with core purpose.
+The [DAO Primitives Framework](../artifacts/guides/dao-primitives-framework/index.md#) exemplifies this approach, providing foundational concepts and patterns for building decentralized organizations. As noted in the knowledge base, this framework explores how DAOs function as "purpose-aligned networks of small autonomous teams" and offers tools for facilitating group development across different phases and scales. This framework helps practitioners design organizations that balance autonomy with coordination, creating systems that can scale while maintaining alignment with core purpose.
 
 ### Frameworks in Web3 Governance
 
 In web3 governance, frameworks provide structured approaches to addressing coordination challenges, power dynamics, and decision-making processes. These frameworks often combine technical mechanisms (like voting systems and smart contracts) with social practices and principles that guide their implementation.
 
-The [Anticapture Framework](/content/links/Anticapture.md#) represents a significant contribution to this field, offering a systematic approach to designing systems resistant to power concentration and exploitation. It provides a structured analysis of capture risks and corresponding design patterns to create more resilient governance systems. As referenced in governance discussions throughout the knowledge base, Anticapture offers principles for balancing decentralization with effective coordination.
+The [Anticapture Framework](../links/Anticapture.md#) represents a significant contribution to this field, offering a systematic approach to designing systems resistant to power concentration and exploitation. It provides a structured analysis of capture risks and corresponding design patterns to create more resilient governance systems. As referenced in governance discussions throughout the knowledge base, Anticapture offers principles for balancing decentralization with effective coordination.
 
 Similarly, Modular Politics provides a framework for understanding how governance components can be designed as interchangeable modules, allowing for flexible adaptation to different contexts and needs. This framework helps communities select and combine governance mechanisms appropriate to their specific requirements rather than imposing one-size-fits-all solutions.
 
@@ -43,18 +43,18 @@ The various frameworks discussed in the "Governance for better futures" series o
 
 ## Related Concepts
 
-- **[Primitives](/content/tags/primitives.md#)**: Fundamental building blocks that frameworks organize into coherent systems
-- **[Patterns](/content/tags/Patterns.md#)**: Reusable solutions to common problems that frameworks often incorporate and contextualize
-- **[Protocols](/content/tags/protocols.md#)**: Standardized procedures that implement framework principles in specific domains
-- **[modules](/content/tags/modules.md#)**: Self-contained components that can be arranged according to framework principles
-- **[Playbooks](/content/tags/playbooks.md#)**: Practical guides that apply frameworks to specific implementation contexts
-- **[Practices](/content/tags/practices.md#)**: Regular activities and methods guided by framework principles
+- **[Primitives](./primitives.md#)**: Fundamental building blocks that frameworks organize into coherent systems
+- **[Patterns](./Patterns.md#)**: Reusable solutions to common problems that frameworks often incorporate and contextualize
+- **[Protocols](./protocols.md#)**: Standardized procedures that implement framework principles in specific domains
+- **[modules](./modules.md#)**: Self-contained components that can be arranged according to framework principles
+- **[Playbooks](./playbooks.md#)**: Practical guides that apply frameworks to specific implementation contexts
+- **[Practices](./practices.md#)**: Regular activities and methods guided by framework principles
 
 ## Frameworks in the SuperBenefit Knowledge Base
 
 Several key frameworks are documented and developed within the SuperBenefit ecosystem:
 
-- **[DAO Primitives Framework](/content/artifacts/guides/dao-primitives-framework/index.md#)**: A conceptual model for understanding and designing decentralized autonomous organizations
-- **[Anticapture](/content/links/Anticapture.md#.md#)**: A framework for designing governance systems resistant to power concentration and exploitation
-- **[Modular Politics](/Modular%2520Politics.md#)**: An approach to governance that emphasizes composable, interchangeable components
+- **[DAO Primitives Framework](../artifacts/guides/dao-primitives-framework/index.md#)**: A conceptual model for understanding and designing decentralized autonomous organizations
+- **[Anticapture](../links/Anticapture.md#.md#)**: A framework for designing governance systems resistant to power concentration and exploitation
+- **[Modular Politics](../../Modular%2520Politics.md#)**: An approach to governance that emphasizes composable, interchangeable components
 - **[The Blockchain Governance Toolkit](notes/links/to-review/The%20Blockchain%20Governance%20Toolkit.md)**: A resource for implementing effective governance in blockchain-based systems

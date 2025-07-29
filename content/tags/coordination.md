@@ -24,7 +24,7 @@ In web3 and DAO contexts, coordination takes on particular importance as these s
 
 In web3 contexts, coordination often relies on protocols - standardized systems of rules and procedures that enable predictable interactions between autonomous agents. These protocols may be implemented through social agreements, technical mechanisms like smart contracts, or combinations of both.
 
-As described in [DAOs - From fractal primitives to network scale.](artifacts/articles/network-evolution%201/DAOs%20-%20From%20fractal%20primitives%20to%20network%20scale..md), effective protocols enable coordination to scale by providing "[primitives](/content/tags/primitives.md#)" - foundational building blocks that can be combined and recombined to address different coordination needs. This modular approach allows coordination mechanisms to evolve and adapt while maintaining interoperability across the network.
+As described in [DAOs - From fractal primitives to network scale.](artifacts/articles/network-evolution%201/DAOs%20-%20From%20fractal%20primitives%20to%20network%20scale..md), effective protocols enable coordination to scale by providing "[primitives](./primitives.md#)" - foundational building blocks that can be combined and recombined to address different coordination needs. This modular approach allows coordination mechanisms to evolve and adapt while maintaining interoperability across the network.
 
 ### Coordination in Multi-Stakeholder Systems
 
@@ -36,16 +36,16 @@ In these contexts, coordination mechanisms must address power imbalances, inform
 
 Transparent documentation of agreements, progress, and context serves as a critical coordination mechanism in decentralized systems. By making relevant information accessible to all participants, shared state documentation enables independent decision-making that naturally aligns with collective aims without requiring constant communication or oversight.
 
-The Cell working group pattern demonstrates this approach through "nucleus" documentation that captures a team's purpose, practices, and progress in a format accessible to both internal members and external collaborators. This transparency creates what the [readme](/readme.md#) calls "clear interfaces that enable trust-based coordination between groups and individuals across a broader DAO network."
+The Cell working group pattern demonstrates this approach through "nucleus" documentation that captures a team's purpose, practices, and progress in a format accessible to both internal members and external collaborators. This transparency creates what the [readme](../../readme.md#) calls "clear interfaces that enable trust-based coordination between groups and individuals across a broader DAO network."
 
 ## Related Concepts
 
-- **[Networks](/content/tags/networks.md#)**: The interconnected relationships through which coordination flows
-- **[Governance](/content/tags/governance.md#)**: The systems that establish and maintain coordination frameworks
-- **[Protocols](/content/tags/protocols.md#)**: Standardized rules and procedures that enable predictable coordination
-- **[Agreements](/content/tags/agreements.md#)**: Explicit understandings that establish coordination parameters
+- **[Networks](./networks.md#)**: The interconnected relationships through which coordination flows
+- **[Governance](./governance.md#)**: The systems that establish and maintain coordination frameworks
+- **[Protocols](./protocols.md#)**: Standardized rules and procedures that enable predictable coordination
+- **[Agreements](./agreements.md#)**: Explicit understandings that establish coordination parameters
 - **Scale**: The different levels at which coordination mechanisms operate
-- **[Culture](/content/tags/culture.md#)**: The shared norms and understandings that enable tacit coordination
+- **[Culture](./culture.md#)**: The shared norms and understandings that enable tacit coordination
 
 ## References and Resources
 
