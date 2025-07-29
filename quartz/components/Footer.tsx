@@ -24,7 +24,7 @@ export default ((opts?: Options) => {
           {i18n(cfg.locale).components.footer.createdWith}{" "}
           <a href="https://quartz.jzhao.xyz/">Quartz v{version}</a> © {year}
         </p>
-        <p style={{ margin: "0", marginBottom: "1rem" }}>Knowledge Services by <a href="https://www.clinamenic.com">Clinamenic LLC</a></p>
+        <p style={{ margin: "0", marginBottom: "1rem" }}>Quartz Customization by <a href="https://www.clinamenic.com">Clinamenic LLC</a></p>
       </footer>
     )
   }
