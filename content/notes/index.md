@@ -21,22 +21,22 @@ Here, you'll find:
 
 %% Begin Waypoint %%
 - **[notes](index.md)**
-  - **[aifs](/aifs.md)**
-  - **[archive](/archive.md)**
-    - **[charmverse](/charmverse.md)**
-    - **[clarity](/clarity.md)**
-  - **[cxi](/cxi.md)**
-  - **[dao-primitives](/content/notes/dao-primitives/index.md)**
-  - **[general-circle](/general-circle.md)**
-  - **[ics](/content/notes/ics/index.md)**
-  - **[rpp](/content/notes/rpp/index.md)**
-  - [Untitled](/Untitled.md)
-  - **[wp](/wp.md)**
+  - **[aifs](../../aifs.md)**
+  - **[archive](../../archive.md)**
+    - **[charmverse](../../charmverse.md)**
+    - **[clarity](../../clarity.md)**
+  - **[cxi](../../cxi.md)**
+  - **[dao-primitives](./dao-primitives/index.md)**
+  - **[general-circle](../../general-circle.md)**
+  - **[ics](./ics/index.md)**
+  - **[rpp](./rpp/index.md)**
+  - [Untitled](../../Untitled.md)
+  - **[wp](../../wp.md)**
 
 %% End Waypoint %%
 
 ---
 
-## Related R[valuable-articles](/valuable-articles.md)y](link[values-concerns](/values-concerns.md)ernal r[web-scraping-method-reliability-guide](/web-scraping-method-reliability-guide.md)ork.
-* [web3-library-workflow](/web3-library-workflow.md):**  Our shared vocabulary and conceptual framework.
-* **[Artifacts](/content/artifacts/index.md#):**  Published, refined content representing our collective understanding.
+## Related R[valuable-articles](../../valuable-articles.md)y](link[values-concerns](../../values-concerns.md)ernal r[web-scraping-method-reliability-guide](../../web-scraping-method-reliability-guide.md)ork.
+* [web3-library-workflow](../../web3-library-workflow.md):**  Our shared vocabulary and conceptual framework.
+* **[Artifacts](../artifacts/index.md#):**  Published, refined content representing our collective understanding.

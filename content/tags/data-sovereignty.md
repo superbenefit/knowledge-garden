@@ -31,7 +31,7 @@ Community data sovereignty often involves governance frameworks that ensure:
 - Requirements for consent and benefit-sharing when external parties access community data
 - Protection of sensitive cultural information according to traditional laws and customs
 
-These approaches connect to [semiotic-bridging](/content/tags/semiotic-bridging.md#), which enables communities to "maintain sovereignty over their own information" while still participating in broader knowledge exchange networks. This balance creates systems where communities can share knowledge on their own terms without surrendering control to external platforms or authorities.
+These approaches connect to [semiotic-bridging](./semiotic-bridging.md#), which enables communities to "maintain sovereignty over their own information" while still participating in broader knowledge exchange networks. This balance creates systems where communities can share knowledge on their own terms without surrendering control to external platforms or authorities.
 
 ### Data Sovereignty in Personal Privacy and Identity
 
@@ -44,7 +44,7 @@ Web3 approaches to personal data sovereignty include:
 - User-controlled encryption that protects sensitive data from unauthorized access
 - Personal data stores that consolidate information under individual rather than corporate control
 
-These technologies align with [privacy](/content/tags/privacy.md#) as both "protective and generative functions," creating spaces where individuals can participate in digital life without surrendering their autonomy or exposing themselves to surveillance.
+These technologies align with [privacy](./privacy.md#) as both "protective and generative functions," creating spaces where individuals can participate in digital life without surrendering their autonomy or exposing themselves to surveillance.
 
 ### Data Sovereignty in Web3 Infrastructure
 
@@ -56,7 +56,7 @@ In Web3 ecosystems, data sovereignty principles shape the design of technical in
 - Verifiable credentials that enable selective disclosure of personal information
 - Data unions and cooperatives that enable collective negotiation over data use
 
-These technical implementations create what [autonomy](/content/tags/autonomy.md#) describes as "the capacity for self-governance and independent decision-making within interconnected systems," allowing participants to maintain sovereignty while still engaging in collaborative networks.
+These technical implementations create what [autonomy](./autonomy.md#) describes as "the capacity for self-governance and independent decision-making within interconnected systems," allowing participants to maintain sovereignty while still engaging in collaborative networks.
 
 ### Data Sovereignty in Governance Frameworks
 
@@ -69,17 +69,17 @@ Effective data sovereignty governance typically includes:
 - Dispute resolution processes for addressing conflicts
 - Representation of data subjects in decision-making about data policies
 
-These governance approaches connect to broader [decentralization](/content/tags/decentralization.md#) efforts that distribute "power, decision-making, and control away from a central authority to multiple individuals or entities," creating more equitable and participatory systems.
+These governance approaches connect to broader [decentralization](./decentralization.md#) efforts that distribute "power, decision-making, and control away from a central authority to multiple individuals or entities," creating more equitable and participatory systems.
 
 ## Related Concepts
 
-- **[Privacy](/content/tags/privacy.md#.md#)**: Data sovereignty enables privacy by giving individuals and communities control over information disclosure
-- **[Autonomy](/content/tags/autonomy.md#.md#)**: Data sovereignty represents a specific application of autonomy in the digital realm
-- **[Decentralization](/content/tags/decentralization.md#.md#)**: Distributed systems can enable data sovereignty by preventing centralized control
-- **[Semiotic Bridging](/content/tags/semiotic-bridging.md#.md#)**: Enables communities to share knowledge while maintaining control over their information
-- **[Governance](/content/tags/governance.md#)**: Frameworks that determine how data sovereignty principles are implemented and enforced
-- **[Community](/content/tags/community.md#)**: Often serves as a key unit of data governance between individual and institutional scales
-- **[Localism](/content/tags/localism.md#)**: Connects to data sovereignty through emphasis on local determination and control
+- **[Privacy](./privacy.md#.md#)**: Data sovereignty enables privacy by giving individuals and communities control over information disclosure
+- **[Autonomy](./autonomy.md#.md#)**: Data sovereignty represents a specific application of autonomy in the digital realm
+- **[Decentralization](./decentralization.md#.md#)**: Distributed systems can enable data sovereignty by preventing centralized control
+- **[Semiotic Bridging](./semiotic-bridging.md#.md#)**: Enables communities to share knowledge while maintaining control over their information
+- **[Governance](./governance.md#)**: Frameworks that determine how data sovereignty principles are implemented and enforced
+- **[Community](./community.md#)**: Often serves as a key unit of data governance between individual and institutional scales
+- **[Localism](./localism.md#)**: Connects to data sovereignty through emphasis on local determination and control
 
 ## References and Resources
 
