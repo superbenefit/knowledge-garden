@@ -11,13 +11,13 @@ Welcome to the SuperBenefit artifacts repository! This section contains the fini
 
 This repository is organized into thematic sections, each representing a different type of knowledge resource. These artifacts are intended to inspire, educate, and provide actionable tools for community-driven change.
 
-* **[articles](/content/artifacts/articles/index.md#):** Essays and reflections that distill key ideas and spark dialogue about the future of DAOs, governance, and organizational design.
+* **[articles](./articles/index.md#):** Essays and reflections that distill key ideas and spark dialogue about the future of DAOs, governance, and organizational design.
 
-* **[patterns](/content/artifacts/patterns/index.md#):** Practical templates and models for solving common challenges in decentralized and community-driven contexts.
+* **[patterns](./patterns/index.md#):** Practical templates and models for solving common challenges in decentralized and community-driven contexts.
 
-* **[playbooks](/content/tags/playbooks.md#):** Step-by-step guides that empower communities to experiment with new tools, practices, and protocols.
+* **[playbooks](../tags/playbooks.md#):** Step-by-step guides that empower communities to experiment with new tools, practices, and protocols.
 
-* **[studies](/content/artifacts/studies/index.md#):** Case studies and in-depth analyses of successful projects, offering lessons and best practices for replication.
+* **[studies](./studies/index.md#):** Case studies and in-depth analyses of successful projects, offering lessons and best practices for replication.
 
 * **[papers](artifacts/papers/papers.md):** Scholarly works that explore foundational theories and propose new paradigms for collaborative and decentralized systems.
 
@@ -31,6 +31,6 @@ Whether you’re seeking inspiration, knowledge, or actionable frameworks, this 
 
 ## Related Resources
 
-* **[Community Notes](/content/notes/index.md#):** Explore our active workspace of ideas under development.
-* **[Patterns](/patterns.md#):** Proven solutions and strategies for organizational challenges.
-* **[Links](/content/links/index.md#):** Curated external resources that inform and enrich our work.
+* **[Community Notes](../notes/index.md#):** Explore our active workspace of ideas under development.
+* **[Patterns](../../patterns.md#):** Proven solutions and strategies for organizational challenges.
+* **[Links](../links/index.md#):** Curated external resources that inform and enrich our work.
