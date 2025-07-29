@@ -15,11 +15,11 @@ These articles discuss potential ways to address common questions in the DAO eco
 
 %% Begin Landmark %%
 - **[network-evolution](index.md)**
-  - [Building DAOs as scalable networks](/content/artifacts/articles/network-evolution/Building%20DAOs%20as%20scalable%20networks.md)
-  - [DAOs - From fractal primitives to network scale.](/content/artifacts/articles/network-evolution/DAOs%20-%20From%20fractal%20primitives%20to%20network%20scale..md)
-  - [DAOs aren't things... they are flows.](/content/artifacts/articles/network-evolution/DAOs%20aren't%20things...%20they%20are%20flows..md)
-  - [Minimum Viable Permissionless-ness](/content/artifacts/articles/network-evolution/Minimum%20Viable%20Permissionless-ness.md)
-  - [Scale and the levers that provide DAOs their power](/content/artifacts/articles/network-evolution/Scale%20and%20the%20levers%20that%20provide%20DAOs%20their%20power.md)
+  - [Building DAOs as scalable networks](./Building%20DAOs%20as%20scalable%20networks.md)
+  - [DAOs - From fractal primitives to network scale.](./DAOs%20-%20From%20fractal%20primitives%20to%20network%20scale..md)
+  - [DAOs aren't things... they are flows.](./DAOs%20aren't%20things...%20they%20are%20flows..md)
+  - [Minimum Viable Permissionless-ness](./Minimum%20Viable%20Permissionless-ness.md)
+  - [Scale and the levers that provide DAOs their power](./Scale%20and%20the%20levers%20that%20provide%20DAOs%20their%20power.md)
 
 %% End Landmark %%
 ## Themes and Concepts
