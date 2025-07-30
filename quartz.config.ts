@@ -17,7 +17,7 @@ const config: QuartzConfig = {
     },
     locale: "en-US",
     baseUrl: "knowledge.superbenefit.org",
-    ignorePatterns: ["private", "templates", ".obsidian", ".github"],
+    ignorePatterns: ["drafts", "tools", ".obsidian", ".github"],
     defaultDateType: "created",
     theme: {
       fontOrigin: "googleFonts",
