@@ -2,31 +2,36 @@
 title: DAO Primitives Project
 description: A framework for building purpose-aligned networks of small autonomous teams that harness collective intelligence
 publish: "true"
-type: index
+type: guide
 tags:
   - daos
   - primitives
+author:
+  - yeoro.eth
 ---
+# NOTE - THIS CONTENT HAS BEEN ADDED TO THE DAO-PRIMITIVES-FRAMEWORK.MD DOC
+
+
 
 # DAO Primitives Project
 
-The DAO Primitives Project provides a framework, conceptual tools, and practical patterns for building **purpose-aligned networks of small autonomous teams** that can scale effectively while maintaining coordination, adaptability, and emergent collective intelligence.
+The DAO Primitives Project provides a framework, conceptual tools, and practical patterns for building **[purpose](../../tags/purpose.md)-aligned networks of small autonomous [teams](../../tags/teams.md)** that can scale effectively while maintaining coordination, adaptability, and emergent collective intelligence.
 
-Our current organizational models were optimized for an era of industrial production and hierarchical management, creating structures that excel at efficiency but struggle with complexity, adaptability, and equitable value distribution. Decentralized organizations offer transformative alternatives through their core properties: distributed authority that prevents power concentration, permissionless innovation that unlocks collective intelligence, transparent operations that build trust, and aligned incentives that share value with all contributors. 
+Our current organizational models were optimized for an era of industrial production and hierarchical management, creating structures that excel at efficiency but struggle with complexity, adaptability, and equitable value distribution. [Decentralized organizations](../../tags/decentralization.md) offer transformative alternatives through their core properties: distributed authority that prevents power concentration, permissionless innovation that unlocks collective intelligence, transparent operations that build trust, and aligned incentives that share value with all contributors. 
 
-As our societal challenges grow increasingly complex and interconnected—from climate change to economic inequality—we need coordination systems that can harness diverse perspectives, adapt quickly to emerging conditions, and align human activity with regenerative outcomes. 
+As our societal challenges grow increasingly complex and interconnected—from climate change to economic inequality—we need [coordination](../../tags/coordination.md) systems that can harness diverse perspectives, adapt quickly to emerging conditions, and align human activity with regenerative outcomes. 
 
-Traditional corporations, governments, and NGOs, designed for stability in predictable environments, often lack the responsiveness and diversity of intelligence needed to address systemic challenges. Decentralized organizations provide a fundamental reimagining of how humans coordinate to create value, enabling more resilient, adaptive, and equitable systems capable of navigating the complexity of our modern world while distributing benefits more widely across society.
+Traditional corporations, governments, and NGOs, designed for stability in predictable environments, often lack the responsiveness and diversity of intelligence needed to address systemic challenges. [Decentralized organizations](../../tags/decentralization.md) provide a fundamental reimagining of how humans [coordinate](../../tags/coordination.md) to create value, enabling more resilient, adaptive, and equitable systems capable of navigating the complexity of our modern world while distributing benefits more widely across society.
 
-We developed the DAO Primitives project around  **purpose-aligned networks of small autonomous teams** as a conceptual starting point for designing decentralized organizations. The DAO primitives allow communities of all kinds to build their own purpose aligned networks that can act in deliberate coherent ways to create better futures for everyone who participates in them.  
+We developed the DAO Primitives project around **[purpose](../../tags/purpose.md)-aligned networks of small autonomous [teams](../../tags/teams.md)** as a conceptual starting point for designing decentralized organizations. The DAO primitives allow communities of all kinds to build their own purpose aligned networks that can act in deliberate coherent ways to create better futures for everyone who participates in them.
 
 ## What Are DAO Primitives?
 
-The DAO Primitives are a handful of building blocks for designing decentralized organizations. They're un-opinionated components that can be combined and configured to create governance and operational systems tailored to specific contexts and needs.
+The DAO [Primitives](../../tags/primitives.md) are a handful of building blocks for designing [decentralized organizations](../../tags/decentralization.md). They're un-opinionated components that can be combined and configured to create governance and operational systems tailored to specific contexts and needs.
 
-Unlike prescriptive frameworks that dictate how organizations should be structured, the primitives offer maximum flexibility while maintaining coherence and interoperability. They enable experimentation with novel forms of coordination that can potentially outperform traditional organizational models.
+Unlike prescriptive frameworks that dictate how organizations should be structured, the primitives offer maximum flexibility while maintaining coherence and interoperability. They enable experimentation with novel forms of [coordination](../../tags/coordination.md) that can potentially outperform traditional organizational models.
 
-The primitives approach addresses a crucial challenge: **how can decentralized networks scale while balancing efficiency with innovation, autonomy with alignment, and flexibility with coherence?**
+The primitives approach addresses a crucial challenge: **how can decentralized networks scale while balancing efficiency with innovation, autonomy with [alignment](tags/alignment.md), and flexibility with coherence?**
 
 ## Core Conceptual Framework
 
@@ -44,7 +49,7 @@ Human systems function differently at different scales. Each scale requires diff
 
 #### 2. Group Phase
 
-Groups develop through predictable phases, each with distinct needs and challenges. Understanding these phases helps groups select appropriate tools and practices for their current stage of development.
+[Groups](../../tags/groups.md) develop through predictable phases, each with distinct needs and challenges. Understanding these phases helps groups select appropriate tools and practices for their current stage of development.
 - **Conversation Phase**
 - **Formation Phase**
 - **Organisation Phase**
@@ -54,7 +59,7 @@ Groups develop through predictable phases, each with distinct needs and challeng
 
 #### 3. Group State
 
-For decentralized coordination to work effectively, all entities in a network need clear interfaces. State documentation creates transparency that enables both internal coherence and external coordination.
+For decentralized [coordination](../../tags/coordination.md) to work effectively, all entities in a network need clear interfaces. State documentation creates transparency that enables both internal coherence and external [coordination](../../tags/coordination.md).
 
 ### Group Primitives
 
@@ -73,33 +78,27 @@ A Framework for Organizational Design.
 
 This section of the knowledge base contains several interrelated components:
 
-### 1. [Framework](./framework/index.md#)
+### 1. [Framework](../../artifacts/guides/dao-primitives-framework/index.md#)
 The conceptual foundations that guide organizational design, including models for understanding group scale, phase, and state, along with organizational primitives.
 
-### 2. patterns
-Reusable solutions to common coordination challenges, organized by scale:
-- collaboration-scale-patterns
-- coordination-scale-patterns
-- constituency-scale-patterns
-- network-scale-patterns
+### 2. [Patterns](../../../patterns.md#)
+Reusable solutions to common [coordination](../../tags/coordination.md) challenges, organized by scale:
 
-### 3. implementation
+### 3. [Implementation](../../../implementation.md#)
 Practical tools, processes, and guides for putting the primitives approach into practice, including:
 - [Case Studies](notes/dao-primitives/implementation/case-studies)
 - [Guides](notes/dao-primitives/implementation/guides)
 
-### 4. resources
-Supporting materials including templates and tools for implementation.
 
 ## Network Evolution Series
 
 The DAO Primitives approach draws on insights from the Network Evolution series of articles, which explore how DAOs can function as networks rather than traditional organizations:
 
-1. **[DAOs aren't things... they are flows](../../artifacts/articles/network-evolution/DAOs%2520aren't%2520things...%2520they%2520are%2520flows..md#)**: Reconceptualizing DAOs as networks with coordinated resource flows
-2. **[Scale and the levers that provide DAOs their power](../../artifacts/articles/network-evolution/Scale%2520and%2520the%2520levers%2520that%2520provide%2520DAOs%2520their%2520power.md#)**: How DAOs can harness both efficiency scaling and innovation scaling
-3. **[DAOs - From fractal primitives to network scale](../../artifacts/articles/network-evolution/DAOs%2520-%2520From%2520fractal%2520primitives%2520to%2520network%2520scale..md#)**: How networks of autonomous cells can scale while maintaining coherence
-4. **[Minimum Viable Permissionless-ness](../../artifacts/articles/network-evolution/Minimum%2520Viable%2520Permissionless-ness.md#)**: How to balance openness with effective coordination
-5. **[Building DAOs as scalable networks](../../artifacts/articles/network-evolution/Building%2520DAOs%2520as%2520scalable%2520networks.md#)**: A practical model for multi-scale governance
+1. **[DAOs aren't things... they are flows](artifacts/articles/network-evolution%201/DAOs%20aren't%20things...%20they%20are%20flows..md)**: Reconceptualizing DAOs as networks with coordinated resource flows
+2. **[Scale and the levers that provide DAOs their power](artifacts/articles/network-evolution%201/Scale%20and%20the%20levers%20that%20provide%20DAOs%20their%20power.md)**: How DAOs can harness both efficiency scaling and innovation scaling
+3. **[DAOs - From fractal primitives to network scale](artifacts/articles/network-evolution%201/DAOs%20-%20From%20fractal%20primitives%20to%20network%20scale..md)**: How networks of autonomous cells can scale while maintaining coherence
+4. **[Minimum Viable Permissionless-ness](artifacts/articles/network-evolution%201/Minimum%20Viable%20Permissionless-ness.md)**: How to balance openness with effective coordination
+5. **[Building DAOs as scalable networks](artifacts/articles/network-evolution%201/Building%20DAOs%20as%20scalable%20networks.md)**: A practical model for multi-scale governance
 
 These articles provide the theoretical foundations for the more practical focus of the DAO Primitives resources.
 
@@ -107,9 +106,9 @@ These articles provide the theoretical foundations for the more practical focus 
 
 If you're new to the DAO Primitives approach:
 
-1. Explore the [Conceptual Framework](./framework/index.md#.md#) to understand the key concepts
-2. Review the group-facilitation for a practical approach to applying these concepts
-3. Browse the patterns for specific solutions to common challenges
+1. Explore the [Conceptual Framework](../../artifacts/guides/dao-primitives-framework/index.md#.md#) to understand the key concepts
+2. Review the [Group Facilitation Guide](../../artifacts/guides/dao-primitives-framework/group-facilitation.md#) for a practical approach to applying these concepts
+3. Browse the [Pattern Library](../../../patterns.md#.md#) for specific solutions to common challenges
 
 For those implementing a DAO or similar decentralized organization, the primitives approach offers a flexible but coherent way to design systems that can harness collective intelligence while adapting and evolving as your needs change.
 
@@ -118,10 +117,11 @@ For those implementing a DAO or similar decentralized organization, the primitiv
 ## DAO Primitives Index
 
 %% Begin Waypoint %%
-- **[framework](./framework/index.md#)**
-- **implementation**
-- **patterns**
-- **resources**
-- **test-resources**
+- **[dao-primitives](index.md)**
+  - **[implementation](../../../implementation.md)**
+  - **[primitives-archive](../../../primitives-archive.md)**
+  - **[resources](../../../resources.md)**
+    - **[templates](../../../templates.md)**
+      - [Group State Template](../../../group-state-template.md)
 
 %% End Waypoint %%

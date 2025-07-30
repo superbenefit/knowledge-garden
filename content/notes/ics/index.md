@@ -13,12 +13,77 @@ aliases:
   - Reimagine Institute
   - Reimagine Institute for Community Sustainability
 publish: "true"
-type: note
+type: entity
 ---
 
 # Institute for Community Sustainability (ICS)
 
 The Institute for Community Sustainability (ICS) is a federal not-for-profit organization based in London, Ontario in the Carolinian Canada bioregion. 
+
+%% Begin Waypoint %%
+- **[ics](index.md)**
+  - **[about](../../../about.md)**
+    - [ics-business-description](../../../ics-business-description.md)
+    - [Community Exchange](../../../ics-community-exchange.md)
+    - [ICS Discovery Report](../../../ics-discovery-report.md)
+    - [ICS Experiment Scoping](../../../ics-experiment-scoping.md)
+    - [ICS Experiment Implementation Plan](../../../ics-implementation-plan.md)
+  - **[ccc](../../../ccc.md)**
+  - **[city-grant-reporting](../../../city-grant-reporting.md)**
+    - [0 - Full Year Data](../../../0%20-%20Full%20Year%20Data.md)
+    - [1 - Project Impact on Equity-Denied Groups](../../../1%20-%20Project%20Impact%20on%20Equity-Denied%20Groups.md)
+    - [2 - Supporting Anti-Racism and Inclusion](../../../2%20-%20Supporting%20Anti-Racism%20and%20Inclusion.md)
+    - [3 - Community Impact Story](../../../3%20-%20Community%20Impact%20Story.md)
+    - [4 - Additional Comments](../../../4%20-%20Additional%20Comments.md)
+  - [earthfest-greenpill-booth](../../../earthfest-greenpill-booth.md)
+  - **[gg23](../../../gg23.md)**
+    - [GG23 Project Description](../../../gg23-project-description.md)
+    - [GG23 Shill Plan](../../../gg23-shill-plan.md)
+    - **[graphics](../../../graphics.md)**
+      - [graphics-guide](../../../graphics-guide.md)
+    - [master-execution-plan](../../../master-execution-plan.md)
+    - **[newsletters](../../../newsletters.md)**
+      - [ics-newsletter](../../../ics-newsletter.md)
+      - [reimagine-newsletter](../../../reimagine-newsletter.md)
+    - **[outreach](../../../outreach.md)**
+      - [community-groups](../../../community-groups.md)
+      - [core-narrative](../../../core-narrative.md)
+      - [newsletter-copy-updated](../../../newsletter-copy-updated.md)
+      - [newsletter-copy](../../../newsletter-copy.md)
+      - [outreach-templates](../../../outreach-templates.md)
+      - [personal-templates](../../../personal-templates.md)
+      - [priority-contacts](../../../priority-contacts.md)
+      - [team-template](../../../team-template.md)
+      - [thank-you](../../../thank-you.md)
+    - [progress](../../../progress.md)
+    - [shill-plan](../../../shill-plan.md)
+    - **[social-media](../../../social-media.md)**
+      - [facebook-instagram-posts](../../../facebook-instagram-posts.md)
+      - [farcaster-strategy](../../../farcaster-strategy.md)
+    - **[tweets](../../../tweets.md)**
+      - [additional-strategic-tweets](../../../additional-strategic-tweets.md)
+      - [core-tweets](../../../core-tweets.md)
+      - [enhanced-tweets](../../../enhanced-tweets.md)
+      - [mention-tweets](../../../mention-tweets.md)
+      - [non-web3-audience-tweets](../../../non-web3-audience-tweets.md)
+      - [transformative-impact-threads](../../../transformative-impact-threads.md)
+      - [tweet-analysis](../../../tweet-analysis.md)
+      - [twitter-threads](../../../twitter-threads.md)
+    - [updated-strategy-fixed](../../../updated-strategy-fixed.md)
+    - [updated-strategy](../../../updated-strategy.md)
+    - **[website](../../../website.md)**
+      - [web3-page-content](../../../web3-page-content.md)
+      - [web3-page-updated](../../../web3-page-updated.md)
+      - [web3-page](../../../web3-page.md)
+      - [website-analysis](../../../website-analysis.md)
+      - [website-review](../../../website-review.md)
+  - [Green Pill London - New Chapter Application](../../../greenpill-london-application.md)
+  - **[rpp-reporting](../../../rpp-reporting.md)**
+    - [continuation-prompt](../../../continuation-prompt.md)
+    - [ics-experiment-reflection-draft](../../../ics-experiment-reflection-draft.md)
+  - [Web3 & Regenerative Finance](../../../Web3%20&%20Regenerative%20Finance.md)
+
+%% End Waypoint %%
 
 ## History and Background
 

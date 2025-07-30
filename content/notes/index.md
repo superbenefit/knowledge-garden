@@ -19,15 +19,24 @@ Here, you'll find:
 
 ## Project Workspaces
 
+%% Begin Waypoint %%
+- **[notes](index.md)**
+  - **[aifs](../../aifs.md)**
+  - **[archive](../../archive.md)**
+    - **[charmverse](../../charmverse.md)**
+    - **[clarity](../../clarity.md)**
+  - **[cxi](../../cxi.md)**
+  - **[dao-primitives](./dao-primitives/index.md)**
+  - **[general-circle](../../general-circle.md)**
+  - **[ics](./ics/index.md)**
+  - **[rpp](./rpp/index.md)**
+  - [Untitled](../../Untitled.md)
+  - **[wp](../../wp.md)**
 
-### [DAO Primitives Project](./dao-primitives/index.md#)
-
-This section explores the fundamental building blocks of effective organizations.  We investigate core concepts, frameworks for understanding organizational context, and the relationships between these building blocks and practical solutions.  Learn about governance mechanisms, operational functions, organizational structures, and coordination tools.
+%% End Waypoint %%
 
 ---
 
-## Related Resources
-
-* **[Library](../links/index.md#):**  External resources and references that inform our work.
-* **[Lexicon](../tags/index.md#):**  Our shared vocabulary and conceptual framework.
+## Related R[valuable-articles](../../valuable-articles.md)y](link[values-concerns](../../values-concerns.md)ernal r[web-scraping-method-reliability-guide](../../web-scraping-method-reliability-guide.md)ork.
+* [web3-library-workflow](../../web3-library-workflow.md):**  Our shared vocabulary and conceptual framework.
 * **[Artifacts](../artifacts/index.md#):**  Published, refined content representing our collective understanding.
