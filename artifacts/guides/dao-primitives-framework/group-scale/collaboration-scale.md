@@ -56,9 +56,9 @@ See the [[sense-making-facilitation-tools|sense-making-facilitation-tools]] docu
 
 ### Collaboration Scale Patterns
 
-- [[cell-state|cell-state]] 
-- [[cell|cell]] 
-- [[decider|decider]]
+- [[artifacts/patterns/cell-state|cell-state]] 
+- [[artifacts/patterns/cell|cell]] 
+- [[artifacts/patterns/decider-protocol|decider-protocol]]
 - [[cells|cells]]
 
 ---
