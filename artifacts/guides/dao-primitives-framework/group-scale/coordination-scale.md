@@ -51,7 +51,7 @@ While [[artifacts/guides/dao-primitives-framework/group-scale/collaboration-scal
 
 dataviewjs
 
-<div><ul class="dataview list-view-ul"><li><span></span></li><li><span></span></li><li><span></span></li><li><span></span></li><li><span></span></li></ul></div>
+<div><ul class="dataview list-view-ul"><li><span></span></li><li><span></span></li><li><span></span></li><li><span></span></li></ul></div>
 
 
 
