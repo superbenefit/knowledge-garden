@@ -76,7 +76,7 @@ DAOs create coherence and make successful [coordination](content/tags/coordinati
 
 **All in for Sport**: The DAO primitives framework has been applied to design the AIFS [governance](content/tags/governance.md) model and partnership with SuperBenefit. More can be read about this example here: [all-in-for-sport](all-in-for-sport.md).
 
-**RPP [Governance](content/tags/governance.md)**: This project is a good example of how a larger DAO structure (SuperBenefit) can support multi-stakeholder partnerships within its broad [community](content/tags/community.md) governance umbrella. This shows how complex governance and operations can be made simple and effective while maintaining appropriate levels of high-level governance. See [rpp-governance-case-study](rpp-governance-case-study.md)
+**RPP [Governance](content/tags/governance.md)**: This project is a good example of how a larger DAO structure (SuperBenefit) can support multi-stakeholder partnerships within its broad [community](content/tags/community.md) governance umbrella. This shows how complex governance and operations can be made simple and effective while maintaining appropriate levels of high-level governance. See [rpp-governance-case-study](content/notes/dao-primitives/implementation/case-studies/rpp-governance-case-study.md)
 
 ---
 
