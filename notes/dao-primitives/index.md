@@ -117,11 +117,11 @@ For those implementing a DAO or similar decentralized organization, the primitiv
 ## DAO Primitives Index
 
 %% Begin Waypoint %%
-- **[[index|dao-primitives]]**
-  - **[[implementation|implementation]]**
-  - **[[primitives-archive|primitives-archive]]**
-  - **[[resources|resources]]**
-    - **[[templates|templates]]**
-      - [[group-state-template|Group State Template]]
+- **[dao-primitives](index.md#)**
+  - **[implementation](implementation.md#)**
+  - **[primitives-archive](primitives-archive.md#)**
+  - **[resources](resources.md#)**
+    - **[templates](templates.md#)**
+      - [Group State Template](group-state-template.md#)
 
 %% End Waypoint %%
