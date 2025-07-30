@@ -20,18 +20,18 @@ Here, you'll find:
 ## Project Workspaces
 
 %% Begin Waypoint %%
-- **[[index|notes]]**
-  - **[[aifs|aifs]]**
-  - **[[archive|archive]]**
-    - **[[charmverse|charmverse]]**
-    - **[[clarity|clarity]]**
-  - **[[cxi|cxi]]**
-  - **[[notes/dao-primitives/index|dao-primitives]]**
-  - **[[general-circle|general-circle]]**
-  - **[[notes/ics/index|ics]]**
-  - **[[notes/rpp/index|rpp]]**
-  - [[Untitled|Untitled]]
-  - **[[wp|wp]]**
+- **[notes](index.md#)**
+  - **[aifs](aifs.md#)**
+  - **[archive](archive.md#)**
+    - **[charmverse](charmverse.md#)**
+    - **[clarity](clarity.md#)**
+  - **[cxi](cxi.md#)**
+  - **[dao-primitives](notes/dao-primitives/index.md#)**
+  - **[general-circle](general-circle.md#)**
+  - **[ics](notes/ics/index.md#)**
+  - **[rpp](notes/rpp/index.md#)**
+  - [Untitled](Untitled.md#)
+  - **[wp](wp.md#)**
 
 %% End Waypoint %%
 
