@@ -15,25 +15,25 @@ type: guide
 
 ## Introduction
 
-Crypto primitives make possible a fundamental shift in how communities organize, make decisions, and create impact. Unlike traditional organizations with rigid hierarchies, [DAOs](content/tags/daos.md) (and other crypto enabled organizations) can function as purpose-aligned networks operating through decentralized coordination mechanisms. [Community governance](content/tags/governance.md)—the [constituency-scale](content/tags/groups.md#Groups%20at%20Different%20Scales) layer of governance—forms the foundation that safeguards a networks purpose, steers its long-term evolution, and ensures that its community can genuinely participate in its formation and governance.
+Crypto primitives make possible a fundamental shift in how communities organize, make decisions, and create impact. Unlike traditional organizations with rigid hierarchies, [DAOs](../../../../tags/daos.md) (and other crypto enabled organizations) can function as purpose-aligned networks operating through decentralized coordination mechanisms. [Community governance](../../../../tags/governance.md)—the [constituency-scale](../../../../tags/groups.md#Groups%20at%20Different%20Scales) layer of governance—forms the foundation that safeguards a networks purpose, steers its long-term evolution, and ensures that its community can genuinely participate in its formation and governance.
 
 This implementation guide provides a comprehensive framework for designing, implementing, and evolving community governance structures using the DAO primitives approach. By breaking down governance into fundamental building blocks (primitives), communities can create customized, effective structures that align with their unique needs and values.
 
-At SuperBenefit we have developed the [DAO primitives framework](content/artifacts/guides/dao-primitives-framework/index.md) to provide a set of primitives and patterns with which these new organizational structures can be composed.
+At SuperBenefit we have developed the [DAO primitives framework](../index.md) to provide a set of primitives and patterns with which these new organizational structures can be composed.
 
-We have identified and experimented with using the DAO primitives framework to produce governance systems based on 3 interlocking governance structures: [Community Governance](content/tags/governance.md#Community%20Governance), [Operational Governance](content/tags/governance.md#Operational%20Governance) and [Multi-Stakeholder Governance](content/tags/governance.md#Multi-Stakeholder%20Governance).
+We have identified and experimented with using the DAO primitives framework to produce governance systems based on 3 interlocking governance structures: [Community Governance](../../../../tags/governance.md#Community%20Governance), [Operational Governance](../../../../tags/governance.md#Operational%20Governance) and [Multi-Stakeholder Governance](../../../../tags/governance.md#Multi-Stakeholder%20Governance).
 
 Guides to setting up these 3 interlocking governance structures can be found here:
 
-- [Implementation-guide-operational-governance](content/artifacts/guides/dao-primitives-framework/dao-primitives-implemention/implementation-guide-operational-governance.md#)
-- [Implementation-guide-multi-stakeholder-governance](content/artifacts/guides/dao-primitives-framework/dao-primitives-implemention/implementation-guide-multi-stakeholder-governance.md#)
+- [Implementation-guide-operational-governance](./implementation-guide-operational-governance.md#)
+- [Implementation-guide-multi-stakeholder-governance](./implementation-guide-multi-stakeholder-governance.md#)
 - [Implementation-guide-community-governance](implementation-guide-community-governance.md#) (this guide)
 
 This guide focuses on setting up a Community Governance structure, the highest level of governance in a decentralized network. You can do this as part of a three layered governance system as outlined above, or you could use this guide to design a community governance system to used with a completely different operational governance model.
 
 Creating a community governance structure is not a simple task. We recommend getting support from an experienced facilitator to help you through this process.
 
-_Note: this implementation guide follows the structure outlined in the DAO Primitives [group-facilitation](content/artifacts/guides/dao-primitives-framework/group-facilitation.md) process. It outlines specific steps for the Design and Implementation steps in this process. It assumes that an appropriate Discovery step has been completed and the network is ready to (and authorized to) design and implement a governance structure_
+_Note: this implementation guide follows the structure outlined in the DAO Primitives [group-facilitation](../group-facilitation.md) process. It outlines specific steps for the Design and Implementation steps in this process. It assumes that an appropriate Discovery step has been completed and the network is ready to (and authorized to) design and implement a governance structure_
 
 ### Governance Transformation Opportunities
 
@@ -59,7 +59,7 @@ This guide will help you:
 
 ### Relationship to Other Governance Components
 
-In this DAO Primitives context, Community governance exists as part of a three-layers governance model that occur at three different [layers of scale](content/tags/groups.md#Groups%20at%20Different%20Scales):
+In this DAO Primitives context, Community governance exists as part of a three-layers governance model that occur at three different [layers of scale](../../../../tags/groups.md#Groups%20at%20Different%20Scales):
 
 1. **Community Governance (this guide)**: Safeguards network purpose, steers long-term evolution, includes broad stakeholder base, uses slower, more deliberative mechanisms
 2. **Operational Governance**: Manages day-to-day operations, enables innovation and flexibility, coordinates between cells, develops and executes on strategy
@@ -86,7 +86,7 @@ Each section builds on the previous one, but you can also navigate directly to s
 
 Community governance addresses several key challenges:
 
-- **[Coordination](content/tags/coordination.md) at Scale**: How to make collective decisions as networks grow beyond face-to-face and small group interaction scales
+- **[Coordination](../../../../tags/coordination.md) at Scale**: How to make collective decisions as networks grow beyond face-to-face and small group interaction scales
 - **Alignment with Purpose**: Ensuring that the activities of the network remain connected to its core purpose and values
 - **Community Inclusion**: Creating meaningful community participation in both governance and operational opportunities
 - **Long-term Stewardship**: Balancing present needs with future sustainability and impact
@@ -114,7 +114,7 @@ Prerequisites for effective use include:
 
 ### Fundamental Principles Informing This Approach
 
-The [DAO primitives framework](content/artifacts/guides/dao-primitives-framework/index.md) is designed to allow us to compose governance systems that produce purpose-aligned networks of small autonomous teams with powerful organizational dynamics, making these networks effective in solving important problems.
+The [DAO primitives framework](../index.md) is designed to allow us to compose governance systems that produce purpose-aligned networks of small autonomous teams with powerful organizational dynamics, making these networks effective in solving important problems.
 
 Key principles and concepts include: **Organizational Dynamics**
 
@@ -136,17 +136,17 @@ Key principles and concepts include: **Organizational Dynamics**
 
 ## DAO Primitives Framework
 
-The [DAO primitives framework](content/artifacts/guides/dao-primitives-framework/index.md) provides 4 fundamental building blocks for creating effective decentralized organizations:
+The [DAO primitives framework](../index.md) provides 4 fundamental building blocks for creating effective decentralized organizations:
 
-1. **[DAOs](content/tags/daos.md)** - the larger constituency scale community container that the operational governance operates inside
-2. **[Cells](content/tags/roles.md)** - the basic operational unit in a DAO - a small autonomous team
-3. **[Roles](content/tags/roles.md)** - which contain and manage specific responsibilities and sets of permissions
+1. **[DAOs](../../../../tags/daos.md)** - the larger constituency scale community container that the operational governance operates inside
+2. **[Cells](../../../../tags/roles.md)** - the basic operational unit in a DAO - a small autonomous team
+3. **[Roles](../../../../tags/roles.md)** - which contain and manage specific responsibilities and sets of permissions
 4. **Tasks** - which are defined pieces of work/deliverable that individuals or teams can commit to delivering
 
 The framework considers three dimensions:
 
-- **Phase** - each DAO, Cell, Role or Task can move through a [group phase lifecycle](content/tags/groups.md#Groups%20in%20Developmental%20Phases)
-- **Scale** - different organizational levels from [collaboration to coordination to constituency](content/tags/groups.md#Groups%20at%20Different%20Scales) to network
+- **Phase** - each DAO, Cell, Role or Task can move through a [group phase lifecycle](../../../../tags/groups.md#Groups%20in%20Developmental%20Phases)
+- **Scale** - different organizational levels from [collaboration to coordination to constituency](../../../../tags/groups.md#Groups%20at%20Different%20Scales) to network
 - **State** - an articulation of the core relevant information about each primitive that allows it to be addressable across the network
 
 The goal of the DAO primitives framework is to allow us to compose governance systems that can produce purpose aligned networks of small autonomous teams that have powerful organizational dynamics making these networks effective in solving important problems.
@@ -199,7 +199,7 @@ Example goals might include:
 
 #### Impact Model
 
-You may want to or have already created an impact model (or theory of change) to describe the way you want your network to have positive impact on the world. It is not necessary to do this right away, as in the early phases ([conversation and formation phases](content/tags/groups.md#Groups%20in%20Developmental%20Phases)) of developing a community governance structure these details may still be emerging. But it is recommended to have a clearly articulated impact model as you move into coordination and organization phases. This will ensure that you have a solid coherent and testable foundation to connect your network's purpose to actual measurable change in the world.
+You may want to or have already created an impact model (or theory of change) to describe the way you want your network to have positive impact on the world. It is not necessary to do this right away, as in the early phases ([conversation and formation phases](../../../../tags/groups.md#Groups%20in%20Developmental%20Phases)) of developing a community governance structure these details may still be emerging. But it is recommended to have a clearly articulated impact model as you move into coordination and organization phases. This will ensure that you have a solid coherent and testable foundation to connect your network's purpose to actual measurable change in the world.
 
 ### 2. Define Requirements
 
@@ -232,7 +232,7 @@ For each high-level goal, identify concrete requirements across these dimensions
     - Reputation/legitimacy
     - Knowledge/information
 5. **Technical Considerations**: What technical factors shape the implementation options?
-    - [On-chain vs. off-chain](content/artifacts/articles/network-evolution/Building%20DAOs%20as%20scalable%20networks.md#Community%20Governance) processes
+    - [On-chain vs. off-chain](../../../articles/network-evolution/Building%20DAOs%20as%20scalable%20networks.md#Community%20Governance) processes
     - Available tooling
     - Technical capabilities of participants
     - Integration requirements
@@ -247,7 +247,7 @@ With clear purpose, goals, and requirements established, you can now design your
 
 Review common community governance patterns and select one or more that best match your requirements:
 
-1. **[Token-based governance](content/artifacts/articles/network-evolution/Building%20DAOs%20as%20scalable%20networks.md#Community%20Governance)**
+1. **[Token-based governance](../../../articles/network-evolution/Building%20DAOs%20as%20scalable%20networks.md#Community%20Governance)**
     - Description: Voting power distributed according to token holdings
     - Best For: Communities with clear tokenomic models, financial resource allocation
     - Key Primitives: Governance tokens, voting mechanisms, proposal systems
@@ -255,7 +255,7 @@ Review common community governance patterns and select one or more that best mat
 2. **Reputation-Based Governance**
     - Description: Influence earned through contributions and trust
     - Best For: Communities emphasizing merit and sustained participation
-    - Key Primitives: [Attestations](content/tags/attestations.md), contribution tracking, reputation algorithms
+    - Key Primitives: [Attestations](../../../../tags/attestations.md), contribution tracking, reputation algorithms
     - Considerations: Requires mechanisms to prevent unfair accumulation or stagnation
 3. **Delegated Governance**
     - Description: Representatives selected to make decisions on behalf of constituencies
@@ -263,12 +263,12 @@ Review common community governance patterns and select one or more that best mat
     - Key Primitives: Delegation mechanisms, representative selection, accountability systems
     - Considerations: Needs safeguards against delegate capture or misalignment
 4. **Council Governance**
-    - Description: Selected group with defined [responsibilities](content/tags/responsibilities.md) and constraints
+    - Description: Selected group with defined [responsibilities](../../../../tags/responsibilities.md) and constraints
     - Best For: Communities needing specialized expertise or rapid decision-making
     - Key Primitives: Selection mechanisms, term limits, transparency requirements
     - Considerations: Must balance efficiency with broader community input
 5. **Sortition-Based Governance**
-    - Description: Random selection of participants for decision-making [roles](content/tags/roles.md)
+    - Description: Random selection of participants for decision-making [roles](../../../../tags/roles.md)
     - Best For: Ensuring diverse representation and preventing capture
     - Key Primitives: Random selection mechanisms, term rotations, deliberation processes
     - Considerations: Requires educational onboarding for selected participants
@@ -280,7 +280,7 @@ Review common community governance patterns and select one or more that best mat
 7. **Quadratic Governance**
     - Description: Influence scales with square root of resource contribution
     - Best For: Balancing individual influence with collective preference
-    - Key Primitives: [quadratic voting](content/artifacts/articles/governance-for-better-futures/Governance%20for%20better%20futures%20-%20Meta-governance.md#quadratic%20voting), funding mechanisms, identity verification
+    - Key Primitives: [quadratic voting](../../../articles/governance-for-better-futures/Governance%20for%20better%20futures%20-%20Meta-governance.md#quadratic%20voting), funding mechanisms, identity verification
     - Considerations: Requires sybil resistance and clear participation guidelines
 
 Most effective governance systems combine elements from multiple patterns, creating hybrid approaches tailored to specific community needs.
@@ -289,10 +289,10 @@ Most effective governance systems combine elements from multiple patterns, creat
 
 Create a comprehensive document outlining your governance structure, including:
 
-1. **Selected Patterns**: Which governance patterns you've chosen to incorporate a. You can select defined patterns from the SuperBenefit Knowledge Garden here [patterns](content/artifacts/patterns/index.md)
+1. **Selected Patterns**: Which governance patterns you've chosen to incorporate a. You can select defined patterns from the SuperBenefit Knowledge Garden here [patterns](../../../patterns/index.md)
 2. **Core Components**: The specific primitives that will form your governance system
 3. **Decision Processes**: How different types of decisions will flow through governance
-4. **[Roles](content/tags/roles.md) and [Responsibilities](content/tags/responsibilities.md)**: Key functions within the governance system
+4. **[Roles](../../../../tags/roles.md) and [Responsibilities](../../../../tags/responsibilities.md)**: Key functions within the governance system
 5. **Resource Allocation**: How governance will manage community resources
 6. **Boundaries and Constraints**: Limits on governance authority
 7. **Evolution Mechanisms**: How governance can be updated over time
@@ -322,8 +322,8 @@ Create a detailed implementation plan that addresses:
 #### Implementation Sequence Recommendation
 
 1. Implement initial decision-making processes - you will use this to make ongoing implementation decisions
-2. Set up core [coordination](content/tags/coordination.md) primitives (basic [agreements](content/tags/agreements.md) and protocols)
-3. Establish foundational [roles](content/tags/roles.md) and [responsibilities](content/tags/responsibilities.md)
+2. Set up core [coordination](../../../../tags/coordination.md) primitives (basic [agreements](../../../../tags/agreements.md) and protocols)
+3. Establish foundational [roles](../../../../tags/roles.md) and [responsibilities](../../../../tags/responsibilities.md)
 4. Create resource allocation and treasury mechanisms
 5. Add specialized governance components
 6. Put feedback and governance evolution process in place
@@ -334,7 +334,7 @@ Every governance implementation moves through distinct phases. Understanding the
 
 #### Conversation Phase
 
-During this initial [phase](content/tags/groups.md#Groups%20in%20Developmental%20Phases), focus on:
+During this initial [phase](../../../../tags/groups.md#Groups%20in%20Developmental%20Phases), focus on:
 
 - Creating shared understanding of governance purpose and design
 - Building alignment around key values and principles
@@ -353,8 +353,8 @@ During this initial [phase](content/tags/groups.md#Groups%20in%20Developmental%2
 
 As implementation progresses, the formation phase includes:
 
-- Formalizing core [agreements](content/tags/agreements.md), communication and meeting protocols
-- Establishing initial [roles](content/tags/roles.md) and [responsibilities](content/tags/responsibilities.md)
+- Formalizing core [agreements](../../../../tags/agreements.md), communication and meeting protocols
+- Establishing initial [roles](../../../../tags/roles.md) and [responsibilities](../../../../tags/responsibilities.md)
 - Creating basic decision-making processes
 - Implementing minimal viable governance structures
 - Building governance documentation
@@ -362,7 +362,7 @@ As implementation progresses, the formation phase includes:
 **Key Activities:**
 
 1. Draft formal governance charter or constitution
-2. Establish critical [roles](content/tags/roles.md) and select/elect initial occupants
+2. Establish critical [roles](../../../../tags/roles.md) and select/elect initial occupants
 3. Create proposal process with templates and guidelines
 4. Implement basic voting or consent mechanisms
 5. Develop onboarding materials for governance participants
@@ -377,7 +377,7 @@ In the final implementation phase, establish:
 - Implement token systems to manage contributors, community voting etc
 - Formalize resource allocation mechanisms
 - Implementing accountability systems
-- Developing [policies](content/tags/policies.md) e.g codes of conduct, conflict resolution processes etc
+- Developing [policies](../../../../tags/policies.md) e.g codes of conduct, conflict resolution processes etc
 
 **Key Activities:**
 
@@ -392,12 +392,12 @@ In this formal phase, focus on:
 
 - Ongoing community engagement/participation in governance
 - Ongoing upkeep of documentation and systems
-- Ongoing management of governance [roles](content/tags/roles.md) and authorities
+- Ongoing management of governance [roles](../../../../tags/roles.md) and authorities
 - Continued processes for governance feedback and evolution
 
 **Key Activities:**
 
-1. Implement teams, squads, [Cells](content/tags/roles.md) and [roles](content/tags/roles.md) etc to manage ongoing community governance functions
+1. Implement teams, squads, [Cells](../../../../tags/roles.md) and [roles](../../../../tags/roles.md) etc to manage ongoing community governance functions
 2. Implement reporting mechanisms for transparency
 3. Develop metrics for governance effectiveness
 4. Create feedback loops between governance layers
@@ -410,13 +410,13 @@ Throughout implementation, document the current state of governance to provide c
 
 1. **Governance Charter**: Foundational document outlining purpose, principles, and structure
 2. **Decision Registry**: Record of significant decisions and their rationale
-3. **[Role](content/tags/roles.md) Descriptions**: Clear documentation of governance [roles](content/tags/roles.md) and [responsibilities](content/tags/responsibilities.md)
+3. **[Role](../../../../tags/roles.md) Descriptions**: Clear documentation of governance [roles](../../../../tags/roles.md) and [responsibilities](../../../../tags/responsibilities.md)
 4. **Process Maps**: Visual representations of key governance processes
-5. **[Policies](content/tags/policies.md)**: Explicit guidelines governing community behavior
+5. **[Policies](../../../../tags/policies.md)**: Explicit guidelines governing community behavior
 6. **Resource Allocation Records**: Transparent tracking of resource decisions
 7. **Participation Guidelines**: Clear information on how to engage with governance
 
-See [dao-state](content/notes/dao-primitives/implementation/patterns/dao-patterns/dao-state.md) for details on implementing state documentation for a community governance structure
+See [dao-state](../../../../notes/dao-primitives/implementation/patterns/dao-patterns/dao-state.md) for details on implementing state documentation for a community governance structure
 
 #### Documentation Principles
 
@@ -428,7 +428,7 @@ See [dao-state](content/notes/dao-primitives/implementation/patterns/dao-pattern
 
 ### Creating Structures
 
-Implementing governance requires creating specific structures that enable [coordination](content/tags/coordination.md) and decision-making.
+Implementing governance requires creating specific structures that enable [coordination](../../../../tags/coordination.md) and decision-making.
 
 #### Core Governance Structures
 
@@ -445,9 +445,9 @@ Implementing governance requires creating specific structures that enable [coord
 3. **Working Groups**
     - Focused teams addressing specific governance areas
     - Clear charters defining purpose and scope
-    - Documented [coordination](content/tags/coordination.md) with broader governance
+    - Documented [coordination](../../../../tags/coordination.md) with broader governance
     - Appropriate autonomy balanced with accountability
-    - DAO primitives framework uses [Cells](content/tags/roles.md) as a working group primitive
+    - DAO primitives framework uses [Cells](../../../../tags/roles.md) as a working group primitive
 4. **Advisory Councils**
     - Subject matter experts providing input to governance
     - Clear relationship to decision-making processes
@@ -465,7 +465,7 @@ Depending on your community's technical context, governance implementation may i
 
 #### Technical Considerations
 
-1. **[On-chain vs. off-chain governance](content/artifacts/articles/network-evolution/Building%20DAOs%20as%20scalable%20networks.md#Community%20Governance)**
+1. **[On-chain vs. off-chain governance](../../../articles/network-evolution/Building%20DAOs%20as%20scalable%20networks.md#Community%20Governance)**
     - Consider the larger design of your governance
     - Determine which governance elements require blockchain properties and which can be better done off-chain
     - Consider speed and costs involved in using on-chain tools
@@ -474,7 +474,7 @@ Depending on your community's technical context, governance implementation may i
     - Governance platforms (Snapshot, Tally, Commonwealth, etc.)
     - Communication tools (Discord, Discourse, Telegram, etc.)
     - Documentation systems (Charmverse, Notion, GitHub, etc.)
-    - Voting mechanisms ([token-based governance](content/artifacts/articles/network-evolution/Building%20DAOs%20as%20scalable%20networks.md#Community%20Governance), [quadratic voting](content/artifacts/articles/governance-for-better-futures/Governance%20for%20better%20futures%20-%20Meta-governance.md#quadratic%20voting), reputation-based, etc.)
+    - Voting mechanisms ([token-based governance](../../../articles/network-evolution/Building%20DAOs%20as%20scalable%20networks.md#Community%20Governance), [quadratic voting](../../../articles/governance-for-better-futures/Governance%20for%20better%20futures%20-%20Meta-governance.md#quadratic%20voting), reputation-based, etc.)
 3. **Implementation Approach**
     - Start with minimum viable governance tools as required by the phase of development
     - Create clear user guides, videos and other resources to support accessibility for all community members
@@ -488,10 +488,10 @@ Launching your governance structure is just the beginning. Effective governance 
 
 Rather than launching all governance components simultaneously, consider a phased approach:
 
-1. [Conversation Phase](content/tags/groups.md#Groups%20in%20Developmental%20Phases)
-2. [Formation Phase](content/tags/groups.md#Groups%20in%20Developmental%20Phases)
-3. [Organisation Phase](content/tags/groups.md#Groups%20in%20Developmental%20Phases)
-4. [Coordination Phase](content/tags/groups.md#Groups%20in%20Developmental%20Phases)
+1. [Conversation Phase](../../../../tags/groups.md#Groups%20in%20Developmental%20Phases)
+2. [Formation Phase](../../../../tags/groups.md#Groups%20in%20Developmental%20Phases)
+3. [Organisation Phase](../../../../tags/groups.md#Groups%20in%20Developmental%20Phases)
+4. [Coordination Phase](../../../../tags/groups.md#Groups%20in%20Developmental%20Phases)
 
 For each phase, establish clear:
 
@@ -559,7 +559,7 @@ SuperBenefit and our partner organizations can connect you with technical suppor
 
 ## Conclusion
 
-Effective community governance is not a destination but a journey of continuous evolution and improvement. By thoughtfully applying the [DAO primitives framework](content/artifacts/guides/dao-primitives-framework/index.md), communities can compose governance structures that are both robust and adaptable, capable of safeguarding purpose while enabling dynamic response to changing conditions.
+Effective community governance is not a destination but a journey of continuous evolution and improvement. By thoughtfully applying the [DAO primitives framework](../index.md), communities can compose governance structures that are both robust and adaptable, capable of safeguarding purpose while enabling dynamic response to changing conditions.
 
 The key to successful web3 community governance design is first working to understand deeply the community's purpose and translating this into a governance design that can unleash the creative potential of the community to achieve this purpose.
 
