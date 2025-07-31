@@ -18,7 +18,7 @@ The Decider Protocol is a fast way of reaching agreement in a small team context
 ---
 ## What is the decider protocol
 
-The decider protocol creates a shared common standard for group decision-making that is designed to support [collaboration](content/artifacts/guides/dao-primitives-framework/group-scale/collaboration-scale.md#) scale teams to make decisions in a way that:
+The decider protocol creates a shared common standard for group decision-making that is designed to support [collaboration](../guides/dao-primitives-framework/group-scale/collaboration-scale.md#) scale teams to make decisions in a way that:
 1. Is fast and efficient 
 2. Protects against group anti-patterns that lead to poor decisions
 
@@ -29,7 +29,7 @@ This primitive is based on the [core protocols](https://mccarthyshow.com/protoco
 
 ## Why use the decider protocol 
 
-If you are a [collaboration](content/artifacts/guides/dao-primitives-framework/group-scale/collaboration-scale.md#) scale team that needs to make decisions quickly, then the decider protocol could be a useful practice to implement. 
+If you are a [collaboration](../guides/dao-primitives-framework/group-scale/collaboration-scale.md#) scale team that needs to make decisions quickly, then the decider protocol could be a useful practice to implement. 
 
 Benefits of the decider protocol are:
 1. Consistency - it gives members of a team a single reliable ritual for decision-making that can counteract the tendency for groups to evolve unbalanced decision-making patterns that preference the will of a minority of the group.  
@@ -87,7 +87,7 @@ The agreed proposal becomes a binding agreement for all participating team membe
 
 - **Define what method of decision-making you want to employ**
 - The protocol can be modified to be used for different types of decisions. For example:
-	1. [Consent](content/tags/consent.md#) - the original design of the protocol is for small teams making fast consent based decisions. A decision only passes if everyone is either a thumbs-up or support vote - i.e there are no strong objections. See [[https://patterns.sociocracy30.org/consent-decision-making.html]]
+	1. [Consent](../../tags/consent.md#) - the original design of the protocol is for small teams making fast consent based decisions. A decision only passes if everyone is either a thumbs-up or support vote - i.e there are no strong objections. See [[https://patterns.sociocracy30.org/consent-decision-making.html]]
 	2. Consensus - the protocol can be used for consensus based decisions if the criteria is shifted to getting everyone to a thumbs up. This process is generally slower as it requires more conversation and negotiation
 	3. Majority rule - the protocol can also be used to quickly get to a majority decision based on requiring a simple majority of voters to be thumbs up or support.
 
