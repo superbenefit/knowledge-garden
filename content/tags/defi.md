@@ -11,7 +11,7 @@ type: tag
 
 _A blockchain-based financial ecosystem that offers open, permissionless access to financial services like lending, borrowing, trading, and payments, enabling individuals to participate in the global economy without relying on traditional financial institutions._
 
-Decentralized Finance represents a fundamental reimagining of financial infrastructure using blockchain technology and smart contracts. By removing centralized intermediaries and gatekeepers, DeFi creates systems where financial [protocols](content/tags/protocols.md#) operate transparently according to predefined rules that anyone can inspect and verify. This architecture enables the creation of composable financial services that can be combined like "money legos" to create increasingly sophisticated financial applications.
+Decentralized Finance represents a fundamental reimagining of financial infrastructure using blockchain technology and smart contracts. By removing centralized intermediaries and gatekeepers, DeFi creates systems where financial [protocols](./protocols.md#) operate transparently according to predefined rules that anyone can inspect and verify. This architecture enables the creation of composable financial services that can be combined like "money legos" to create increasingly sophisticated financial applications.
 
 The emergence of DeFi marks a significant evolution in the blockchain space, shifting from simple value transfer (e.g., cryptocurrency payments) to complex financial interactions like lending, borrowing, derivatives, and insurance. This evolution creates both opportunities for financial inclusion and democratization, as well as risks of replicating or amplifying existing inequities under a technological veneer. The path DeFi ultimately takes depends largely on which values and use cases are prioritized by its builders and participants.
 
@@ -69,13 +69,13 @@ This approach encompasses:
 
 ### DeFi in Social Impact
 
-In the context of social impact initiatives, DeFi tools can enable more transparent, efficient, and equitable resource distribution. Privacy-preserving payment systems like those described in the [Privacy-Preserving Crypto Payments](content/notes/rpp/rpp-working-docs/privacy-payments.md#) pattern demonstrate how DeFi mechanisms can be adapted to meet the needs of vulnerable communities while protecting participant security.
+In the context of social impact initiatives, DeFi tools can enable more transparent, efficient, and equitable resource distribution. Privacy-preserving payment systems like those described in the [Privacy-Preserving Crypto Payments](../notes/rpp/rpp-working-docs/privacy-payments.md#) pattern demonstrate how DeFi mechanisms can be adapted to meet the needs of vulnerable communities while protecting participant security.
 
 ## Related Concepts
 
-- [blockchain](content/tags/blockchain.md): The underlying technology that enables decentralized, trustless financial applications
-- [governance](content/tags/governance.md): The mechanisms by which DeFi protocols make decisions and evolve
-- [protocols](content/tags/protocols.md): Standardized sets of rules that govern DeFi interactions
-- [payments](content/tags/payments.md): The exchange of value between parties, transformed by DeFi mechanisms
-- [privacy](content/tags/privacy.md): A critical consideration in designing ethical DeFi systems
-- [attestations](content/tags/attestations.md): Verified statements that can enhance trust and functionality in DeFi applications
+- [blockchain](./blockchain.md): The underlying technology that enables decentralized, trustless financial applications
+- [governance](./governance.md): The mechanisms by which DeFi protocols make decisions and evolve
+- [protocols](./protocols.md): Standardized sets of rules that govern DeFi interactions
+- [payments](./payments.md): The exchange of value between parties, transformed by DeFi mechanisms
+- [privacy](./privacy.md): A critical consideration in designing ethical DeFi systems
+- [attestations](./attestations.md): Verified statements that can enhance trust and functionality in DeFi applications
