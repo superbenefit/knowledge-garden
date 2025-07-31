@@ -28,7 +28,7 @@ Purpose aligned networks of small autonomous teams
 
 DAOs and other decentralized forms of organizing enable more flexible, powerful and inclusive group coordination patterns by utilizing small autonomous teams in place of rigid top-down hierarchies. However without the rigid rulesets and chains of command typical in traditional organizations these small autonomous teams often fall victim to group dynamic dysfunctions that undermine the potential that decentralized organizing holds (see [The Tyranny of Structurelessness](https://en.wikipedia.org/wiki/The_Tyranny_of_Structurelessness))
 
-The [DAO Primitives Framework](content/artifacts/guides/dao-primitives-framework/index.md#) use the concept of a Cell as a primitive to provide teams with enough scaffolding to function as dynamic, autonomous units, avoiding bureaucratic overhead while protecting against group dysfunction. Additionally, Cells establishe clear interfaces that enable trust-based coordination between groups and individuals across a broader DAO network. 
+The [DAO Primitives Framework](../guides/dao-primitives-framework/index.md#) use the concept of a Cell as a primitive to provide teams with enough scaffolding to function as dynamic, autonomous units, avoiding bureaucratic overhead while protecting against group dysfunction. Additionally, Cells establishe clear interfaces that enable trust-based coordination between groups and individuals across a broader DAO network. 
 
 This balanced approach to structure - implemented through the Cell pattern - helps realized the benefits of decentralized organization while mitigating common failure modes.
 
@@ -43,7 +43,7 @@ Working groups, described as "Cells" are the fundamental operational entities wi
 The Cell pattern serves as a foundational structure that integrates other organizational primitives and coordination practices to create an effective functional unit. This composition enables both internal self-management and external coordination within DAOs and other onchain organizations.
 
 
-A Cell can be composed into a spectrum of different forms based on the complexity and needs of the organization. See [DAOs - From fractal primitives to network scale.](content/artifacts/articles/network-evolution/DAOs%2520-%2520From%2520fractal%2520primitives%2520to%2520network%2520scale..md#)
+A Cell can be composed into a spectrum of different forms based on the complexity and needs of the organization. See [DAOs - From fractal primitives to network scale.](../articles/network-evolution/DAOs%2520-%2520From%2520fractal%2520primitives%2520to%2520network%2520scale..md#)
 
 ### When to use a Cell
 Use the Cell pattern to design ways for small groups of people to collaborate in a coherent way. 
@@ -55,18 +55,18 @@ Consider:
 	- Is there a clear purpose that the team can be formed around?
 	- Is the work going to be ongoing? 
 	- Is it likely to evolve over time? 
-If the work could be done more efficiently by coordinating a set of individual contributors using [roles](content/tags/roles.md) or [tasks](content/tags/tasks.md#), then do not use a Cell. Collaborating teams are expensive compared to individual contributors executing on well defined tasks. But Cells are capable of creativity, adaptability and are therefore ideally suited for complex evolving contexts. Make sure you are choosing the right tool for the job.   
+If the work could be done more efficiently by coordinating a set of individual contributors using [roles](../../tags/roles.md) or [tasks](../../tags/tasks.md#), then do not use a Cell. Collaborating teams are expensive compared to individual contributors executing on well defined tasks. But Cells are capable of creativity, adaptability and are therefore ideally suited for complex evolving contexts. Make sure you are choosing the right tool for the job.   
 
 
 ### Mechanism
 ### Cell details
 
-Cells are [collaboration scale](content/artifacts/guides/dao-primitives-framework/group-scale/collaboration-scale.md#) teams (fewer than 10 people). They are self governing teams that can be effectively networked into the operational structure of a DAO or other onchain organization. 
+Cells are [collaboration scale](../guides/dao-primitives-framework/group-scale/collaboration-scale.md#) teams (fewer than 10 people). They are self governing teams that can be effectively networked into the operational structure of a DAO or other onchain organization. 
 
 They are designed to be flexible enough to allow for many different ways of combining Cells into coordinating structures, from highly structured operational hierarchies to loose informal structures. 
     
  **Cell State** 
- Each Cell has a Cell [group state](content/artifacts/guides/dao-primitives-framework/group-state.md#) document that holds the key information that the Cell needs to run itself, and also that others in the DAO need to be able to understand and judge what the Cell does and how it does it. This includes its:
+ Each Cell has a Cell [group state](../guides/dao-primitives-framework/group-state.md#) document that holds the key information that the Cell needs to run itself, and also that others in the DAO need to be able to understand and judge what the Cell does and how it does it. This includes its:
 
 	- Purpose - goals, intentions, plans, relationships to and agreements with the DAO and other entities etc [purpose](tags/purpose.md) 
     
@@ -75,19 +75,19 @@ They are designed to be flexible enough to allow for many different ways of comb
 	- Progress - project management, outputs, execution towards goals [progress](tags/progress.md)
 
 
-![cell diagram](attachments/cell%20diagram.png)
+![cell diagram](../../../attachments/cell%20diagram.png)
     
 **Scale**
-- Cells operate internally at [collaboration scale](content/artifacts/guides/dao-primitives-framework/group-scale/collaboration-scale.md#), within their core team. This means that they are a team of fewer than 10 people who communicate regularly and in a high-bandwidth way to manage something complex. 
-- And at [coordination-scale](content/artifacts/guides/dao-primitives-framework/group-scale/coordination-scale.md#), as they coordinate contributors, partners and other Cells in the larger DAO/network
+- Cells operate internally at [collaboration scale](../guides/dao-primitives-framework/group-scale/collaboration-scale.md#), within their core team. This means that they are a team of fewer than 10 people who communicate regularly and in a high-bandwidth way to manage something complex. 
+- And at [coordination-scale](../guides/dao-primitives-framework/group-scale/coordination-scale.md#), as they coordinate contributors, partners and other Cells in the larger DAO/network
 
 **Phase**
 At any point a Cell will be at one of 5 [group phases](drafts/framework%20backup/group-phase/group-phase.md)in its evolution
-- [conversation-phase](content/artifacts/guides/dao-primitives-framework/group-phase/conversation-phase.md#)
-- [formation-phase](content/artifacts/guides/dao-primitives-framework/group-phase/formation-phase.md#)
-- [organization-phase](content/artifacts/guides/dao-primitives-framework/group-phase/organization-phase.md#)
-- [coordination-phase](content/artifacts/guides/dao-primitives-framework/group-phase/coordination-phase.md#)
-- [completion-phase](content/artifacts/guides/dao-primitives-framework/group-phase/completion-phase.md#)
+- [conversation-phase](../guides/dao-primitives-framework/group-phase/conversation-phase.md#)
+- [formation-phase](../guides/dao-primitives-framework/group-phase/formation-phase.md#)
+- [organization-phase](../guides/dao-primitives-framework/group-phase/organization-phase.md#)
+- [coordination-phase](../guides/dao-primitives-framework/group-phase/coordination-phase.md#)
+- [completion-phase](../guides/dao-primitives-framework/group-phase/completion-phase.md#)
 The tools, practices and patterns that a Cell will utilize will change as and when the Cell evolves through these phases. 
 
 
@@ -100,9 +100,9 @@ Generally Cells have 3 different ways that they can operationalize their purpose
     
 3. Coordinating contributors - a Cell can engage any number of contributors to do work that the Cell needs to accomplish
 
-Cells often use [roles](content/tags/roles.md#) and [tasks](content/tags/tasks.md#.md#) as basic patterns for managing both their internal collaboration and external coordination activities. 
+Cells often use [roles](../../tags/roles.md#) and [tasks](../../tags/tasks.md#.md#) as basic patterns for managing both their internal collaboration and external coordination activities. 
 
-![](attachments/cell-structure.png)
+![](../../../attachments/cell-structure.png)
 
 ###  Cell Formation Patterns
 
@@ -125,19 +125,19 @@ There are four primary ways new Cells form in DAO networks:
 
 **Steps to creating a Cell**
 
-Because Cells can be formed in several different ways (as outlined above) a Cell will not move through the phases of development in a uniform way. For example if a Cell is being created by another Cell to perform a very specific function, the [conversation-phase](content/artifacts/guides/dao-primitives-framework/group-phase/conversation-phase.md#) and [formation-phase](content/artifacts/guides/dao-primitives-framework/group-phase/formation-phase.md#) phases will be quick and internal to the existing Cell. However, if a Cell is emerging autonomously out of community conversations then these phases may be slower and more emergent.
+Because Cells can be formed in several different ways (as outlined above) a Cell will not move through the phases of development in a uniform way. For example if a Cell is being created by another Cell to perform a very specific function, the [conversation-phase](../guides/dao-primitives-framework/group-phase/conversation-phase.md#) and [formation-phase](../guides/dao-primitives-framework/group-phase/formation-phase.md#) phases will be quick and internal to the existing Cell. However, if a Cell is emerging autonomously out of community conversations then these phases may be slower and more emergent.
 
 However, the creation of a Cell will always revolved around the creation of its Cell State documentation.  
 
-The [Cell State](content/artifacts/patterns/cell-state.md#) pattern outlines how to set up a Cell using Cell State as the vehicle for its core structure. 
+The [Cell State](./cell-state.md#) pattern outlines how to set up a Cell using Cell State as the vehicle for its core structure. 
 
- The [Operational Governance Implementation Guide ](content/artifacts/guides/dao-primitives-framework/dao-primitives-implemention/implementation-guide-operational-governance.md#) outlines important considerations for creating an network of Cells as an operational structure. 
+ The [Operational Governance Implementation Guide ](../guides/dao-primitives-framework/dao-primitives-implemention/implementation-guide-operational-governance.md#) outlines important considerations for creating an network of Cells as an operational structure. 
 
 ---
 
 ## Cells in Practice
 
-For an example of a Cell network working as an operational structure see [RPP Governance Case-study](content/artifacts/studies/projects/rpp-governance-case-study.md#)
+For an example of a Cell network working as an operational structure see [RPP Governance Case-study](../studies/projects/rpp-governance-case-study.md#)
 
 
 
