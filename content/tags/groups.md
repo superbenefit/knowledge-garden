@@ -22,7 +22,7 @@ In decentralized systems, groups function as both autonomous units and interconn
 
 ### Groups at Different Scales
 
-The [dao-primitives-framework](content/artifacts/guides/dao-primitives-framework/index.md#) identifies three fundamental scales at which groups operate within decentralized networks, each with distinct coordination mechanisms and dynamics:
+The [dao-primitives-framework](../artifacts/guides/dao-primitives-framework/index.md#) identifies three fundamental scales at which groups operate within decentralized networks, each with distinct coordination mechanisms and dynamics:
 
 1. **Collaboration Scale**: Small teams of 3-8 people engaging in high-bandwidth, synchronous interaction to accomplish specific tasks. These intimate groups enable deep trust, rapid iteration, and contextual learning.
     
@@ -63,11 +63,11 @@ The two-house governance model exemplifies this approach, with Community Governa
 ## Related Concepts
 
 - **Cells**: Autonomous teams that serve as the basic organizational units in DAO networks
-- **[Teams](content/tags/teams.md#)**: Collaborative groups focused on specific functions or objectives
-- **[Community](content/tags/community.md#)**: The broader social fabric within which groups operate
+- **[Teams](./teams.md#)**: Collaborative groups focused on specific functions or objectives
+- **[Community](./community.md#)**: The broader social fabric within which groups operate
 - **Scale**: The different levels at which groups function, from small teams to large networks
-- **[Coordination](content/tags/coordination.md#)**: The processes through which groups align their activities
-- **[Agreements](content/tags/agreements.md#)**: The formal or informal understandings that define group relationships
+- **[Coordination](./coordination.md#)**: The processes through which groups align their activities
+- **[Agreements](./agreements.md#)**: The formal or informal understandings that define group relationships
 
 ## References and Resources
 
