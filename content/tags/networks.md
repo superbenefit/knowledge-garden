@@ -47,17 +47,17 @@ The concept of Minimum Viable Permissionless-ness illustrates how networks coord
 
 In social impact contexts, networks enable more distributed, contextually-responsive approaches to complex challenges. Rather than centralizing resources and decision-making in large institutions, network approaches distribute agency to those closest to problems while providing infrastructure for knowledge sharing, resource allocation, and collective action.
 
-The [cosmolocalism](content/tags/cosmolocalism.md#) framework demonstrates how networks can balance local autonomy with global connectivity, following the principle that "what is heavy is local, what is light is global." This approach enables communities to maintain sovereignty while benefiting from broader network resources and knowledge commons.
+The [cosmolocalism](./cosmolocalism.md#) framework demonstrates how networks can balance local autonomy with global connectivity, following the principle that "what is heavy is local, what is light is global." This approach enables communities to maintain sovereignty while benefiting from broader network resources and knowledge commons.
 
 ## Related Concepts
 
-- [Systems](content/tags/systems.md): Networks are composed of interconnected systems that work together through coordinated processes
-- [Agents](content/tags/agents.md): The autonomous individuals or entities that form the nodes of networks
+- [Systems](./systems.md): Networks are composed of interconnected systems that work together through coordinated processes
+- [Agents](./agents.md): The autonomous individuals or entities that form the nodes of networks
 - [Flows](tags/flows.md): The movement of resources, information, and value through networks
-- [Governance](content/tags/governance.md): The frameworks and processes for collective decision-making in networks
-- [Primitives](content/tags/primitives.md): Network structures can be built from foundational building blocks
+- [Governance](./governance.md): The frameworks and processes for collective decision-making in networks
+- [Primitives](./primitives.md): Network structures can be built from foundational building blocks
 - cells: Autonomous teams that form the nodes of DAO networks
-- [Coordination](content/tags/coordination.md): The processes through which network participants align their actions
+- [Coordination](./coordination.md): The processes through which network participants align their actions
 - [Community](tags/communities.md): The social fabric that enables trust and collaboration in networks
 
 ## References and Resources
