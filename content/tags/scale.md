@@ -22,7 +22,7 @@ In decentralized contexts, scale takes on particular importance as organizations
 
 ### Scale in the DAO Primitives Framework
 
-The [dao-primitives-framework](content/artifacts/guides/dao-primitives-framework/index.md#) identifies three fundamental scales at which groups operate, each with distinct coordination patterns and governance requirements:
+The [dao-primitives-framework](../artifacts/guides/dao-primitives-framework/index.md#) identifies three fundamental scales at which groups operate, each with distinct coordination patterns and governance requirements:
 
 1. **Collaboration Scale**: Small teams of 3-8 people working closely together through high-bandwidth, synchronous interaction. At this scale, coordination happens primarily through direct relationships, shared context, and continuous communication. As the framework explains, these intimate groups enable "ongoing conversation, presence, trust and commitment" that create the foundation for effective collaboration without requiring formal governance structures.
     
@@ -43,15 +43,15 @@ The article argues that DAOs, when properly designed, can uniquely combine both 
 
 ## Related Concepts
 
-- **[Groups](content/tags/groups.md#)**: The social units that operate at different scales within organizations
-- **[Coordination](content/tags/coordination.md#)**: The mechanisms that enable alignment across different scales
-- **[Governance](content/tags/governance.md#)**: The systems for decision-making appropriate to each scale
-- **[Networks](content/tags/networks.md#)**: The interconnected relationships that span across scales
+- **[Groups](./groups.md#)**: The social units that operate at different scales within organizations
+- **[Coordination](./coordination.md#)**: The mechanisms that enable alignment across different scales
+- **[Governance](./governance.md#)**: The systems for decision-making appropriate to each scale
+- **[Networks](./networks.md#)**: The interconnected relationships that span across scales
 - **Cells**: Autonomous teams that form the building blocks of multi-scale networks
-- **[Agreements](content/tags/agreements.md#)**: The shared understandings that connect activities across scales
+- **[Agreements](./agreements.md#)**: The shared understandings that connect activities across scales
 
 ## References and Resources
 
 - [Scale and the levers that provide DAOs their power](artifacts/articles/network-evolution%201/Scale%20and%20the%20levers%20that%20provide%20DAOs%20their%20power.md): Explores fundamental scaling dynamics in organizational systems
 - [Building DAOs as scalable networks](artifacts/articles/network-evolution%201/Building%20DAOs%20as%20scalable%20networks.md): Proposes multi-scale governance approaches for decentralized organizations
-- [dao-primitives-framework](content/artifacts/guides/dao-primitives-framework/index.md#): Provides detailed analysis of different group scales and their characteristics
+- [dao-primitives-framework](../artifacts/guides/dao-primitives-framework/index.md#): Provides detailed analysis of different group scales and their characteristics
