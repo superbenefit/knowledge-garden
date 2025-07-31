@@ -27,13 +27,13 @@ In organizational contexts, power refers to the formal and informal mechanisms t
 
 ### Power in Web3 and DAOs
 
-In [decentralized autonomous organizations](content/tags/daos.md#) and web3 systems, power operates through novel mechanisms including token voting, [delegation](content/tags/delegation.md#), reputation systems, and protocol governance. These systems aim to create more distributed power structures by replacing traditional authority with [consensus](content/tags/consensus.md#)-based [decision-making](content/tags/decisions.md#) and automated enforcement through smart contracts and transparent [protocols](content/tags/protocols.md#). 
+In [decentralized autonomous organizations](./daos.md#) and web3 systems, power operates through novel mechanisms including token voting, [delegation](./delegation.md#), reputation systems, and protocol governance. These systems aim to create more distributed power structures by replacing traditional authority with [consensus](./consensus.md#)-based [decision-making](./decisions.md#) and automated enforcement through smart contracts and transparent [protocols](./protocols.md#). 
 
-Despite these innovations, web3 systems still face challenges in addressing power imbalances stemming from wealth concentration, technical knowledge barriers, and governance capture by specialized interests. Addressing these challenges requires intentional design that considers both the technical implementation of [decentralization](content/tags/decentralization.md#) and the social dynamics that influence participation.
+Despite these innovations, web3 systems still face challenges in addressing power imbalances stemming from wealth concentration, technical knowledge barriers, and governance capture by specialized interests. Addressing these challenges requires intentional design that considers both the technical implementation of [decentralization](./decentralization.md#) and the social dynamics that influence participation.
 
 ### Power in the Reimagining Power Project
 
-The [Reimagining Power Project](content/notes/rpp/index.md#) specifically examines how power operates within philanthropic and social impact contexts, with a focus on transforming traditional power dynamics that have historically concentrated decision-making among funders rather than communities affected by those decisions.
+The [Reimagining Power Project](../notes/rpp/index.md#) specifically examines how power operates within philanthropic and social impact contexts, with a focus on transforming traditional power dynamics that have historically concentrated decision-making among funders rather than communities affected by those decisions.
 
 In this context, power is viewed as a systemic property that needs fundamental restructuring rather than incremental reform. The project explores how web3 technologies and decentralized governance can enable:
 
