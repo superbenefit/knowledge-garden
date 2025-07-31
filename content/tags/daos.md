@@ -13,7 +13,7 @@ aliases:
 publish: "true"
 ---
 
-*[Decentralized](content/tags/decentralization.md#) [Autonomous](content/tags/autonomy.md#) Organizations (DAOs) are blockchain-based coordination systems that enable groups to govern shared resources and make decisions collectively without centralized control, using transparent rules encoded in smart contracts to align incentives around common goals.*
+*[Decentralized](./decentralization.md#) [Autonomous](./autonomy.md#) Organizations (DAOs) are blockchain-based coordination systems that enable groups to govern shared resources and make decisions collectively without centralized control, using transparent rules encoded in smart contracts to align incentives around common goals.*
 
 DAOs represent a fundamental shift in how people organize, moving beyond traditional hierarchical structures to create more flexible, transparent, and participatory systems. At their core, DAOs combine technological infrastructure (blockchain, tokens, smart contracts) with social coordination mechanisms to enable distributed governance while maintaining coherence and purpose alignment. They enable stakeholders to collaborate, allocate resources, and make decisions through transparent processes that are secured and executed by code rather than relying on trusted intermediaries or central authorities.
 
@@ -31,11 +31,11 @@ In some jurisdictions, DAOs can be legally recognized organizational structures 
 
 ### DAOs as Protocol Governance Systems
 
-Many [blockchain](content/tags/blockchain.md#) [protocols](content/tags/protocols.md#) use DAOs to manage upgrades, parameter changes, and treasury allocations. These protocol DAOs (like MakerDAO or Uniswap) enable token holders to vote on proposals that shape the development and operation of the underlying technology. The focus here is on decentralizing control over critical infrastructure to prevent capture by any single entity while ensuring the protocol evolves to meet user needs.
+Many [blockchain](./blockchain.md#) [protocols](./protocols.md#) use DAOs to manage upgrades, parameter changes, and treasury allocations. These protocol DAOs (like MakerDAO or Uniswap) enable token holders to vote on proposals that shape the development and operation of the underlying technology. The focus here is on decentralizing control over critical infrastructure to prevent capture by any single entity while ensuring the protocol evolves to meet user needs.
 
 ### DAOs as Purpose-Aligned Networks
 
-As described in the [DAO Primitives Project](content/notes/dao-primitives/index.md#), DAOs can be understood as "purpose-aligned networks of small autonomous teams" rather than discrete entities. This perspective views DAOs as fluid coordination systems where smaller groups (Cells) self-organize around a shared purpose while maintaining their autonomy. The network provides infrastructure for these groups to discover each other, share resources, and align activities toward common goals without requiring centralized direction.
+As described in the [DAO Primitives Project](../notes/dao-primitives/index.md#), DAOs can be understood as "purpose-aligned networks of small autonomous teams" rather than discrete entities. This perspective views DAOs as fluid coordination systems where smaller groups (Cells) self-organize around a shared purpose while maintaining their autonomy. The network provides infrastructure for these groups to discover each other, share resources, and align activities toward common goals without requiring centralized direction.
 
 As noted in [DAOs aren't things... they are flows](artifacts/articles/network-evolution%201/DAOs%20aren't%20things...%20they%20are%20flows..md):
 
@@ -71,9 +71,9 @@ While implementations vary widely, most DAOs share several defining characterist
 
 ## Related Concepts
 
-- [Governance](content/tags/governance.md) - The frameworks and processes that guide decision-making in DAOs
-- [Decentralization](content/tags/decentralization.md) - A key design principle in DAO structures
+- [Governance](./governance.md) - The frameworks and processes that guide decision-making in DAOs
+- [Decentralization](./decentralization.md) - A key design principle in DAO structures
 - test-pattern - Autonomous teams that form the building blocks of DAO networks
-- [Primitives](content/tags/primitives.md) - Fundamental components used to design and build DAO systems
-- [Consensus](content/tags/consensus.md) - Mechanisms for reaching agreement in distributed systems
-- [Consent](content/tags/consent.md) - Decision-making approaches based on absence of objection rather than unanimous agreement
+- [Primitives](./primitives.md) - Fundamental components used to design and build DAO systems
+- [Consensus](./consensus.md) - Mechanisms for reaching agreement in distributed systems
+- [Consent](./consent.md) - Decision-making approaches based on absence of objection rather than unanimous agreement
