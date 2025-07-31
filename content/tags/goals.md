@@ -39,14 +39,14 @@ Impact-oriented goals often incorporate both quantitative metrics and qualitativ
 
 ## Related Concepts
 
-- [Purpose](content/tags/purpose.md#): Goals operationalize purpose into concrete objectives, translating abstract missions into actionable targets
-- [Progress](content/tags/progress.md#): The tracking and documentation of advancement toward established goals
-- [Decisions](content/tags/decisions.md#): Goal-setting and prioritization represent key decision types in organizational systems
-- [Agreements](content/tags/agreements.md#): Goals often function as explicit agreements about collective priorities and desired outcomes
-- [Tasks](content/tags/tasks.md#): Discrete units of work that contribute to the achievement of broader goals
+- [Purpose](./purpose.md#): Goals operationalize purpose into concrete objectives, translating abstract missions into actionable targets
+- [Progress](./progress.md#): The tracking and documentation of advancement toward established goals
+- [Decisions](./decisions.md#): Goal-setting and prioritization represent key decision types in organizational systems
+- [Agreements](./agreements.md#): Goals often function as explicit agreements about collective priorities and desired outcomes
+- [Tasks](./tasks.md#): Discrete units of work that contribute to the achievement of broader goals
 
 ## References and Resources
 
-- [DAO Primitives Framework](content/artifacts/guides/dao-primitives-framework/index.md#): Provides context for how goals function within decentralized organizations
+- [DAO Primitives Framework](../artifacts/guides/dao-primitives-framework/index.md#): Provides context for how goals function within decentralized organizations
 - [Building DAOs as scalable networks](artifacts/articles/network-evolution%201/Building%20DAOs%20as%20scalable%20networks.md): Explores how goals support coordination across autonomous teams
 - [Scale and the levers that provide DAOs their power](artifacts/articles/network-evolution%201/Scale%20and%20the%20levers%20that%20provide%20DAOs%20their%20power.md): Discusses how goals contribute to organizational effectiveness at different scales
