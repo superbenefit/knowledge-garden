@@ -40,12 +40,12 @@ These technical roles establish cryptographically secured boundaries that determ
 
 ## Related Concepts
 
-- **[Agents](content/tags/agents.md#)**: The individuals or entities that fulfill roles within a system
-- **[Agreements](content/tags/agreements.md#)**: Formal or informal understandings that define roles and their relationships
-- **[Responsibilities](content/tags/responsibilities.md#)**: The specific duties and obligations assigned to a role
-- **[Authorities](content/tags/authorities.md#)**: The authorized capabilities that enable role-holders to fulfill their responsibilities
-- **[Eligibility](content/tags/eligibility.md#)**: The criteria and qualifications that determine who can fulfill specific roles
-- **[Accountability](content/tags/accountability.md#)**: The obligation to account for activities, accept responsibility, and disclose results
+- **[Agents](./agents.md#)**: The individuals or entities that fulfill roles within a system
+- **[Agreements](./agreements.md#)**: Formal or informal understandings that define roles and their relationships
+- **[Responsibilities](./responsibilities.md#)**: The specific duties and obligations assigned to a role
+- **[Authorities](./authorities.md#)**: The authorized capabilities that enable role-holders to fulfill their responsibilities
+- **[Eligibility](./eligibility.md#)**: The criteria and qualifications that determine who can fulfill specific roles
+- **[Accountability](./accountability.md#)**: The obligation to account for activities, accept responsibility, and disclose results
 
 ## References and Resources
 
