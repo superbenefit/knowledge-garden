@@ -33,7 +33,7 @@ In ecological contexts, localism focuses on organizing human activity in harmony
 
 ### Localism in web3
 
-In web3 contexts, localism has evolved beyond traditional emphasis on self-sufficiency to embrace what's known as [cosmolocalism](content/tags/cosmolocalism.md#) - a hybrid approach that maintains local [autonomy](content/tags/autonomy.md#) while leveraging global networks. This evolution represents an important adaptation to modern technological capabilities:
+In web3 contexts, localism has evolved beyond traditional emphasis on self-sufficiency to embrace what's known as [cosmolocalism](./cosmolocalism.md#) - a hybrid approach that maintains local [autonomy](./autonomy.md#) while leveraging global networks. This evolution represents an important adaptation to modern technological capabilities:
 
 - Traditional localism focuses on local self-sufficiency and independence from external systems
 - Web3 tools enable a more nuanced approach where communities can:
