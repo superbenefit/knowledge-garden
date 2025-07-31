@@ -50,7 +50,7 @@ These verification layers work together to create more robust, context-sensitive
 
 In philanthropic and social finance contexts, impact represents a shift from traditional funding models toward more transparent, participatory approaches to resource allocation and outcome verification. This shift acknowledges the power imbalances inherent in conventional philanthropy and seeks to create more equitable relationships between funders and communities.
 
-The Reimagining Power project specifically examines how Web3 can transform impact by addressing fundamental [power](content/tags/power.md#) dynamics in philanthropy. As the project documentation notes, achieving transformational change "requires bold shifts in how we understand and exercise power, mobilize resources, and distribute value." This includes creating mechanisms for communities to directly participate in decision-making about resource allocation and impact assessment.
+The Reimagining Power project specifically examines how Web3 can transform impact by addressing fundamental [power](./power.md#) dynamics in philanthropy. As the project documentation notes, achieving transformational change "requires bold shifts in how we understand and exercise power, mobilize resources, and distribute value." This includes creating mechanisms for communities to directly participate in decision-making about resource allocation and impact assessment.
 
 In this context, impact is closely tied to principles of:
 - Community self-determination and autonomy
@@ -60,10 +60,10 @@ In this context, impact is closely tied to principles of:
 
 ## Related Concepts
 
-- **[Attestations](content/tags/attestations.md#)**: Verified digital statements that provide cryptographic proof of impact claims
-- **[Resources](content/tags/resources.md#)**: Assets deployed toward creating impact, including financial and non-financial capital
-- **[Governance](content/tags/governance.md#)**: Systems for making decisions about resource allocation and impact priorities
+- **[Attestations](./attestations.md#)**: Verified digital statements that provide cryptographic proof of impact claims
+- **[Resources](./resources.md#)**: Assets deployed toward creating impact, including financial and non-financial capital
+- **[Governance](./governance.md#)**: Systems for making decisions about resource allocation and impact priorities
 - **[Evaluation](tags/evaluation.md)**: Processes for assessing the effectiveness and outcomes of interventions
-- **[Transformation](content/tags/transformation.md#)**: Fundamental shifts in systems and structures to address root causes
-- **[Sustainability](content/tags/sustainability.md#)**: The capacity for interventions to maintain positive outcomes over time
-- **[Grants](content/tags/grants.md#)**: Financial awards directed toward impact-focused initiatives
+- **[Transformation](./transformation.md#)**: Fundamental shifts in systems and structures to address root causes
+- **[Sustainability](./sustainability.md#)**: The capacity for interventions to maintain positive outcomes over time
+- **[Grants](./grants.md#)**: Financial awards directed toward impact-focused initiatives
