@@ -30,9 +30,9 @@ Organizations can be understood as networks of coordinated actions that allow di
 In decentralized autonomous organizations, actions manifest through multiple mechanisms:
 
 - **On-chain actions**: Transactions, votes, and interactions with smart contracts that are cryptographically verified and permanently recorded on the blockchain
-- **Coordination actions**: Communications, decisions, and agreements that coordinate activity across autonomous teams or [cells](content/artifacts/patterns/cell.md#)
+- **Coordination actions**: Communications, decisions, and agreements that coordinate activity across autonomous teams or [cells](../artifacts/patterns/cell.md#)
 - **Contributory actions**: Tasks and deliverables created by community members that advance the DAO's purpose
-- **Governance actions**: Processes like proposals, voting, and [delegation](content/tags/delegation.md#) that shape the direction and rules of the organization
+- **Governance actions**: Processes like proposals, voting, and [delegation](./delegation.md#) that shape the direction and rules of the organization
 
 What distinguishes actions in DAOs is their permissionless nature combined with transparent accountability. As noted in [Minimum Viable Permissionless-ness](artifacts/articles/network-evolution%201/Minimum%20Viable%20Permissionless-ness.md), the ability for participants to take autonomous action without prior approval—while still being accountable to the network—is fundamental to generating decentralized intelligence.
 
@@ -45,18 +45,18 @@ In social impact contexts, actions focus on creating measurable positive change 
 - **Advocacy actions**: Efforts to transform structures and policies that create or perpetuate harm
 - **Regenerative actions**: Interventions that restore and enhance social and ecological systems
 
-The [Reimagining Power](content/artifacts/articles/Reimagining%2520Power%2520-%2520How%2520Web3%2520Can%2520Transform%2520Impact.md#) initiative specifically examines how web3 technologies can enable more equitable, community-driven action by redistributing power and resources to those most affected by social challenges.
+The [Reimagining Power](../artifacts/articles/Reimagining%2520Power%2520-%2520How%2520Web3%2520Can%2520Transform%2520Impact.md#) initiative specifically examines how web3 technologies can enable more equitable, community-driven action by redistributing power and resources to those most affected by social challenges.
 
 ## Related Concepts
 
 Actions connect to numerous other concepts in the knowledge base:
 
-- **[Tasks](content/tags/tasks.md#)**: Structured units of work that organize action toward specific deliverables
-- **[Decisions](content/tags/decisions.md#)**: Choice-making processes that determine which actions to take
+- **[Tasks](./tasks.md#)**: Structured units of work that organize action toward specific deliverables
+- **[Decisions](./decisions.md#)**: Choice-making processes that determine which actions to take
 - **[Execution](tags/execution.md)**: The process of carrying actions to completion
 - **[Evaluation](tags/evaluation.md)**: Assessment of actions and their outcomes
-- **[Agreements](content/tags/agreements.md#)**: Shared understandings that guide and constrain actions
-- **[Permissions](content/tags/permissions.md#)**: Rights that enable or limit certain types of actions
-- **[Resources](content/tags/resources.md#)**: Assets transformed or deployed through actions
+- **[Agreements](./agreements.md#)**: Shared understandings that guide and constrain actions
+- **[Permissions](./permissions.md#)**: Rights that enable or limit certain types of actions
+- **[Resources](./resources.md#)**: Assets transformed or deployed through actions
 
 Together, these concepts form an interconnected framework for understanding how purposeful activity emerges, operates, and evolves within decentralized systems.
