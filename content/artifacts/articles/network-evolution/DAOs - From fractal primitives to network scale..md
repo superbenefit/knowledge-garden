@@ -15,7 +15,7 @@ type: link
 
 _Rowan is a contributor to [SuperBenefitDAO](https://www.superbenefit.org/) and works on scalable models of coordination and fractal DAO governance. Deep gratitude to Heenal Rajani and Michael Lewkowitz for contributing to this article. This article is the third in our series exploring the concept of DAOs as networks and their evolutionary nature._
 
-### [Scale](content/tags/scale.md#) matters
+### [Scale](../../../tags/scale.md#) matters
 
 DAOs are extraordinary for their capacity to test experimental ideas. And the innovation DAOs are unlocking because of this, all across Web3, is astounding! But, in order to have a transformational impact on the world, we need DAOs to scale beyond experiments. There is a risk that if they can't successfully scale what they do, their potentially transformational innovations will just get co-opted by more centralised organisations (pseudo-DAOs and companies), who can more effectively scale and exploit them. Leaving us in much the same position we are in now.
 
