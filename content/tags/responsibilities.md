@@ -72,10 +72,10 @@ These responsibility distributions are formalized through governance agreements 
 
 ## Related Concepts
 
-- **[Roles](content/tags/roles.md#)**: Defined positions with associated responsibilities, permissions, and accountabilities
-- **[Tasks](content/tags/tasks.md#)**: Specific units of work that often form components of broader responsibilities
-- **[Permissions](content/tags/permissions.md#)**: Authorized capabilities that enable fulfillment of responsibilities
-- **[Accountability](content/tags/accountability.md#)**: The obligation to account for activities, accept responsibility, and disclose results
-- **[Agreements](content/tags/agreements.md#)**: Formalized understandings that define responsibilities and relationships
-- **[Autonomy](content/tags/autonomy.md#)**: The freedom to determine how responsibilities are fulfilled
-- **[Delegation](content/tags/delegation.md#)**: The process of transferring responsibilities to others
+- **[Roles](./roles.md#)**: Defined positions with associated responsibilities, permissions, and accountabilities
+- **[Tasks](./tasks.md#)**: Specific units of work that often form components of broader responsibilities
+- **[Permissions](./permissions.md#)**: Authorized capabilities that enable fulfillment of responsibilities
+- **[Accountability](./accountability.md#)**: The obligation to account for activities, accept responsibility, and disclose results
+- **[Agreements](./agreements.md#)**: Formalized understandings that define responsibilities and relationships
+- **[Autonomy](./autonomy.md#)**: The freedom to determine how responsibilities are fulfilled
+- **[Delegation](./delegation.md#)**: The process of transferring responsibilities to others
