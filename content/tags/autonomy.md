@@ -44,11 +44,11 @@ This connection is evident in patterns like Privacy-Preserving Crypto Payments, 
 
 ## Related Concepts
 
-- [Decentralization](content/tags/decentralization.md): Autonomy is enabled by and contributes to decentralized structures, distributing decision-making authority rather than concentrating it
-- [Consent](content/tags/consent.md): Autonomous decision-making often relies on consent-based processes, where actions proceed unless there are substantive objections
-- [Decisions](content/tags/decisions.md): The capacity to make independent decisions is central to meaningful autonomy
-- [Permissions](content/tags/permissions.md): Systems for managing access and authority create the boundaries within which autonomy operates
-- [Cell](content/artifacts/patterns/cell.md): Autonomous teams operating within a purpose-aligned network
+- [Decentralization](./decentralization.md): Autonomy is enabled by and contributes to decentralized structures, distributing decision-making authority rather than concentrating it
+- [Consent](./consent.md): Autonomous decision-making often relies on consent-based processes, where actions proceed unless there are substantive objections
+- [Decisions](./decisions.md): The capacity to make independent decisions is central to meaningful autonomy
+- [Permissions](./permissions.md): Systems for managing access and authority create the boundaries within which autonomy operates
+- [Cell](../artifacts/patterns/cell.md): Autonomous teams operating within a purpose-aligned network
 - [Sovereignty](tags/sovereignty.md): A related concept emphasizing self-governance and authority over defined domains
 
 ## References and Resources
