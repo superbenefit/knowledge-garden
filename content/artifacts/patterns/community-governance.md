@@ -70,7 +70,7 @@ Community governance manifests differently based on geographical scope and coord
 
 **Global Network Patterns** enable coordination across boundaries:
 - **DePINs**: Networks combining physical infrastructure with digital coordination through distributed ownership and incentive alignment.
-- **[Defi](content/tags/defi.md)**: Transparent financial operations through automated market mechanisms and smart contract governance.
+- **[Defi](../../tags/defi.md)**: Transparent financial operations through automated market mechanisms and smart contract governance.
 - **Digital Democracy**: Tools for democratic participation including voting systems, delegation, forums, and proposal mechanisms.
 - **coordi-nations**: Large-scale coordination frameworks using identity systems, reputation mechanisms, and scalable decision-making.
 - **Knowledge Commons**: Shared information resources with collaborative creation, peer review, and community moderation.
@@ -100,10 +100,10 @@ Community governance draws from diverse traditions including commons management,
 Foundational frameworks include Ostrom's work on commons governance principles, sociocracy and consent-based decision systems, platform cooperativism governance models, and DAO governance experiments. Each contributes insights while synthesis creates new possibilities.
 
 Related patterns that complement community governance:
-- **[Operational Governance](content/artifacts/patterns/operational-governance.md)**: Execution frameworks operating within community-set boundaries
+- **[Operational Governance](./operational-governance.md)**: Execution frameworks operating within community-set boundaries
 - **Participatory governance**: Deep involvement of affected communities in decisions
 - **coordi-nations**: Network-scale coordination maintaining local autonomy
-- **[Token based governance](content/notes/rpp/rpp-working-docs/token-based-governance.md)**: Digital tools enabling scaled participation
+- **[Token based governance](../../notes/rpp/rpp-working-docs/token-based-governance.md)**: Digital tools enabling scaled participation
 
 Practitioners should engage with communities advancing governance innovation including the Metagovernance Project researching digital governance systems, Platform Cooperativism Consortium documenting cooperative governance, various DAO governance working groups experimenting with mechanisms, and indigenous governance networks sharing traditional practices. As communities seek alternatives to extractive governance models, these patterns provide pathways toward authentic collective stewardship.
 
