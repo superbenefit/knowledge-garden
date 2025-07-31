@@ -26,11 +26,11 @@ _A pattern for enabling effective day-to-day operations and resource allocation 
 
 ## Context
 
-Operational governance provides frameworks for autonomous [teams](content/tags/teams.md) to coordinate daily activities, allocate [resources](content/tags/resources.md), and execute toward shared objectives while maintaining independence. This pattern serves organizations seeking to balance operational efficiency with [decentralized](content/tags/decentralization.md) decision-making, particularly in contexts requiring rapid response and local adaptation.
+Operational governance provides frameworks for autonomous [teams](../../tags/teams.md) to coordinate daily activities, allocate [resources](../../tags/resources.md), and execute toward shared objectives while maintaining independence. This pattern serves organizations seeking to balance operational efficiency with [decentralized](../../tags/decentralization.md) decision-making, particularly in contexts requiring rapid response and local adaptation.
 
-The pattern applies to organizations with multiple teams or cells working toward related goals, distributed operations across geographic or functional boundaries, need for quick operational [decisions](content/tags/decisions.md) without centralized bottlenecks, and shared resources requiring transparent allocation mechanisms. Unlike traditional management hierarchies that concentrate operational control, operational governance enables [coordination](content/tags/coordination.md) through protocols and shared infrastructure rather than command structures.
+The pattern applies to organizations with multiple teams or cells working toward related goals, distributed operations across geographic or functional boundaries, need for quick operational [decisions](../../tags/decisions.md) without centralized bottlenecks, and shared resources requiring transparent allocation mechanisms. Unlike traditional management hierarchies that concentrate operational control, operational governance enables [coordination](../../tags/coordination.md) through protocols and shared infrastructure rather than command structures.
 
-Organizations implementing this pattern typically include [DAOs](content/tags/daos.md) with working groups requiring coordination, social impact organizations with autonomous local chapters, platform cooperatives balancing member [autonomy](content/tags/autonomy.md) with collective action, and innovation networks where teams pursue diverse approaches toward common goals. The pattern has emerged from recognition that neither pure hierarchy nor complete decentralization effectively serves complex operational needs.
+Organizations implementing this pattern typically include [DAOs](../../tags/daos.md) with working groups requiring coordination, social impact organizations with autonomous local chapters, platform cooperatives balancing member [autonomy](../../tags/autonomy.md) with collective action, and innovation networks where teams pursue diverse approaches toward common goals. The pattern has emerged from recognition that neither pure hierarchy nor complete decentralization effectively serves complex operational needs.
 
 ---
 
@@ -40,7 +40,7 @@ Traditional operational structures create systematic inefficiencies that limit o
 
 Attempts to flatten organizations often create different problems. Without clear coordination mechanisms, autonomous teams duplicate efforts or work at cross purposes. Resource allocation becomes political rather than strategic, with persuasive individuals capturing disproportionate resources regardless of impact potential. The absence of operational protocols leads to constant renegotiation of basic processes, exhausting participants and slowing execution.
 
-Information asymmetries particularly plague operational coordination. Teams lack visibility into other [groups](content/tags/groups.md)' activities, leading to missed collaboration opportunities. Resource availability remains opaque until allocation conflicts arise. Progress toward shared goals fragments across team-specific tracking systems. Without transparent information infrastructure, coordination depends on informal relationships and chance encounters rather than systematic processes.
+Information asymmetries particularly plague operational coordination. Teams lack visibility into other [groups](../../tags/groups.md)' activities, leading to missed collaboration opportunities. Resource availability remains opaque until allocation conflicts arise. Progress toward shared goals fragments across team-specific tracking systems. Without transparent information infrastructure, coordination depends on informal relationships and chance encounters rather than systematic processes.
 
 The challenge of maintaining both autonomy and alignment proves especially difficult. Teams require independence to respond quickly to local contexts and opportunities. Yet without alignment mechanisms, organizational coherence dissolves into disconnected activities. Traditional solutions—either imposing control or accepting fragmentation—sacrifice critical capabilities. Effective operations require new patterns that enable both local autonomy and global coordination.
 
@@ -54,7 +54,7 @@ The pattern begins with defining clear domains of operational autonomy. Each tea
 
 Resource allocation occurs through transparent, consent-based processes rather than competitive bidding or hierarchical distribution. Teams propose resource needs with clear justification linked to organizational objectives. Other affected teams can raise principled objections based on impact to their operations or overall organizational health. This sociocratic approach ensures decisions consider all stakeholder impacts while moving faster than consensus models requiring universal agreement.
 
-Coordination infrastructure provides the technical foundation for operational [governance](content/tags/governance.md). Shared dashboards display real-time resource usage, progress metrics, and team activities. Communication protocols establish how teams share updates, request support, and flag issues. Smart contracts can automate resource distribution based on agreed parameters, reducing administrative overhead. The infrastructure makes coordination visible and systematic rather than dependent on individual relationships.
+Coordination infrastructure provides the technical foundation for operational [governance](../../tags/governance.md). Shared dashboards display real-time resource usage, progress metrics, and team activities. Communication protocols establish how teams share updates, request support, and flag issues. Smart contracts can automate resource distribution based on agreed parameters, reducing administrative overhead. The infrastructure makes coordination visible and systematic rather than dependent on individual relationships.
 
 Critical to success is the implementation of feedback loops that enable rapid adaptation. Regular operational reviews identify coordination friction and process improvements. Teams can propose protocol modifications based on operational learning. The governance system itself evolves through practice rather than remaining static. This adaptive capacity allows operational governance to improve continuously rather than calcifying into bureaucracy.
 
@@ -76,7 +76,7 @@ Operational protocols must balance clarity with flexibility. Overly rigid protoc
 
 ### Technical Infrastructure
 
-While operational governance is fundamentally about human coordination, appropriate technical infrastructure significantly enhances effectiveness. Key infrastructure includes shared dashboards providing real-time operational visibility, communication platforms supporting asynchronous coordination, resource tracking systems maintaining [transparency](content/tags/transparency.md), and automation tools reducing administrative burden. Infrastructure choices should prioritize user accessibility and reliability over technical sophistication.
+While operational governance is fundamentally about human coordination, appropriate technical infrastructure significantly enhances effectiveness. Key infrastructure includes shared dashboards providing real-time operational visibility, communication platforms supporting asynchronous coordination, resource tracking systems maintaining [transparency](../../tags/transparency.md), and automation tools reducing administrative burden. Infrastructure choices should prioritize user accessibility and reliability over technical sophistication.
 
 ### Capability Building
 
@@ -103,10 +103,10 @@ Operational governance synthesizes insights from sociocracy, agile methodologies
 Theoretical foundations include sociocratic governance principles emphasizing consent-based decisions, agile and lean methodologies for iterative operations, cybernetic management theory on autonomous systems, and commons governance research on resource coordination. Each tradition contributes elements while the synthesis creates new possibilities.
 
 Related patterns supporting operational governance:
-- **[Groups](content/tags/groups.md)**: Autonomous units that form the building blocks of operational structures
+- **[Groups](../../tags/groups.md)**: Autonomous units that form the building blocks of operational structures
 - **coordi-nations**: Network-level coordination frameworks
-- **[Community governance](content/artifacts/patterns/community-governance.md)**: Strategic oversight complementing operational execution  
-- **[Group state](content/artifacts/guides/dao-primitives-framework/group-state.md)**: Transparency mechanisms enabling coordination
+- **[Community governance](./community-governance.md)**: Strategic oversight complementing operational execution  
+- **[Group state](../guides/dao-primitives-framework/group-state.md)**: Transparency mechanisms enabling coordination
 
 Practitioners should engage with emerging communities exploring operational innovation including Sociocracy for All providing governance training and resources, DAO operations working groups experimenting with coordination mechanisms, Platform Cooperativism Consortium documenting cooperative operations, and various Web3 projects pioneering on-chain operational infrastructure. As organizations seek alternatives to hierarchical management, operational governance provides pathways for maintaining effectiveness while distributing authority.
 
