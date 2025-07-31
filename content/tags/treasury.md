@@ -37,14 +37,14 @@ In scalable network models, as described in [Building DAOs as scalable networks]
 
 ### As the Subject of Governance and Resource Allocation
 
-The treasury is the primary [shared resource](content/tags/resources.md) that a DAO's [governance](content/tags/governance.md) processes are designed to manage. Collective decision-making is fundamentally about how to best allocate the treasury's assets to achieve the DAO's goals. Proposals, votes, and debates within a DAO very often revolve around a single question: "How should we use our collective treasury?" This makes the treasury the practical nexus of power, coordination, and purpose within the organization.
+The treasury is the primary [shared resource](./resources.md) that a DAO's [governance](./governance.md) processes are designed to manage. Collective decision-making is fundamentally about how to best allocate the treasury's assets to achieve the DAO's goals. Proposals, votes, and debates within a DAO very often revolve around a single question: "How should we use our collective treasury?" This makes the treasury the practical nexus of power, coordination, and purpose within the organization.
 
 ## Related Concepts
 
-- [Governance](content/tags/governance.md): The set of processes used to manage and allocate the treasury's assets.
-- [DAOs](content/tags/daos.md): The organizations that collectively own and are powered by a treasury.
-- [Resources](content/tags/resources.md): The treasury is the primary financial resource pool for a DAO.
-- [Wallets](content/tags/wallets.md): The treasury itself is often a multi-signature wallet or smart contract, and members use their personal wallets to vote on its use.
+- [Governance](./governance.md): The set of processes used to manage and allocate the treasury's assets.
+- [DAOs](./daos.md): The organizations that collectively own and are powered by a treasury.
+- [Resources](./resources.md): The treasury is the primary financial resource pool for a DAO.
+- [Wallets](./wallets.md): The treasury itself is often a multi-signature wallet or smart contract, and members use their personal wallets to vote on its use.
 <<<<<<< HEAD
 - test-pattern: The autonomous operational units often funded by the DAO's treasury to perform work.
 - A Pocket Guide to DAO Frameworks: An overview of technical systems that define how a treasury can be managed.
