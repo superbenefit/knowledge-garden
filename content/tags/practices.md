@@ -22,7 +22,7 @@ In decentralized systems, practices take on particular importance as they replac
 
 ### Practices in the DAO Primitives Framework
 
-Within the DAO Primitives Framework, "Practice" is one of three core dimensions of Group State (alongside [purpose](content/tags/purpose.md#) and [progress](content/tags/progress.md#)). It represents the agreed-upon methods and approaches that guide how a team works together and coordinates its activities.
+Within the DAO Primitives Framework, "Practice" is one of three core dimensions of Group State (alongside [purpose](./purpose.md#) and [progress](./progress.md#)). It represents the agreed-upon methods and approaches that guide how a team works together and coordinates its activities.
 
 As part of Group State, practices include:
 
@@ -60,11 +60,11 @@ Community practices create the conditions for trust, reciprocity, and collective
 
 ## Related Concepts
 
-- **[Agreements](content/tags/agreements.md#)**: Formal commitments that establish shared expectations, with practices often emerging from agreements
-- **[Protocols](content/tags/protocols.md#)**: Standardized rules that govern interactions, which practices often implement
-- **[Purpose](content/tags/purpose.md#.md#)**: The guiding goal that practices help realize
-- **[Progress](content/tags/progress.md#.md#)**: Systems for tracking and demonstrating advancement, which practices support
-- **[Roles](content/tags/roles.md#)**: Defined responsibilities that practices help coordinate
-- **[Tasks](content/tags/tasks.md#)**: Specific actions guided by established practices
-- **[Governance](content/tags/governance.md#)**: Systems for collective decision-making that incorporate various practices
-- **[patterns](content/tags/Patterns.md#)**: Reusable solutions to recurring problems, which often codify effective practices
+- **[Agreements](./agreements.md#)**: Formal commitments that establish shared expectations, with practices often emerging from agreements
+- **[Protocols](./protocols.md#)**: Standardized rules that govern interactions, which practices often implement
+- **[Purpose](./purpose.md#.md#)**: The guiding goal that practices help realize
+- **[Progress](./progress.md#.md#)**: Systems for tracking and demonstrating advancement, which practices support
+- **[Roles](./roles.md#)**: Defined responsibilities that practices help coordinate
+- **[Tasks](./tasks.md#)**: Specific actions guided by established practices
+- **[Governance](./governance.md#)**: Systems for collective decision-making that incorporate various practices
+- **[patterns](./Patterns.md#)**: Reusable solutions to recurring problems, which often codify effective practices
