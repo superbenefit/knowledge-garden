@@ -52,13 +52,13 @@ These approaches help practitioners identify emergent properties, anticipate uni
 
 ## Related Concepts
 
-- [networks](content/tags/networks.md): Systems often take the form of interconnected networks of agents and resources
-- [governance](content/tags/governance.md): The frameworks and processes through which systems are directed and managed
-- [protocols](content/tags/protocols.md): Standardized rules that enable coordination within decentralized systems
-- [primitives](content/tags/primitives.md): Fundamental building blocks from which more complex systems are constructed
-- [coordination](content/tags/coordination.md): The processes through which diverse agents align their actions within systems
+- [networks](./networks.md): Systems often take the form of interconnected networks of agents and resources
+- [governance](./governance.md): The frameworks and processes through which systems are directed and managed
+- [protocols](./protocols.md): Standardized rules that enable coordination within decentralized systems
+- [primitives](./primitives.md): Fundamental building blocks from which more complex systems are constructed
+- [coordination](./coordination.md): The processes through which diverse agents align their actions within systems
 - emergence: The way complex behaviors and properties arise from simpler system interactions
-- [transformation](content/tags/transformation.md): Fundamental shifts in how societal systems and structures operate
+- [transformation](./transformation.md): Fundamental shifts in how societal systems and structures operate
 - [complexity](tags/complexity.md): The property of systems with many interdependent parts and non-linear behaviors
 
 ## References and Resources
