@@ -35,7 +35,7 @@ As described in [Building DAOs as scalable networks](artifacts/articles/network-
 
 In the DAO Primitives Framework, platforms represent one of the three core resource primitives alongside roles and resources. They provide the infrastructure that enables DAO operations, including tools for governance, communication, and coordination.
 
-![tags/primitives](content/tags/primitives.md#^83b042)
+![tags/primitives](./primitives.md#^83b042)
 
 Platforms in this context serve as the technical and social foundation upon which DAOs build their activities. They include both the underlying blockchain infrastructure and the specialized tools and interfaces that enable specific DAO functions. The effectiveness of a DAO often depends on how well its platforms align with its purpose, structure, and operational needs.
 
@@ -47,10 +47,10 @@ For example, in the Governance for better futures series, web3 platforms are dis
 
 ## Related Concepts
 
-- **[Systems](content/tags/systems.md#)**: Platforms are specialized systems designed to enable coordination and interaction
-- **[Protocols](content/tags/protocols.md#)**: The standardized rules and procedures that govern how platforms operate
+- **[Systems](./systems.md#)**: Platforms are specialized systems designed to enable coordination and interaction
+- **[Protocols](./protocols.md#)**: The standardized rules and procedures that govern how platforms operate
 - **Infrastructure**: The underlying technological and organizational structures that support platforms
-- **[Networks](content/tags/networks.md#)**: The interconnected relationships and flows that platforms help to create and sustain
-- **[Resources](content/tags/resources.md#)**: Platforms serve as critical resources that enable organizational operations
-- **[Modules](content/tags/modules.md#)**: The composable components that can be integrated into platforms
-- **[Governance](content/tags/governance.md#)**: The mechanisms through which platforms are directed and controlled
+- **[Networks](./networks.md#)**: The interconnected relationships and flows that platforms help to create and sustain
+- **[Resources](./resources.md#)**: Platforms serve as critical resources that enable organizational operations
+- **[Modules](./modules.md#)**: The composable components that can be integrated into platforms
+- **[Governance](./governance.md#)**: The mechanisms through which platforms are directed and controlled
