@@ -65,12 +65,12 @@ As noted in Minimum Viable Permissionless-ness, effective decentralized organiza
 
 ## Related Concepts
 
-- **[Permissions](content/tags/permissions.md#)**: Controls determining what actions agents can take within a system, often based on eligibility
-- **[Attestations](content/tags/attestations.md#)**: Verified claims that can establish eligibility credentials
-- **[Consent](content/tags/consent.md#)**: Decision-making approaches that consider objections when determining eligible proposals
-- **[Agreements](content/tags/agreements.md#)**: Formalized understandings that may include eligibility criteria as part of their terms
-- **[Nfts](content/tags/nfts.md#)**: Non-fungible tokens that can represent membership or eligibility credentials
-- **[Agents](content/tags/agents.md#)**: Decision-making entities that may be subject to eligibility requirements
+- **[Permissions](./permissions.md#)**: Controls determining what actions agents can take within a system, often based on eligibility
+- **[Attestations](./attestations.md#)**: Verified claims that can establish eligibility credentials
+- **[Consent](./consent.md#)**: Decision-making approaches that consider objections when determining eligible proposals
+- **[Agreements](./agreements.md#)**: Formalized understandings that may include eligibility criteria as part of their terms
+- **[Nfts](./nfts.md#)**: Non-fungible tokens that can represent membership or eligibility credentials
+- **[Agents](./agents.md#)**: Decision-making entities that may be subject to eligibility requirements
 
 ## References and Resources
 
