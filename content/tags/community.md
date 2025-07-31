@@ -32,7 +32,7 @@ In [DAO to DAO cooperation](artifacts/articles/governance-for-better-futures%201
 
 ### Community in Social Impact
 
-In social impact contexts, communities are both beneficiaries and active participants in designing and implementing solutions. [Reimagining Power](content/artifacts/articles/Reimagining%2520Power%2520-%2520How%2520Web3%2520Can%2520Transform%2520Impact.md#) emphasizes the importance of community-driven approaches that transfer power and resources to those directly affected by social challenges.
+In social impact contexts, communities are both beneficiaries and active participants in designing and implementing solutions. [Reimagining Power](../artifacts/articles/Reimagining%2520Power%2520-%2520How%2520Web3%2520Can%2520Transform%2520Impact.md#) emphasizes the importance of community-driven approaches that transfer power and resources to those directly affected by social challenges.
 
 Community involvement ensures that solutions are contextually appropriate, culturally sensitive, and aligned with local needs and priorities. Web3 technologies can enhance this by enabling more direct community participation in decision-making and resource allocation through mechanisms like participatory grantmaking and community-owned funding pools.
 
@@ -46,16 +46,16 @@ Unlike traditional user bases or audiences, web3 communities exercise direct inf
 
 Communities can function as coordination mechanisms for autonomous teams and resource flows. In this context, a community provides the shared context, values, and communication channels necessary for decentralized entities to align their actions without centralized control.
 
-The [DAO Primitives framework](content/notes/dao-primitives/index.md#) describes how "purpose-aligned networks of small autonomous teams" can coordinate effectively through community-level agreements and shared infrastructure, creating systems that "outperform traditional organizations" while directing "performance towards building a better and more sustainable world."
+The [DAO Primitives framework](../notes/dao-primitives/index.md#) describes how "purpose-aligned networks of small autonomous teams" can coordinate effectively through community-level agreements and shared infrastructure, creating systems that "outperform traditional organizations" while directing "performance towards building a better and more sustainable world."
 
 ### Community as Governance Constituency
 
-In [Community Governance](content/artifacts/patterns/community-governance.md#), "community" refers to the broad base of stakeholders who participate in governing a network's overarching purpose and direction. This constituency-scale governance operates through deliberative mechanisms like conviction voting and makes long-term decisions about network direction and treasury allocation.
+In [Community Governance](../artifacts/patterns/community-governance.md#), "community" refers to the broad base of stakeholders who participate in governing a network's overarching purpose and direction. This constituency-scale governance operates through deliberative mechanisms like conviction voting and makes long-term decisions about network direction and treasury allocation.
 
 As described in [Building DAOs as scalable networks](artifacts/articles/network-evolution%201/Building%20DAOs%20as%20scalable%20networks.md), community governance "safeguards the purpose of the network" and includes a diverse set of stakeholders: "Cell contributors, founders, partners (sponsors, funders etc), as well as others that have a stake in the purpose of the network but may not be contributing directly to its operations."
 
 ### Community in Group Development
 
-During the early [Conversation Phase](content/artifacts/guides/dao-primitives-framework/group-phase/conversation-phase.md#) of group development, community serves as the foundation for exploration and idea generation. This phase is characterized by "open exploration and idea generation" where "all perspectives are valued" to establish a shared vision and understanding.
+During the early [Conversation Phase](../artifacts/guides/dao-primitives-framework/group-phase/conversation-phase.md#) of group development, community serves as the foundation for exploration and idea generation. This phase is characterized by "open exploration and idea generation" where "all perspectives are valued" to establish a shared vision and understanding.
 
 The community at this stage focuses on relationship building, creating trust and rapport among members that will be essential for effective collaboration in later stages of development.
