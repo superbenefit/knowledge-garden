@@ -65,10 +65,10 @@ These values often manifest as qualities that systems embody to varying degrees.
 
 ## Related Concepts
 
-- **[Purpose](content/tags/purpose.md#)**: Values align with and support the broader purpose of an organization or network
-- **[Culture](content/tags/culture.md#)**: The lived expression of values through behaviors, norms, and practices
-- **[Agreements](content/tags/agreements.md#)**: Formal or informal understandings about how values will be upheld
-- **[Governance](content/tags/governance.md#)**: Systems and processes for making decisions aligned with collective values
+- **[Purpose](./purpose.md#)**: Values align with and support the broader purpose of an organization or network
+- **[Culture](./culture.md#)**: The lived expression of values through behaviors, norms, and practices
+- **[Agreements](./agreements.md#)**: Formal or informal understandings about how values will be upheld
+- **[Governance](./governance.md#)**: Systems and processes for making decisions aligned with collective values
 
 ## References and Resources
 
