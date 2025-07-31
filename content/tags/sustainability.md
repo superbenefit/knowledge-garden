@@ -45,11 +45,11 @@ Sustainable approaches to social impact often emphasize cosmolocalism, combining
 
 ## Related Concepts
 
-- [cosmolocalism](content/tags/cosmolocalism.md): An approach combining local resilience with global knowledge sharing
-- [localism](content/tags/localism.md): Organizational philosophy emphasizing local autonomy and place-based solutions
-- [progress](content/tags/progress.md): Tracking and demonstrating advancement toward sustainable outcomes
-- [purpose](content/tags/purpose.md): The guiding reason behind actions or decisions that often includes sustainability dimensions
-- [systems](content/tags/systems.md): Organized sets of interconnected elements that must balance various sustainability factors
+- [cosmolocalism](./cosmolocalism.md): An approach combining local resilience with global knowledge sharing
+- [localism](./localism.md): Organizational philosophy emphasizing local autonomy and place-based solutions
+- [progress](./progress.md): Tracking and demonstrating advancement toward sustainable outcomes
+- [purpose](./purpose.md): The guiding reason behind actions or decisions that often includes sustainability dimensions
+- [systems](./systems.md): Organized sets of interconnected elements that must balance various sustainability factors
 
 ## References and Resources
 
