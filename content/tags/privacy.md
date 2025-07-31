@@ -41,7 +41,7 @@ For social impact initiatives, privacy is often a critical requirement rather th
 - **Equity**: Preventing exploitation of vulnerable populations
 - **Trust**: Creating safe spaces for authentic participation
 
-The [Privacy-Preserving Crypto Payments](content/notes/rpp/rpp-working-docs/privacy-payments.md#) pattern exemplifies how privacy technologies can support humanitarian work in challenging environments, enabling resource distribution while protecting participant identities.
+The [Privacy-Preserving Crypto Payments](../notes/rpp/rpp-working-docs/privacy-payments.md#) pattern exemplifies how privacy technologies can support humanitarian work in challenging environments, enabling resource distribution while protecting participant identities.
 
 ### Privacy as Collective Responsibility
 
@@ -52,15 +52,15 @@ Privacy is increasingly understood as both an individual right and a collective 
 - Privacy design requires consideration of power dynamics and potential harms
 - Technical solutions must be complemented by social agreements and practices
 
-This perspective shifts privacy from a purely individual concern to an essential component of [governance](content/tags/governance.md#) and [coordination-scale](content/artifacts/guides/dao-primitives-framework/group-scale/coordination-scale.md#) in decentralized systems.
+This perspective shifts privacy from a purely individual concern to an essential component of [governance](./governance.md#) and [coordination-scale](../artifacts/guides/dao-primitives-framework/group-scale/coordination-scale.md#) in decentralized systems.
 
 ## Related Concepts
 
 Privacy intersects with numerous other concepts in the lexicon:
 
-- **[Autonomy](content/tags/autonomy.md#)**: Privacy enables genuine self-determination and agency
-- **[Decentralization](content/tags/decentralization.md#)**: Distributing data and control reduces centralized surveillance
-- **[Consent](content/tags/consent.md#)**: Privacy requires meaningful permission for data usage
+- **[Autonomy](./autonomy.md#)**: Privacy enables genuine self-determination and agency
+- **[Decentralization](./decentralization.md#)**: Distributing data and control reduces centralized surveillance
+- **[Consent](./consent.md#)**: Privacy requires meaningful permission for data usage
 - **[Trust](tags/trust.md)**: Privacy protections foster confidence in systems and communities
 - **[Security](tags/security.md)**: Privacy and security are complementary but distinct requirements
 
