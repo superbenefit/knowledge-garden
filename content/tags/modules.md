@@ -30,7 +30,7 @@ Modules allow for flexibility in designing organizational processes by enabling 
 
 ### Modules in the DAO Primitives Framework
 
-Within the [DAO Primitives Framework](content/tags/primitives.md#), modules represent the technical implementations of patterns and primitives. They serve as building blocks that operationalize governance concepts, connecting abstract principles to functional systems. The framework uses modules as the practical tools through which primitives (core concepts) and patterns (reusable solutions) are deployed in actual DAO contexts.
+Within the [DAO Primitives Framework](./primitives.md#), modules represent the technical implementations of patterns and primitives. They serve as building blocks that operationalize governance concepts, connecting abstract principles to functional systems. The framework uses modules as the practical tools through which primitives (core concepts) and patterns (reusable solutions) are deployed in actual DAO contexts.
 
 For example, a DAO might implement modules for:
 - Treasury management and multisignature authorization
@@ -41,8 +41,8 @@ For example, a DAO might implement modules for:
 
 ## Related Concepts
 
-- [Primitives](content/tags/primitives.md#.md#): Fundamental building blocks that can be composed into larger systems
-- [patterns](content/tags/Patterns.md#): Reusable solutions to common governance challenges
-- [Permissions](content/tags/permissions.md#): Systems for managing access and authority within modules
-- [Protocols](content/tags/protocols.md#): Standardized rules that enable modules to interoperate
-- [Platforms](content/tags/platforms.md#): Systems that host and integrate various modules
+- [Primitives](./primitives.md#.md#): Fundamental building blocks that can be composed into larger systems
+- [patterns](./Patterns.md#): Reusable solutions to common governance challenges
+- [Permissions](./permissions.md#): Systems for managing access and authority within modules
+- [Protocols](./protocols.md#): Standardized rules that enable modules to interoperate
+- [Platforms](./platforms.md#): Systems that host and integrate various modules
