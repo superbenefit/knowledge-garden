@@ -11,11 +11,11 @@ publish: "true"
 type: link
 ---
 
-**For many people, [governance](content/tags/governance.md#) is an obscure concept. For those engaged in it, it often relates to organisational performance and oversight of compliance, culture, strategy, and risk. Prevailing models tend to concentrate control and reinforce [power](content/tags/power.md#) structures. Less often is governance designed to be generative, distributed, and enabling of self-organisation.**
+**For many people, [governance](../../../tags/governance.md#) is an obscure concept. For those engaged in it, it often relates to organisational performance and oversight of compliance, culture, strategy, and risk. Prevailing models tend to concentrate control and reinforce [power](../../../tags/power.md#) structures. Less often is governance designed to be generative, distributed, and enabling of self-organisation.**
 
 Given governance is, in essence, how authority and accountability is held and actioned in any given context, we think this core social infrastructure is ripe for innovation. Fortunately, the arrival of web3, coinciding with other pressures and shifts in the world, are inviting us to reframe, revitalise, and, in many respects, remember, what governance is and can be.
 
-With this in mind, [SuperBenefit DAO](https://www.superbenefit.org/) is convening a [series of conversations](https://superbenefit.mirror.xyz/Bcsl19CZ67amLJY_bee5dUy0DEboZykuMQqw58wGlGI) to explore how the nature of governance is evolving and its role in accelerating transitions to better futures. We're specifically interested in how [web3](content/tags/blockchain.md#) technologies are enabling new thinking and their potential to combine with existing practices, perspectives, and traditional wisdom.
+With this in mind, [SuperBenefit DAO](https://www.superbenefit.org/) is convening a [series of conversations](https://superbenefit.mirror.xyz/Bcsl19CZ67amLJY_bee5dUy0DEboZykuMQqw58wGlGI) to explore how the nature of governance is evolving and its role in accelerating transitions to better futures. We're specifically interested in how [web3](../../../tags/blockchain.md#) technologies are enabling new thinking and their potential to combine with existing practices, perspectives, and traditional wisdom.
 
 The first conversation we hosted was on meta-governance. We gathered with a small group of founders and DAO-ers to discuss what it is and where it could take us.
 
@@ -33,9 +33,9 @@ The text below is an attempt to capture the key points and themes from the discu
 
 ### What is meta-governance?
 
-There are different ways to unpack the 'meta' in meta-governance. A narrow definition, specific to web3, refers to the nature of governance created by index mechanisms that acquire tokens from various [DAOs](content/tags/daos.md#) and [protocols](content/tags/protocols.md#). With these tokens come governance interests and rights. This framing can be generalised to refer to how DAOs participate in, and influence, each other.
+There are different ways to unpack the 'meta' in meta-governance. A narrow definition, specific to web3, refers to the nature of governance created by index mechanisms that acquire tokens from various [DAOs](../../../tags/daos.md#) and [protocols](../../../tags/protocols.md#). With these tokens come governance interests and rights. This framing can be generalised to refer to how DAOs participate in, and influence, each other.
 
-A broader conception of meta-governance relates to _'how we figure out whole [systems](content/tags/systems.md#) governance'_ _([Gabagool.Ξth](https://twitter.com/gabagooldoteth))_ and deal with issues that impact everyone but can't be controlled by any specific individual or entity. While this is salient in web3 in relation to core integrity issues (such as mitigating the impact of Sybil attacks), it also transcends the digital context. Indeed, systems governance (and inter-systems governance) will be critical in how we respond to challenges, such as climate change, and how we evolve the communities and societies we live within.
+A broader conception of meta-governance relates to _'how we figure out whole [systems](../../../tags/systems.md#) governance'_ _([Gabagool.Ξth](https://twitter.com/gabagooldoteth))_ and deal with issues that impact everyone but can't be controlled by any specific individual or entity. While this is salient in web3 in relation to core integrity issues (such as mitigating the impact of Sybil attacks), it also transcends the digital context. Indeed, systems governance (and inter-systems governance) will be critical in how we respond to challenges, such as climate change, and how we evolve the communities and societies we live within.
 
 This more expansive framing of meta-governance also creates space to transcend current constructs of governance and speculate about where emerging trends are taking us and what could be possible.
 
@@ -43,7 +43,7 @@ This more expansive framing of meta-governance also creates space to transcend c
 
 Like the hard structures of boards and ballots in conventional contexts, much web3 governance gets reduced to token-weighted mechanisms. The emphasis rests on the act of governance - voting on proposals; rather than the process of governance - deliberation and wayfinding. And despite the intent to distribute and decentralise, token-based voting often slips into old patterns of concentrating power and influence.
 
-If governance is to become more attuned and responsive to the systems dynamics it exists within, how do we find ways to 'soften' the flows of influence and authority? How might we match technicalities with the emergent energies produced within movements and [networks](content/tags/networks.md#)? How can we harness social capital to sense and shape systems change? How might governance forums be more responsive to stakeholder sentiment and bottom-up interests?
+If governance is to become more attuned and responsive to the systems dynamics it exists within, how do we find ways to 'soften' the flows of influence and authority? How might we match technicalities with the emergent energies produced within movements and [networks](../../../tags/networks.md#)? How can we harness social capital to sense and shape systems change? How might governance forums be more responsive to stakeholder sentiment and bottom-up interests?
 
 Could we design governance systems to enable smaller and localised groups to express their interests and consent into _'roll-ups' ([Bryan Petes](https://twitter.com/BryanPetes))_. Could forums become more flexible to include representatives and specialised perspectives based on specific issues and context? We need to experiment more with bottom-up and localised decision making, and enable more people to engage on issues that are relevant to them - enabling them to come together as and when it makes sense to cooperate _([Rowan Yeoman](https://twitter.com/yeoro))_.
 
@@ -63,7 +63,7 @@ Importantly for a change agenda, the inherent properties of DAOs are attuned to 
 
 ### Wrapping up
 
-The _'meme of [decentralisation](content/tags/decentralization.md#)'_ often presents as something outside of us - as an inherent quality of the Web3 environment, but _'it needs to be insisted upon and actively established' ([Gabagool.Ξth](https://twitter.com/gabagooldoteth))_. Individuals acting across forums, networks, and protocols can curate experiences and spheres of engagement that promote this ethos and the emergence of values-based meta-governance.
+The _'meme of [decentralisation](../../../tags/decentralization.md#)'_ often presents as something outside of us - as an inherent quality of the Web3 environment, but _'it needs to be insisted upon and actively established' ([Gabagool.Ξth](https://twitter.com/gabagooldoteth))_. Individuals acting across forums, networks, and protocols can curate experiences and spheres of engagement that promote this ethos and the emergence of values-based meta-governance.
 
 We all have a responsibility to do this. Indeed, while increasing sensitivity to sentiment is important, transitions to better futures will demand greater pro-activity in shaping the values and norms of core industries and systems. Doing this well in Web3 will provide opportunities to harness digital infrastructures in physical contexts, and provide powerful tools to address some of our world's most urgent challenges.
 
