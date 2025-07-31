@@ -47,7 +47,7 @@ Social protocols in DAOs include:
 - **Dispute resolution protocols** for addressing conflicts and disagreements
 - **Permission protocols** that define access rights and responsibilities
 
-The [DAO Primitives Framework](content/artifacts/guides/dao-primitives-framework/index.md#) describes these social protocols as essential components for scaling coordination across different organizational levels. By establishing clear patterns for interaction, DAO protocols enable both small team autonomy and network-scale collaboration, creating systems that can "evolve organically" while maintaining purpose alignment.
+The [DAO Primitives Framework](../artifacts/guides/dao-primitives-framework/index.md#) describes these social protocols as essential components for scaling coordination across different organizational levels. By establishing clear patterns for interaction, DAO protocols enable both small team autonomy and network-scale collaboration, creating systems that can "evolve organically" while maintaining purpose alignment.
 
 ### Open Protocols
 
@@ -79,8 +79,8 @@ These systems enable communities to self-organize around shared needs and resour
 
 ## Related Concepts
 
-- **[Governance](content/tags/governance.md#)**: Protocols establish the rules and procedures for collective decision-making
-- **[Agreements](content/tags/agreements.md#)**: Protocols formalize shared understandings about how systems operate
-- **[Networks](content/tags/networks.md#)**: Protocols enable coordination across distributed networks of participants
-- **[Decisions](content/tags/decisions.md#)**: Protocols structure how collective choices are made and implemented
-- **[Primitives](content/tags/primitives.md#)**: Protocols are fundamental building blocks for constructing complex systems
+- **[Governance](./governance.md#)**: Protocols establish the rules and procedures for collective decision-making
+- **[Agreements](./agreements.md#)**: Protocols formalize shared understandings about how systems operate
+- **[Networks](./networks.md#)**: Protocols enable coordination across distributed networks of participants
+- **[Decisions](./decisions.md#)**: Protocols structure how collective choices are made and implemented
+- **[Primitives](./primitives.md#)**: Protocols are fundamental building blocks for constructing complex systems
