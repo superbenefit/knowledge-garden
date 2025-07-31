@@ -35,7 +35,7 @@ This cultural coordination works through shared mental models, behavioral norms,
 
 Culture manifests concretely through the knowledge systems, practices, and methodologies that communities develop and share. These include both explicit practices like governance processes and implicit know-how about how things actually work within the community. Together, they form what the readme identifies as Practice - one of the three core dimensions of Group State alongside Purpose and Progress.
 
-The relationship between culture and practices is reciprocal: practices embody and reinforce culture, while culture provides the context that makes practices meaningful and effective. As communities evolve, they develop increasingly sophisticated shared practices that encode their accumulated wisdom and values, creating what [semiotic-bridging](content/tags/semiotic-bridging.md#) describes as distinct "knowledge systems and cultural frameworks" with their own internal coherence and logic.
+The relationship between culture and practices is reciprocal: practices embody and reinforce culture, while culture provides the context that makes practices meaningful and effective. As communities evolve, they develop increasingly sophisticated shared practices that encode their accumulated wisdom and values, creating what [semiotic-bridging](./semiotic-bridging.md#) describes as distinct "knowledge systems and cultural frameworks" with their own internal coherence and logic.
 
 ### Culture Across Network Boundaries
 
@@ -52,12 +52,12 @@ These cultural bridges enable what the article describes as "cross-DAO token hol
 
 ## Related Concepts
 
-- **[Values](content/tags/values.md#)**: The explicit principles that inform and shape cultural norms and practices
-- **[Community](content/tags/community.md#)**: The social fabric within which culture develops and operates
-- **[Practices](content/tags/practices.md#)**: The concrete methodologies and routines that embody and reinforce culture
-- **[Purpose](content/tags/purpose.md#)**: The shared mission that culture helps to interpret and pursue
-- **[Agreements](content/tags/agreements.md#)**: The formal and informal understandings that codify cultural expectations
-- **[Coordination](content/tags/coordination.md#)**: The alignment of actions that culture facilitates across autonomous agents
+- **[Values](./values.md#)**: The explicit principles that inform and shape cultural norms and practices
+- **[Community](./community.md#)**: The social fabric within which culture develops and operates
+- **[Practices](./practices.md#)**: The concrete methodologies and routines that embody and reinforce culture
+- **[Purpose](./purpose.md#)**: The shared mission that culture helps to interpret and pursue
+- **[Agreements](./agreements.md#)**: The formal and informal understandings that codify cultural expectations
+- **[Coordination](./coordination.md#)**: The alignment of actions that culture facilitates across autonomous agents
 
 ## References and Resources
 
