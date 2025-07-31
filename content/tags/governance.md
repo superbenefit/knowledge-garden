@@ -8,17 +8,17 @@ aliases:
 publish: "true"
 ---
 
-Decentralized governance in the context of Web3 and [DAOs](content/tags/daos.md#) refers to the [decentralized](content/tags/decentralization.md#), [blockchain](content/tags/blockchain.md#)-based system where rules, [decisions](content/tags/decisions.md#), and resource allocation are managed collectively by participants through transparent, automated mechanisms like smart contracts. Rather than concentrating decision-making power in a traditional hierarchy, decentralized governance distributes authority across different scales and functions of the organization.
+Decentralized governance in the context of Web3 and [DAOs](./daos.md#) refers to the [decentralized](./decentralization.md#), [blockchain](./blockchain.md#)-based system where rules, [decisions](./decisions.md#), and resource allocation are managed collectively by participants through transparent, automated mechanisms like smart contracts. Rather than concentrating decision-making power in a traditional hierarchy, decentralized governance distributes authority across different scales and functions of the organization.
 
 ---
 
 ## Types of Governance
 
-### [Community Governance](content/artifacts/patterns/community-governance.md#)
+### [Community Governance](../artifacts/patterns/community-governance.md#)
 
 Operates at [Constituency Scale](tags/groups/scale/Constituency%20Scale.md) to safeguard and evolve the network's overarching purpose. Community governance includes a broad base of stakeholders who may not be directly involved in operations but are aligned with the network's purpose. It uses slower, more deliberative mechanisms like conviction voting and optimistic governance to make long-term decisions about network direction and treasury allocation.
 
-### [Operational Governance](content/artifacts/patterns/operational-governance.md#)
+### [Operational Governance](../artifacts/patterns/operational-governance.md#)
 
 Functions at test-pattern (small autonomous teams) coordinate their activities. Operational governance provides the flexibility and autonomy needed for teams to execute effectively while maintaining coordination across the network.
 
@@ -47,5 +47,5 @@ Focuses on aligning key stakeholder interests and managing relationships between
 
 ## Governance Frameworks
 
-- [Anticapture](content/links/Anticapture.md#)
+- [Anticapture](../links/Anticapture.md#)
 - [The Blockchain Governance Toolkit](notes/links/to-review/The%20Blockchain%20Governance%20Toolkit.md)
