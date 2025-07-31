@@ -17,35 +17,35 @@ type: note
 
 ## Definition
 
-Tasks within the DAO Primitives Framework function as **agreement primitives** that establish formalized commitments about specific [actions](content/tags/actions.md), deliverables, and coordinated activities that need to be accomplished within [DAO networks](content/artifacts/guides/dao-primitives-framework/group-primitives/daos.md). As defined in [our lexicon](content/tags/tasks.md), Tasks are "specific, coordinated actions or duties assigned to [roles](content/tags/roles.md) or [agents](content/tags/agents.md) within decentralized systems" - serving as the operational [agreements](content/tags/agreements.md) that define **what** specific work needs to be accomplished, while [Roles](content/artifacts/guides/dao-primitives-framework/group-primitives/roles.md) define **who** has the [responsibility](content/tags/responsibilities.md) and [authority](content/tags/authorities.md) to coordinate that work.
+Tasks within the DAO Primitives Framework function as **agreement primitives** that establish formalized commitments about specific [actions](../../../../tags/actions.md), deliverables, and coordinated activities that need to be accomplished within [DAO networks](./daos.md). As defined in [our lexicon](../../../../tags/tasks.md), Tasks are "specific, coordinated actions or duties assigned to [roles](../../../../tags/roles.md) or [agents](../../../../tags/agents.md) within decentralized systems" - serving as the operational [agreements](../../../../tags/agreements.md) that define **what** specific work needs to be accomplished, while [Roles](./roles.md) define **who** has the [responsibility](../../../../tags/responsibilities.md) and [authority](../../../../tags/authorities.md) to coordinate that work.
 
 ---
 
 ## Core Characteristics
 
-**Operational Agreement Primitive**: Unlike cells and [DAOs](content/artifacts/guides/dao-primitives-framework/group-primitives/daos.md) which function as entities (network nodes), Tasks serve as [agreements](content/tags/agreements.md) (network edges) that define specific [actions](content/tags/actions.md) and deliverables that need to be accomplished to advance network [purpose](content/tags/purpose.md) and maintain [coordination](content/tags/coordination.md).
+**Operational Agreement Primitive**: Unlike cells and [DAOs](./daos.md) which function as entities (network nodes), Tasks serve as [agreements](../../../../tags/agreements.md) (network edges) that define specific [actions](../../../../tags/actions.md) and deliverables that need to be accomplished to advance network [purpose](../../../../tags/purpose.md) and maintain [coordination](../../../../tags/coordination.md).
 
-**Action-Oriented Infrastructure**: Tasks create the operational foundation for network activity by establishing clear [agreements](content/tags/agreements.md) about specific deliverables, timelines, and outcomes while enabling autonomous execution without requiring centralized micromanagement.
+**Action-Oriented Infrastructure**: Tasks create the operational foundation for network activity by establishing clear [agreements](../../../../tags/agreements.md) about specific deliverables, timelines, and outcomes while enabling autonomous execution without requiring centralized micromanagement.
 
-**Complementary to Roles**: Tasks work in conjunction with [Roles](content/artifacts/guides/dao-primitives-framework/group-primitives/roles.md) to operationalize network [coordination](content/tags/coordination.md) - [Roles](content/artifacts/guides/dao-primitives-framework/group-primitives/roles.md) defining "who" has [responsibility](content/tags/responsibilities.md) and [authority](content/tags/authorities.md), while Tasks define "what" specific [actions](content/tags/actions.md) and deliverables need to be accomplished.
+**Complementary to Roles**: Tasks work in conjunction with [Roles](./roles.md) to operationalize network [coordination](../../../../tags/coordination.md) - [Roles](./roles.md) defining "who" has [responsibility](../../../../tags/responsibilities.md) and [authority](../../../../tags/authorities.md), while Tasks define "what" specific [actions](../../../../tags/actions.md) and deliverables need to be accomplished.
 
-**Distributed Execution**: Tasks enable coordinated [action](content/tags/actions.md) across network entities while preserving [autonomy](content/tags/autonomy.md) in how work is accomplished, creating structured workflows that can operate across multiple cells and contexts.
+**Distributed Execution**: Tasks enable coordinated [action](../../../../tags/actions.md) across network entities while preserving [autonomy](../../../../tags/autonomy.md) in how work is accomplished, creating structured workflows that can operate across multiple cells and contexts.
 
 ## Task State
 
-**Task State** documentation enables Tasks to function effectively as [agreements](content/tags/agreements.md) primitives across [DAO networks](content/artifacts/guides/dao-primitives-framework/group-primitives/daos.md). Each Task maintains transparent state documentation that captures the essential information needed for both task execution and network [coordination](content/tags/coordination.md).
+**Task State** documentation enables Tasks to function effectively as [agreements](../../../../tags/agreements.md) primitives across [DAO networks](./daos.md). Each Task maintains transparent state documentation that captures the essential information needed for both task execution and network [coordination](../../../../tags/coordination.md).
 
-This [transparent](content/tags/transparency.md) task state makes tasks addressable and understandable across the wider network, not just internally to the cells that created them. By documenting task state in accessible formats, other cells, [Roles](content/artifacts/guides/dao-primitives-framework/group-primitives/roles.md), and network participants can discover, understand, and coordinate with ongoing work directly, enabling the distributed execution that characterizes effective [DAO](content/artifacts/guides/dao-primitives-framework/group-primitives/daos.md) networks.
+This [transparent](../../../../tags/transparency.md) task state makes tasks addressable and understandable across the wider network, not just internally to the cells that created them. By documenting task state in accessible formats, other cells, [Roles](./roles.md), and network participants can discover, understand, and coordinate with ongoing work directly, enabling the distributed execution that characterizes effective [DAO](./daos.md) networks.
 
 Task State consists of three core components:
 
-**[Purpose](content/tags/purpose.md)**: Documents the specific deliverables, outcomes, and [goals](content/tags/goals.md) that the task is designed to accomplish within the network context. This creates clarity about the task's contribution to broader objectives and enables other network participants to understand how to coordinate with or build upon the work.
+**[Purpose](../../../../tags/purpose.md)**: Documents the specific deliverables, outcomes, and [goals](../../../../tags/goals.md) that the task is designed to accomplish within the network context. This creates clarity about the task's contribution to broader objectives and enables other network participants to understand how to coordinate with or build upon the work.
 
-**[Practice](content/tags/practices.md)**: Establishes the operational [agreements](content/tags/agreements.md) about how the task will be executed, what [resources](content/tags/resources.md) are needed, who is [responsible](content/tags/responsibilities.md) for completion, and how the task interfaces with other tasks and network activities.
+**[Practice](../../../../tags/practices.md)**: Establishes the operational [agreements](../../../../tags/agreements.md) about how the task will be executed, what [resources](../../../../tags/resources.md) are needed, who is [responsible](../../../../tags/responsibilities.md) for completion, and how the task interfaces with other tasks and network activities.
 
-**[Progress](content/tags/progress.md)**: Maintains documentation of task execution status, milestones achieved, and deliverables produced. This creates [transparency](content/tags/transparency.md) that enables network-wide [coordination](content/tags/coordination.md) and allows other participants to assess task status and identify opportunities for collaboration or dependencies.
+**[Progress](../../../../tags/progress.md)**: Maintains documentation of task execution status, milestones achieved, and deliverables produced. This creates [transparency](../../../../tags/transparency.md) that enables network-wide [coordination](../../../../tags/coordination.md) and allows other participants to assess task status and identify opportunities for collaboration or dependencies.
 
-Together, these three dimensions create comprehensive task documentation that enables tasks to function as effective [agreements](content/tags/agreements.md) primitives while maintaining the [transparency](content/tags/transparency.md) needed for network-wide [coordination](content/tags/coordination.md) and execution.
+Together, these three dimensions create comprehensive task documentation that enables tasks to function as effective [agreements](../../../../tags/agreements.md) primitives while maintaining the [transparency](../../../../tags/transparency.md) needed for network-wide [coordination](../../../../tags/coordination.md) and execution.
 
 ## Phase & Scale Considerations
 
@@ -67,11 +67,11 @@ Tasks are a flexible primitive that can be used across all scales, phases and ti
 
 ## Network Relationships
 
-**Entity-Task Integration**: Tasks provide the operational interfaces between cells and [DAOs](content/artifacts/guides/dao-primitives-framework/group-primitives/daos.md), enabling entities to coordinate work effectively by establishing clear [agreements](content/tags/agreements.md) about specific deliverables, timelines, and [accountability](content/tags/accountability.md) across the network.
+**Entity-Task Integration**: Tasks provide the operational interfaces between cells and [DAOs](./daos.md), enabling entities to coordinate work effectively by establishing clear [agreements](../../../../tags/agreements.md) about specific deliverables, timelines, and [accountability](../../../../tags/accountability.md) across the network.
 
-**Role-Task Coordination**: Tasks work closely with [Roles](content/artifacts/guides/dao-primitives-framework/group-primitives/roles.md) to operationalize network activity - [Roles](content/artifacts/guides/dao-primitives-framework/group-primitives/roles.md) defining "who" has [responsibility](content/tags/responsibilities.md) and [authority](content/tags/authorities.md), while Tasks define "what" specific [actions](content/tags/actions.md) and deliverables need to be accomplished to advance network [purpose](content/tags/purpose.md).
+**Role-Task Coordination**: Tasks work closely with [Roles](./roles.md) to operationalize network activity - [Roles](./roles.md) defining "who" has [responsibility](../../../../tags/responsibilities.md) and [authority](../../../../tags/authorities.md), while Tasks define "what" specific [actions](../../../../tags/actions.md) and deliverables need to be accomplished to advance network [purpose](../../../../tags/purpose.md).
 
-**Network-Wide Workflow**: Through documented task [agreements](content/tags/agreements.md), the network creates [transparency](content/tags/transparency.md) about ongoing work and dependencies that enables distributed execution while maintaining overall coherence and [accountability](content/tags/accountability.md).
+**Network-Wide Workflow**: Through documented task [agreements](../../../../tags/agreements.md), the network creates [transparency](../../../../tags/transparency.md) about ongoing work and dependencies that enables distributed execution while maintaining overall coherence and [accountability](../../../../tags/accountability.md).
 
 ## Implementation Patterns
 
@@ -79,9 +79,9 @@ Tasks are a flexible primitive that can be used across all scales, phases and ti
 
 **Cross-Cell Task Workflows**: Tasks that span multiple cells or require coordination between different network entities, enabling complex workflows without hierarchical project management structures.
 
-**Contributor Coordination Tasks**: Tasks used by cells to engage external contributors, often working in conjunction with [Roles](content/artifacts/guides/dao-primitives-framework/group-primitives/roles.md) to create clear [agreements](content/tags/agreements.md) about specific contributions and deliverables.
+**Contributor Coordination Tasks**: Tasks used by cells to engage external contributors, often working in conjunction with [Roles](./roles.md) to create clear [agreements](../../../../tags/agreements.md) about specific contributions and deliverables.
 
-**Network-Level Initiatives**: Tasks that coordinate activities across the broader [DAO](content/artifacts/guides/dao-primitives-framework/group-primitives/daos.md) network, enabling collective action on shared objectives while preserving entity [autonomy](content/tags/autonomy.md) in execution approaches.
+**Network-Level Initiatives**: Tasks that coordinate activities across the broader [DAO](./daos.md) network, enabling collective action on shared objectives while preserving entity [autonomy](../../../../tags/autonomy.md) in execution approaches.
 
 ## Examples in Practice
 
@@ -91,14 +91,14 @@ Tasks are a flexible primitive that can be used across all scales, phases and ti
 
 ## Related Concepts
 
-- [Tasks](content/tags/tasks.md) - Comprehensive definition and usage contexts
-- [Roles](content/artifacts/guides/dao-primitives-framework/group-primitives/roles.md) - The complementary agreements primitive that defines "who"
+- [Tasks](../../../../tags/tasks.md) - Comprehensive definition and usage contexts
+- [Roles](./roles.md) - The complementary agreements primitive that defines "who"
 - cells - Entities that coordinate and execute tasks
-- [DAOs](content/artifacts/guides/dao-primitives-framework/group-primitives/daos.md) - Network entities that enable task coordination
-- [Agreements](content/tags/agreements.md) - The broader category of relationship infrastructure
-- [Actions](content/tags/actions.md) - The fundamental units of work that tasks coordinate
-- [Coordination](content/tags/coordination.md) - The mechanisms through which tasks enable network alignment
-- [Accountability](content/tags/accountability.md) - The mechanisms through which tasks create responsibility for delivery
+- [DAOs](./daos.md) - Network entities that enable task coordination
+- [Agreements](../../../../tags/agreements.md) - The broader category of relationship infrastructure
+- [Actions](../../../../tags/actions.md) - The fundamental units of work that tasks coordinate
+- [Coordination](../../../../tags/coordination.md) - The mechanisms through which tasks enable network alignment
+- [Accountability](../../../../tags/accountability.md) - The mechanisms through which tasks create responsibility for delivery
 
 
 
