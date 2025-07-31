@@ -24,20 +24,20 @@ Wallets are the primary user-facing tool for interacting with the decentralized 
 
 ### As an Interface for DAO Participation
 
-In the context of [DAOs](content/tags/daos.md), a wallet is the primary tool for members. It holds the governance tokens that represent voting power, allows users to connect to DAO front-ends, and enables them to sign transactions to vote on proposals or claim rewards. It is the user's gateway to exercising their rights and responsibilities within the organization, serving as both an ID card and a voting booth.
+In the context of [DAOs](./daos.md), a wallet is the primary tool for members. It holds the governance tokens that represent voting power, allows users to connect to DAO front-ends, and enables them to sign transactions to vote on proposals or claim rewards. It is the user's gateway to exercising their rights and responsibilities within the organization, serving as both an ID card and a voting booth.
 
 ### As a Tool for Governance
 
-For [decentralized governance](content/tags/governance.md), a wallet is the instrument of action. It cryptographically proves ownership of the assets or credentials required for participation. All governance actions, from creating a proposal to casting a vote, are initiated and authorized through a wallet signature, ensuring that actions are verifiably tied to a specific participant and their corresponding stake or role.
+For [decentralized governance](./governance.md), a wallet is the instrument of action. It cryptographically proves ownership of the assets or credentials required for participation. All governance actions, from creating a proposal to casting a vote, are initiated and authorized through a wallet signature, ensuring that actions are verifiably tied to a specific participant and their corresponding stake or role.
 
 ### As a Controller of Personal Resources
 
-From a [resources](content/tags/resources.md) perspective, a non-custodial wallet gives an individual agent complete control over their private on-chain assets. These resources—whether cryptocurrencies, NFTs, or governance rights—are secured by the wallet's private keys. This turns the wallet into a personal vault and a key tool for self-sovereignty in the digital economy, allowing users to manage their assets without permission from a central authority.
+From a [resources](./resources.md) perspective, a non-custodial wallet gives an individual agent complete control over their private on-chain assets. These resources—whether cryptocurrencies, NFTs, or governance rights—are secured by the wallet's private keys. This turns the wallet into a personal vault and a key tool for self-sovereignty in the digital economy, allowing users to manage their assets without permission from a central authority.
 
 ## Related Concepts
 
-- [DAOs](content/tags/daos.md): Wallets are the essential interface for members to interact with and govern a DAO.
-- [Governance](content/tags/governance.md): Wallets are the tools used to execute governance rights, such as voting and creating proposals.
-- [Resources](content/tags/resources.md): A wallet holds the keys that grant control over an individual's on-chain resources.
-- [Permissions](content/tags/permissions.md): A user's on-chain permissions are tied to their wallet, which holds the keys needed to perform authorized actions.
-- [Decentralization](content/tags/decentralization.md): Non-custodial wallets are a cornerstone of decentralization, giving users direct control over their assets and identity without relying on intermediaries.
+- [DAOs](./daos.md): Wallets are the essential interface for members to interact with and govern a DAO.
+- [Governance](./governance.md): Wallets are the tools used to execute governance rights, such as voting and creating proposals.
+- [Resources](./resources.md): A wallet holds the keys that grant control over an individual's on-chain resources.
+- [Permissions](./permissions.md): A user's on-chain permissions are tied to their wallet, which holds the keys needed to perform authorized actions.
+- [Decentralization](./decentralization.md): Non-custodial wallets are a cornerstone of decentralization, giving users direct control over their assets and identity without relying on intermediaries.
