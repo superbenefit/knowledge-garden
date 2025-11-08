@@ -1,0 +1,65 @@
+name: Update Knowledge Base Submodule
+
+on:
+  # Triggered by webhook from knowledge-base repo when content updates
+  repository_dispatch:
+    types: [knowledge-base-updated]
+
+  # Allow manual triggering from GitHub UI
+  workflow_dispatch:
+
+  # Scheduled check every hour
+  schedule:
+    - cron: '0 * * * *'
+
+jobs:
+  update-submodule:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository with submodules
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: v4  # Update the default branch
+
+      - name: Update submodule to latest commit
+        run: |
+          git submodule update --remote --merge
+
+      - name: Check for changes
+        id: check_changes
+        run: |
+          if git diff --quiet knowledge-base; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "No submodule changes detected"
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "Submodule has been updated"
+          fi
+
+      - name: Commit and push if changed
+        if: steps.check_changes.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Get the new submodule commit hash for the commit message
+          cd knowledge-base
+          NEW_COMMIT=$(git rev-parse --short HEAD)
+          cd ..
+
+          git add knowledge-base
+          git commit -m "chore: update knowledge-base submodule to ${NEW_COMMIT}"
+          git push origin v4
+
+      - name: Summary
+        run: |
+          if [ "${{ steps.check_changes.outputs.changed }}" == "true" ]; then
+            echo "✅ Submodule updated and pushed to main"
+          else
+            echo "ℹ️ Submodule already up to date"
+          fi
