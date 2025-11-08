@@ -13,14 +13,14 @@ import { loadTypeDefinitions } from "../../types/typeLoader"
 export const TypeDetection: QuartzTransformerPlugin = () => {
   // Initialize dynamic types once at plugin creation
   let initPromise: Promise<void> | null = null
-  
-  const initializeDynamicTypes = async () => {
+
+  const initializeDynamicTypes = async (contentDir: string) => {
     if (!hasDynamicTypes() && !initPromise) {
       initPromise = (async () => {
         try {
-          console.log('[TypeDetection] Loading dynamic type definitions...')
-          const loadedTypes = await loadTypeDefinitions()
-          
+          console.log(`[TypeDetection] Loading dynamic type definitions from ${contentDir}/tools/types/...`)
+          const loadedTypes = await loadTypeDefinitions(contentDir)
+
           if (Object.keys(loadedTypes.types).length > 0) {
             initializeWithLoadedTypes(loadedTypes)
             console.log('[TypeDetection] Dynamic type definitions loaded successfully')
@@ -37,22 +37,22 @@ export const TypeDetection: QuartzTransformerPlugin = () => {
 
   return {
     name: "TypeDetection",
-    
+
     textTransform(_ctx, src) {
       return src
     },
-    
+
     markdownPlugins() {
       return []
     },
-    
-    htmlPlugins() {
+
+    htmlPlugins(ctx) {
       return [
         () => {
           return async (tree, file) => {
             try {
               // Ensure dynamic types are loaded before processing
-              await initializeDynamicTypes()
+              await initializeDynamicTypes(ctx.argv.directory)
               
               const frontmatter = file.data.frontmatter
               const slug = file.data.slug

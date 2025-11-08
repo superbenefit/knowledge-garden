@@ -1,0 +1,3 @@
+[submodule "knowledge-base"]
+	path = knowledge-base
+	url = https://github.com/superbenefit/knowledge-base.git

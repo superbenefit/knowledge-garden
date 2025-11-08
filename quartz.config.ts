@@ -17,7 +17,26 @@ const config: QuartzConfig = {
     },
     locale: "en-US",
     baseUrl: "knowledge.superbenefit.org",
-    ignorePatterns: ["private", "templates", ".obsidian", ".github"],
+    ignorePatterns: [
+      "private",
+      "templates",
+      ".obsidian",
+      ".github",
+      "drafts",           // Don't publish draft content from knowledge-base
+      "tools/templates",  // Don't publish templates (but tools/types will still be scanned)
+      "tools/schemas",    // Don't publish schemas
+      "tools/workflows",  // Don't publish workflows
+      ".claude",          // Config folders
+      ".export",
+      "README.md",        // Inner-facing documentation
+      "CONTRIBUTING.md",
+      "agents.md",
+      "**/AIFS Meeting \\(*.md",  // Malformed frontmatter in AIFS meeting files
+      "**/rpp-archive/**",  // Archived content with data quality issues
+      "**/rpp-tasks/**",  // Tasks with data quality issues
+      "**/rpp-experiments/**",  // Experiments with data quality issues
+      "**/rp-playbook.md"  // Processing error
+    ],
     defaultDateType: "created",
     theme: {
       fontOrigin: "googleFonts",
