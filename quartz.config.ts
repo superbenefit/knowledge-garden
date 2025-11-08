@@ -31,8 +31,8 @@ const config: QuartzConfig = {
       "README.md",        // Inner-facing documentation
       "CONTRIBUTING.md",
       "agents.md",
+      "**/*archive*/**",  // Ignore all archived content (any dir with 'archive' in name)
       "**/AIFS Meeting \\(*.md",  // Malformed frontmatter in AIFS meeting files
-      "**/rpp-archive/**",  // Archived content with data quality issues
       "**/rpp-tasks/**",  // Tasks with data quality issues
       "**/rpp-experiments/**",  // Experiments with data quality issues
       "**/rp-playbook.md"  // Processing error
