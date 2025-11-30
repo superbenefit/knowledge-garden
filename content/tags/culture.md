@@ -6,7 +6,7 @@ tags:
 - agreements 
 aliases:
 - "#culture"
-publish: "true"
+publish: true
 
 ---
 
@@ -24,17 +24,17 @@ In network organizations, culture plays a particularly vital role by providing c
 
 In DAO contexts, culture serves as both the foundation for initial formation and a key determinant of long-term success. As explored in Governance for better futures - DAO 2 DAO Co-operation, communities with "strong sense of identity and individuals who have deep relationships with one another" create the social fabric upon which effective coordination depends. This cultural substrate enables the trust and mutual understanding necessary for decentralized governance to function effectively.
 
-Culture in DAOs develops through intentional practices such as onboarding rituals, shared terminology, governance participation, and collaborative creation. These experiences create what artifacts/articles/network-evolution 1/Minimum Viable Permissionless-ness describes as the "magic that we all saw in DAOs in the first place" - the sense of shared purpose and possibility that motivates participation and commitment beyond transactional engagement.
+Culture in DAOs develops through intentional practices such as onboarding rituals, shared terminology, governance participation, and collaborative creation. These experiences create what [Minimum Viable Permissionless-ness](../artifacts/dao-primitives-framework/network-evolution/Minimum Viable Permissionless-ness.md) describes as the "magic that we all saw in DAOs in the first place" - the sense of shared purpose and possibility that motivates participation and commitment beyond transactional engagement.
 
 ### Culture as Coordination Mechanism
 
-Culture functions as a powerful coordination mechanism in decentralized systems by establishing implicit agreements about how participants will interact and make decisions. As described in Scale and the levers that provide DAOs their power, this enables DAOs to operate as "purpose-aligned networks of small autonomous teams" without requiring detailed rules or oversight.
+Culture functions as a powerful coordination mechanism in decentralized systems by establishing implicit agreements about how participants will interact and make decisions. As described in [Scale and the levers that provide DAOs their power](../artifacts/dao-primitives-framework/network-evolution/Scale and the levers that provide DAOs their power.md), this enables DAOs to operate as "purpose-aligned networks of small autonomous teams" without requiring detailed rules or oversight.
 
-This cultural coordination works through shared mental models, behavioral norms, and tacit knowledge that participants internalize and apply across contexts. When team members share cultural understanding, they naturally align their decisions with network values and purpose without requiring explicit direction. This creates what Building DAOs as scalable networks calls "network intelligence that flows" - collective capacity for adaptation and sense-making beyond what any individual or central authority could achieve.
+This cultural coordination works through shared mental models, behavioral norms, and tacit knowledge that participants internalize and apply across contexts. When team members share cultural understanding, they naturally align their decisions with network values and purpose without requiring explicit direction. This creates what [Building DAOs as scalable networks](../artifacts/dao-primitives-framework/network-evolution/Building DAOs as scalable networks.md) calls "network intelligence that flows" - collective capacity for adaptation and sense-making beyond what any individual or central authority could achieve.
 
 ### Culture in Knowledge and Practices
 
-Culture manifests concretely through the knowledge systems, practices, and methodologies that communities develop and share. These include both explicit practices like governance processes and implicit know-how about how things actually work within the community. Together, they form what the [readme](artifacts/guides/dao-primitives-framework/readme.md) identifies as Practice - one of the three core dimensions of Group State alongside Purpose and Progress.
+Culture manifests concretely through the knowledge systems, practices, and methodologies that communities develop and share. These include both explicit practices like governance processes and implicit know-how about how things actually work within the community. Together, they form what the [readme](artifacts/primitives-framework/readme.md) identifies as Practice - one of the three core dimensions of Group State alongside Purpose and Progress.
 
 The relationship between culture and practices is reciprocal: practices embody and reinforce culture, while culture provides the context that makes practices meaningful and effective. As communities evolve, they develop increasingly sophisticated shared practices that encode their accumulated wisdom and values, creating what [semiotic-bridging](tags/semiotic-bridging.md) describes as distinct "knowledge systems and cultural frameworks" with their own internal coherence and logic.
 

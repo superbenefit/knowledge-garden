@@ -7,7 +7,7 @@ tags:
 - coordination
 aliases:
 - "#groups"
-publish: "true"
+publish: true
 ---
 
 _Groups are purposeful collections of individuals or entities that coordinate their actions, share resources, and make decisions together to achieve common objectives, forming the fundamental units of social organization across different scales of complexity._
@@ -22,7 +22,7 @@ In decentralized systems, groups function as both autonomous units and interconn
 
 ### Groups at Different Scales
 
-The [index](artifacts/guides/dao-primitives-framework/index.md) identifies three fundamental scales at which groups operate within decentralized networks, each with distinct coordination mechanisms and dynamics:
+The [index](artifacts/primitives-framework/concepts/index.md) identifies three fundamental scales at which groups operate within decentralized networks, each with distinct coordination mechanisms and dynamics:
 
 1. **Collaboration Scale**: Small teams of 3-8 people engaging in high-bandwidth, synchronous interaction to accomplish specific tasks. These intimate groups enable deep trust, rapid iteration, and contextual learning.
     
@@ -31,17 +31,17 @@ The [index](artifacts/guides/dao-primitives-framework/index.md) identifies three
 3. **Constituency Scale**: Large communities of hundreds to thousands of stakeholders engaging through representative mechanisms, network governance, and shared infrastructure. These groups make fundamental direction-setting decisions and steward collective resources.
     
 
-As Building DAOs as scalable networks explains, effective decentralized organizations design appropriate governance and coordination mechanisms for each scale, creating harmonious systems that "leverage mechanisms that derive collective intelligence from the three different scales that a DAO network operates across."
+As [Building DAOs as scalable networks](../artifacts/dao-primitives-framework/network-evolution/Building DAOs as scalable networks.md) explains, effective decentralized organizations design appropriate governance and coordination mechanisms for each scale, creating harmonious systems that "leverage mechanisms that derive collective intelligence from the three different scales that a DAO network operates across."
 
 ### Groups in the Cell Model
 
-The Cell model, described in DAOs - From fractal primitives to network scale, views groups as the fundamental building blocks of network organizations. Each cell represents an autonomous group that maintains its internal coherence while connecting to others through transparent agreements and shared purpose.
+The Cell model, described in [DAOs - From fractal primitives to network scale](../artifacts/dao-primitives-framework/network-evolution/DAOs - From fractal primitives to network scale..md), views groups as the fundamental building blocks of network organizations. Each cell represents an autonomous group that maintains its internal coherence while connecting to others through transparent agreements and shared purpose.
 
 This model enables what the framework calls "DAOs as fractal networks of connected cells" where small autonomous teams self-organize around opportunities while remaining aligned with network-wide direction. The relationship between cells is neither hierarchical nor completely independent, but rather based on mutual agreements that establish how groups will coordinate while preserving their autonomy.
 
 ### Groups in Developmental Phases
 
-Groups evolve through distinct developmental phases as they mature, each characterized by different priorities, activities, and coordination mechanisms. The DAO Primitives Framework identifies four key phases:
+Groups evolve through distinct developmental phases as they mature, each characterized by different priorities, activities, and coordination mechanisms. The [DAO Primitives framework](../artifacts/guides/dao-primitives-framework/index.md) identifies four key phases:
 
 1. **Conversation Phase**: Exploratory dialogue focused on building relationships, establishing shared context, and identifying potential areas for collaboration.
     
@@ -49,7 +49,7 @@ Groups evolve through distinct developmental phases as they mature, each charact
     
 3. **Commitment Phase**: Development of formal agreements and governance mechanisms to sustain long-term engagement and resource allocation.
     
-4. **Coordination Phase**: Integration within broader networks through established protocols, enabling efficient coordination across multiple groups and contexts.
+4. **Iteration Phase**: Ongoing execution and evolution, operating at full capacity while iterating based on feedback and changing context.
     
 
 These phases represent a maturity model for group development rather than a strictly linear progression, with groups often cycling through different phases as they take on new challenges or integrate new members.

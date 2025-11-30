@@ -3,7 +3,7 @@ title: Localism
 description: An approach to social, economic, and political organization that prioritizes local autonomy, resilience, and place-based solutions while maintaining beneficial connections to wider networks
 harvester:
   - rathermercurial.eth
-publish: "true"
+publish: true
 type: tag
 aliases:
   - "#localism"
@@ -45,3 +45,11 @@ In web3 contexts, localism has evolved beyond traditional emphasis on self-suffi
     - Support place-based governance with digital tools
 
 The key innovation is the ability to choose the optimal scale for different activities - keeping production and governance local while participating in global knowledge and resource networks. This follows the cosmo-local principle of "heavy is local, light is global," enabling communities to benefit from broader connections without sacrificing autonomy.
+---
+
+## Related Concepts
+
+- Cosmolocalism - Global-local bridging
+- [Local Nodes](tags/local-nodes.md) - Local organizational units
+- [Networks](tags/networks.md) - Networked local groups
+- [Coordination](tags/coordination.md) - Local-global coordination

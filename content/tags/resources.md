@@ -4,7 +4,7 @@ harvester:
 tags: []
 aliases:
   - "#resources"
-publish: "true"
+publish: true
 ---
 
 _Resources are assets, materials, or capabilities that enable action, including tangible elements like funds and equipment as well as intangible elements like knowledge, time, and attention, all of which can be allocated toward achieving specific goals and outcomes._ ^22f819
@@ -15,13 +15,13 @@ Web3 systems introduce new paradigms for resource management through mechanisms 
 
 ## Uses of "Resources"
 
-### DAO Primitives Framework
+### [DAO Primitives framework](../artifacts/guides/dao-primitives-framework/index.md)
 
 In the DAO Primitives Framework, resources are fundamental building blocks that enable coordinated action. They include financial assets (like treasury funds), technical infrastructure, community attention, and knowledge capabilities that DAOs can leverage to achieve their purpose. The framework emphasizes that effective resource allocation through transparent and participatory processes is essential for decentralized organizations to coordinate efficiently across different scales.
 
 ### [Anticapture](links/Anticapture.md)
 
-In [Anticapture](links/Anticapture.md), _resources_ are defined as anything that can be used to achieve desired outcomes, including tangible assets like food, money, and energy, as well as intangible ones like attention and social reputation. The term distinguishes between _private resources_, controlled by a single [agents](tags/agents.md), and _shared resources_, governed by a network of agents. Shared resources are particularly vulnerable to capture, making decentralized governance essential to protect them from misuse or control by bad actors
+In Anticapture, _resources_ are defined as anything that can be used to achieve desired outcomes, including tangible assets like food, money, and energy, as well as intangible ones like attention and social reputation. The term distinguishes between _private resources_, controlled by a single [agents](tags/agents.md), and _shared resources_, governed by a network of agents. Shared resources are particularly vulnerable to capture, making decentralized governance essential to protect them from misuse or control by bad actors
 
 ![](links/Anticapture.md#^f53fa2)
 

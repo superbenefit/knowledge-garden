@@ -1,7 +1,7 @@
 /**
  * Type Loader for SuperBenefit Knowledge Garden
  *
- * Loads type definitions dynamically from content/types/ directory
+ * Loads type definitions dynamically from content/tools/types/ directory
  * at build time, parsing frontmatter to extract type information.
  *
  * This replaces hardcoded type definitions with dynamic loading from
@@ -42,11 +42,11 @@ export interface LoadedTypeDefinitions {
 }
 
 /**
- * Load type definitions from content/types/ directory
+ * Load type definitions from content/tools/types/ directory
  * @param contentDir - Path to content directory (default: 'content')
  */
 export async function loadTypeDefinitions(contentDir: string = 'content'): Promise<LoadedTypeDefinitions> {
-  const typesDir = path.join(contentDir, 'types')
+  const typesDir = path.join(contentDir, 'tools', 'types')
   
   if (!fs.existsSync(typesDir)) {
     console.warn(`[TypeLoader] Types directory not found: ${typesDir}`)
