@@ -1,0 +1,369 @@
+#chatbot-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  font-family: var(--bodyFont);
+}
+
+#chatbot-toggle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--secondary);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease;
+  color: var(--light);
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  &.hidden {
+    display: none;
+  }
+}
+
+#chatbot-window {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 400px;
+  height: 500px;
+  background: var(--light);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  &.hidden {
+    display: none;
+  }
+
+  &.maximized {
+    width: calc(100vw - 40px);
+    height: calc(100vh - 40px);
+    bottom: 20px;
+    right: 20px;
+    border-radius: 12px;
+
+    @media (min-width: 768px) {
+      width: calc(100vw - 80px);
+      height: calc(100vh - 80px);
+      bottom: 40px;
+      right: 40px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    width: calc(100vw - 20px);
+    height: calc(100vh - 80px);
+    right: 10px;
+    bottom: 10px;
+  }
+}
+
+#chatbot-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: var(--secondary);
+  color: var(--light);
+  flex-shrink: 0;
+}
+
+#chatbot-title {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+#chatbot-header-buttons {
+  display: flex;
+  gap: 8px;
+
+  button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    color: var(--light);
+    opacity: 0.8;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+#chatbot-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--lightgray);
+}
+
+.chatbot-message {
+  max-width: 85%;
+  animation: fadeIn 0.2s ease;
+
+  &.user {
+    align-self: flex-end;
+
+    .message-content {
+      background: var(--secondary);
+      color: var(--light);
+      border-radius: 16px 16px 4px 16px;
+    }
+  }
+
+  &.assistant {
+    align-self: flex-start;
+
+    .message-content {
+      background: var(--light);
+      color: var(--darkgray);
+      border-radius: 16px 16px 16px 4px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .message-content {
+    padding: 10px 14px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    word-wrap: break-word;
+
+    a {
+      color: var(--secondary);
+      text-decoration: underline;
+    }
+
+    code {
+      background: rgba(0, 0, 0, 0.1);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.85em;
+    }
+
+    strong {
+      font-weight: 600;
+    }
+
+    // Chat markdown headers
+    .chat-h1, .chat-h2, .chat-h3, .chat-h4 {
+      margin: 0.5em 0 0.3em 0;
+      line-height: 1.3;
+      font-weight: 600;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    .chat-h1 {
+      font-size: 1.3em;
+      color: var(--secondary);
+    }
+
+    .chat-h2 {
+      font-size: 1.15em;
+      color: var(--secondary);
+    }
+
+    .chat-h3 {
+      font-size: 1.05em;
+    }
+
+    .chat-h4 {
+      font-size: 1em;
+    }
+
+    // Paragraphs
+    .chat-p {
+      margin: 0.4em 0;
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    // Blockquotes
+    .chat-blockquote {
+      margin: 0.5em 0;
+      padding: 0.5em 1em;
+      border-left: 3px solid var(--secondary);
+      background: rgba(0, 0, 0, 0.03);
+      font-style: italic;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    // Lists
+    .chat-ol, .chat-ul {
+      margin: 0.5em 0;
+      padding-left: 1.5em;
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+      li {
+        margin: 0.25em 0;
+      }
+    }
+
+    .chat-ol {
+      list-style-type: decimal;
+    }
+
+    .chat-ul {
+      list-style-type: disc;
+    }
+
+    // Tables
+    .chat-table {
+      width: 100%;
+      margin: 0.5em 0;
+      border-collapse: collapse;
+      font-size: 0.85em;
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+      th, td {
+        padding: 0.4em 0.6em;
+        border: 1px solid var(--gray);
+        text-align: left;
+      }
+
+      th {
+        background: rgba(0, 0, 0, 0.05);
+        font-weight: 600;
+      }
+
+      tr:nth-child(even) td {
+        background: rgba(0, 0, 0, 0.02);
+      }
+    }
+
+    // Horizontal rule
+    .chat-hr {
+      margin: 0.8em 0;
+      border: none;
+      border-top: 1px solid var(--gray);
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#chatbot-input-area {
+  display: flex;
+  gap: 8px;
+  padding: 12px 16px;
+  background: var(--light);
+  border-top: 1px solid var(--lightgray);
+  flex-shrink: 0;
+}
+
+#chatbot-input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid var(--gray);
+  border-radius: 20px;
+  resize: none;
+  font-family: inherit;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  max-height: 150px;
+  overflow-y: auto;
+  background: var(--light);
+  color: var(--darkgray);
+
+  &:focus {
+    outline: none;
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 2px rgba(var(--secondary-rgb), 0.1);
+  }
+
+  &::placeholder {
+    color: var(--gray);
+  }
+}
+
+#chatbot-send {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--secondary);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--light);
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+/* Dark mode adjustments */
+/* Note: Most elements use CSS variables that automatically adapt to dark mode.
+   We only need to override semi-transparent backgrounds that use rgba(0,0,0,...) */
+:root[saved-theme="dark"] {
+  .chatbot-message.assistant .message-content {
+    code {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .chat-blockquote {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .chat-table {
+      th {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      tr:nth-child(even) td {
+        background: rgba(255, 255, 255, 0.03);
+      }
+    }
+  }
+}

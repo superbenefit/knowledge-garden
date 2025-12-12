@@ -21,3 +21,9 @@ replit.nix
 
 # Claude Code working directory
 .claude/
+
+# Chat server
+lancedb/
+server/logs/
+.env
+.env.local
