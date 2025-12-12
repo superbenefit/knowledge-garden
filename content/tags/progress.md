@@ -5,7 +5,7 @@ tags:
   - agreements
 aliases:
   - "#progress"
-publish: "true"
+publish: true
 ---
 
 *Progress refers to the tracking, documentation, and demonstration of a group's activities, outputs, and achievements, enabling both internal accountability and external transparency regarding work completed and value created.*
@@ -26,9 +26,9 @@ In traditional organizational structures, progress typically refers to advanceme
 
 In agile methodologies and responsive systems, progress is tracked through more dynamic and visible systems like kanban boards, burndown charts, and regular stand-up meetings. These approaches emphasize real-time visibility of work in process, blockers, and completed items, allowing for rapid adaptation and continuous improvement.
 
-### Progress in DAO Primitives Framework
+### Progress in [DAO Primitives framework](../artifacts/guides/dao-primitives-framework/index.md)
 
-In the [DAO Primitives Framework](tags/primitives.md), "Progress" is one of three core dimensions of [Group State](artifacts/guides/dao-primitives-framework/group-state.md) (alongside [Purpose](tags/purpose.md) and [Practice](tags/practices.md)). It represents the tools and practices by which a team achieves and demonstrates its activities and outcomes, serving both internal and external coordination needs.
+In the [DAO Primitives Framework](tags/primitives.md), "Progress" is one of three core dimensions of [Group State](tags/group-state.md) (alongside [Purpose](tags/purpose.md) and [Practice](tags/practices.md)). It represents the tools and practices by which a team achieves and demonstrates its activities and outcomes, serving both internal and external coordination needs.
 
 As a component of Group State, Progress includes:
 
@@ -37,6 +37,14 @@ As a component of Group State, Progress includes:
 - **Milestone Tracking**: Documentation of achievements against defined goals
 - **Metrics and Reporting**: Quantitative and qualitative measures of effectiveness and impact
 
-Progress documentation in this framework serves a dual purpose: it provides internal structure for team coordination while creating transparency for external entities that need to understand and trust the team's activities. This external transparency is crucial for enabling effective coordination between autonomous [Cells](artifacts/patterns/cell.md) within a larger [DAO](tags/daos.md) network.
+Progress documentation in this framework serves a dual purpose: it provides internal structure for team coordination while creating transparency for external entities that need to understand and trust the team's activities. This external transparency is crucial for enabling effective coordination between autonomous [Cells](artifacts/primitives-framework/patterns/cell.md) within a larger [DAO](tags/daos.md) network.
 
 By maintaining accessible and current progress information, teams can demonstrate accountability, build trust, and enable efficient resource allocation across a decentralized ecosystem.
+---
+
+## Related Concepts
+
+- [Cell State](artifacts/patterns/cell-state.md) - Tracking team progress
+- [Tasks](tags/tasks.md) - Work units tracked as progress
+- [Teams](tags/teams.md) - Groups demonstrating progress
+- [Coordination](tags/coordination.md) - Progress enables coordination

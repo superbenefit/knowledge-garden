@@ -121,7 +121,7 @@ In nonprofit contexts, community governance transforms traditional board-centric
 
 **First step**: Map your current governance decisions into two categories: those affecting mission/values (strategic) versus those affecting daily operations (tactical). Survey stakeholders about which decisions they want voice in - you'll likely find they care most about strategic direction, not operational details.
 
-**Link to full pattern**: [Community Governance](artifacts/dao-primitives-framework/patterns/community-governance.md)
+**Link to full pattern**: [Community Governance](tags/community-governance.md)
 
 #### Operational Governance
 
@@ -137,7 +137,7 @@ For nonprofits drowning in approval processes, operational governance creates "d
 
 **First step**: Identify your most frustrated program team - the one constantly waiting for approvals. Define clear boundaries (budget, scope, values alignment) within which they can make all decisions without seeking permission. Start with a 3-month experiment to build confidence on both sides.
 
-**Link to full pattern**: [Operational Governance](artifacts/dao-primitives-framework/patterns/operational-governance.md)
+**Link to full pattern**: [Operational Governance](tags/operational-governance.md)
 
 ### Pattern Group B: Building Participation Infrastructure
 
@@ -340,10 +340,10 @@ The key is honest assessment of your starting point. Pushing beyond organization
 
 The ICS and AIFS experiments leveraged the DAO Primitives Framework to help design and implement governance experiments and final structures. The framework contains a set of lenses through which to understand how governance structures can be composed to serve specific organizational needs across a series of different phases and scales. These lenses, along with implementation guides and governance patterns, provide a framework for creating small experiments that can evolve into sophisticated decentralized governance structures that can operate at scale.
 
-- artifacts/guides/dao-primitives-framework/dao-primitives-framework.md  
-- artifacts/guides/dao-primitives-framework/dao-primitives-implemention/implementation-guide-community-governance.md  
-- artifacts/guides/dao-primitives-framework/dao-primitives-implemention/implementation-guide-multi-stakeholder-governance.md  
-- artifacts/guides/dao-primitives-framework/dao-primitives-implemention/implementation-guide-operational-governance.md
+- [DAO Primitives Framework](/artifacts/guides/dao-primitives-framework/dao-primitives-framework.md)
+- [Community Governance Implementation Guide](/artifacts/guides/dao-primitives-framework/dao-primitives-implemention/implementation-guide-community-governance.md)
+- [Multi-stakeholder Governance Implementation Guide](/artifacts/guides/dao-primitives-framework/dao-primitives-implemention/implementation-guide-multi-stakeholder-governance.md)
+- [Operational Governance Implementation Guide](/artifacts/guides/dao-primitives-framework/dao-primitives-implemention/implementation-guide-operational-governance.md)
 
 ---
 
@@ -363,8 +363,7 @@ The ICS and AIFS experiments leveraged the DAO Primitives Framework to help desi
 
 **Transformation Process**: Eight months of experimentation revealed AIFS's true value as coordination infrastructure, not direct service provider. Governance proposal separated mission protection from operational execution. Gatherings created bridges between web3 developers and sports organizations previously unable to collaborate.
 
-AIFS's governance team utilized the DAO Primitives Framework and implementation patterns developed within SuperBenefit to inform the design on the updated AIFS governance system. This included developing an overarching community governance structure (DAO) that wraps a network of small teams (Cells) responsible for operational execution.    
-artifacts/guides/dao-primitives-framework/
+AIFS's governance team utilized the DAO Primitives Framework and implementation patterns developed within SuperBenefit to inform the design on the updated AIFS governance system. This included developing an overarching community governance structure (DAO) that wraps a network of small teams (Cells) responsible for operational execution. See the [DAO Primitives Framework](/artifacts/guides/dao-primitives-framework/) for details.
 
 **Measurable Outcomes**:
 
@@ -392,8 +391,7 @@ AIFS's transformation raised questions the project continues exploring: How do w
 
 **Implementation Journey**: One ICS member worked with web3 contributors from London, Ontario to establish Green Pill London as a local node. This created the entry point ICS needed - participation in coordi-nations like Green Pill Network (for community engagement) and Regen Coordi-Nation (for funding support). They established collaborative workspaces (CharmVerse), voting systems (Snapshot), and role management (Hats Protocol) as part of their DAOs infrastructure. Discovered 6-18 month timeline for meaningful web3 adoption. Pivoted from single workshop to cohort model based on community readiness. 
 
-They leveraged design patterns outlined in the DAO Primitives Framework to develop their governance design and organizational readiness.   
-artifacts/guides/dao-primitives-framework/
+They leveraged design patterns outlined in the [DAO Primitives Framework](/artifacts/guides/dao-primitives-framework/) to develop their governance design and organizational readiness.
 
 **Measurable Outcomes**:
 
@@ -432,8 +430,8 @@ Equality Fund's discoveries challenged core RPP assumptions about blockchain's p
 
 ### Patterns
 
-- [Community Governance](artifacts/dao-primitives-framework/patterns/community-governance.md) - Collective stewardship through constituency-scale decision making  
-- [Operational Governance](artifacts/dao-primitives-framework/patterns/operational-governance.md) - Sociocratic coordination of autonomous teams  
+- [Community Governance](tags/community-governance.md) - Collective stewardship through constituency-scale decision making  
+- [Operational Governance](tags/operational-governance.md) - Sociocratic coordination of autonomous teams  
 - [Gatherings](artifacts/misc/patterns/gatherings.md) - Structured spaces for cross-sector relationship building  
 - [Token-based Governance](notes/rpp/rpp-working-docs/token-based-governance.md) - Digital voting systems for transparent decision-making  
 - [Privacy Payments](notes/rpp/rpp-working-docs/privacy-payments.md) - Protection for sensitive financial transactions  
@@ -539,3 +537,12 @@ Questions remain: How do we bridge the vast conceptual gap between web3 and trad
 Special recognition to All In For Sport, Institute for Community Sustainability, and Equality Fund & Women Win for courageously experimenting with new models and sharing both successes and failures.
 
 Supported by Ontario Trillium Foundation. Facilitated by SuperBenefit. Documented with gratitude for all participants who contributed time, wisdom, and patience to these experiments.
+---
+
+## Related Concepts
+
+- [Reimagining Power Project](notes/rpp/index.md) - Project documented in this playbook
+- [Governance](tags/governance.md) - Decision-making transformation explored
+- [Power](tags/power.md) - Redistribution through decentralized coordination
+- [Coordination](tags/coordination.md) - Mechanisms for distributed decision-making
+- [Case Studies](tags/case-studies.md) - Real-world implementations documented

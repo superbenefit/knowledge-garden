@@ -1,6 +1,6 @@
 ---
 title: Primitives
-publish: "true"
+publish: true
 tags:
   - resources
 aliases:
@@ -36,7 +36,7 @@ Organizations can benefit from primitives by leveraging these basic building blo
 
 These elements are simple, repeatable, and can be applied across different departments or projects, allowing the organization to maintain consistency while adapting to various challenges. By utilizing these foundational building blocks, organizations can ensure that their operations are efficient, flexible, and aligned with their strategic goals.
 
-At SuperBenefit, we're exploring the potential and practical uses of web3 primitives in the [DAO Primitives Project](notes/dao-primitives/index.md). For help choosing the patterns, practices and primitives for your project, check out the [group facilitation framework](artifacts/guides/dao-primitives-framework/group-facilitation.md). You can learn more about our approach in the [conceptual framework](artifacts/guides/dao-primitives-framework/index.md).
+At SuperBenefit, we're exploring the potential and practical uses of web3 primitives in the [DAO Primitives Project](notes/dao-primitives/index.md). For help choosing the patterns, practices and primitives for your project, check out the [group facilitation framework](artifacts/primitives-framework/implementation/group-facilitation.md). You can learn more about our approach in the [conceptual framework](artifacts/primitives-framework/concepts/index.md).
 
 ---
 
@@ -45,3 +45,13 @@ At SuperBenefit, we're exploring the potential and practical uses of web3 primit
 Some notes in this knowledge garden represent primitives, and include metadata to help you navigate and discover them.
 
 Notes which represent #primitives are indicated using the tools/types/primitive file class (`type: primitive`). This file class (a subclass of tools/types/resource/resource and [link](tools/types/link.md) ) contains several metadata fields which are either inherited or unique.
+
+---
+
+## Related Concepts
+
+- DAO Primitives Project - Framework for building purpose-aligned networks using organizational primitives
+- [Patterns](artifacts/patterns/index.md) - Reusable solutions built from combining primitives
+- [Coordination](tags/coordination.md) - The fundamental challenge that primitives help address
+- [Protocols](tags/protocols.md) - Standardized rules that enable primitives to work together
+- [Governance](tags/governance.md) - Systems built using governance primitives
