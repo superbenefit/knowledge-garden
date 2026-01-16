@@ -8,7 +8,13 @@ export const sharedPageComponents: SharedLayout = {
     Component.Darkmode(),
     Component.Search(),
   ],
-  afterBody: [],
+  afterBody: [
+    Component.ChatBot({
+      title: "Ask SuperBenefit",
+      placeholder: "Ask about DAOs, governance, coordination...",
+      apiUrl: "https://sb-knowledge-garden-production.up.railway.app",
+    }),
+  ],
   footer: Component.Footer({
     links: {
       "Twitter": "https://twitter.com/superbenefitdao",

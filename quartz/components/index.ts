@@ -39,6 +39,8 @@ import TypeAwareBeforeBody from "./TypeAwareBeforeBody"
 // Release components
 import ReleaseCard from "./ReleaseCard"
 import ReleaseContents from "./ReleaseContents"
+// Chat component
+import ChatBot from "./ChatBot"
 
 export {
   ArticleTitle,
@@ -82,4 +84,6 @@ export {
   // Release components
   ReleaseCard,
   ReleaseContents,
+  // Chat component
+  ChatBot,
 }
