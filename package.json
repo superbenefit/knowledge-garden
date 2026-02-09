@@ -39,7 +39,7 @@
     "quartz": "./quartz/bootstrap-cli.mjs"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.68.0",
+    "@anthropic-ai/sdk": "^0.74.0",
     "@clack/prompts": "^0.11.0",
     "@floating-ui/dom": "^1.7.4",
     "@napi-rs/simple-git": "0.1.22",
