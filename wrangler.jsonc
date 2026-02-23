@@ -12,5 +12,11 @@
       "binding": "KNOWLEDGE_SERVER",
       "service": "knowledge-server"
     }
-  ]
+  ],
+  "observability": {
+    "logs": {
+      "enabled": true,
+      "invocation_logs": true
+    }
+  }
 }
