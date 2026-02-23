@@ -79,23 +79,27 @@ export { safeCall as safeRPC };
 // ---------------------------------------------------------------------------
 
 function createServiceBindingClient(): KnowledgeClient {
-  // Resolve the Cloudflare env eagerly so we fail fast if not available
   let _env: any;
 
-  function getEnv() {
+  async function getEnv() {
     if (_env) return _env;
 
-    // @astrojs/cloudflare v13 exposes env on globalThis at runtime
-    _env = (globalThis as any).__cloudflare_env__;
-    if (_env?.KNOWLEDGE_SERVER) return _env;
-
-    // Cloudflare Workers module scope
+    // Try dynamic import of cloudflare:workers (works in Astro v6 SSR)
     try {
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
-      _env = require("cloudflare:workers").env;
-      if (_env?.KNOWLEDGE_SERVER) return _env;
+      const mod = await import("cloudflare:workers");
+      if ((mod as any).env?.KNOWLEDGE_SERVER) {
+        _env = (mod as any).env;
+        return _env;
+      }
     } catch {
       // not in Workers runtime
+    }
+
+    // Fallback: some adapter versions expose env on globalThis
+    const g = (globalThis as any).__cloudflare_env__;
+    if (g?.KNOWLEDGE_SERVER) {
+      _env = g;
+      return _env;
     }
 
     throw new Error("KNOWLEDGE_SERVER binding not available");
@@ -103,7 +107,7 @@ function createServiceBindingClient(): KnowledgeClient {
 
   return {
     async getDocument(contentType, id) {
-      const env = getEnv();
+      const env = await getEnv();
       const raw: R2Document | null = await env.KNOWLEDGE_SERVER.getDocument({
         contentType,
         id,
@@ -112,7 +116,7 @@ function createServiceBindingClient(): KnowledgeClient {
     },
 
     async listEntries(params) {
-      const env = getEnv();
+      const env = await getEnv();
       const qs = new URLSearchParams();
       if (params?.contentType) qs.set("contentType", params.contentType);
       if (params?.group) qs.set("group", params.group);
@@ -132,7 +136,7 @@ function createServiceBindingClient(): KnowledgeClient {
     },
 
     async search(query, opts) {
-      const env = getEnv();
+      const env = await getEnv();
       const result = (await env.KNOWLEDGE_SERVER.searchKnowledge({
         query,
         ...(opts?.contentType != null && { contentType: opts.contentType }),
@@ -147,7 +151,7 @@ function createServiceBindingClient(): KnowledgeClient {
     },
 
     async listGroups() {
-      const env = getEnv();
+      const env = await getEnv();
       const result = (await env.KNOWLEDGE_SERVER.listGroups()) as {
         groups: Array<{ id: string; title: string; description?: string }>;
       };
@@ -155,7 +159,7 @@ function createServiceBindingClient(): KnowledgeClient {
     },
 
     async listReleases() {
-      const env = getEnv();
+      const env = await getEnv();
       const result = (await env.KNOWLEDGE_SERVER.listReleases()) as {
         releases: Array<{ id: string; title: string; description?: string }>;
       };
