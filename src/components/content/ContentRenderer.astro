@@ -1,0 +1,124 @@
+---
+import { renderMarkdown } from "../../lib/markdown";
+
+interface Props {
+  content: string;
+}
+
+const { content } = Astro.props;
+
+const html = content ? await renderMarkdown(content) : "";
+---
+
+{html && (
+  <article class="content-body" set:html={html} />
+)}
+
+<style>
+  .content-body {
+    font-family: var(--font-body);
+    color: var(--color-dark);
+    line-height: 1.7;
+    max-width: none;
+  }
+
+  .content-body :global(h1),
+  .content-body :global(h2),
+  .content-body :global(h3),
+  .content-body :global(h4),
+  .content-body :global(h5),
+  .content-body :global(h6) {
+    font-family: var(--font-header);
+    font-weight: 700;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+  }
+
+  .content-body :global(h1) { font-size: 1.75rem; }
+  .content-body :global(h2) { font-size: 1.4rem; }
+  .content-body :global(h3) { font-size: 1.15rem; }
+
+  .content-body :global(p) {
+    margin: 0.75em 0;
+  }
+
+  .content-body :global(a) {
+    color: var(--color-secondary);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+  }
+
+  .content-body :global(a:hover) {
+    color: var(--color-tertiary);
+  }
+
+  .content-body :global(ul),
+  .content-body :global(ol) {
+    padding-left: 1.5em;
+    margin: 0.75em 0;
+  }
+
+  .content-body :global(li) {
+    margin: 0.25em 0;
+  }
+
+  .content-body :global(blockquote) {
+    border-left: 3px solid var(--color-gray);
+    padding-left: 1em;
+    margin: 1em 0;
+    color: var(--color-darkgray);
+  }
+
+  .content-body :global(code) {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+    background-color: var(--color-lightgray);
+    padding: 0.15em 0.35em;
+    border-radius: 0.25em;
+  }
+
+  .content-body :global(pre) {
+    font-family: var(--font-mono);
+    background-color: var(--color-lightgray);
+    padding: 1em;
+    border-radius: 0.5em;
+    overflow-x: auto;
+    margin: 1em 0;
+  }
+
+  .content-body :global(pre code) {
+    background: none;
+    padding: 0;
+  }
+
+  .content-body :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1em 0;
+  }
+
+  .content-body :global(th),
+  .content-body :global(td) {
+    border: 1px solid var(--color-lightgray);
+    padding: 0.5em 0.75em;
+    text-align: left;
+  }
+
+  .content-body :global(th) {
+    font-weight: 600;
+    background-color: var(--color-lightgray);
+  }
+
+  .content-body :global(img) {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.25rem;
+  }
+
+  .content-body :global(hr) {
+    border: none;
+    border-top: 1px solid var(--color-lightgray);
+    margin: 2em 0;
+  }
+</style>

@@ -1,0 +1,80 @@
+---
+import type { Document } from "@/lib/types";
+
+interface Props {
+  document: Document;
+}
+
+const { document: doc } = Astro.props;
+
+// Format dates
+function formatDate(dateStr?: string): string | null {
+  if (!dateStr) return null;
+  const d = new Date(dateStr);
+  if (isNaN(d.getTime())) return null;
+  return d.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+}
+
+const createdDisplay = formatDate(doc.created);
+const modifiedDisplay = formatDate(doc.modified);
+
+// Word count and reading time
+const wordCount = doc.body ? doc.body.split(/\s+/).filter(Boolean).length : 0;
+const readingTime = Math.max(1, Math.ceil(wordCount / 200));
+
+// Type display
+const typeDisplay = doc.type.charAt(0).toUpperCase() + doc.type.slice(1);
+const categoryDisplay = doc.category.charAt(0).toUpperCase() + doc.category.slice(1);
+---
+
+<div class="content-meta">
+  {createdDisplay && (
+    <span class="meta-item">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      {createdDisplay}
+    </span>
+  )}
+
+  {modifiedDisplay && modifiedDisplay !== createdDisplay && (
+    <span class="meta-item" title="Last modified">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      {modifiedDisplay}
+    </span>
+  )}
+
+  <span class="meta-item">
+    {typeDisplay}{doc.type !== doc.category && ` (${categoryDisplay})`}
+  </span>
+
+  <span class="meta-item" title={`${wordCount.toLocaleString()} words`}>
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    {readingTime} min read
+  </span>
+</div>
+
+<style>
+  .content-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+    font-size: 0.8125rem;
+    color: var(--color-gray);
+    margin: 0.5rem 0 1rem 0;
+  }
+
+  .meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .meta-item svg {
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+</style>

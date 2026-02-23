@@ -1,0 +1,20 @@
+---
+interface Props {
+  side: "left" | "right";
+  class?: string;
+}
+
+const { side, class: className } = Astro.props;
+---
+
+<aside
+  class:list={[
+    "sidebar",
+    `sidebar-${side}`,
+    className,
+  ]}
+>
+  <div class="sidebar-inner">
+    <slot />
+  </div>
+</aside>

@@ -1,0 +1,91 @@
+---
+const navLinks = [
+  { text: "Home", href: "/" },
+  { text: "Docs", href: "/docs" },
+  { text: "Lexicon", href: "/tag" },
+  { text: "People", href: "/person" },
+  { text: "Groups", href: "/group" },
+  { text: "Projects", href: "/project" },
+];
+---
+
+<header class="site-header">
+  <div class="header-container">
+    <div class="header-logo">
+      <a href="/" class="home-link" aria-label="Home">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+          <path d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z" />
+        </svg>
+      </a>
+    </div>
+
+    <div class="header-right">
+      <div class="header-actions">
+        <slot />
+      </div>
+
+      <button
+        id="mobile-menu-button"
+        class="mobile-nav-trigger"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <nav id="nav-menu" class="nav-menu">
+      <div class="nav-menu-content">
+        {navLinks.map((link) => (
+          <a href={link.href}>{link.text}</a>
+        ))}
+      </div>
+    </nav>
+  </div>
+
+  <div id="nav-menu-overlay" class="nav-menu-overlay"></div>
+</header>
+
+<script>
+  const menuButton = document.getElementById("mobile-menu-button");
+  const navMenu = document.getElementById("nav-menu");
+  const overlay = document.getElementById("nav-menu-overlay");
+
+  function closeMenu() {
+    navMenu?.classList.remove("open");
+    overlay?.classList.remove("open");
+    menuButton?.setAttribute("aria-expanded", "false");
+  }
+
+  function openMenu() {
+    navMenu?.classList.add("open");
+    overlay?.classList.add("open");
+    menuButton?.setAttribute("aria-expanded", "true");
+  }
+
+  menuButton?.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (navMenu?.classList.contains("open")) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+
+  overlay?.addEventListener("click", closeMenu);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && navMenu?.classList.contains("open")) {
+      closeMenu();
+    }
+  });
+
+  navMenu?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", closeMenu);
+  });
+</script>

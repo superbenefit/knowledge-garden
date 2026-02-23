@@ -1,0 +1,148 @@
+---
+import type { Document } from "@/lib/types";
+import ReleaseCard from "./ReleaseCard.astro";
+
+interface Props {
+  documents: Document[];
+  title?: string;
+}
+
+const { documents, title } = Astro.props;
+
+// Type display order — expanded for all content types
+const typeOrder = [
+  "pattern", "practice", "primitive", "playbook", "protocol",
+  "article", "study", "guide",
+  "question",
+  "tag", "link",
+  "person", "group", "project", "place", "gathering",
+] as const;
+
+// Filter to displayable content types
+const displayable = new Set<string>(typeOrder);
+const filtered = documents.filter((doc) => displayable.has(doc.type));
+
+// Group by type
+const grouped = new Map<string, Document[]>();
+for (const doc of filtered) {
+  const list = grouped.get(doc.type) || [];
+  list.push(doc);
+  grouped.set(doc.type, list);
+}
+
+// Sort groups by defined order, keeping only non-empty groups
+const sortedGroups = typeOrder
+  .filter((t) => grouped.has(t))
+  .map((t) => ({
+    type: t,
+    label: t.charAt(0).toUpperCase() + t.slice(1) + "s",
+    docs: grouped.get(t)!,
+  }));
+
+const typeEmoji: Record<string, string> = {
+  pattern: "\u26A1",
+  practice: "\uD83D\uDD27",
+  primitive: "\uD83E\uDDF1",
+  playbook: "\uD83D\uDCD6",
+  protocol: "\u2699\uFE0F",
+  article: "\uD83D\uDCDD",
+  study: "\uD83D\uDD0D",
+  guide: "\uD83D\uDCD8",
+  question: "\u2753",
+  tag: "\uD83C\uDFF7\uFE0F",
+  link: "\uD83D\uDD17",
+  person: "\uD83D\uDC64",
+  group: "\uD83D\uDC65",
+  project: "\uD83D\uDCBC",
+  place: "\uD83D\uDCCD",
+  gathering: "\uD83D\uDCC5",
+};
+---
+
+<div class="release-contents">
+  {title && (
+    <h2 class="release-title">{title}</h2>
+  )}
+
+  {sortedGroups.length === 0 && (
+    <p class="empty-message">No content available.</p>
+  )}
+
+  {sortedGroups.map((group) => (
+    <section class="type-section">
+      <h3 class="type-heading">
+        <span class="type-heading-emoji">{typeEmoji[group.type] || ""}</span>
+        {group.label}
+        <span class="type-count">({group.docs.length})</span>
+      </h3>
+      <div class="card-grid">
+        {group.docs.map((doc) => (
+          <ReleaseCard
+            title={doc.title}
+            {...(doc.description != null && { description: doc.description })}
+            id={doc.id}
+            type={doc.type}
+            tags={doc.tags}
+            {...(doc.banner != null && { banner: doc.banner })}
+          />
+        ))}
+      </div>
+    </section>
+  ))}
+</div>
+
+<style>
+  .release-contents {
+    margin: 1.5rem 0;
+  }
+
+  .release-title {
+    font-family: var(--font-header);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 1.5rem 0;
+    color: var(--color-dark);
+  }
+
+  .empty-message {
+    color: var(--color-gray);
+    font-style: italic;
+  }
+
+  .type-section {
+    margin-bottom: 2rem;
+  }
+
+  .type-heading {
+    font-family: var(--font-header);
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+    color: var(--color-dark);
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+  }
+
+  .type-heading-emoji {
+    font-size: 1.125rem;
+  }
+
+  .type-count {
+    font-weight: 400;
+    font-size: 0.875rem;
+    color: var(--color-gray);
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+  }
+
+  @media (max-width: 800px) {
+    .card-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

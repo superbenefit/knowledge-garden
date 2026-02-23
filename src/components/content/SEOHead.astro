@@ -1,0 +1,52 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  type?: string;
+  url?: string;
+}
+
+const {
+  title,
+  description = "SuperBenefit Knowledge Garden — collaborative knowledge for regenerative organizations",
+  image = "/favicon.svg",
+  type = "website",
+  url = Astro.url.href,
+} = Astro.props;
+
+const canonicalUrl = new URL(url, Astro.site);
+const imageUrl = image.startsWith("http") ? image : new URL(image, Astro.site).href;
+
+const jsonLd =
+  type === "article"
+    ? JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: title,
+        description,
+        image: imageUrl,
+        url: canonicalUrl.href,
+      })
+    : null;
+---
+
+<!-- Primary Meta -->
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl.href} />
+
+<!-- Open Graph -->
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonicalUrl.href} />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
+
+<!-- JSON-LD structured data (articles only) -->
+{jsonLd && <script type="application/ld+json" set:html={jsonLd} />}

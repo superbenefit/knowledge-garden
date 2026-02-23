@@ -1,0 +1,100 @@
+---
+interface Props {
+  backlinks: Array<{ slug: string; title: string }>;
+}
+
+const { backlinks } = Astro.props;
+const COLLAPSE_THRESHOLD = 5;
+const shouldCollapse = backlinks.length > COLLAPSE_THRESHOLD;
+---
+
+{backlinks.length > 0 && (
+  <section class="backlinks">
+    {shouldCollapse ? (
+      <details>
+        <summary class="backlinks-heading">
+          Backlinks <span class="backlinks-count">{backlinks.length}</span>
+        </summary>
+        <ul class="backlinks-list">
+          {backlinks.map((link) => (
+            <li>
+              <a href={`/${link.slug}`}>{link.title}</a>
+            </li>
+          ))}
+        </ul>
+      </details>
+    ) : (
+      <>
+        <h3 class="backlinks-heading">
+          Backlinks <span class="backlinks-count">{backlinks.length}</span>
+        </h3>
+        <ul class="backlinks-list">
+          {backlinks.map((link) => (
+            <li>
+              <a href={`/${link.slug}`}>{link.title}</a>
+            </li>
+          ))}
+        </ul>
+      </>
+    )}
+  </section>
+)}
+
+<style>
+  .backlinks {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-lightgray, #e5e5e5);
+  }
+
+  .backlinks-heading {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-darkgray, #4e4e4e);
+    margin: 0 0 0.5rem 0;
+    cursor: default;
+  }
+
+  :global(.dark) .backlinks-heading {
+    color: var(--color-gray, #b8b8b8);
+  }
+
+  details .backlinks-heading {
+    cursor: pointer;
+    user-select: none;
+  }
+
+  details .backlinks-heading:hover {
+    color: var(--color-tertiary, #448424);
+  }
+
+  .backlinks-count {
+    font-weight: 400;
+    font-size: 0.75rem;
+    color: var(--color-gray, #b8b8b8);
+    margin-left: 0.25rem;
+  }
+
+  .backlinks-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .backlinks-list li {
+    padding: 0.2rem 0;
+  }
+
+  .backlinks-list a {
+    font-size: 0.8125rem;
+    color: var(--color-secondary, #2a521e);
+    text-decoration: none;
+  }
+
+  .backlinks-list a:hover {
+    color: var(--color-tertiary, #448424);
+    text-decoration: underline;
+  }
+</style>

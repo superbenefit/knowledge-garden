@@ -1,0 +1,198 @@
+---
+interface Props {
+  title: string;
+  author?: string;
+  date?: string;
+  url: string;
+  type?: string;
+}
+
+const { title, author, date, url, type } = Astro.props;
+
+const year = date ? new Date(date).getFullYear().toString() : "n.d.";
+const authorDisplay = author || "SuperBenefit";
+
+// Generate a BibTeX key from author surname + year
+const bibKey = (authorDisplay.split(/\s+/).pop() || "unknown").toLowerCase() + year;
+---
+
+<div class="citation-generator" data-title={title} data-author={authorDisplay} data-year={year} data-url={url} data-bib-key={bibKey}>
+  <div class="citation-header">
+    <label class="citation-label" for="citation-style-select">Cite this {type || "page"}</label>
+    <select class="citation-style-select" id="citation-style-select">
+      <option value="apa">APA</option>
+      <option value="mla">MLA</option>
+      <option value="chicago">Chicago</option>
+      <option value="ieee">IEEE</option>
+      <option value="harvard">Harvard</option>
+      <option value="bibtex">BibTeX</option>
+      <option value="ris">RIS</option>
+    </select>
+  </div>
+
+  <div class="citation-output">
+    <pre class="citation-text" id="citation-text"></pre>
+    <button class="citation-copy-btn" type="button" aria-label="Copy citation">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+      </svg>
+      <span class="copy-label">Copy</span>
+    </button>
+  </div>
+</div>
+
+<script>
+  function initCitationGenerator(container: HTMLElement) {
+    const title = container.dataset.title || "";
+    const author = container.dataset.author || "";
+    const year = container.dataset.year || "n.d.";
+    const url = container.dataset.url || "";
+    const bibKey = container.dataset.bibKey || "ref";
+
+    const select = container.querySelector<HTMLSelectElement>(".citation-style-select");
+    const textEl = container.querySelector<HTMLPreElement>(".citation-text");
+    const copyBtn = container.querySelector<HTMLButtonElement>(".citation-copy-btn");
+    const copyLabel = container.querySelector<HTMLSpanElement>(".copy-label");
+
+    if (!select || !textEl || !copyBtn || !copyLabel) return;
+
+    const today = new Date().toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+
+    function generate(style: string): string {
+      switch (style) {
+        case "apa":
+          return `${author}. (${year}). ${title}. ${url}`;
+        case "mla":
+          return `${author}. "${title}." Web. ${today}. ${url}.`;
+        case "chicago":
+          return `${author}. "${title}." Accessed ${today}. ${url}.`;
+        case "ieee":
+          return `${author}, "${title}," ${url} (accessed ${today}).`;
+        case "harvard":
+          return `${author} (${year}) ${title}. Available at: ${url} (Accessed: ${today}).`;
+        case "bibtex":
+          return `@misc{${bibKey},\n  title = {${title}},\n  author = {${author}},\n  year = {${year}},\n  url = {${url}}\n}`;
+        case "ris":
+          return `TY  - ELEC\nTI  - ${title}\nAU  - ${author}\nPY  - ${year}\nUR  - ${url}\nER  -`;
+        default:
+          return "";
+      }
+    }
+
+    function update() {
+      textEl!.textContent = generate(select!.value);
+    }
+
+    select.addEventListener("change", update);
+
+    copyBtn.addEventListener("click", () => {
+      const text = textEl!.textContent || "";
+      navigator.clipboard.writeText(text).then(() => {
+        copyLabel!.textContent = "Copied!";
+        setTimeout(() => {
+          copyLabel!.textContent = "Copy";
+        }, 2000);
+      });
+    });
+
+    // Initialize with APA
+    update();
+  }
+
+  document.querySelectorAll<HTMLElement>(".citation-generator").forEach(initCitationGenerator);
+</script>
+
+<style>
+  .citation-generator {
+    border: 1px solid var(--color-lightgray);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .citation-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    gap: 0.75rem;
+  }
+
+  .citation-label {
+    font-family: var(--font-header);
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--color-darkgray);
+  }
+
+  .citation-style-select {
+    padding: 0.25rem 0.5rem;
+    border: 1px solid var(--color-lightgray);
+    border-radius: 0.25rem;
+    background-color: var(--color-light);
+    color: var(--color-dark);
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    cursor: pointer;
+  }
+
+  .citation-output {
+    position: relative;
+  }
+
+  .citation-text {
+    background-color: var(--color-highlight);
+    border-radius: 0.375rem;
+    padding: 0.75rem;
+    padding-right: 3.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-break: break-word;
+    margin: 0;
+    color: var(--color-dark);
+  }
+
+  .citation-copy-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    border: 1px solid var(--color-lightgray);
+    border-radius: 0.25rem;
+    background-color: var(--color-light);
+    color: var(--color-darkgray);
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: background-color 0.15s;
+  }
+
+  .citation-copy-btn:hover {
+    background-color: var(--color-lightgray);
+  }
+
+  :global(.dark) .citation-style-select {
+    background-color: var(--color-darkgray);
+    border-color: var(--color-gray);
+    color: var(--color-light);
+  }
+
+  :global(.dark) .citation-copy-btn {
+    background-color: var(--color-darkgray);
+    border-color: var(--color-gray);
+    color: var(--color-light);
+  }
+
+  :global(.dark) .citation-copy-btn:hover {
+    background-color: var(--color-gray);
+  }
+</style>

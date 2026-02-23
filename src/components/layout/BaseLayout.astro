@@ -1,0 +1,39 @@
+---
+import "@/styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string | undefined;
+}
+
+const { title, description } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <div class="page-grid">
+      <div class="grid-area-sidebar-left">
+        <slot name="sidebar-left" />
+      </div>
+      <div class="grid-area-header">
+        <slot name="header" />
+      </div>
+      <div class="grid-area-center">
+        <slot />
+      </div>
+      <div class="grid-area-sidebar-right">
+        <slot name="sidebar-right" />
+      </div>
+      <div class="grid-area-footer">
+        <slot name="footer" />
+      </div>
+    </div>
+  </body>
+</html>

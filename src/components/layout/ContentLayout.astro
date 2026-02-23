@@ -1,0 +1,44 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import Header from "./Header.astro";
+import Footer from "./Footer.astro";
+import Sidebar from "./Sidebar.astro";
+
+interface Props {
+  title: string;
+  description?: string | undefined;
+  showLeftSidebar?: boolean | undefined;
+  showRightSidebar?: boolean | undefined;
+}
+
+const {
+  title,
+  description,
+  showLeftSidebar = true,
+  showRightSidebar = true,
+} = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <Header slot="header" />
+
+  {showLeftSidebar && (
+    <Sidebar side="left" slot="sidebar-left">
+      <slot name="sidebar-left" />
+    </Sidebar>
+  )}
+
+  <main class="content-area">
+    <slot name="before-content" />
+    <slot />
+    <slot name="after-content" />
+  </main>
+
+  {showRightSidebar && (
+    <Sidebar side="right" slot="sidebar-right">
+      <slot name="sidebar-right" />
+    </Sidebar>
+  )}
+
+  <Footer slot="footer" />
+</BaseLayout>

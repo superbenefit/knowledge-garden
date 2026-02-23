@@ -1,0 +1,113 @@
+---
+interface Props {
+  headings: Array<{ depth: number; slug: string; text: string }>;
+}
+
+const { headings } = Astro.props;
+
+// Filter to h2 and h3 only
+const tocHeadings = headings.filter((h) => h.depth === 2 || h.depth === 3);
+---
+
+{tocHeadings.length > 0 && (
+  <nav class="toc">
+    <h3 class="toc-title">Table of Contents</h3>
+    <ul class="toc-list">
+      {tocHeadings.map((heading) => (
+        <li class:list={[heading.depth === 3 && "toc-indent"]}>
+          <a href={`#${heading.slug}`} data-toc-link={heading.slug}>
+            {heading.text}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+)}
+
+<script>
+  function initToc() {
+    const links = document.querySelectorAll<HTMLAnchorElement>("[data-toc-link]");
+    if (links.length === 0) return;
+
+    const slugs = Array.from(links).map((l) => l.dataset.tocLink!);
+    const headings = slugs
+      .map((s) => document.getElementById(s))
+      .filter((el): el is HTMLElement => el !== null);
+
+    if (headings.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            links.forEach((l) => l.classList.remove("active"));
+            const match = document.querySelector<HTMLAnchorElement>(
+              `[data-toc-link="${entry.target.id}"]`,
+            );
+            match?.classList.add("active");
+          }
+        }
+      },
+      { rootMargin: "-80px 0px -60% 0px", threshold: 0 },
+    );
+
+    headings.forEach((h) => observer.observe(h));
+  }
+
+  initToc();
+  document.addEventListener("astro:after-swap", initToc);
+</script>
+
+<style>
+  .toc {
+    position: sticky;
+    top: var(--top-spacing, 6rem);
+  }
+
+  .toc-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-darkgray, #4e4e4e);
+    margin: 0 0 0.5rem 0;
+  }
+
+  :global(.dark) .toc-title {
+    color: var(--color-gray, #b8b8b8);
+  }
+
+  .toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .toc-list li {
+    padding: 0.15rem 0;
+  }
+
+  .toc-indent {
+    padding-left: 1rem;
+  }
+
+  .toc-list a {
+    font-size: 0.8125rem;
+    color: var(--color-darkgray, #4e4e4e);
+    text-decoration: none;
+    transition: color 150ms ease;
+    border-left: 2px solid transparent;
+    padding-left: 0.5rem;
+    display: block;
+  }
+
+  .toc-list a:hover {
+    color: var(--color-tertiary, #448424);
+  }
+
+  .toc-list a:global(.active) {
+    color: var(--color-secondary, #2a521e);
+    border-left-color: var(--color-secondary, #2a521e);
+    font-weight: 600;
+  }
+</style>

@@ -1,0 +1,24 @@
+---
+const year = new Date().getFullYear();
+
+const links = [
+  { text: "Twitter", href: "https://twitter.com/superbenefitdao" },
+  { text: "Discord", href: "https://discord.com/invite/d2EeszTvVm" },
+  { text: "Mirror", href: "https://superbenefit.mirror.xyz/" },
+];
+---
+
+<footer class="site-footer">
+  <ul class="footer-links">
+    {links.map((link) => (
+      <li>
+        <a href={link.href} target="_blank" rel="noopener noreferrer">
+          {link.text}
+        </a>
+      </li>
+    ))}
+  </ul>
+  <p class="footer-credit">
+    Powered by <a href="https://astro.build/" target="_blank" rel="noopener noreferrer">Astro</a> &copy; {year}
+  </p>
+</footer>

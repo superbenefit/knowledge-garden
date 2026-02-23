@@ -1,0 +1,70 @@
+---
+import GraphView from "@/components/islands/GraphView";
+import type { GraphData } from "@/lib/types";
+
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+
+// Graph data is not yet available from the knowledge-server
+const graphData: GraphData = { nodes: [], links: [] };
+---
+
+{graphData.nodes.length > 0 && (
+  <div class="graph-sidebar">
+    <h3>Graph</h3>
+    <div class="graph-preview">
+      <GraphView
+        client:visible
+        data={graphData}
+        currentId={id}
+        height={250}
+      />
+    </div>
+    <a href="/graph" class="graph-link">Explore full graph &rarr;</a>
+  </div>
+)}
+
+<style>
+  .graph-sidebar {
+    margin-top: 1rem;
+  }
+
+  h3 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-darkgray, #4e4e4e);
+    margin-bottom: 0.5rem;
+  }
+
+  :global(.dark) h3 {
+    color: var(--color-gray, #b8b8b8);
+  }
+
+  .graph-preview {
+    width: 100%;
+    border: 1px solid var(--color-lightgray, #e5e5e5);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  :global(.dark) .graph-preview {
+    border-color: var(--color-darkgray, #4e4e4e);
+  }
+
+  .graph-link {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.8125rem;
+    color: var(--color-secondary, #2a521e);
+    text-decoration: none;
+  }
+
+  .graph-link:hover {
+    text-decoration: underline;
+  }
+</style>

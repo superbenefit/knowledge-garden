@@ -1,0 +1,71 @@
+---
+interface Props {
+  url: string;
+}
+
+const { url } = Astro.props;
+
+// Split URL into segments, filter out empty strings
+const segments = url.replace(/^\/|\/$/g, "").split("/").filter(Boolean);
+
+// Build breadcrumb items with cumulative paths
+const crumbs = segments.map((segment, i) => ({
+  label: segment.replace(/-/g, " "),
+  href: "/" + segments.slice(0, i + 1).join("/"),
+}));
+---
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol>
+    <li><a href="/">Home</a></li>
+    {crumbs.map((crumb, i) => (
+      <li>
+        <span class="separator" aria-hidden="true">&gt;</span>
+        {i === crumbs.length - 1 ? (
+          <span aria-current="page">{crumb.label}</span>
+        ) : (
+          <a href={crumb.href}>{crumb.label}</a>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>
+
+<style>
+  .breadcrumbs ol {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 0.25rem;
+    font-size: 0.875rem;
+    color: var(--color-darkgray);
+  }
+
+  .breadcrumbs li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .breadcrumbs a {
+    color: var(--color-darkgray);
+    text-decoration: none;
+  }
+
+  .breadcrumbs a:hover {
+    color: var(--color-tertiary);
+    text-decoration: underline;
+  }
+
+  .breadcrumbs .separator {
+    color: var(--color-gray);
+  }
+
+  .breadcrumbs [aria-current="page"] {
+    color: var(--color-dark);
+    font-weight: 500;
+  }
+</style>

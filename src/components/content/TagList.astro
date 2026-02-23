@@ -1,0 +1,46 @@
+---
+interface Props {
+  tags: string[];
+  linkPrefix?: string;
+}
+
+const { tags, linkPrefix = "/tags" } = Astro.props;
+
+if (!tags || tags.length === 0) return;
+---
+
+<div class="tag-list">
+  {tags.map((tag) => (
+    <a href={`${linkPrefix}/${tag}`} class="tag-chip">
+      {tag}
+    </a>
+  ))}
+</div>
+
+<style>
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+  }
+
+  .tag-chip {
+    display: inline-block;
+    font-size: 0.75rem;
+    padding: 0.125rem 0.625rem;
+    border-radius: 9999px;
+    background-color: var(--color-highlight);
+    color: var(--color-secondary);
+    text-decoration: none;
+    transition: background-color 0.15s;
+  }
+
+  .tag-chip:hover {
+    background-color: var(--color-lightgray);
+    color: var(--color-tertiary);
+  }
+
+  :global(.dark) .tag-chip:hover {
+    background-color: var(--color-gray);
+  }
+</style>
