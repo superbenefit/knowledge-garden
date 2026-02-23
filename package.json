@@ -71,7 +71,7 @@
     "micromorph": "^0.4.5",
     "openai": "^6.18.0",
     "pixi.js": "^8.14.3",
-    "preact": "^10.27.0",
+    "preact": "^10.28.4",
     "preact-render-to-string": "^6.6.3",
     "pretty-bytes": "^7.1.0",
     "pretty-time": "^1.1.0",
