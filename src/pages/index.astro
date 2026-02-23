@@ -1,0 +1,85 @@
+---
+import ContentLayout from "@/components/layout/ContentLayout.astro";
+import { getKnowledgeClient, safeCall } from "@/lib/rpc";
+
+const client = getKnowledgeClient();
+const result = await safeCall(
+  () => client.listEntries({ limit: 5 }),
+  { data: [], total: 0 },
+);
+const docs = result.data;
+---
+
+<ContentLayout title="SuperBenefit | Knowledge Garden" description="A shared knowledge base for the SuperBenefit ecosystem.">
+  <h1 class="text-4xl font-bold mb-2" style="font-family: var(--font-header)">
+    SuperBenefit Knowledge Garden
+  </h1>
+  <p class="text-lg mb-8" style="color: var(--color-darkgray)">
+    A shared knowledge base for the SuperBenefit ecosystem.
+  </p>
+
+  <nav class="mb-12">
+    <h2 class="text-xl font-semibold mb-3" style="font-family: var(--font-header)">
+      Browse
+    </h2>
+    <ul class="flex flex-wrap gap-3">
+      <li>
+        <a href="/docs" class="inline-block px-4 py-2 rounded text-sm font-semibold" style="background: var(--color-highlight); color: var(--color-secondary)">
+          Docs
+        </a>
+      </li>
+      <li>
+        <a href="/tag" class="inline-block px-4 py-2 rounded text-sm font-semibold" style="background: var(--color-highlight); color: var(--color-secondary)">
+          Lexicon
+        </a>
+      </li>
+      <li>
+        <a href="/person" class="inline-block px-4 py-2 rounded text-sm font-semibold" style="background: var(--color-highlight); color: var(--color-secondary)">
+          People
+        </a>
+      </li>
+      <li>
+        <a href="/group" class="inline-block px-4 py-2 rounded text-sm font-semibold" style="background: var(--color-highlight); color: var(--color-secondary)">
+          Groups
+        </a>
+      </li>
+      <li>
+        <a href="/project" class="inline-block px-4 py-2 rounded text-sm font-semibold" style="background: var(--color-highlight); color: var(--color-secondary)">
+          Projects
+        </a>
+      </li>
+      <li>
+        <a href="/pattern" class="inline-block px-4 py-2 rounded text-sm font-semibold" style="background: var(--color-highlight); color: var(--color-secondary)">
+          Patterns
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <section>
+    <h2 class="text-2xl font-semibold mb-4" style="font-family: var(--font-header)">
+      Recent Documents
+    </h2>
+    {docs.length > 0 ? (
+      <ul class="space-y-3">
+        {docs.map((doc) => (
+          <li class="border-b pb-2" style="border-color: var(--color-lightgray)">
+            <a href={`/${doc.type}/${doc.id}`} class="font-semibold">
+              {doc.title}
+            </a>
+            <span class="text-xs ml-2 px-1.5 py-0.5 rounded" style="background: var(--color-highlight); color: var(--color-secondary)">
+              {doc.type}
+            </span>
+            {doc.description && (
+              <p class="text-sm mt-1" style="color: var(--color-darkgray)">
+                {doc.description}
+              </p>
+            )}
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p style="color: var(--color-gray)">No documents available.</p>
+    )}
+  </section>
+</ContentLayout>

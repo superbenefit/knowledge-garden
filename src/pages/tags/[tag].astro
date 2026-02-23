@@ -1,0 +1,50 @@
+---
+export const prerender = false;
+
+import ContentLayout from "@/components/layout/ContentLayout.astro";
+import ReleaseContents from "@/components/content/ReleaseContents.astro";
+import { getKnowledgeClient, safeCall } from "@/lib/rpc";
+import type { Document } from "@/lib/types";
+
+const tag = Astro.params.tag ?? "";
+
+if (!tag) {
+  Astro.response.status = 404;
+}
+
+const client = getKnowledgeClient();
+const result = tag
+  ? await safeCall(
+      () => client.listEntries({ limit: 200 }),
+      { data: [], total: 0 },
+    )
+  : { data: [], total: 0 };
+
+// Filter documents that have this tag in their frontmatter tags
+const documents: Document[] = result.data.filter(
+  (doc) => doc.tags && doc.tags.includes(tag),
+);
+---
+
+<ContentLayout title={`${tag} | Tags | SuperBenefit Knowledge Garden`} description={`Content tagged with "${tag}".`}>
+  <nav class="text-sm mb-6" style="color: var(--color-gray)">
+    <a href="/" class="hover:underline">Home</a>
+    <span class="mx-1">/</span>
+    <a href="/tags" class="hover:underline">Tags</a>
+    <span class="mx-1">/</span>
+    <span style="color: var(--color-dark)">{tag}</span>
+  </nav>
+
+  <h1 class="text-3xl font-bold mb-2" style="font-family: var(--font-header)">
+    #{tag}
+  </h1>
+  <p class="text-lg mb-8" style="color: var(--color-darkgray)">
+    {documents.length} {documents.length === 1 ? "item" : "items"} tagged with "{tag}".
+  </p>
+
+  {documents.length > 0 ? (
+    <ReleaseContents documents={documents} />
+  ) : (
+    <p style="color: var(--color-gray)">No content found with this tag.</p>
+  )}
+</ContentLayout>

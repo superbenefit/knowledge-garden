@@ -1,0 +1,77 @@
+---
+export const prerender = false;
+
+import ContentLayout from "@/components/layout/ContentLayout.astro";
+import TypeBadge from "@/components/content/TypeBadge.astro";
+import TagList from "@/components/content/TagList.astro";
+import { getKnowledgeClient, safeCall } from "@/lib/rpc";
+import { isContentType, TYPE_LABELS } from "@/lib/types";
+import { renderMarkdown } from "@/lib/markdown";
+
+const { type, id } = Astro.params;
+
+if (!type || !id || !isContentType(type)) {
+  Astro.response.status = 404;
+}
+
+const client = getKnowledgeClient();
+const entry =
+  type && id && isContentType(type)
+    ? await safeCall(() => client.getDocument(type, id), null)
+    : null;
+
+if (!entry) {
+  Astro.response.status = 404;
+}
+
+const html = entry ? await renderMarkdown(entry.body) : "";
+const typeLabel = type ? TYPE_LABELS[type as keyof typeof TYPE_LABELS] || type : "";
+const pageTitle = entry
+  ? `${entry.title} | ${typeLabel} | SuperBenefit`
+  : "Not Found | SuperBenefit";
+---
+
+<ContentLayout title={pageTitle} description={entry?.description}>
+  {!entry ? (
+    <div>
+      <h1 class="text-2xl font-bold">Not Found</h1>
+      <p>The {typeLabel.toLowerCase() || "content"} you're looking for doesn't exist.</p>
+      <a href={`/${type}`} class="underline" style="color: var(--color-secondary)">
+        Back to {typeLabel || "listing"}
+      </a>
+    </div>
+  ) : (
+    <div>
+      <nav class="text-sm mb-6" style="color: var(--color-gray)">
+        <a href="/" class="hover:underline">Home</a>
+        <span class="mx-1">/</span>
+        <a href={`/${type}`} class="hover:underline">{typeLabel}</a>
+        <span class="mx-1">/</span>
+        <span style="color: var(--color-dark)">{entry.title}</span>
+      </nav>
+
+      <article>
+        <div class="flex items-center gap-3 mb-2">
+          <h1 class="text-3xl font-bold" style="font-family: var(--font-header)">
+            {entry.title}
+          </h1>
+          <TypeBadge type={entry.type} category={entry.category} />
+        </div>
+
+        {entry.description && (
+          <p class="text-lg mb-6" style="color: var(--color-darkgray)">
+            {entry.description}
+          </p>
+        )}
+
+        {entry.tags.length > 0 && (
+          <div class="mb-6">
+            <TagList tags={entry.tags} />
+          </div>
+        )}
+
+        <div class="prose max-w-none" set:html={html} />
+      </article>
+    </div>
+  )}
+</ContentLayout>

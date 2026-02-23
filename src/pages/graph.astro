@@ -1,0 +1,37 @@
+---
+export const prerender = false;
+
+import ContentLayout from "@/components/layout/ContentLayout.astro";
+---
+
+<ContentLayout title="Knowledge Graph" showLeftSidebar={false} showRightSidebar={false}>
+  <article>
+    <h1>Knowledge Graph</h1>
+    <p>
+      Graph visualization is not yet available. The knowledge-server does not currently
+      extract link or backlink data from documents.
+    </p>
+    <p>
+      <a href="/" class="underline" style="color: var(--color-secondary)">Back to Home</a>
+    </p>
+  </article>
+</ContentLayout>
+
+<style>
+  article {
+    max-width: 100%;
+  }
+
+  h1 {
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    color: var(--color-darkgray, #4e4e4e);
+    margin-bottom: 1.5rem;
+  }
+
+  :global(.dark) p {
+    color: var(--color-gray, #b8b8b8);
+  }
+</style>

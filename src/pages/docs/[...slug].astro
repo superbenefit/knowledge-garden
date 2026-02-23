@@ -1,0 +1,72 @@
+---
+import ContentLayout from "@/components/layout/ContentLayout.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const docs = await getCollection("docs");
+  return docs.map((doc) => ({
+    params: { slug: doc.id },
+    props: { doc },
+  }));
+}
+
+const { doc } = Astro.props;
+const { Content } = await render(doc);
+
+const title = doc.data.title || doc.id.split("/").pop() || "Untitled";
+const description = doc.data.description || "";
+
+// Build breadcrumb segments from the slug
+const slugParts = doc.id.split("/");
+const breadcrumbs = slugParts.map((part, i) => ({
+  label: part.replace(/-/g, " "),
+  href: i < slugParts.length - 1 ? `/docs/${slugParts.slice(0, i + 1).join("/")}` : "",
+}));
+---
+
+<ContentLayout title={`${title} | SuperBenefit Docs`} description={description}>
+  <nav class="text-sm mb-6" style="color: var(--color-gray)">
+    <a href="/" class="hover:underline">Home</a>
+    <span class="mx-1">/</span>
+    <a href="/docs" class="hover:underline">Docs</a>
+    {breadcrumbs.map((crumb) => (
+      <>
+        <span class="mx-1">/</span>
+        {crumb.href ? (
+          <a href={crumb.href} class="hover:underline">{crumb.label}</a>
+        ) : (
+          <span style="color: var(--color-dark)">{crumb.label}</span>
+        )}
+      </>
+    ))}
+  </nav>
+
+  <article>
+    <h1 class="text-3xl font-bold mb-2" style="font-family: var(--font-header)">
+      {title}
+    </h1>
+    {description && (
+      <p class="text-lg mb-6" style="color: var(--color-darkgray)">
+        {description}
+      </p>
+    )}
+
+    {doc.data.tags && doc.data.tags.length > 0 && (
+      <div class="flex flex-wrap gap-2 mb-6">
+        {doc.data.tags.map((tag: string) => (
+          <span class="text-xs px-2 py-1 rounded" style="background: var(--color-highlight); color: var(--color-secondary)">
+            {tag}
+          </span>
+        ))}
+      </div>
+    )}
+
+    <div class="prose max-w-none">
+      <Content />
+    </div>
+  </article>
+
+  <footer class="mt-16 pt-4 text-sm" style="color: var(--color-gray); border-top: 1px solid var(--color-lightgray)">
+    <a href="/docs" class="hover:underline">&larr; Back to Docs</a>
+  </footer>
+</ContentLayout>

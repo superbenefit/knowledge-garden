@@ -1,0 +1,11 @@
+---
+export const prerender = false;
+
+import ContentLayout from "@/components/layout/ContentLayout.astro";
+import SearchPageClient from "@/components/islands/SearchPageClient";
+---
+
+<ContentLayout title="Search" showRightSidebar={false}>
+  <h1 style="font-family: var(--font-header); margin: 0 0 1rem 0;">Search</h1>
+  <SearchPageClient client:load />
+</ContentLayout>

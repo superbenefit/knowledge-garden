@@ -1,0 +1,54 @@
+---
+import ContentLayout from "@/components/layout/ContentLayout.astro";
+import { getCollection } from "astro:content";
+
+const docs = await getCollection("docs");
+const sorted = docs.sort((a, b) => {
+  const aTitle = a.data.title || a.id;
+  const bTitle = b.data.title || b.id;
+  return aTitle.localeCompare(bTitle);
+});
+---
+
+<ContentLayout title="Docs | SuperBenefit Knowledge Garden" description="Documentation for the SuperBenefit ecosystem.">
+  <nav class="text-sm mb-6" style="color: var(--color-gray)">
+    <a href="/" class="hover:underline">Home</a>
+    <span class="mx-1">/</span>
+    <span style="color: var(--color-dark)">Docs</span>
+  </nav>
+
+  <h1 class="text-3xl font-bold mb-2" style="font-family: var(--font-header)">
+    Docs
+  </h1>
+  <p class="text-lg mb-8" style="color: var(--color-darkgray)">
+    Documentation for the SuperBenefit ecosystem.
+  </p>
+
+  {sorted.length > 0 ? (
+    <ul class="space-y-4">
+      {sorted.map((doc) => (
+        <li class="border-b pb-3" style="border-color: var(--color-lightgray)">
+          <a href={`/docs/${doc.id}`} class="font-semibold text-lg">
+            {doc.data.title || doc.id}
+          </a>
+          {doc.data.description && (
+            <p class="text-sm mt-1" style="color: var(--color-darkgray)">
+              {doc.data.description}
+            </p>
+          )}
+          {doc.data.tags && doc.data.tags.length > 0 && (
+            <div class="flex flex-wrap gap-1 mt-2">
+              {doc.data.tags.map((tag: string) => (
+                <span class="text-xs px-2 py-0.5 rounded" style="background: var(--color-highlight); color: var(--color-secondary)">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <p style="color: var(--color-gray)">No documents found.</p>
+  )}
+</ContentLayout>

@@ -1,0 +1,78 @@
+---
+export const prerender = false;
+
+import ContentLayout from "@/components/layout/ContentLayout.astro";
+import { getKnowledgeClient, safeCall } from "@/lib/rpc";
+import { isContentType, TYPE_LABELS } from "@/lib/types";
+
+const { type } = Astro.params;
+
+if (!type || !isContentType(type)) {
+  Astro.response.status = 404;
+}
+
+const client = getKnowledgeClient();
+const result =
+  type && isContentType(type)
+    ? await safeCall(
+        () => client.listEntries({ contentType: type }),
+        { data: [], total: 0 },
+      )
+    : { data: [], total: 0 };
+
+const entries = result.data;
+const typeLabel = type ? TYPE_LABELS[type as keyof typeof TYPE_LABELS] || type : "";
+const pluralLabel = typeLabel + "s";
+---
+
+<ContentLayout
+  title={`${pluralLabel} | SuperBenefit Knowledge Garden`}
+  description={`Browse ${pluralLabel.toLowerCase()} in the SuperBenefit ecosystem.`}
+>
+  <nav class="text-sm mb-6" style="color: var(--color-gray)">
+    <a href="/" class="hover:underline">Home</a>
+    <span class="mx-1">/</span>
+    <span style="color: var(--color-dark)">{pluralLabel}</span>
+  </nav>
+
+  <h1 class="text-3xl font-bold mb-2" style="font-family: var(--font-header)">
+    {pluralLabel}
+  </h1>
+  <p class="text-lg mb-8" style="color: var(--color-darkgray)">
+    {result.total} {result.total === 1 ? typeLabel.toLowerCase() : pluralLabel.toLowerCase()} in the knowledge garden.
+  </p>
+
+  {entries.length > 0 ? (
+    <ul class="space-y-4">
+      {entries.map((entry) => (
+        <li class="border-b pb-3" style="border-color: var(--color-lightgray)">
+          <a
+            href={`/${entry.type}/${entry.id}`}
+            class="font-semibold text-lg"
+          >
+            {entry.title}
+          </a>
+          {entry.description && (
+            <p class="text-sm mt-1" style="color: var(--color-darkgray)">
+              {entry.description}
+            </p>
+          )}
+          {entry.tags.length > 0 && (
+            <div class="flex flex-wrap gap-1 mt-2">
+              {entry.tags.map((tag) => (
+                <span
+                  class="text-xs px-2 py-0.5 rounded"
+                  style="background: var(--color-highlight); color: var(--color-secondary)"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <p style="color: var(--color-gray)">No {pluralLabel.toLowerCase()} found.</p>
+  )}
+</ContentLayout>
