@@ -1,0 +1,16 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "knowledge-garden",
+  "compatibility_date": "2025-01-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": "dist/client"
+  },
+  // Service binding to knowledge-server WorkerEntrypoint
+  "services": [
+    {
+      "binding": "KNOWLEDGE_SERVER",
+      "service": "knowledge-server"
+    }
+  ]
+}

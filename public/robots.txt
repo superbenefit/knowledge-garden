@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://knowledge.superbenefit.org/sitemap-index.xml

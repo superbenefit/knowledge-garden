@@ -1,0 +1,10 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "knowledge-garden-staging",
+  "compatibility_date": "2025-01-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": { "directory": "dist/client" },
+  "services": [
+    { "binding": "KNOWLEDGE_SERVER", "service": "knowledge-server-staging" }
+  ]
+}
