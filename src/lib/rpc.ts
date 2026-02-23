@@ -87,22 +87,25 @@ function createServiceBindingClient(): KnowledgeClient {
     // Try dynamic import of cloudflare:workers (works in Astro v6 SSR)
     try {
       const mod = await import("cloudflare:workers");
-      if ((mod as any).env?.KNOWLEDGE_SERVER) {
-        _env = (mod as any).env;
+      const modEnv = (mod as any).env;
+      console.log("[RPC] cloudflare:workers import succeeded, env keys:", modEnv ? Object.keys(modEnv) : "null");
+      if (modEnv?.KNOWLEDGE_SERVER) {
+        _env = modEnv;
         return _env;
       }
-    } catch {
-      // not in Workers runtime
+    } catch (err) {
+      console.log("[RPC] cloudflare:workers import failed:", String(err));
     }
 
     // Fallback: some adapter versions expose env on globalThis
     const g = (globalThis as any).__cloudflare_env__;
+    console.log("[RPC] globalThis.__cloudflare_env__ keys:", g ? Object.keys(g) : "null");
     if (g?.KNOWLEDGE_SERVER) {
       _env = g;
       return _env;
     }
 
-    throw new Error("KNOWLEDGE_SERVER binding not available");
+    throw new Error("KNOWLEDGE_SERVER binding not available — tried cloudflare:workers import and globalThis.__cloudflare_env__");
   }
 
   return {
