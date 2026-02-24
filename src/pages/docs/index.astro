@@ -1,13 +1,41 @@
 ---
-import ContentLayout from "@/components/layout/ContentLayout.astro";
-import { getCollection } from "astro:content";
+export const prerender = false;
 
-const docs = await getCollection("docs");
-const sorted = docs.sort((a, b) => {
-  const aTitle = a.data.title || a.id;
-  const bTitle = b.data.title || b.id;
-  return aTitle.localeCompare(bTitle);
-});
+import ContentLayout from "@/components/layout/ContentLayout.astro";
+import { getKnowledgeClient, safeCall } from "@/lib/rpc";
+
+const client = getKnowledgeClient();
+const result = await safeCall(
+  () => client.listEntries({ sourcePath: "docs/" }),
+  { data: [], total: 0 },
+);
+
+// Derive URL slug from path: strip "docs/" prefix and ".md" suffix
+const docs = result.data
+  .filter((d) => d.path)
+  .map((d) => ({
+    ...d,
+    slug: d.path!.replace(/^docs\//, "").replace(/\.md$/, ""),
+  }));
+
+// Group by first path segment
+const groups = new Map<string, typeof docs>();
+for (const doc of docs) {
+  const segment = doc.slug.split("/")[0] ?? "other";
+  if (!groups.has(segment)) groups.set(segment, []);
+  groups.get(segment)!.push(doc);
+}
+
+// Sort each group alphabetically by title
+for (const group of groups.values()) {
+  group.sort((a, b) => a.title.localeCompare(b.title));
+}
+
+const sortedGroups = [...groups.entries()].sort(([a], [b]) => a.localeCompare(b));
+
+function titleCase(s: string): string {
+  return s.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+}
 ---
 
 <ContentLayout title="Docs | SuperBenefit Knowledge Garden" description="Documentation for the SuperBenefit ecosystem.">
@@ -21,33 +49,43 @@ const sorted = docs.sort((a, b) => {
     Docs
   </h1>
   <p class="text-lg mb-8" style="color: var(--color-darkgray)">
-    Documentation for the SuperBenefit ecosystem.
+    {result.total} {result.total === 1 ? "document" : "documents"} in the knowledge garden.
   </p>
 
-  {sorted.length > 0 ? (
-    <ul class="space-y-4">
-      {sorted.map((doc) => (
-        <li class="border-b pb-3" style="border-color: var(--color-lightgray)">
-          <a href={`/docs/${doc.id}`} class="font-semibold text-lg">
-            {doc.data.title || doc.id}
-          </a>
-          {doc.data.description && (
-            <p class="text-sm mt-1" style="color: var(--color-darkgray)">
-              {doc.data.description}
-            </p>
-          )}
-          {doc.data.tags && doc.data.tags.length > 0 && (
-            <div class="flex flex-wrap gap-1 mt-2">
-              {doc.data.tags.map((tag: string) => (
-                <span class="text-xs px-2 py-0.5 rounded" style="background: var(--color-highlight); color: var(--color-secondary)">
-                  {tag}
-                </span>
-              ))}
-            </div>
-          )}
-        </li>
-      ))}
-    </ul>
+  {docs.length > 0 ? (
+    sortedGroups.map(([segment, items]) => (
+      <section class="mb-8">
+        <h2 class="text-xl font-semibold mb-3" style="font-family: var(--font-header)">
+          {titleCase(segment)}
+        </h2>
+        <ul class="space-y-4">
+          {items.map((doc) => (
+            <li class="border-b pb-3" style="border-color: var(--color-lightgray)">
+              <a href={`/docs/${doc.slug}`} class="font-semibold text-lg">
+                {doc.title}
+              </a>
+              {doc.description && (
+                <p class="text-sm mt-1" style="color: var(--color-darkgray)">
+                  {doc.description}
+                </p>
+              )}
+              {doc.tags.length > 0 && (
+                <div class="flex flex-wrap gap-1 mt-2">
+                  {doc.tags.map((tag) => (
+                    <span
+                      class="text-xs px-2 py-0.5 rounded"
+                      style="background: var(--color-highlight); color: var(--color-secondary)"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))
   ) : (
     <p style="color: var(--color-gray)">No documents found.</p>
   )}

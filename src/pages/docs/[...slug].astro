@@ -1,72 +1,97 @@
 ---
-import ContentLayout from "@/components/layout/ContentLayout.astro";
-import { getCollection, render } from "astro:content";
+export const prerender = false;
 
-export async function getStaticPaths() {
-  const docs = await getCollection("docs");
-  return docs.map((doc) => ({
-    params: { slug: doc.id },
-    props: { doc },
-  }));
+import ContentLayout from "@/components/layout/ContentLayout.astro";
+import TypeBadge from "@/components/content/TypeBadge.astro";
+import TagList from "@/components/content/TagList.astro";
+import { getKnowledgeClient, safeCall } from "@/lib/rpc";
+import { renderMarkdown } from "@/lib/markdown";
+
+const { slug } = Astro.params;
+const kbPath = `docs/${slug}.md`;
+
+const client = getKnowledgeClient();
+
+// Use list+find (getDocumentByPath is server-side RPC only, not exposed on KnowledgeClient)
+const result = await safeCall(
+  () => client.listEntries({ sourcePath: "docs/" }),
+  { data: [], total: 0 },
+);
+const entry = result.data.find((d) => d.path === kbPath) ?? null;
+
+if (!entry) {
+  Astro.response.status = 404;
 }
 
-const { doc } = Astro.props;
-const { Content } = await render(doc);
+const html = entry ? await renderMarkdown(entry.body) : "";
 
-const title = doc.data.title || doc.id.split("/").pop() || "Untitled";
-const description = doc.data.description || "";
-
-// Build breadcrumb segments from the slug
-const slugParts = doc.id.split("/");
+// Build breadcrumbs from slug segments
+const slugParts = (slug ?? "").split("/");
 const breadcrumbs = slugParts.map((part, i) => ({
   label: part.replace(/-/g, " "),
-  href: i < slugParts.length - 1 ? `/docs/${slugParts.slice(0, i + 1).join("/")}` : "",
+  href: i < slugParts.length - 1
+    ? `/docs/${slugParts.slice(0, i + 1).join("/")}`
+    : "",
 }));
+
+const pageTitle = entry
+  ? `${entry.title} | SuperBenefit Docs`
+  : "Not Found | SuperBenefit Docs";
 ---
 
-<ContentLayout title={`${title} | SuperBenefit Docs`} description={description}>
-  <nav class="text-sm mb-6" style="color: var(--color-gray)">
-    <a href="/" class="hover:underline">Home</a>
-    <span class="mx-1">/</span>
-    <a href="/docs" class="hover:underline">Docs</a>
-    {breadcrumbs.map((crumb) => (
-      <>
-        <span class="mx-1">/</span>
-        {crumb.href ? (
-          <a href={crumb.href} class="hover:underline">{crumb.label}</a>
-        ) : (
-          <span style="color: var(--color-dark)">{crumb.label}</span>
-        )}
-      </>
-    ))}
-  </nav>
-
-  <article>
-    <h1 class="text-3xl font-bold mb-2" style="font-family: var(--font-header)">
-      {title}
-    </h1>
-    {description && (
-      <p class="text-lg mb-6" style="color: var(--color-darkgray)">
-        {description}
-      </p>
-    )}
-
-    {doc.data.tags && doc.data.tags.length > 0 && (
-      <div class="flex flex-wrap gap-2 mb-6">
-        {doc.data.tags.map((tag: string) => (
-          <span class="text-xs px-2 py-1 rounded" style="background: var(--color-highlight); color: var(--color-secondary)">
-            {tag}
-          </span>
-        ))}
-      </div>
-    )}
-
-    <div class="prose max-w-none">
-      <Content />
+<ContentLayout title={pageTitle} description={entry?.description}>
+  {!entry ? (
+    <div>
+      <h1 class="text-2xl font-bold">Document not found</h1>
+      <p>The document you're looking for doesn't exist.</p>
+      <a href="/docs" class="underline" style="color: var(--color-secondary)">
+        Back to Docs
+      </a>
     </div>
-  </article>
+  ) : (
+    <div>
+      <nav class="text-sm mb-6" style="color: var(--color-gray)">
+        <a href="/" class="hover:underline">Home</a>
+        <span class="mx-1">/</span>
+        <a href="/docs" class="hover:underline">Docs</a>
+        {breadcrumbs.map((crumb) => (
+          <>
+            <span class="mx-1">/</span>
+            {crumb.href ? (
+              <a href={crumb.href} class="hover:underline">{crumb.label}</a>
+            ) : (
+              <span style="color: var(--color-dark)">{crumb.label}</span>
+            )}
+          </>
+        ))}
+      </nav>
 
-  <footer class="mt-16 pt-4 text-sm" style="color: var(--color-gray); border-top: 1px solid var(--color-lightgray)">
-    <a href="/docs" class="hover:underline">&larr; Back to Docs</a>
-  </footer>
+      <article>
+        <div class="flex items-center gap-3 mb-2">
+          <h1 class="text-3xl font-bold" style="font-family: var(--font-header)">
+            {entry.title}
+          </h1>
+          <TypeBadge type={entry.type} category={entry.category} />
+        </div>
+
+        {entry.description && (
+          <p class="text-lg mb-6" style="color: var(--color-darkgray)">
+            {entry.description}
+          </p>
+        )}
+
+        {entry.tags.length > 0 && (
+          <div class="mb-6">
+            <TagList tags={entry.tags} />
+          </div>
+        )}
+
+        <div class="prose max-w-none" set:html={html} />
+      </article>
+
+      <footer class="mt-16 pt-4 text-sm" style="color: var(--color-gray); border-top: 1px solid var(--color-lightgray)">
+        <a href="/docs" class="hover:underline">&larr; Back to Docs</a>
+      </footer>
+    </div>
+  )}
 </ContentLayout>
