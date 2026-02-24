@@ -8,10 +8,12 @@ Knowledge from the SuperBenefit community and its projects. This space is used t
 
 Built with **Astro v6** (hybrid rendering) deployed on **Cloudflare Workers**.
 
-- **Build-time content** — Markdown docs via Astro content collections (`content/docs/`)
-- **Live content** — Lexicon, people, groups, projects served at runtime via RPC to a knowledge-server Worker
+- **SSR content** — All content types served at runtime via RPC to a knowledge-server Worker
+- **Docs section (broken)** — Currently uses build-time collections on an empty directory; under active repair
 - **React islands** — Search, graph visualization, dark mode toggle (client-side hydration)
 - **Tailwind v4** — Utility-first CSS with custom theme tokens
+
+See [docs/architecture.md](docs/architecture.md) for full details.
 
 ## Development
 
@@ -33,18 +35,19 @@ src/
     islands/      # SearchBar, GraphView, DarkMode, DocsTreeNav (React)
   pages/
     api/          # search, graph, backlinks, docs-tree, preview endpoints
-    docs/         # Build-time doc pages
-    lexicon/      # SSR lexicon pages
-    people/       # SSR people pages
-    groups/       # SSR group pages
-    projects/     # SSR project pages
-    tags/         # SSR tag pages
+    docs/         # BROKEN — uses getCollection on empty content/docs/
+    [type]/       # SSR content pages (all working content types)
+    lexicon/      # Redirect → /tag
+    people/       # Redirect → /person
+    groups/       # Redirect → /group
+    projects/     # Redirect → /project
   lib/            # types, rpc client, markdown utils
   styles/         # global.css (Tailwind v4 theme)
-content/
-  docs/           # Markdown content (build-time)
+content/          # Legacy Quartz files — not used by Astro site
 ```
 
 ## Content
 
-Content is maintained using [Obsidian](https://obsidian.md/). Markdown files in `content/docs/` are processed at build time. All other content types (lexicon terms, people, groups, projects) are served at runtime from a knowledge-server Cloudflare Worker via service bindings.
+Content is maintained using [Obsidian](https://obsidian.md/) in the knowledge-base repository and synced to R2 via the knowledge-server Worker. The garden fetches all content at runtime via RPC service bindings.
+
+The `content/` directory contains legacy Quartz files that are not used by the current Astro site. The docs section (`/docs/*`) is currently broken and under active repair.

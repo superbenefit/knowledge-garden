@@ -4,20 +4,23 @@
 
 SuperBenefit Knowledge Garden — an Astro v6 hybrid site deployed on Cloudflare Workers.
 
-- **Build-time content**: Markdown docs in `content/docs/` via Astro content collections
-- **Live content**: Lexicon, people, groups, projects via RPC to a knowledge-server Worker (currently using stub)
+- **SSR content**: All content types (patterns, articles, people, groups, projects, tags, etc.) served at runtime via RPC to a knowledge-server Worker (falls back to stub client in local dev)
+- **Docs section (BROKEN)**: `src/pages/docs/` uses `getCollection("docs")` from `astro:content`, reading from an empty `content/docs/` directory (Quartz leftover). Produces no output. **Fix in progress.**
 - **React islands**: Search, graph visualization, dark mode (client-side hydrated)
 - **Tailwind v4**: CSS with custom `@theme` tokens in `src/styles/global.css`
 
 ## Key Architecture
 
-### Content Split
+### Content Delivery
 
-| Collection | Source | Rendering |
-|-----------|--------|-----------|
-| `docs` | `content/docs/**/*.md` (glob) | Build-time (prerendered) |
-| `folders` | `content/*/index.md` (glob) | Build-time (folder metadata) |
-| lexicon, people, groups, projects | knowledge-server RPC | SSR (`prerender = false`) |
+| Route | Source | Rendering | Status |
+|-------|--------|-----------|--------|
+| `/[type]/` | knowledge-server RPC | SSR (`prerender = false`) | **Working** |
+| `/docs/` | `content/docs/**/*.md` via `getCollection` | Build-time (prerendered) | **BROKEN** — empty source dir |
+| `/api/docs-tree` | `content/docs/` via `getCollection` | SSR | **BROKEN** — returns empty tree |
+| `/api/search`, `/api/preview` | knowledge-server RPC | SSR | Working |
+| `/api/backlinks` | Stub | SSR | Returns `[]` (not yet supported) |
+| `/api/graph` | Stub | SSR | Returns `{ nodes: [], links: [] }` (not yet supported) |
 
 ### File Organization
 
@@ -26,33 +29,60 @@ src/
   components/
     layout/       # BaseLayout, ContentLayout, Header, Footer, Sidebar
     content/      # TypeBadge, ReleaseCard, BackLinks, TagList, ToC, etc.
-    islands/      # SearchBar, GraphView, DarkMode, DocsTreeNav (React)
+    islands/      # SearchBar, GraphView, DarkMode, DocsTreeNav, FilterPanel, PopoverPreview (React)
   pages/
     api/          # search, graph, backlinks, docs-tree, preview
-    docs/         # [slug].astro — build-time doc pages
-    lexicon/      # SSR detail pages
-    people/       # SSR detail pages
-    groups/       # SSR detail pages
-    projects/     # SSR detail pages
+    docs/         # BROKEN — uses getCollection on empty content/docs/
+    [type]/       # SSR content pages — index.astro + [id].astro
+    lexicon/      # Redirect → /tag
+    people/       # Redirect → /person
+    groups/       # Redirect → /group
+    projects/     # Redirect → /project
     tags/         # SSR tag pages
   lib/
-    types.ts      # Document, ContentType, SearchResult
-    rpc.ts        # getKnowledgeServer(), safeRPC()
-    rpc-stub.ts   # Mock RPC with sample data
-    markdown.ts   # Unified pipeline for runtime markdown
+    types.ts      # Document, R2Document, ContentType, ListParams, SearchResult
+    rpc.ts        # getKnowledgeClient(), safeCall() (aliases: getKnowledgeServer, safeRPC)
+    rpc-stub.ts   # Mock RPC with sample data (7 documents)
+    markdown.ts   # Unified pipeline for runtime markdown (remark/rehype)
   styles/
     global.css    # Tailwind v4 @theme tokens
-  content.config.ts   # Build-time collections (docs, folders)
-  live.config.ts      # Live collections (lexicon, people, groups, projects)
-  loaders/            # LiveLoader for knowledge-server
+  content.config.ts   # Legacy — defines docs/folders collections pointing to empty content/docs/
+  loaders/            # Dead code — only types.ts, imported nowhere
+  middleware.ts       # Security headers, cache control for /_astro/ assets
+content/              # Legacy Quartz files (artifacts/, notes/, tags/, links/) — NOT used by Astro site
+                      # content/docs/ is empty
 ```
+
+### RPC Client (`src/lib/rpc.ts`)
+
+```typescript
+interface KnowledgeClient {
+  getDocument(contentType: string, id: string): Promise<Document | null>
+  listEntries(params?: ListParams): Promise<ListResponse>
+  search(query: string, opts?: SearchParams): Promise<{ items: SearchResult[]; total: number }>
+  listGroups(): Promise<Array<{ id: string; title: string; description?: string }>>
+  listReleases(): Promise<Array<{ id: string; title: string; description?: string }>>
+}
+
+interface ListParams {
+  contentType?: string
+  group?: string
+  release?: string
+  limit?: number
+  offset?: number
+}
+
+interface ListResponse { data: Document[]; total: number }
+```
+
+Factory: `getKnowledgeClient()` returns a cached client. Tries service binding (`env.KNOWLEDGE_SERVER`) first, falls back to stub.
 
 ### Key Patterns
 
 - **SSR pages**: Use `export const prerender = false` + `Astro.response.status = 404` (not `return new Response(...)` — esbuild can't parse top-level returns with exports)
 - **Optional props**: Use conditional spread `{...(val != null && { prop: val })}` (strict `exactOptionalPropertyTypes` is enabled)
-- **RPC calls**: Always wrap with `safeRPC(() => server.method(), fallback)` for graceful degradation
-- **Type system**: 13 content types in a 3-tier hierarchy: note → artifact/reference → specific types
+- **RPC calls**: Always wrap with `safeCall(() => client.method(), fallback)` for graceful degradation
+- **Type system**: ~22 content types grouped into categories: resource (pattern, practice, primitive, protocol, playbook), story (study, article, guide), reference (index, link, tag), data (person, group, project, place, gathering), plus file and question
 
 ## Prerequisites
 

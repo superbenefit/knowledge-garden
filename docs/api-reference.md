@@ -4,7 +4,7 @@ All API endpoints are SSR-only (`prerender = false`) and return JSON responses. 
 
 ## GET /api/search
 
-Full-text search across all documents.
+Full-text search across all documents via the knowledge-server.
 
 **Query Parameters:**
 
@@ -34,68 +34,33 @@ Full-text search across all documents.
 
 ## GET /api/graph
 
-Returns graph data (nodes and links) for visualization.
+**Currently a stub.** Returns empty graph data. Graph visualization is not yet supported by the knowledge-server.
 
-**Query Parameters:**
-
-| Param | Type | Required | Description |
-|-------|------|----------|-------------|
-| `slug` | string | No | Center the graph on this document |
-
-**Response:** `GraphData`
-
-```json
-{
-  "nodes": [
-    { "slug": "patterns/governance-primitives", "title": "Governance Primitives", "type": "pattern", "tags": ["governance"] }
-  ],
-  "links": [
-    { "source": "patterns/governance-primitives", "target": "lexicon/dao" }
-  ]
-}
-```
+**Response:** `{ nodes: [], links: [] }`
 
 ## GET /api/backlinks
 
-Returns documents that link to the specified slug.
+**Currently a stub.** Returns empty array. Backlink data is not yet supported by the knowledge-server.
 
-**Query Parameters:**
-
-| Param | Type | Required | Description |
-|-------|------|----------|-------------|
-| `slug` | string | Yes | Document to find backlinks for |
-
-**Response:** `Array<{ slug: string, title: string }>`
-
-```json
-[
-  { "slug": "playbooks/dao-governance", "title": "DAO Governance Playbook" }
-]
-```
+**Response:** `[]`
 
 ## GET /api/docs-tree
 
-Returns the hierarchical tree structure of the docs collection. Used by the DocsTreeNav sidebar component.
+Returns the hierarchical tree structure for docs navigation. Used by the DocsTreeNav sidebar component.
+
+**Currently broken:** Uses `getCollection("docs")` from `astro:content`, which reads from the empty `content/docs/` directory. Always returns an empty tree.
 
 **Query Parameters:** None
 
 **Response:** `TreeNode[]`
 
-```json
-[
-  {
-    "slug": "getting-started",
-    "title": "getting started",
-    "isFolder": true,
-    "children": [
-      {
-        "slug": "getting-started/introduction",
-        "title": "Introduction",
-        "isFolder": false
-      }
-    ]
-  }
-]
+```typescript
+interface TreeNode {
+  slug: string
+  title: string
+  isFolder: boolean
+  children?: TreeNode[]
+}
 ```
 
 ## GET /api/preview
@@ -121,29 +86,40 @@ Returns minimal document data for link preview popovers.
 
 **Errors:** Returns `404` if the document is not found.
 
-## RPC Interface
+## RPC Client Interface
 
-The underlying `KnowledgeServerRPC` interface used by all endpoints:
+The garden accesses the knowledge-server via `KnowledgeClient` (defined in `src/lib/rpc.ts`):
 
 ```typescript
-interface KnowledgeServerRPC {
-  getDocument(slug: string): Promise<Document | null>;
-  listDocuments(options?: ListOptions): Promise<Document[]>;
-  getDocumentsByType(type: string, options?: ListOptions): Promise<Document[]>;
-  searchKnowledge(query: string, options?: SearchOptions): Promise<SearchResult[]>;
-  getLinks(slug: string): Promise<GraphData>;
+interface KnowledgeClient {
+  getDocument(contentType: string, id: string): Promise<Document | null>
+  listEntries(params?: ListParams): Promise<ListResponse>
+  search(query: string, opts?: SearchParams): Promise<{ items: SearchResult[]; total: number }>
+  listGroups(): Promise<Array<{ id: string; title: string; description?: string }>>
+  listReleases(): Promise<Array<{ id: string; title: string; description?: string }>>
 }
 
-interface ListOptions {
-  limit?: number;
-  offset?: number;
-  sort?: "title" | "created" | "modified";
-  order?: "asc" | "desc";
+interface ListParams {
+  contentType?: string   // filter by content type
+  group?: string         // filter by group
+  release?: string       // filter by release
+  limit?: number         // pagination
+  offset?: number        // pagination
 }
 
-interface SearchOptions {
-  limit?: number;
-  type?: string;
-  tags?: string[];
+interface ListResponse {
+  data: Document[]
+  total: number
+}
+
+interface SearchParams {
+  contentType?: string
+  group?: string
+  release?: string
+  limit?: number
 }
 ```
+
+Factory: `getKnowledgeClient()` returns a cached client. Falls back to `createStubClient()` if the `KNOWLEDGE_SERVER` service binding is unavailable.
+
+Helper: `safeCall(fn, fallback)` wraps async calls with error handling.
