@@ -4,28 +4,22 @@
 
 The Knowledge Garden is an Astro v6 hybrid site deployed on Cloudflare Workers. All content is served at runtime via RPC to a knowledge-server Worker using service bindings.
 
-**Known issue:** The docs section (`/docs/*`) is currently broken — it uses Astro build-time content collections pointing at an empty local directory. Fix in progress.
-
 ## Content Delivery
 
 | Route | Source | Rendering | Status |
 |-------|--------|-----------|--------|
 | `/[type]/` | knowledge-server RPC | SSR (`prerender = false`) | Working |
-| `/docs/` | `content/docs/**/*.md` via `getCollection` | Build-time (prerendered) | **BROKEN** — empty source dir |
-| `/api/docs-tree` | `content/docs/` via `getCollection` | SSR | **BROKEN** — returns empty tree |
+| `/docs/` | knowledge-server RPC (`sourcePath: "docs/"`) | SSR (`prerender = false`) | Working |
+| `/api/docs-tree` | knowledge-server RPC (`sourcePath: "docs/"`) | SSR | Working |
 | `/api/search`, `/api/preview` | knowledge-server RPC | SSR | Working |
 | `/api/backlinks` | Stub | SSR | Returns `[]` (not yet implemented) |
 | `/api/graph` | Stub | SSR | Returns `{ nodes: [], links: [] }` (not yet implemented) |
 
-### Legacy artefacts (exist but not active)
-
-- `src/content.config.ts` — defines `docs` and `folders` collections using `glob()` loader, pointing at the empty `content/docs/` directory
-- `content/` directory — contains legacy Quartz files (`artifacts/`, `notes/`, `tags/`, `links/`); these are NOT used by the Astro site. `content/docs/` is empty
-- `src/loaders/types.ts` — dead code, imported nowhere
-
 ## Rendering Strategy
 
-**SSR pages** (most of the site) opt in with `export const prerender = false` and are rendered on each request by the Cloudflare Worker. The dynamic route `src/pages/[type]/index.astro` and `src/pages/[type]/[id].astro` handle all working content types.
+**SSR pages** (most of the site) opt in with `export const prerender = false` and are rendered on each request by the Cloudflare Worker:
+- `src/pages/[type]/index.astro` and `src/pages/[type]/[id].astro` handle all content types
+- `src/pages/docs/index.astro` and `src/pages/docs/[...slug].astro` handle the docs section via `sourcePath` filter
 
 **Redirect pages** at `src/pages/lexicon/`, `people/`, `groups/`, `projects/` redirect to the corresponding `[type]/` routes (e.g. `/lexicon` → `/tag`, `/people` → `/person`).
 
@@ -56,6 +50,7 @@ interface ListParams {
   release?: string       // filter by release
   limit?: number         // pagination
   offset?: number        // pagination
+  sourcePath?: string    // filter by R2Document.path prefix, e.g. "docs/"
 }
 
 interface SearchParams {
@@ -72,7 +67,9 @@ interface SearchParams {
 - `safeCall(fn, fallback)` — wraps any async call with error handling, returns fallback on failure
 - Aliases for backward compatibility: `getKnowledgeServer` → `getKnowledgeClient`, `safeRPC` → `safeCall`
 
-In development without Worker bindings, `src/lib/rpc-stub.ts` provides a mock implementation with 7 sample documents covering pattern, playbook, tag, article, person, group, and project types.
+In development without Worker bindings, `src/lib/rpc-stub.ts` provides a mock implementation with 11 sample documents covering pattern, playbook, tag, article, person, group, project, and docs-section types.
+
+The knowledge-server's own REST API is documented in the knowledge-server repository at `src/api/README.md`. The WorkerEntrypoint RPC interface (including `getDocumentByPath`) is documented at `src/README.md` in that repo.
 
 ## Type System
 
@@ -86,6 +83,7 @@ interface Document {
   title: string
   description?: string
   body: string
+  path?: string            // source KB file path, e.g. "docs/dao-primitives/index.md"
   tags: string[]
   aliases: string[]
   created?: string
@@ -106,7 +104,7 @@ interface Document {
 
 Every document has a `type` (specific) and `category` (derived via `getCategory()`). Components like TypeBadge render differently based on category.
 
-Note: The server's `R2Document` has a `path` field (e.g. `"data/resources/patterns/governance-primitives.md"`), but `toDocument()` currently drops it — the garden `Document` interface has no `path` field.
+The server's `R2Document` has a `path` field (e.g. `"data/resources/patterns/governance-primitives.md"`). `toDocument()` preserves it as an optional `path` field on `Document`. The docs section uses this path to derive URL slugs and determine section membership.
 
 ## Middleware
 
@@ -132,7 +130,7 @@ src/
     islands/        SearchBar, GraphView, DarkMode, DocsTreeNav, FilterPanel, PopoverPreview (React)
   pages/
     api/            search, graph, backlinks, docs-tree, preview
-    docs/           BROKEN — uses getCollection on empty content/docs/
+    docs/           SSR docs pages (index.astro + [...slug].astro) via RPC sourcePath filter
     [type]/         SSR content pages (index.astro + [id].astro)
     lexicon/        Redirect → /tag
     people/         Redirect → /person
@@ -142,14 +140,11 @@ src/
   lib/
     types.ts        Document, R2Document, ContentType, ListParams, SearchResult
     rpc.ts          getKnowledgeClient(), safeCall()
-    rpc-stub.ts     Mock RPC with sample data
+    rpc-stub.ts     Mock RPC with sample data (11 documents incl. 4 docs-section)
     markdown.ts     Runtime markdown renderer
   styles/
     global.css      Tailwind v4 @theme tokens
-  content.config.ts Legacy — points to empty content/docs/
-  loaders/          Dead code — only types.ts, imported nowhere
   middleware.ts     Security headers, cache control
-content/            Legacy Quartz files — NOT used by Astro site
 tests/
   lib/              Unit tests for rpc, markdown, types
   integration/      Build output verification (requires prior build)

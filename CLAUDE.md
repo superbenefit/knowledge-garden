@@ -5,7 +5,7 @@
 SuperBenefit Knowledge Garden — an Astro v6 hybrid site deployed on Cloudflare Workers.
 
 - **SSR content**: All content types (patterns, articles, people, groups, projects, tags, etc.) served at runtime via RPC to a knowledge-server Worker (falls back to stub client in local dev)
-- **Docs section (BROKEN)**: `src/pages/docs/` uses `getCollection("docs")` from `astro:content`, reading from an empty `content/docs/` directory (Quartz leftover). Produces no output. **Fix in progress.**
+- **Docs section**: Published KB files under `docs/` served via RPC using `sourcePath` filter, rendered as SSR pages
 - **React islands**: Search, graph visualization, dark mode (client-side hydrated)
 - **Tailwind v4**: CSS with custom `@theme` tokens in `src/styles/global.css`
 
@@ -15,9 +15,9 @@ SuperBenefit Knowledge Garden — an Astro v6 hybrid site deployed on Cloudflare
 
 | Route | Source | Rendering | Status |
 |-------|--------|-----------|--------|
-| `/[type]/` | knowledge-server RPC | SSR (`prerender = false`) | **Working** |
-| `/docs/` | `content/docs/**/*.md` via `getCollection` | Build-time (prerendered) | **BROKEN** — empty source dir |
-| `/api/docs-tree` | `content/docs/` via `getCollection` | SSR | **BROKEN** — returns empty tree |
+| `/[type]/` | knowledge-server RPC | SSR (`prerender = false`) | Working |
+| `/docs/` | knowledge-server RPC (`sourcePath: "docs/"`) | SSR (`prerender = false`) | Working |
+| `/api/docs-tree` | knowledge-server RPC (`sourcePath: "docs/"`) | SSR | Working |
 | `/api/search`, `/api/preview` | knowledge-server RPC | SSR | Working |
 | `/api/backlinks` | Stub | SSR | Returns `[]` (not yet supported) |
 | `/api/graph` | Stub | SSR | Returns `{ nodes: [], links: [] }` (not yet supported) |
@@ -32,7 +32,7 @@ src/
     islands/      # SearchBar, GraphView, DarkMode, DocsTreeNav, FilterPanel, PopoverPreview (React)
   pages/
     api/          # search, graph, backlinks, docs-tree, preview
-    docs/         # BROKEN — uses getCollection on empty content/docs/
+    docs/         # SSR docs pages — index.astro + [...slug].astro (via RPC sourcePath filter)
     [type]/       # SSR content pages — index.astro + [id].astro
     lexicon/      # Redirect → /tag
     people/       # Redirect → /person
@@ -42,15 +42,11 @@ src/
   lib/
     types.ts      # Document, R2Document, ContentType, ListParams, SearchResult
     rpc.ts        # getKnowledgeClient(), safeCall() (aliases: getKnowledgeServer, safeRPC)
-    rpc-stub.ts   # Mock RPC with sample data (7 documents)
+    rpc-stub.ts   # Mock RPC with sample data (11 documents incl. 4 docs-section)
     markdown.ts   # Unified pipeline for runtime markdown (remark/rehype)
   styles/
     global.css    # Tailwind v4 @theme tokens
-  content.config.ts   # Legacy — defines docs/folders collections pointing to empty content/docs/
-  loaders/            # Dead code — only types.ts, imported nowhere
-  middleware.ts       # Security headers, cache control for /_astro/ assets
-content/              # Legacy Quartz files (artifacts/, notes/, tags/, links/) — NOT used by Astro site
-                      # content/docs/ is empty
+  middleware.ts   # Security headers, cache control for /_astro/ assets
 ```
 
 ### RPC Client (`src/lib/rpc.ts`)
@@ -70,6 +66,7 @@ interface ListParams {
   release?: string
   limit?: number
   offset?: number
+  sourcePath?: string   // filter by R2Document.path prefix, e.g. "docs/"
 }
 
 interface ListResponse { data: Document[]; total: number }
@@ -82,6 +79,7 @@ Factory: `getKnowledgeClient()` returns a cached client. Tries service binding (
 - **SSR pages**: Use `export const prerender = false` + `Astro.response.status = 404` (not `return new Response(...)` — esbuild can't parse top-level returns with exports)
 - **Optional props**: Use conditional spread `{...(val != null && { prop: val })}` (strict `exactOptionalPropertyTypes` is enabled)
 - **RPC calls**: Always wrap with `safeCall(() => client.method(), fallback)` for graceful degradation
+- **Docs pages**: Use `sourcePath: "docs/"` filter, derive URL slug from `d.path` by stripping prefix/suffix
 - **Type system**: ~22 content types grouped into categories: resource (pattern, practice, primitive, protocol, playbook), story (study, article, guide), reference (index, link, tag), data (person, group, project, place, gathering), plus file and question
 
 ## Prerequisites

@@ -12,7 +12,6 @@ Full-text search across all documents via the knowledge-server.
 |-------|------|----------|---------|-------------|
 | `q` | string | Yes (min 2 chars) | — | Search query |
 | `type` | string | No | — | Filter by content type |
-| `tags` | string | No | — | Comma-separated tag filter |
 | `limit` | number | No | 20 | Max results |
 
 **Response:** `SearchResult[]`
@@ -46,9 +45,7 @@ Full-text search across all documents via the knowledge-server.
 
 ## GET /api/docs-tree
 
-Returns the hierarchical tree structure for docs navigation. Used by the DocsTreeNav sidebar component.
-
-**Currently broken:** Uses `getCollection("docs")` from `astro:content`, which reads from the empty `content/docs/` directory. Always returns an empty tree.
+Returns the hierarchical tree structure for docs navigation. Used by the DocsTreeNav sidebar component. Fetches documents via RPC using `sourcePath: "docs/"` filter, then builds a tree from file paths.
 
 **Query Parameters:** None
 
@@ -105,6 +102,7 @@ interface ListParams {
   release?: string       // filter by release
   limit?: number         // pagination
   offset?: number        // pagination
+  sourcePath?: string    // filter by R2Document.path prefix, e.g. "docs/"
 }
 
 interface ListResponse {
@@ -123,3 +121,7 @@ interface SearchParams {
 Factory: `getKnowledgeClient()` returns a cached client. Falls back to `createStubClient()` if the `KNOWLEDGE_SERVER` service binding is unavailable.
 
 Helper: `safeCall(fn, fallback)` wraps async calls with error handling.
+
+> **Server-side documentation:** The knowledge-server's REST API (including the
+> `sourcePath` query parameter) is documented in the knowledge-server repository at
+> `src/api/README.md`. The WorkerEntrypoint RPC interface is documented at `src/README.md`.

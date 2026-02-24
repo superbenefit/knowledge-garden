@@ -2,22 +2,7 @@
 
 ## Overview
 
-Content is authored in [Obsidian](https://obsidian.md/) and stored as markdown files in the `content/` directory. The site supports Obsidian-specific markdown features including wiki-links, callouts, and frontmatter metadata.
-
-## Content Directory
-
-```
-content/
-  docs/           Build-time docs (processed by Astro at build)
-  artifacts/      Knowledge artifacts (served by knowledge-server)
-  notes/          Working notes
-  tags/           Tag index files
-  links/          External link references
-  attachments/    Images and files
-  index.md        Root folder metadata
-```
-
-Only `content/docs/**/*.md` and `content/*/index.md` are processed at build time. All other content is served at runtime by the knowledge-server Worker.
+Content is authored in [Obsidian](https://obsidian.md/) in the knowledge-base repository and synced to R2 via the knowledge-server Worker. The garden fetches all content at runtime via RPC service bindings. The site supports Obsidian-specific markdown features including wiki-links, callouts, and frontmatter metadata.
 
 ## Frontmatter
 
@@ -64,15 +49,17 @@ None — all fields are optional. Documents without a `title` will use the filen
 
 ## Content Types
 
-Types follow a 3-tier hierarchy:
+~22 content types grouped into categories:
 
 | Category | Types | Description |
 |----------|-------|-------------|
-| **artifact** | pattern, playbook, article, study, guide, protocol | Validated, published knowledge |
-| **reference** | link, tag, index | Organizational/structural content |
-| **note** | note | Working notes, drafts |
+| **resource** | pattern, practice, primitive, protocol, playbook | Validated, published knowledge |
+| **story** | study, article, guide | Narrative content |
+| **reference** | index, link, tag | Organizational/structural content |
+| **data** | person, group, project, place, gathering | Entity data |
+| **other** | file, question | Miscellaneous |
 
-Artifacts and references get a TypeBadge displayed on their page. Notes show no badge.
+All types get a TypeBadge displayed on their page, colored by category.
 
 ## Supported Markdown Features
 

@@ -38,11 +38,9 @@ Astro's dev server provides HMR for:
 - `.astro` components — instant refresh
 - `.tsx` React islands — fast refresh
 - `.css` styles — injected without page reload
-- `content/docs/**/*.md` — rebuilds on save
-
 ### Adding Sample Data
 
-Edit `src/lib/rpc-stub.ts` to add more mock documents for local development. The stub implements the full `KnowledgeServerRPC` interface.
+Edit `src/lib/rpc-stub.ts` to add more mock documents for local development. The stub implements the full `KnowledgeClient` interface.
 
 ## Testing
 
@@ -83,10 +81,10 @@ All SSR pages follow this pattern:
 export const prerender = false;
 
 import ContentLayout from "@/components/layout/ContentLayout.astro";
-import { getKnowledgeServer, safeRPC } from "@/lib/rpc";
+import { getKnowledgeClient, safeCall } from "@/lib/rpc";
 
-const rpc = getKnowledgeServer();
-const entry = await safeRPC(() => rpc.getDocument(slug), null);
+const client = getKnowledgeClient();
+const entry = await safeCall(() => client.getDocument(type, id), null);
 
 if (!entry) {
   Astro.response.status = 404;
@@ -130,7 +128,7 @@ interface Props {
 The `@/` alias maps to `src/`:
 
 ```typescript
-import { getKnowledgeServer } from "@/lib/rpc";
+import { getKnowledgeClient } from "@/lib/rpc";
 import ContentLayout from "@/components/layout/ContentLayout.astro";
 ```
 
