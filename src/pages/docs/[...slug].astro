@@ -2,96 +2,209 @@
 export const prerender = false;
 
 import ContentLayout from "@/components/layout/ContentLayout.astro";
+import Breadcrumbs from "@/components/content/Breadcrumbs.astro";
+import BannerImage from "@/components/content/BannerImage.astro";
 import TypeBadge from "@/components/content/TypeBadge.astro";
 import TagList from "@/components/content/TagList.astro";
+import ContentMeta from "@/components/content/ContentMeta.astro";
+import ContentRenderer from "@/components/content/ContentRenderer.astro";
+import TableOfContents from "@/components/content/TableOfContents.astro";
 import { getKnowledgeClient, safeCall } from "@/lib/rpc";
-import { renderMarkdown } from "@/lib/markdown";
+import { renderMarkdown, extractHeadings } from "@/lib/markdown";
 
 const { slug } = Astro.params;
 const kbPath = `docs/${slug}.md`;
 
 const client = getKnowledgeClient();
-
-// Use list+find (getDocumentByPath is server-side RPC only, not exposed on KnowledgeClient)
 const result = await safeCall(
-  () => client.listEntries({ sourcePath: "docs/" }),
+  () => client.listEntries({ sourcePath: "docs/", limit: 100 }),
   { data: [], total: 0 },
 );
-const entry = result.data.find((d) => d.path === kbPath) ?? null;
 
+// Try exact match
+let entry = result.data.find((d) => d.path === kbPath) ?? null;
+
+// Try as folder index (docs/slug/index.md)
 if (!entry) {
+  entry = result.data.find((d) => d.path === `docs/${slug}/index.md`) ?? null;
+}
+
+// Check if this is a folder with children (exclude index.md itself)
+const childPrefix = `docs/${slug}/`;
+const children = result.data
+  .filter((d) => d.path?.startsWith(childPrefix) && d.path !== `docs/${slug}/index.md`)
+  .map((d) => ({
+    ...d,
+    childSlug: d.path!.replace(/^docs\//, "").replace(/\.md$/, ""),
+  }))
+  .sort((a, b) => a.title.localeCompare(b.title));
+
+const hasChildren = children.length > 0;
+const isFolderOnly = !entry && hasChildren;
+
+if (!entry && !isFolderOnly) {
   Astro.response.status = 404;
 }
 
 const html = entry ? await renderMarkdown(entry.body) : "";
-
-// Build breadcrumbs from slug segments
-const slugParts = (slug ?? "").split("/");
-const breadcrumbs = slugParts.map((part, i) => ({
-  label: part.replace(/-/g, " "),
-  href: i < slugParts.length - 1
-    ? `/docs/${slugParts.slice(0, i + 1).join("/")}`
-    : "",
-}));
+const headings = html ? extractHeadings(html) : [];
 
 const pageTitle = entry
   ? `${entry.title} | SuperBenefit Docs`
-  : "Not Found | SuperBenefit Docs";
+  : isFolderOnly
+    ? `${(slug ?? "").split("/").pop()?.replace(/-/g, " ")} | SuperBenefit Docs`
+    : "Not Found | SuperBenefit Docs";
+
+function titleCase(s: string): string {
+  return s.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+}
 ---
 
-<ContentLayout title={pageTitle} description={entry?.description}>
-  {!entry ? (
+<ContentLayout
+  title={pageTitle}
+  description={entry?.description}
+  mobileDrawer={true}
+>
+  <button id="mobile-sidebar-trigger" class="mobile-sidebar-trigger" slot="before-content">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    Navigation
+  </button>
+
+  {headings.length > 0 && (
+    <TableOfContents headings={headings} slot="sidebar-right" />
+  )}
+
+  {!entry && !isFolderOnly ? (
     <div>
-      <h1 class="text-2xl font-bold">Document not found</h1>
+      <h1>Document not found</h1>
       <p>The document you're looking for doesn't exist.</p>
-      <a href="/docs" class="underline" style="color: var(--color-secondary)">
+      <a href="/docs" style="color: var(--color-secondary); text-decoration: underline;">
         Back to Docs
       </a>
     </div>
   ) : (
     <div>
-      <nav class="text-sm mb-6" style="color: var(--color-gray)">
-        <a href="/" class="hover:underline">Home</a>
-        <span class="mx-1">/</span>
-        <a href="/docs" class="hover:underline">Docs</a>
-        {breadcrumbs.map((crumb) => (
+      <Breadcrumbs url={Astro.url.pathname} />
+
+      {entry?.banner && (
+        <BannerImage banner={entry.banner} title={entry.title} />
+      )}
+
+      <article style="margin-top: 1rem;">
+        {entry ? (
           <>
-            <span class="mx-1">/</span>
-            {crumb.href ? (
-              <a href={crumb.href} class="hover:underline">{crumb.label}</a>
-            ) : (
-              <span style="color: var(--color-dark)">{crumb.label}</span>
+            <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.25rem;">
+              <h1 style="margin: 0;">{entry.title}</h1>
+              <TypeBadge type={entry.type} category={entry.category} />
+            </div>
+
+            <ContentMeta document={entry} />
+
+            {entry.description && (
+              <p style="font-size: 1.125rem; color: var(--color-darkgray); margin: 0 0 1.5rem 0;">
+                {entry.description}
+              </p>
             )}
+
+            {entry.tags.length > 0 && (
+              <div style="margin-bottom: 1.5rem;">
+                <TagList tags={entry.tags} />
+              </div>
+            )}
+
+            <ContentRenderer content={entry.body} />
           </>
-        ))}
-      </nav>
-
-      <article>
-        <div class="flex items-center gap-3 mb-2">
-          <h1 class="text-3xl font-bold" style="font-family: var(--font-header)">
-            {entry.title}
+        ) : (
+          <h1 style="margin: 0 0 0.5rem 0;">
+            {titleCase((slug ?? "").split("/").pop() ?? "")}
           </h1>
-          <TypeBadge type={entry.type} category={entry.category} />
-        </div>
-
-        {entry.description && (
-          <p class="text-lg mb-6" style="color: var(--color-darkgray)">
-            {entry.description}
-          </p>
         )}
-
-        {entry.tags.length > 0 && (
-          <div class="mb-6">
-            <TagList tags={entry.tags} />
-          </div>
-        )}
-
-        <div class="prose max-w-none" set:html={html} />
       </article>
 
-      <footer class="mt-16 pt-4 text-sm" style="color: var(--color-gray); border-top: 1px solid var(--color-lightgray)">
-        <a href="/docs" class="hover:underline">&larr; Back to Docs</a>
+      {hasChildren && (
+        <section class="docs-children-section">
+          <h2 class="docs-children-heading">In this section</h2>
+          <div class="docs-children-list">
+            {children.map((doc) => (
+              <a href={`/docs/${doc.childSlug}`} class="docs-child-card">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                <div>
+                  <span class="docs-child-title">{doc.title}</span>
+                  {doc.description && (
+                    <span class="docs-child-desc">{doc.description}</span>
+                  )}
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <footer style="margin-top: 3rem; padding-top: 1rem; font-size: 0.875rem; color: var(--color-gray); border-top: 1px solid var(--color-lightgray);">
+        <a href="/docs" style="color: var(--color-gray);">&larr; Back to Docs</a>
       </footer>
     </div>
   )}
 </ContentLayout>
+
+<style>
+  .docs-children-section {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-lightgray);
+  }
+
+  .docs-children-heading {
+    font-size: 1.1rem;
+    margin: 0 0 1rem 0;
+    color: var(--color-darkgray);
+    font-weight: 600;
+  }
+
+  .docs-children-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .docs-child-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
+    padding: 0.625rem 0.75rem;
+    border-radius: 0.375rem;
+    border: 1px solid var(--color-lightgray);
+    text-decoration: none;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+  }
+
+  .docs-child-card:hover {
+    border-color: var(--color-secondary);
+    background-color: var(--color-highlight);
+  }
+
+  .docs-child-card svg {
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+    color: var(--color-gray);
+  }
+
+  .docs-child-card > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+  }
+
+  .docs-child-title {
+    font-family: var(--font-header);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--color-secondary);
+  }
+
+  .docs-child-desc {
+    font-size: 0.8rem;
+    color: var(--color-darkgray);
+    line-height: 1.4;
+  }
+</style>

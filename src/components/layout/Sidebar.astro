@@ -2,11 +2,13 @@
 interface Props {
   side: "left" | "right";
   class?: string;
+  mobileDrawer?: boolean;
 }
 
-const { side, class: className } = Astro.props;
+const { side, class: className, mobileDrawer = false } = Astro.props;
 ---
 
+<!-- Desktop sidebar -->
 <aside
   class:list={[
     "sidebar",
@@ -18,3 +20,52 @@ const { side, class: className } = Astro.props;
     <slot />
   </div>
 </aside>
+
+<!-- Mobile drawer (left sidebar only) -->
+{mobileDrawer && side === "left" && (
+  <div id="mobile-sidebar-overlay" class="mobile-sidebar-overlay">
+    <div id="mobile-sidebar-panel" class="mobile-sidebar-panel">
+      <button id="mobile-sidebar-close" class="mobile-sidebar-close" aria-label="Close sidebar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+      <div class="sidebar-inner" style="padding-top: 2.5rem;">
+        <slot />
+      </div>
+    </div>
+  </div>
+)}
+
+{mobileDrawer && side === "left" && (
+  <script>
+    function initMobileDrawer() {
+      const overlay = document.getElementById("mobile-sidebar-overlay");
+      const closeBtn = document.getElementById("mobile-sidebar-close");
+      const trigger = document.getElementById("mobile-sidebar-trigger");
+
+      function close() {
+        overlay?.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+
+      function open() {
+        overlay?.classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+
+      trigger?.addEventListener("click", open);
+      closeBtn?.addEventListener("click", close);
+      overlay?.addEventListener("click", (e) => {
+        if (e.target === overlay) close();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && overlay?.classList.contains("open")) close();
+      });
+    }
+
+    initMobileDrawer();
+    document.addEventListener("astro:after-swap", initMobileDrawer);
+  </script>
+)}

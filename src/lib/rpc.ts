@@ -45,16 +45,14 @@ let _cached: KnowledgeClient | undefined;
 export function getKnowledgeClient(): KnowledgeClient {
   if (_cached) return _cached;
 
-  // Try service binding first (works in production AND wrangler dev)
+  // Try service binding first (works in production AND astro dev with remote: true)
   try {
-    const client = createServiceBindingClient();
-    _cached = client;
-    return _cached;
+    _cached = createServiceBindingClient();
   } catch {
     // Service binding not available — fall back to stub for offline dev
     _cached = createStubClient();
-    return _cached;
   }
+  return _cached;
 }
 
 /** Safe wrapper — catches errors and returns a fallback value */
@@ -65,7 +63,7 @@ export async function safeCall<T>(
   try {
     return await fn();
   } catch (err) {
-    console.error("[KnowledgeClient Error]", err);
+    console.error("[KnowledgeClient Error]", err instanceof Error ? err.message : String(err));
     return fallback;
   }
 }
@@ -88,18 +86,18 @@ function createServiceBindingClient(): KnowledgeClient {
     try {
       const mod = await import("cloudflare:workers");
       const modEnv = (mod as any).env;
-      console.log("[RPC] cloudflare:workers import succeeded, env keys:", modEnv ? Object.keys(modEnv) : "null");
+      // cloudflare:workers import succeeded
       if (modEnv?.KNOWLEDGE_SERVER) {
         _env = modEnv;
         return _env;
       }
     } catch (err) {
-      console.log("[RPC] cloudflare:workers import failed:", String(err));
+      // cloudflare:workers not available
     }
 
     // Fallback: some adapter versions expose env on globalThis
     const g = (globalThis as any).__cloudflare_env__;
-    console.log("[RPC] globalThis.__cloudflare_env__ keys:", g ? Object.keys(g) : "null");
+    // Fallback check
     if (g?.KNOWLEDGE_SERVER) {
       _env = g;
       return _env;
@@ -132,6 +130,12 @@ function createServiceBindingClient(): KnowledgeClient {
       const res = await env.KNOWLEDGE_SERVER.fetch(
         new Request(`https://fake-host/api/v1/entries?${qs}`),
       );
+      if (!res.ok) {
+        const body = await res.text();
+        throw new Error(
+          `Service binding returned ${res.status}: ${body.slice(0, 200)}`,
+        );
+      }
       const json = (await res.json()) as {
         data: R2Document[];
         total: number;

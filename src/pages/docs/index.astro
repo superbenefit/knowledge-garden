@@ -2,91 +2,206 @@
 export const prerender = false;
 
 import ContentLayout from "@/components/layout/ContentLayout.astro";
+import Breadcrumbs from "@/components/content/Breadcrumbs.astro";
+import ContentRenderer from "@/components/content/ContentRenderer.astro";
 import { getKnowledgeClient, safeCall } from "@/lib/rpc";
+import { buildTree, type TreeNode } from "@/lib/docs-tree";
 
 const client = getKnowledgeClient();
 const result = await safeCall(
-  () => client.listEntries({ sourcePath: "docs/" }),
+  () => client.listEntries({ sourcePath: "docs/", limit: 100 }),
   { data: [], total: 0 },
 );
 
-// Derive URL slug from path: strip "docs/" prefix and ".md" suffix
-const docs = result.data
+// Look for a root index.md to render as page content
+const indexEntry = result.data.find((d) => d.path === "docs/index.md") ?? null;
+
+const adapted = result.data
   .filter((d) => d.path)
   .map((d) => ({
-    ...d,
-    slug: d.path!.replace(/^docs\//, "").replace(/\.md$/, ""),
+    id: d.path!.replace(/^docs\//, "").replace(/\.md$/, ""),
+    data: {
+      title: d.title,
+      description: d.description,
+    } as Record<string, unknown>,
   }));
 
-// Group by first path segment
-const groups = new Map<string, typeof docs>();
-for (const doc of docs) {
-  const segment = doc.slug.split("/")[0] ?? "other";
-  if (!groups.has(segment)) groups.set(segment, []);
-  groups.get(segment)!.push(doc);
-}
+const tree = buildTree(adapted);
 
-// Sort each group alphabetically by title
-for (const group of groups.values()) {
-  group.sort((a, b) => a.title.localeCompare(b.title));
-}
-
-const sortedGroups = [...groups.entries()].sort(([a], [b]) => a.localeCompare(b));
-
-function titleCase(s: string): string {
-  return s.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+function sortNodes(nodes: TreeNode[]): TreeNode[] {
+  return [...nodes].sort((a, b) => {
+    if (a.isFolder && !b.isFolder) return -1;
+    if (!a.isFolder && b.isFolder) return 1;
+    return a.title.localeCompare(b.title);
+  });
 }
 ---
 
-<ContentLayout title="Docs | SuperBenefit Knowledge Garden" description="Documentation for the SuperBenefit ecosystem.">
-  <nav class="text-sm mb-6" style="color: var(--color-gray)">
-    <a href="/" class="hover:underline">Home</a>
-    <span class="mx-1">/</span>
-    <span style="color: var(--color-dark)">Docs</span>
-  </nav>
+<ContentLayout
+  title="Docs | SuperBenefit Knowledge Garden"
+  description="Documentation for the SuperBenefit ecosystem."
+  mobileDrawer={true}
+  showRightSidebar={false}
+>
+  <button id="mobile-sidebar-trigger" class="mobile-sidebar-trigger">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    Navigation
+  </button>
 
-  <h1 class="text-3xl font-bold mb-2" style="font-family: var(--font-header)">
-    Docs
-  </h1>
-  <p class="text-lg mb-8" style="color: var(--color-darkgray)">
-    {result.total} {result.total === 1 ? "document" : "documents"} in the knowledge garden.
-  </p>
+  <Breadcrumbs url={Astro.url.pathname} />
 
-  {docs.length > 0 ? (
-    sortedGroups.map(([segment, items]) => (
-      <section class="mb-8">
-        <h2 class="text-xl font-semibold mb-3" style="font-family: var(--font-header)">
-          {titleCase(segment)}
-        </h2>
-        <ul class="space-y-4">
-          {items.map((doc) => (
-            <li class="border-b pb-3" style="border-color: var(--color-lightgray)">
-              <a href={`/docs/${doc.slug}`} class="font-semibold text-lg">
-                {doc.title}
-              </a>
-              {doc.description && (
-                <p class="text-sm mt-1" style="color: var(--color-darkgray)">
-                  {doc.description}
-                </p>
-              )}
-              {doc.tags.length > 0 && (
-                <div class="flex flex-wrap gap-1 mt-2">
-                  {doc.tags.map((tag) => (
-                    <span
-                      class="text-xs px-2 py-0.5 rounded"
-                      style="background: var(--color-highlight); color: var(--color-secondary)"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              )}
-            </li>
-          ))}
-        </ul>
-      </section>
-    ))
+  <h1 class="docs-index-title">{indexEntry?.title ?? "Docs"}</h1>
+  {indexEntry?.description && (
+    <p class="docs-index-subtitle">{indexEntry.description}</p>
+  )}
+
+  {indexEntry && (
+    <div class="docs-index-content">
+      <ContentRenderer content={indexEntry.body} />
+    </div>
+  )}
+
+  {tree.length > 0 ? (
+    <div class="docs-index-tree">
+      {sortNodes(tree).map((node) => (
+        node.isFolder ? (
+          <details class="docs-index-folder" open>
+            <summary class="docs-index-folder-title">
+              <svg class="docs-index-folder-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+              {node.title}
+              <span class="docs-index-folder-count">
+                {node.children?.length ?? 0}
+              </span>
+            </summary>
+            <div class="docs-index-folder-children">
+              {sortNodes(node.children ?? []).map((child) => (
+                child.isFolder ? (
+                  <a href={`/docs/${child.slug}`} class="docs-index-item docs-index-item-folder">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+                    <span class="docs-index-item-title">{child.title}</span>
+                  </a>
+                ) : (
+                  <a href={`/docs/${child.slug}`} class="docs-index-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    <span class="docs-index-item-title">{child.title}</span>
+                  </a>
+                )
+              ))}
+            </div>
+          </details>
+        ) : (
+          <a href={`/docs/${node.slug}`} class="docs-index-item docs-index-root-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span class="docs-index-item-title">{node.title}</span>
+          </a>
+        )
+      ))}
+    </div>
   ) : (
     <p style="color: var(--color-gray)">No documents found.</p>
   )}
 </ContentLayout>
+
+<style>
+  .docs-index-title {
+    margin: 1rem 0 0.25rem 0;
+  }
+
+  .docs-index-subtitle {
+    color: var(--color-darkgray);
+    margin: 0 0 1.5rem 0;
+    font-size: 1.1rem;
+  }
+
+  .docs-index-content {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-lightgray);
+  }
+
+  .docs-index-tree {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .docs-index-folder {
+    border: 1px solid var(--color-lightgray);
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+
+  .docs-index-folder-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    font-family: var(--font-header);
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--color-dark);
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    -webkit-user-select: none;
+    transition: background-color 0.1s ease;
+  }
+
+  .docs-index-folder-title::-webkit-details-marker { display: none; }
+  .docs-index-folder-title::marker { display: none; content: ""; }
+
+  .docs-index-folder-title:hover {
+    background-color: var(--color-highlight);
+  }
+
+  .docs-index-folder-icon {
+    flex-shrink: 0;
+    color: var(--color-secondary);
+  }
+
+  .docs-index-folder-count {
+    margin-left: auto;
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--color-gray);
+    background: var(--color-highlight);
+    padding: 0.1rem 0.5rem;
+    border-radius: 9999px;
+  }
+
+  .docs-index-folder-children {
+    border-top: 1px solid var(--color-lightgray);
+    padding: 0.25rem 0;
+  }
+
+  .docs-index-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem 0.5rem 2.25rem;
+    color: var(--color-darkgray);
+    text-decoration: none;
+    transition: background-color 0.1s ease, color 0.1s ease;
+  }
+
+  .docs-index-item:hover {
+    background-color: var(--color-highlight);
+    color: var(--color-dark);
+  }
+
+  .docs-index-item-folder {
+    font-weight: 600;
+    color: var(--color-dark);
+  }
+
+  .docs-index-item-title {
+    font-size: 0.9rem;
+  }
+
+  .docs-index-root-item {
+    padding-left: 1rem;
+    border: 1px solid var(--color-lightgray);
+    border-radius: 0.5rem;
+    padding: 0.625rem 1rem;
+  }
+</style>

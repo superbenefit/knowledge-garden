@@ -10,7 +10,7 @@ const segments = url.replace(/^\/|\/$/g, "").split("/").filter(Boolean);
 
 // Build breadcrumb items with cumulative paths
 const crumbs = segments.map((segment, i) => ({
-  label: segment.replace(/-/g, " "),
+  label: decodeURIComponent(segment).replace(/-/g, " "),
   href: "/" + segments.slice(0, i + 1).join("/"),
 }));
 ---

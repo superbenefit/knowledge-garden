@@ -1,5 +1,6 @@
 ---
 import "@/styles/global.css";
+import SEOHead from "@/components/content/SEOHead.astro";
 
 interface Props {
   title: string;
@@ -13,8 +14,16 @@ const { title, description } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script is:inline>
+      (function() {
+        var s = localStorage.getItem("theme");
+        if (s === "dark" || (!s && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
     <title>{title}</title>
-    {description && <meta name="description" content={description} />}
+    <SEOHead title={title} {...(description != null && { description })} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body>

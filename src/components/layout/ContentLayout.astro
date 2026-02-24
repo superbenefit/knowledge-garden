@@ -3,12 +3,15 @@ import BaseLayout from "./BaseLayout.astro";
 import Header from "./Header.astro";
 import Footer from "./Footer.astro";
 import Sidebar from "./Sidebar.astro";
+import SidebarNav from "./SidebarNav.astro";
 
 interface Props {
   title: string;
   description?: string | undefined;
   showLeftSidebar?: boolean | undefined;
   showRightSidebar?: boolean | undefined;
+  mobileDrawer?: boolean | undefined;
+  currentPath?: string | undefined;
 }
 
 const {
@@ -16,6 +19,8 @@ const {
   description,
   showLeftSidebar = true,
   showRightSidebar = true,
+  mobileDrawer = false,
+  currentPath = Astro.url.pathname,
 } = Astro.props;
 ---
 
@@ -23,7 +28,8 @@ const {
   <Header slot="header" />
 
   {showLeftSidebar && (
-    <Sidebar side="left" slot="sidebar-left">
+    <Sidebar side="left" slot="sidebar-left" mobileDrawer={mobileDrawer}>
+      <SidebarNav currentPath={currentPath} />
       <slot name="sidebar-left" />
     </Sidebar>
   )}

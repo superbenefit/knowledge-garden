@@ -1,85 +1,133 @@
 ---
 import ContentLayout from "@/components/layout/ContentLayout.astro";
+
 import { getKnowledgeClient, safeCall } from "@/lib/rpc";
 
 const client = getKnowledgeClient();
 const result = await safeCall(
-  () => client.listEntries({ limit: 5 }),
+  () => client.listEntries({ limit: 8 }),
   { data: [], total: 0 },
 );
 const docs = result.data;
+
+const browseItems = [
+  { title: "Docs", href: "/docs", desc: "Published documentation" },
+  { title: "Lexicon", href: "/tag", desc: "Concepts & definitions" },
+  { title: "Links", href: "/link", desc: "Curated link library" },
+  { title: "Patterns", href: "/pattern", desc: "Design patterns" },
+  { title: "People", href: "/person", desc: "Contributors" },
+  { title: "Groups", href: "/group", desc: "Working groups" },
+  { title: "Projects", href: "/project", desc: "Active projects" },
+];
 ---
 
-<ContentLayout title="SuperBenefit | Knowledge Garden" description="A shared knowledge base for the SuperBenefit ecosystem.">
-  <h1 class="text-4xl font-bold mb-2" style="font-family: var(--font-header)">
-    SuperBenefit Knowledge Garden
-  </h1>
-  <p class="text-lg mb-8" style="color: var(--color-darkgray)">
-    A shared knowledge base for the SuperBenefit ecosystem.
-  </p>
+<ContentLayout
+  title="SuperBenefit | Knowledge Garden"
+  description="A shared knowledge base for the SuperBenefit ecosystem."
+  showRightSidebar={false}
+  mobileDrawer={true}
+>
+  <div class="home-hero">
+    <h1>Knowledge Garden</h1>
+    <p class="home-tagline">A shared knowledge base for the SuperBenefit ecosystem.</p>
+    <a href="/search" class="home-search-link">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8" />
+        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+      </svg>
+      Search the knowledge garden&hellip;
+    </a>
+  </div>
 
-  <nav class="mb-12">
-    <h2 class="text-xl font-semibold mb-3" style="font-family: var(--font-header)">
-      Browse
-    </h2>
-    <ul class="flex flex-wrap gap-3">
-      <li>
-        <a href="/docs" class="inline-block px-4 py-2 rounded text-sm font-semibold" style="background: var(--color-highlight); color: var(--color-secondary)">
-          Docs
+  <section class="home-section">
+    <h2>Browse</h2>
+    <div class="browse-grid">
+      {browseItems.map((item) => (
+        <a href={item.href} class="browse-card">
+          <span class="browse-card-title">{item.title}</span>
+          <span class="browse-card-desc">{item.desc}</span>
         </a>
-      </li>
-      <li>
-        <a href="/tag" class="inline-block px-4 py-2 rounded text-sm font-semibold" style="background: var(--color-highlight); color: var(--color-secondary)">
-          Lexicon
-        </a>
-      </li>
-      <li>
-        <a href="/person" class="inline-block px-4 py-2 rounded text-sm font-semibold" style="background: var(--color-highlight); color: var(--color-secondary)">
-          People
-        </a>
-      </li>
-      <li>
-        <a href="/group" class="inline-block px-4 py-2 rounded text-sm font-semibold" style="background: var(--color-highlight); color: var(--color-secondary)">
-          Groups
-        </a>
-      </li>
-      <li>
-        <a href="/project" class="inline-block px-4 py-2 rounded text-sm font-semibold" style="background: var(--color-highlight); color: var(--color-secondary)">
-          Projects
-        </a>
-      </li>
-      <li>
-        <a href="/pattern" class="inline-block px-4 py-2 rounded text-sm font-semibold" style="background: var(--color-highlight); color: var(--color-secondary)">
-          Patterns
-        </a>
-      </li>
-    </ul>
-  </nav>
+      ))}
+    </div>
+  </section>
 
-  <section>
-    <h2 class="text-2xl font-semibold mb-4" style="font-family: var(--font-header)">
-      Recent Documents
-    </h2>
+  <section class="home-section">
+    <h2>Recent</h2>
     {docs.length > 0 ? (
-      <ul class="space-y-3">
+      <div>
         {docs.map((doc) => (
-          <li class="border-b pb-2" style="border-color: var(--color-lightgray)">
-            <a href={`/${doc.type}/${doc.id}`} class="font-semibold">
+          <div class="doc-list-item">
+            <a href={`/${doc.type}/${doc.id}`} class="doc-list-item-title">
               {doc.title}
             </a>
-            <span class="text-xs ml-2 px-1.5 py-0.5 rounded" style="background: var(--color-highlight); color: var(--color-secondary)">
-              {doc.type}
-            </span>
+            <span class="doc-list-item-type">{doc.type}</span>
             {doc.description && (
-              <p class="text-sm mt-1" style="color: var(--color-darkgray)">
-                {doc.description}
-              </p>
+              <p class="doc-list-item-desc">{doc.description}</p>
             )}
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     ) : (
       <p style="color: var(--color-gray)">No documents available.</p>
     )}
   </section>
 </ContentLayout>
+
+<style>
+  .home-hero {
+    margin-bottom: 2.5rem;
+  }
+
+  .home-hero h1 {
+    font-size: 2.25rem;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .home-tagline {
+    font-size: 1.125rem;
+    color: var(--color-darkgray);
+    margin: 0 0 1.5rem 0;
+  }
+
+  .home-search-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    max-width: 480px;
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--color-lightgray);
+    border-radius: 0.5rem;
+    color: var(--color-gray);
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+
+  .home-search-link:hover {
+    border-color: var(--color-secondary);
+    color: var(--color-darkgray);
+  }
+
+  .home-section {
+    margin-bottom: 2.5rem;
+  }
+
+  .home-section h2 {
+    margin: 0 0 1rem 0;
+    font-size: 1.25rem;
+  }
+
+  .doc-list-item-type {
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.1rem 0.35rem;
+    border-radius: 0.2rem;
+    background-color: var(--color-highlight);
+    color: var(--color-secondary);
+    font-family: var(--font-header);
+    margin-left: 0.5rem;
+    vertical-align: middle;
+  }
+</style>

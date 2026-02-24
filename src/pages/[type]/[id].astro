@@ -2,11 +2,16 @@
 export const prerender = false;
 
 import ContentLayout from "@/components/layout/ContentLayout.astro";
+import Breadcrumbs from "@/components/content/Breadcrumbs.astro";
+import BannerImage from "@/components/content/BannerImage.astro";
 import TypeBadge from "@/components/content/TypeBadge.astro";
 import TagList from "@/components/content/TagList.astro";
+import ContentMeta from "@/components/content/ContentMeta.astro";
+import ContentRenderer from "@/components/content/ContentRenderer.astro";
+import TableOfContents from "@/components/content/TableOfContents.astro";
 import { getKnowledgeClient, safeCall } from "@/lib/rpc";
 import { isContentType, TYPE_LABELS } from "@/lib/types";
-import { renderMarkdown } from "@/lib/markdown";
+import { renderMarkdown, extractHeadings } from "@/lib/markdown";
 
 const { type, id } = Astro.params;
 
@@ -25,52 +30,55 @@ if (!entry) {
 }
 
 const html = entry ? await renderMarkdown(entry.body) : "";
+const headings = html ? extractHeadings(html) : [];
 const typeLabel = type ? TYPE_LABELS[type as keyof typeof TYPE_LABELS] || type : "";
 const pageTitle = entry
   ? `${entry.title} | ${typeLabel} | SuperBenefit`
   : "Not Found | SuperBenefit";
 ---
 
-<ContentLayout title={pageTitle} description={entry?.description}>
+<ContentLayout title={pageTitle} description={entry?.description} mobileDrawer={true}>
+  {headings.length > 0 && (
+    <TableOfContents headings={headings} slot="sidebar-right" />
+  )}
+
   {!entry ? (
     <div>
-      <h1 class="text-2xl font-bold">Not Found</h1>
+      <h1>Not Found</h1>
       <p>The {typeLabel.toLowerCase() || "content"} you're looking for doesn't exist.</p>
-      <a href={`/${type}`} class="underline" style="color: var(--color-secondary)">
+      <a href={`/${type}`} style="color: var(--color-secondary); text-decoration: underline;">
         Back to {typeLabel || "listing"}
       </a>
     </div>
   ) : (
     <div>
-      <nav class="text-sm mb-6" style="color: var(--color-gray)">
-        <a href="/" class="hover:underline">Home</a>
-        <span class="mx-1">/</span>
-        <a href={`/${type}`} class="hover:underline">{typeLabel}</a>
-        <span class="mx-1">/</span>
-        <span style="color: var(--color-dark)">{entry.title}</span>
-      </nav>
+      <Breadcrumbs url={Astro.url.pathname} />
 
-      <article>
-        <div class="flex items-center gap-3 mb-2">
-          <h1 class="text-3xl font-bold" style="font-family: var(--font-header)">
-            {entry.title}
-          </h1>
+      {entry.banner && (
+        <BannerImage banner={entry.banner} title={entry.title} />
+      )}
+
+      <article style="margin-top: 1rem;">
+        <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.25rem;">
+          <h1 style="margin: 0;">{entry.title}</h1>
           <TypeBadge type={entry.type} category={entry.category} />
         </div>
 
+        <ContentMeta document={entry} />
+
         {entry.description && (
-          <p class="text-lg mb-6" style="color: var(--color-darkgray)">
+          <p style="font-size: 1.125rem; color: var(--color-darkgray); margin: 0 0 1.5rem 0;">
             {entry.description}
           </p>
         )}
 
         {entry.tags.length > 0 && (
-          <div class="mb-6">
+          <div style="margin-bottom: 1.5rem;">
             <TagList tags={entry.tags} />
           </div>
         )}
 
-        <div class="prose max-w-none" set:html={html} />
+        <ContentRenderer content={entry.body} />
       </article>
     </div>
   )}

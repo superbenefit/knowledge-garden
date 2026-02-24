@@ -10,7 +10,8 @@
   "services": [
     {
       "binding": "KNOWLEDGE_SERVER",
-      "service": "knowledge-server"
+      "service": "knowledge-server",
+      "remote": true
     }
   ],
   "observability": {

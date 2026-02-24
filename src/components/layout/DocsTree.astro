@@ -1,0 +1,191 @@
+---
+import { getKnowledgeClient, safeCall } from "@/lib/rpc";
+import { buildTree, type TreeNode } from "@/lib/docs-tree";
+
+interface Props {
+  currentSlug?: string;
+}
+
+const { currentSlug = "" } = Astro.props;
+
+// Fetch and build tree at SSR time
+const client = getKnowledgeClient();
+const result = await safeCall(
+  () => client.listEntries({ sourcePath: "docs/", limit: 100 }),
+  { data: [], total: 0 },
+);
+
+const adapted = result.data
+  .filter((d) => d.path)
+  .map((d) => ({
+    id: d.path!.replace(/^docs\//, "").replace(/\.md$/, ""),
+    data: { title: d.title } as Record<string, unknown>,
+  }));
+
+const tree = buildTree(adapted);
+
+// Compute which folders should be open (ancestors of currentSlug)
+const openFolders = new Set<string>();
+if (currentSlug) {
+  const parts = currentSlug.split("/");
+  for (let i = 1; i < parts.length; i++) {
+    openFolders.add(parts.slice(0, i).join("/"));
+  }
+}
+
+function sortNodes(nodes: TreeNode[]): TreeNode[] {
+  return [...nodes].sort((a, b) => {
+    if (a.isFolder && !b.isFolder) return -1;
+    if (!a.isFolder && b.isFolder) return 1;
+    return a.title.localeCompare(b.title);
+  });
+}
+
+function esc(s: string): string {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+function renderNode(node: TreeNode): string {
+  if (node.isFolder) {
+    const isOpen = openFolders.has(node.slug);
+    const children = node.children ? sortNodes(node.children) : [];
+    return `<li><details class="docs-tree-folder" data-slug="${esc(node.slug)}"${isOpen ? " open" : ""}>
+      <summary><span class="docs-tree-chevron">&#9654;</span>${esc(node.title)}</summary>
+      <ul class="docs-tree-list">${children.map(renderNode).join("")}</ul>
+    </details></li>`;
+  }
+  const isCurrent = currentSlug === node.slug;
+  return `<li><a href="/docs/${esc(node.slug)}" class="docs-tree-page${isCurrent ? " active" : ""}">${esc(node.title)}</a></li>`;
+}
+
+const treeHtml = sortNodes(tree).map(renderNode).join("");
+---
+
+<nav class="docs-tree" aria-label="Docs navigation" data-current-slug={currentSlug}>
+  <ul class="docs-tree-list" set:html={treeHtml} />
+</nav>
+
+<script>
+  const STORAGE_KEY = "docs-tree-open-state";
+
+  function loadState(): Set<string> {
+    try {
+      const s = localStorage.getItem(STORAGE_KEY);
+      if (s) return new Set(JSON.parse(s));
+    } catch {}
+    return new Set();
+  }
+
+  function saveState(open: Set<string>) {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify([...open]));
+    } catch {}
+  }
+
+  function initDocsTree() {
+    const nav = document.querySelector<HTMLElement>(".docs-tree");
+    if (!nav) return;
+
+    const saved = loadState();
+    const details = nav.querySelectorAll<HTMLDetailsElement>("details[data-slug]");
+    details.forEach((el) => {
+      const slug = el.dataset.slug || "";
+      if (saved.has(slug)) el.open = true;
+    });
+
+    nav.addEventListener("toggle", (e) => {
+      const target = e.target as HTMLDetailsElement;
+      if (!target.matches("details[data-slug]")) return;
+      const slug = target.dataset.slug || "";
+      const state = loadState();
+      if (target.open) {
+        state.add(slug);
+      } else {
+        state.delete(slug);
+      }
+      saveState(state);
+    }, true);
+  }
+
+  initDocsTree();
+  document.addEventListener("astro:after-swap", initDocsTree);
+</script>
+
+<style is:global>
+  .docs-tree {
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+
+  .docs-tree-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .docs-tree-folder {
+    border: none;
+    margin: 0;
+  }
+
+  .docs-tree-folder > summary {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.2rem 0.5rem;
+    font-weight: 600;
+    color: var(--color-dark);
+    cursor: pointer;
+    border-radius: 0.25rem;
+    list-style: none;
+    user-select: none;
+    -webkit-user-select: none;
+    transition: background-color 0.1s ease;
+  }
+
+  .docs-tree-folder > summary::-webkit-details-marker { display: none; }
+  .docs-tree-folder > summary::marker { display: none; content: ""; }
+
+  .docs-tree-folder > summary:hover {
+    background-color: var(--color-highlight);
+  }
+
+  .docs-tree-chevron {
+    display: inline-block;
+    width: 1em;
+    text-align: center;
+    font-size: 0.6rem;
+    flex-shrink: 0;
+    transition: transform 0.15s ease;
+  }
+
+  .docs-tree-folder[open] > summary .docs-tree-chevron {
+    transform: rotate(90deg);
+  }
+
+  .docs-tree-folder > .docs-tree-list {
+    padding-left: 0.75rem;
+  }
+
+  .docs-tree-page {
+    display: block;
+    padding: 0.2rem 0.5rem 0.2rem calc(0.5rem + 1em + 0.25rem);
+    color: var(--color-darkgray);
+    text-decoration: none;
+    border-radius: 0.25rem;
+    border-left: 2px solid transparent;
+    transition: background-color 0.1s ease, color 0.1s ease, border-color 0.1s ease;
+  }
+
+  .docs-tree-page:hover {
+    background-color: var(--color-highlight);
+    color: var(--color-dark);
+  }
+
+  .docs-tree-page.active {
+    color: var(--color-secondary);
+    font-weight: 600;
+    background-color: var(--color-highlight);
+    border-left-color: var(--color-secondary);
+  }
+</style>
