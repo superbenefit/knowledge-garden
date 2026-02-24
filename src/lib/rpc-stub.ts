@@ -128,6 +128,66 @@ const MOCK_R2_DOCS: R2Document[] = [
     syncedAt: "2025-01-10T00:00:00Z",
     commitSha: "abc123a",
   },
+  {
+    id: "dao-primitives-index",
+    contentType: "index",
+    path: "docs/dao-primitives/index.md",
+    metadata: {
+      title: "DAO Primitives",
+      description: "Framework for scalable DAO design.",
+      publish: true,
+      tags: ["dao", "governance"],
+      group: "dao-primitives",
+    },
+    content: "# DAO Primitives\n\nThis section documents the DAO Primitives framework...",
+    syncedAt: "2025-06-01T00:00:00Z",
+    commitSha: "abc1240",
+  },
+  {
+    id: "building-daos-as-scalable-networks",
+    contentType: "article",
+    path: "docs/dao-primitives/articles/building-daos-as-scalable-networks.md",
+    metadata: {
+      title: "Building DAOs as Scalable Networks",
+      description: "How DAOs can scale by structuring smaller autonomous units.",
+      publish: true,
+      tags: ["dao", "governance", "networks"],
+      group: "dao-primitives",
+    },
+    content: "# Building DAOs as Scalable Networks\n\nThis article explores...",
+    syncedAt: "2025-06-01T00:00:00Z",
+    commitSha: "abc1241",
+  },
+  {
+    id: "rpp-index",
+    contentType: "index",
+    path: "docs/rpp/index.md",
+    metadata: {
+      title: "Reimagining Power Project",
+      description: "Exploring how web3 can transform impact.",
+      publish: true,
+      tags: ["web3", "impact", "philanthropy"],
+      group: "rpp",
+    },
+    content: "# Reimagining Power Project\n\nThis section documents...",
+    syncedAt: "2025-06-01T00:00:00Z",
+    commitSha: "abc1242",
+  },
+  {
+    id: "reimagining-power",
+    contentType: "article",
+    path: "docs/rpp/articles/reimagining-power.md",
+    metadata: {
+      title: "Reimagining Power: How Web3 Can Transform Impact",
+      description: "A case study on web3 approaches to philanthropic funding.",
+      publish: true,
+      tags: ["web3", "philanthropy", "case-study"],
+      group: "rpp",
+    },
+    content: "# Reimagining Power\n\nThis article examines how web3 technologies...",
+    syncedAt: "2025-06-01T00:00:00Z",
+    commitSha: "abc1243",
+  },
 ];
 
 function matchesSearch(doc: R2Document, query: string): boolean {
@@ -161,6 +221,11 @@ export function createStubClient(): KnowledgeClient {
       }
       if (params?.group) {
         docs = docs.filter((d) => d.metadata.group === params.group);
+      }
+      if (params?.sourcePath) {
+        docs = docs.filter((d) =>
+          (d.path ?? "").startsWith(params.sourcePath!),
+        );
       }
 
       const total = docs.length;

@@ -126,6 +126,7 @@ function createServiceBindingClient(): KnowledgeClient {
       if (params?.release) qs.set("release", params.release);
       if (params?.limit) qs.set("limit", String(params.limit));
       if (params?.offset) qs.set("offset", String(params.offset));
+      if (params?.sourcePath) qs.set("sourcePath", params.sourcePath);
 
       // listEntries is REST-only on the server; use .fetch() on the binding
       const res = await env.KNOWLEDGE_SERVER.fetch(

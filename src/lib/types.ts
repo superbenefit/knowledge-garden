@@ -119,6 +119,7 @@ export interface Document {
   title: string;
   description?: string;
   body: string;
+  path?: string;
   tags: string[];
   aliases: string[];
   created?: string;
@@ -145,6 +146,7 @@ export interface ListParams {
   release?: string;
   limit?: number;
   offset?: number;
+  sourcePath?: string;
 }
 
 /** Paginated list response */
@@ -195,6 +197,7 @@ export function toDocument(doc: R2Document): Document {
     title: (m.title as string) || doc.id,
     ...(m.description != null && { description: m.description as string }),
     body: doc.content,
+    ...(doc.path != null && { path: doc.path }),
     tags: Array.isArray(m.tags) ? (m.tags as string[]) : [],
     aliases: Array.isArray(m.aliases) ? (m.aliases as string[]) : [],
     ...(m.created != null && { created: String(m.created) }),
