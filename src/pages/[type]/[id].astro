@@ -9,8 +9,8 @@ import TagList from "@/components/content/TagList.astro";
 import ContentMeta from "@/components/content/ContentMeta.astro";
 import ContentRenderer from "@/components/content/ContentRenderer.astro";
 import TableOfContents from "@/components/content/TableOfContents.astro";
-import { getKnowledgeClient, safeCall } from "@/lib/rpc";
-import { isContentType, TYPE_LABELS } from "@/lib/types";
+import { getLiveEntry } from "astro:content";
+import { isContentType, TYPE_LABELS, fromCollectionEntry } from "@/lib/types";
 import { renderMarkdown, extractHeadings } from "@/lib/markdown";
 
 const { type, id } = Astro.params;
@@ -19,11 +19,15 @@ if (!type || !id || !isContentType(type)) {
   Astro.response.status = 404;
 }
 
-const client = getKnowledgeClient();
-const entry =
-  type && id && isContentType(type)
-    ? await safeCall(() => client.getDocument(type, id), null)
-    : null;
+let entry: ReturnType<typeof fromCollectionEntry> | null = null;
+if (type && id && isContentType(type)) {
+  try {
+    const result = await getLiveEntry("knowledge", `content/${type}/${id}.json`);
+    if (result.entry) {
+      entry = fromCollectionEntry(result.entry.id, result.entry.data);
+    }
+  } catch {}
+}
 
 if (!entry) {
   Astro.response.status = 404;

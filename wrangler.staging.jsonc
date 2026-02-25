@@ -4,7 +4,13 @@
   "compatibility_date": "2025-01-01",
   "compatibility_flags": ["nodejs_compat"],
   "assets": { "directory": "dist/client" },
-  "services": [
-    { "binding": "KNOWLEDGE_SERVER", "service": "knowledge-server-staging" }
-  ]
+  "r2_buckets": [
+    {
+      "binding": "KNOWLEDGE_BUCKET",
+      "bucket_name": "superbenefit-knowledge-staging"
+    }
+  ],
+  "ai": {
+    "binding": "AI"
+  }
 }

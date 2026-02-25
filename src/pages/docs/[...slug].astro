@@ -9,29 +9,32 @@ import TagList from "@/components/content/TagList.astro";
 import ContentMeta from "@/components/content/ContentMeta.astro";
 import ContentRenderer from "@/components/content/ContentRenderer.astro";
 import TableOfContents from "@/components/content/TableOfContents.astro";
-import { getKnowledgeClient, safeCall } from "@/lib/rpc";
+import { getLiveCollection } from "astro:content";
+import { fromCollectionEntry, type Document } from "@/lib/types";
 import { renderMarkdown, extractHeadings } from "@/lib/markdown";
 
 const { slug } = Astro.params;
 const kbPath = `docs/${slug}.md`;
 
-const client = getKnowledgeClient();
-const result = await safeCall(
-  () => client.listEntries({ sourcePath: "docs/", limit: 100 }),
-  { data: [], total: 0 },
-);
+let allDocs: Document[] = [];
+try {
+  const result = await getLiveCollection("knowledge");
+  allDocs = (result.entries ?? [])
+    .map((e) => fromCollectionEntry(e.id, e.data))
+    .filter((d) => d.path?.startsWith("docs/"));
+} catch {}
 
 // Try exact match
-let entry = result.data.find((d) => d.path === kbPath) ?? null;
+let entry = allDocs.find((d) => d.path === kbPath) ?? null;
 
 // Try as folder index (docs/slug/index.md)
 if (!entry) {
-  entry = result.data.find((d) => d.path === `docs/${slug}/index.md`) ?? null;
+  entry = allDocs.find((d) => d.path === `docs/${slug}/index.md`) ?? null;
 }
 
 // Check if this is a folder with children (exclude index.md itself)
 const childPrefix = `docs/${slug}/`;
-const children = result.data
+const children = allDocs
   .filter((d) => d.path?.startsWith(childPrefix) && d.path !== `docs/${slug}/index.md`)
   .map((d) => ({
     ...d,

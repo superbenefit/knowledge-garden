@@ -8,7 +8,7 @@ export interface TreeNode {
 }
 
 interface DocsTreeNavProps {
-  items: TreeNode[];
+  items?: TreeNode[];
   currentSlug?: string;
 }
 
@@ -163,9 +163,11 @@ function TreeItem({
   );
 }
 
-export default function DocsTreeNav({ items, currentSlug }: DocsTreeNavProps) {
+export default function DocsTreeNav({ items: initialItems, currentSlug }: DocsTreeNavProps) {
+  const [items, setItems] = useState<TreeNode[]>(initialItems ?? []);
+  const [loading, setLoading] = useState(!initialItems || initialItems.length === 0);
+
   const [openFolders, setOpenFolders] = useState<Set<string>>(() => {
-    // Auto-expand ancestors of the current page
     const initial = loadOpenState();
     if (currentSlug) {
       const parts = currentSlug.split("/");
@@ -175,6 +177,23 @@ export default function DocsTreeNav({ items, currentSlug }: DocsTreeNavProps) {
     }
     return initial;
   });
+
+  // Self-fetch when no items provided
+  useEffect(() => {
+    if (initialItems && initialItems.length > 0) {
+      setLoading(false);
+      return;
+    }
+    fetch("/api/docs-tree")
+      .then((r) => r.json())
+      .then((data: TreeNode[]) => {
+        setItems(data);
+        setLoading(false);
+      })
+      .catch(() => {
+        setLoading(false);
+      });
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const toggleFolder = useCallback((slug: string) => {
     setOpenFolders((prev) => {
@@ -194,21 +213,18 @@ export default function DocsTreeNav({ items, currentSlug }: DocsTreeNavProps) {
 
   const sorted = sortNodes(items);
 
+  if (loading) {
+    return (
+      <nav style={{ fontSize: "0.8125rem", color: "var(--color-gray)" }}>
+        Loading...
+      </nav>
+    );
+  }
+
+  if (sorted.length === 0) return null;
+
   return (
     <nav style={{ fontSize: "0.8125rem" }}>
-      <h3
-        style={{
-          fontSize: "0.875rem",
-          fontWeight: 600,
-          textTransform: "uppercase",
-          letterSpacing: "0.05em",
-          color: "var(--color-darkgray)",
-          margin: "0 0 0.5rem 0",
-          fontFamily: "var(--font-header)",
-        }}
-      >
-        Docs
-      </h3>
       <ul style={{ padding: 0, margin: 0 }}>
         {sorted.map((node) => (
           <TreeItem

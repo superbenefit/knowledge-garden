@@ -9,7 +9,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "test": "vitest run"
+    "test": "vitest run",
+    "seed": "node scripts/seed-local-r2.mjs",
+    "seed:clean": "node scripts/seed-local-r2.mjs --clean"
   },
   "engines": {
     "node": ">=22"
@@ -19,6 +21,7 @@
     "@astrojs/cloudflare": "13.0.0-beta.8",
     "@astrojs/react": "5.0.0-beta.3",
     "@astrojs/sitemap": "^3.3.0",
+    "@superbenefit/knowledge-schemas": "file:../knowledge-server/packages/schemas",
     "astro": "6.0.0-beta.14",
     "d3": "^7.9.0",
     "react": "^19.0.0",

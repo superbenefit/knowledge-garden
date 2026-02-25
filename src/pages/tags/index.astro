@@ -2,17 +2,18 @@
 export const prerender = false;
 
 import ContentLayout from "@/components/layout/ContentLayout.astro";
-import { getKnowledgeClient, safeCall } from "@/lib/rpc";
+import { getLiveCollection } from "astro:content";
+import { fromCollectionEntry } from "@/lib/types";
 
-const client = getKnowledgeClient();
-const result = await safeCall(
-  () => client.listEntries({ limit: 200 }),
-  { data: [], total: 0 },
-);
+let allDocs: ReturnType<typeof fromCollectionEntry>[] = [];
+try {
+  const result = await getLiveCollection("knowledge");
+  allDocs = (result.entries ?? []).map((e) => fromCollectionEntry(e.id, e.data));
+} catch {}
 
 // Collect unique tags with counts from frontmatter tags
 const tagCounts = new Map<string, number>();
-for (const doc of result.data) {
+for (const doc of allDocs) {
   if (doc.tags) {
     for (const tag of doc.tags) {
       tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);

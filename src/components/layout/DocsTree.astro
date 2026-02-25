@@ -1,5 +1,6 @@
 ---
-import { getKnowledgeClient, safeCall } from "@/lib/rpc";
+import { getLiveCollection } from "astro:content";
+import { fromCollectionEntry } from "@/lib/types";
 import { buildTree, type TreeNode } from "@/lib/docs-tree";
 
 interface Props {
@@ -9,18 +10,17 @@ interface Props {
 const { currentSlug = "" } = Astro.props;
 
 // Fetch and build tree at SSR time
-const client = getKnowledgeClient();
-const result = await safeCall(
-  () => client.listEntries({ sourcePath: "docs/", limit: 100 }),
-  { data: [], total: 0 },
-);
-
-const adapted = result.data
-  .filter((d) => d.path)
-  .map((d) => ({
-    id: d.path!.replace(/^docs\//, "").replace(/\.md$/, ""),
-    data: { title: d.title } as Record<string, unknown>,
-  }));
+let adapted: { id: string; data: Record<string, unknown> }[] = [];
+try {
+  const result = await getLiveCollection("knowledge");
+  adapted = (result.entries ?? [])
+    .map((e) => fromCollectionEntry(e.id, e.data))
+    .filter((d) => d.path?.startsWith("docs/"))
+    .map((d) => ({
+      id: d.path!.replace(/^docs\//, "").replace(/\.md$/, ""),
+      data: { title: d.title } as Record<string, unknown>,
+    }));
+} catch {}
 
 const tree = buildTree(adapted);
 

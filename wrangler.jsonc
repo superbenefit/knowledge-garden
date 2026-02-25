@@ -6,14 +6,15 @@
   "assets": {
     "directory": "dist/client"
   },
-  // Service binding to knowledge-server WorkerEntrypoint
-  "services": [
+  "r2_buckets": [
     {
-      "binding": "KNOWLEDGE_SERVER",
-      "service": "knowledge-server",
-      "remote": true
+      "binding": "KNOWLEDGE_BUCKET",
+      "bucket_name": "superbenefit-knowledge"
     }
   ],
+  "ai": {
+    "binding": "AI"
+  },
   "observability": {
     "logs": {
       "enabled": true,

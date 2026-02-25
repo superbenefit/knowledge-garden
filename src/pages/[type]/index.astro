@@ -3,8 +3,8 @@ export const prerender = false;
 
 import ContentLayout from "@/components/layout/ContentLayout.astro";
 import Breadcrumbs from "@/components/content/Breadcrumbs.astro";
-import { getKnowledgeClient, safeCall } from "@/lib/rpc";
-import { isContentType, TYPE_LABELS } from "@/lib/types";
+import { getLiveCollection } from "astro:content";
+import { isContentType, TYPE_LABELS, fromCollectionEntry } from "@/lib/types";
 
 const { type } = Astro.params;
 
@@ -12,16 +12,16 @@ if (!type || !isContentType(type)) {
   Astro.response.status = 404;
 }
 
-const client = getKnowledgeClient();
-const result =
-  type && isContentType(type)
-    ? await safeCall(
-        () => client.listEntries({ contentType: type, limit: 100 }),
-        { data: [], total: 0 },
-      )
-    : { data: [], total: 0 };
+let entries: ReturnType<typeof fromCollectionEntry>[] = [];
+if (type && isContentType(type)) {
+  try {
+    const result = await getLiveCollection("knowledge");
+    entries = (result.entries ?? [])
+      .map((e) => fromCollectionEntry(e.id, e.data))
+      .filter((d) => d.type === type);
+  } catch {}
+}
 
-const entries = result.data;
 const typeLabel = type ? TYPE_LABELS[type as keyof typeof TYPE_LABELS] || type : "";
 const pluralLabel = typeLabel + "s";
 
@@ -43,7 +43,7 @@ const isLink = type === "link";
       ? "Concepts and definitions in the SuperBenefit knowledge base."
       : isLink
         ? "Curated resources and references from across the web."
-        : `${result.total} ${result.total === 1 ? typeLabel.toLowerCase() : pluralLabel.toLowerCase()} in the knowledge garden.`}
+        : `${entries.length} ${entries.length === 1 ? typeLabel.toLowerCase() : pluralLabel.toLowerCase()} in the knowledge garden.`}
   </p>
 
   {entries.length > 0 ? (

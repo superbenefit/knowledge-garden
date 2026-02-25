@@ -3,8 +3,8 @@ export const prerender = false;
 
 import ContentLayout from "@/components/layout/ContentLayout.astro";
 import ReleaseContents from "@/components/content/ReleaseContents.astro";
-import { getKnowledgeClient, safeCall } from "@/lib/rpc";
-import type { Document } from "@/lib/types";
+import { getLiveCollection } from "astro:content";
+import { fromCollectionEntry, type Document } from "@/lib/types";
 
 const tag = Astro.params.tag ?? "";
 
@@ -12,18 +12,15 @@ if (!tag) {
   Astro.response.status = 404;
 }
 
-const client = getKnowledgeClient();
-const result = tag
-  ? await safeCall(
-      () => client.listEntries({ limit: 200 }),
-      { data: [], total: 0 },
-    )
-  : { data: [], total: 0 };
-
-// Filter documents that have this tag in their frontmatter tags
-const documents: Document[] = result.data.filter(
-  (doc) => doc.tags && doc.tags.includes(tag),
-);
+let documents: Document[] = [];
+if (tag) {
+  try {
+    const result = await getLiveCollection("knowledge");
+    documents = (result.entries ?? [])
+      .map((e) => fromCollectionEntry(e.id, e.data))
+      .filter((doc) => doc.tags && doc.tags.includes(tag));
+  } catch {}
+}
 ---
 
 <ContentLayout title={`${tag} | Tags | SuperBenefit Knowledge Garden`} description={`Content tagged with "${tag}".`}>

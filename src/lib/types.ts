@@ -83,31 +83,6 @@ export function isContentType(value: string): value is ContentType {
 }
 
 // ---------------------------------------------------------------------------
-// Server types — match knowledge-server's actual response shapes
-// ---------------------------------------------------------------------------
-
-/** Document as stored in R2 and returned by the knowledge-server */
-export interface R2Document {
-  id: string;
-  contentType: ContentType;
-  path: string;
-  metadata: Record<string, unknown>;
-  content: string;
-  syncedAt: string;
-  commitSha: string;
-}
-
-/** Search result returned by the knowledge-server */
-export interface ServerSearchResult {
-  id: string;
-  contentType: ContentType;
-  title: string;
-  description?: string;
-  score: number;
-  rerankScore?: number;
-}
-
-// ---------------------------------------------------------------------------
 // Garden types — what the garden's pages and components consume
 // ---------------------------------------------------------------------------
 
@@ -139,30 +114,6 @@ export interface SearchResult {
   score: number;
 }
 
-/** Options for listing entries */
-export interface ListParams {
-  contentType?: string;
-  group?: string;
-  release?: string;
-  limit?: number;
-  offset?: number;
-  sourcePath?: string;
-}
-
-/** Paginated list response */
-export interface ListResponse {
-  data: Document[];
-  total: number;
-}
-
-/** Search params */
-export interface SearchParams {
-  contentType?: string;
-  group?: string;
-  release?: string;
-  limit?: number;
-}
-
 /** Graph node (kept for future use) */
 export interface GraphNode {
   id: string;
@@ -184,40 +135,38 @@ export interface GraphData {
 }
 
 // ---------------------------------------------------------------------------
-// Adapter: R2Document → garden Document
+// Adapter: live collection entry → garden Document
 // ---------------------------------------------------------------------------
 
-/** Convert a knowledge-server R2Document to a garden Document */
-export function toDocument(doc: R2Document): Document {
-  const m = doc.metadata;
+/** Convert a live collection entry's data to a garden Document.
+ *  The entry data shape comes from the R2 knowledge loader:
+ *  { ...metadata, contentType, path, body } */
+export function fromCollectionEntry(
+  entryId: string,
+  data: Record<string, unknown>,
+): Document {
+  // Extract document id from R2 key: content/{type}/{id}.json → {id}
+  const docId = entryId
+    .replace(/^content\/[^/]+\//, "")
+    .replace(/\.json$/, "");
+  const ct = (data.contentType as string) || "file";
   return {
-    id: doc.id,
-    type: doc.contentType,
-    category: getCategory(doc.contentType),
-    title: (m.title as string) || doc.id,
-    ...(m.description != null && { description: m.description as string }),
-    body: doc.content,
-    ...(doc.path != null && { path: doc.path }),
-    tags: Array.isArray(m.tags) ? (m.tags as string[]) : [],
-    aliases: Array.isArray(m.aliases) ? (m.aliases as string[]) : [],
-    ...(m.created != null && { created: String(m.created) }),
-    ...(m.modified != null && { modified: String(m.modified) }),
-    ...(m.date != null && !m.created && { created: String(m.date) }),
-    ...(m.group != null && { group: m.group as string }),
-    ...(m.banner != null && { banner: m.banner as string }),
-    ...(m.license != null && { license: m.license as string }),
-    frontmatter: m,
-  };
-}
-
-/** Convert a ServerSearchResult to a garden SearchResult */
-export function toSearchResult(r: ServerSearchResult): SearchResult {
-  return {
-    id: r.id,
-    contentType: r.contentType,
-    title: r.title,
-    ...(r.description != null && { description: r.description }),
-    score: r.rerankScore ?? r.score,
+    id: docId,
+    type: ct as ContentType,
+    category: getCategory(ct),
+    title: (data.title as string) || docId,
+    ...(data.description != null && { description: data.description as string }),
+    body: (data.body as string) || "",
+    ...(data.path != null && { path: data.path as string }),
+    tags: Array.isArray(data.tags) ? (data.tags as string[]) : [],
+    aliases: Array.isArray(data.aliases) ? (data.aliases as string[]) : [],
+    ...(data.created != null && { created: String(data.created) }),
+    ...(data.modified != null && { modified: String(data.modified) }),
+    ...(data.date != null && !data.created && { created: String(data.date) }),
+    ...(data.group != null && { group: data.group as string }),
+    ...(data.banner != null && { banner: data.banner as string }),
+    ...(data.license != null && { license: data.license as string }),
+    frontmatter: data,
   };
 }
 
