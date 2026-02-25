@@ -7,7 +7,6 @@ import BannerImage from "@/components/content/BannerImage.astro";
 import TypeBadge from "@/components/content/TypeBadge.astro";
 import TagList from "@/components/content/TagList.astro";
 import ContentMeta from "@/components/content/ContentMeta.astro";
-import ContentRenderer from "@/components/content/ContentRenderer.astro";
 import TableOfContents from "@/components/content/TableOfContents.astro";
 import { getLiveEntry } from "astro:content";
 import { isContentType, TYPE_LABELS, fromCollectionEntry } from "@/lib/types";
@@ -82,7 +81,7 @@ const pageTitle = entry
           </div>
         )}
 
-        <ContentRenderer content={entry.body} />
+        <article class="content-body" set:html={html} />
       </article>
     </div>
   )}

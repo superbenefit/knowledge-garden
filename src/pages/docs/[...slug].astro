@@ -7,9 +7,8 @@ import BannerImage from "@/components/content/BannerImage.astro";
 import TypeBadge from "@/components/content/TypeBadge.astro";
 import TagList from "@/components/content/TagList.astro";
 import ContentMeta from "@/components/content/ContentMeta.astro";
-import ContentRenderer from "@/components/content/ContentRenderer.astro";
 import TableOfContents from "@/components/content/TableOfContents.astro";
-import { getLiveCollection } from "astro:content";
+import { getLiveCollection, getLiveEntry } from "astro:content";
 import { fromCollectionEntry, type Document } from "@/lib/types";
 import { renderMarkdown, extractHeadings } from "@/lib/markdown";
 
@@ -24,12 +23,21 @@ try {
     .filter((d) => d.path?.startsWith("docs/"));
 } catch {}
 
-// Try exact match
+// Try exact match (lightweight — no body in collection listing)
 let entry = allDocs.find((d) => d.path === kbPath) ?? null;
 
 // Try as folder index (docs/slug/index.md)
 if (!entry) {
   entry = allDocs.find((d) => d.path === `docs/${slug}/index.md`) ?? null;
+}
+
+// Fetch full entry with body for rendering
+let body = "";
+if (entry) {
+  try {
+    const full = await getLiveEntry("knowledge", `content/${entry.type}/${entry.id}.json`);
+    if (full.entry) body = (full.entry.data.body as string) || "";
+  } catch {}
 }
 
 // Check if this is a folder with children (exclude index.md itself)
@@ -49,7 +57,7 @@ if (!entry && !isFolderOnly) {
   Astro.response.status = 404;
 }
 
-const html = entry ? await renderMarkdown(entry.body) : "";
+const html = body ? await renderMarkdown(body) : "";
 const headings = html ? extractHeadings(html) : [];
 
 const pageTitle = entry
@@ -115,7 +123,7 @@ function titleCase(s: string): string {
               </div>
             )}
 
-            <ContentRenderer content={entry.body} />
+            <article class="content-body" set:html={html} />
           </>
         ) : (
           <h1 style="margin: 0 0 0.5rem 0;">

@@ -4,7 +4,6 @@ import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import remarkGfm from "remark-gfm";
-import remarkWikiLinkPlus from "remark-wiki-link-plus";
 import remarkObsidian from "remark-obsidian";
 import rehypeRaw from "rehype-raw";
 import rehypeCallouts from "rehype-callouts";
@@ -18,7 +17,7 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   markdown: {
-    remarkPlugins: [remarkGfm, remarkWikiLinkPlus, remarkObsidian],
+    remarkPlugins: [remarkGfm, remarkObsidian],
     rehypePlugins: [rehypeRaw, rehypeCallouts, rehypeSlug],
   },
 });

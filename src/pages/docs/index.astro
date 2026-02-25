@@ -4,7 +4,7 @@ export const prerender = false;
 import ContentLayout from "@/components/layout/ContentLayout.astro";
 import Breadcrumbs from "@/components/content/Breadcrumbs.astro";
 import ContentRenderer from "@/components/content/ContentRenderer.astro";
-import { getLiveCollection } from "astro:content";
+import { getLiveCollection, getLiveEntry } from "astro:content";
 import { fromCollectionEntry } from "@/lib/types";
 import { buildTree, type TreeNode } from "@/lib/docs-tree";
 
@@ -17,7 +17,14 @@ try {
 } catch {}
 
 // Look for a root index.md to render as page content
-const indexEntry = allDocs.find((d) => d.path === "docs/index.md") ?? null;
+const indexMeta = allDocs.find((d) => d.path === "docs/index.md") ?? null;
+let indexBody = "";
+if (indexMeta) {
+  try {
+    const full = await getLiveEntry("knowledge", `content/${indexMeta.type}/${indexMeta.id}.json`);
+    if (full.entry) indexBody = (full.entry.data.body as string) || "";
+  } catch {}
+}
 
 const adapted = allDocs
   .filter((d) => d.path)
@@ -53,14 +60,14 @@ function sortNodes(nodes: TreeNode[]): TreeNode[] {
 
   <Breadcrumbs url={Astro.url.pathname} />
 
-  <h1 class="docs-index-title">{indexEntry?.title ?? "Docs"}</h1>
-  {indexEntry?.description && (
-    <p class="docs-index-subtitle">{indexEntry.description}</p>
+  <h1 class="docs-index-title">{indexMeta?.title ?? "Docs"}</h1>
+  {indexMeta?.description && (
+    <p class="docs-index-subtitle">{indexMeta.description}</p>
   )}
 
-  {indexEntry && (
+  {indexBody && (
     <div class="docs-index-content">
-      <ContentRenderer content={indexEntry.body} />
+      <ContentRenderer content={indexBody} />
     </div>
   )}
 

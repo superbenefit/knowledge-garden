@@ -1,7 +1,6 @@
 import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkGfm from "remark-gfm";
-import remarkWikiLinkPlus from "remark-wiki-link-plus";
 import remarkObsidian from "remark-obsidian";
 import remarkRehype from "remark-rehype";
 import rehypeRaw from "rehype-raw";
@@ -34,7 +33,6 @@ export async function renderMarkdown(content: string): Promise<string> {
   const result = await unified()
     .use(remarkParse)
     .use(remarkGfm)
-    .use(remarkWikiLinkPlus)
     .use(remarkObsidian)
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeRaw)

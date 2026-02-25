@@ -19,7 +19,9 @@ export function r2KnowledgeLoader() {
               ...doc.metadata,
               contentType: doc.contentType,
               path: doc.path,
-              body: doc.content,
+              // Omit body in collection listing for performance.
+              // Use getLiveEntry() when the full body is needed.
+              body: "",
             },
           };
         }),

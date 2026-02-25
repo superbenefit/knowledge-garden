@@ -40,6 +40,14 @@ export function buildTree(
       }
     }
 
+    // index entries provide the folder title instead of appearing as leaves
+    if (parts[parts.length - 1] === "index") {
+      const folderPath = parts.slice(0, -1).join("/");
+      const folder = folderMap.get(folderPath);
+      if (folder) folder.title = title;
+      continue;
+    }
+
     const leafNode: TreeNode = { slug: doc.id, title, isFolder: false };
 
     if (parts.length === 1) {
