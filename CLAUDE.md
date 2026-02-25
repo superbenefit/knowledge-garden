@@ -4,8 +4,8 @@
 
 SuperBenefit Knowledge Garden — an Astro v6 hybrid site deployed on Cloudflare Workers.
 
-- **SSR content**: All content types (patterns, articles, people, groups, projects, tags, etc.) served at runtime via RPC to a knowledge-server Worker (falls back to stub client in local dev)
-- **Docs section**: Published KB files under `docs/` served via RPC using `sourcePath` filter, rendered as SSR pages
+- **SSR content**: All content types (patterns, articles, people, groups, projects, tags, etc.) served at runtime from R2 via Astro v6 live collections (`getLiveCollection` / `getLiveEntry`)
+- **Docs section**: Published KB files under `docs/` filtered by `path.startsWith("docs/")` from the same live collection, rendered as SSR pages
 - **React islands**: Search, graph visualization, dark mode (client-side hydrated)
 - **Tailwind v4**: CSS with custom `@theme` tokens in `src/styles/global.css`
 
@@ -15,12 +15,13 @@ SuperBenefit Knowledge Garden — an Astro v6 hybrid site deployed on Cloudflare
 
 | Route | Source | Rendering | Status |
 |-------|--------|-----------|--------|
-| `/[type]/` | knowledge-server RPC | SSR (`prerender = false`) | Working |
-| `/docs/` | knowledge-server RPC (`sourcePath: "docs/"`) | SSR (`prerender = false`) | Working |
-| `/api/docs-tree` | knowledge-server RPC (`sourcePath: "docs/"`) | SSR | Working |
-| `/api/search`, `/api/preview` | knowledge-server RPC | SSR | Working |
-| `/api/backlinks` | Stub | SSR | Returns `[]` (not yet supported) |
-| `/api/graph` | Stub | SSR | Returns `{ nodes: [], links: [] }` (not yet supported) |
+| `/[type]/` | R2 live collection (filter by `contentType`) | SSR (`prerender = false`) | Working |
+| `/docs/` | R2 live collection (filter by `path.startsWith("docs/")`) | SSR (`prerender = false`) | Working |
+| `/api/docs-tree` | R2 live collection (filter by path prefix) | SSR | Working |
+| `/api/search` | Stub | SSR | Returns `{ items: [], total: 0 }` (TODO: CF AI Search) |
+| `/api/preview` | R2 live entry (`getLiveEntry`) | SSR | Working |
+| `/api/backlinks` | Stub | SSR | Returns `[]` (not yet implemented) |
+| `/api/graph` | Stub | SSR | Returns `{ nodes: [], links: [] }` (not yet implemented) |
 
 ### File Organization
 
@@ -32,7 +33,7 @@ src/
     islands/      # SearchBar, GraphView, DarkMode, DocsTreeNav, FilterPanel, PopoverPreview (React)
   pages/
     api/          # search, graph, backlinks, docs-tree, preview
-    docs/         # SSR docs pages — index.astro + [...slug].astro (via RPC sourcePath filter)
+    docs/         # SSR docs pages — index.astro + [...slug].astro (path-filtered from R2)
     [type]/       # SSR content pages — index.astro + [id].astro
     lexicon/      # Redirect → /tag
     people/       # Redirect → /person
@@ -40,46 +41,44 @@ src/
     projects/     # Redirect → /project
     tags/         # SSR tag pages
   lib/
-    types.ts      # Document, R2Document, ContentType, ListParams, SearchResult
-    rpc.ts        # getKnowledgeClient(), safeCall() (aliases: getKnowledgeServer, safeRPC)
-    rpc-stub.ts   # Mock RPC with sample data (11 documents incl. 4 docs-section)
+    types.ts      # Document, ContentType, fromCollectionEntry adapter
+    docs-tree.ts  # TreeNode interface + buildTree() for docs navigation
     markdown.ts   # Unified pipeline for runtime markdown (remark/rehype)
+  loaders/
+    r2-knowledge-loader.ts  # Astro live collection loader reading from R2 bucket
+  live.config.ts  # Defines "knowledge" collection via defineLiveCollection
   styles/
     global.css    # Tailwind v4 @theme tokens
   middleware.ts   # Security headers, cache control for /_astro/ assets
 ```
 
-### RPC Client (`src/lib/rpc.ts`)
+### Live Collection Loader (`src/loaders/r2-knowledge-loader.ts`)
+
+The loader reads JSON documents from the `KNOWLEDGE_BUCKET` R2 binding (prefix `content/`):
+
+- `loadCollection()` — lists all R2 objects, returns entries with metadata (body omitted for performance)
+- `loadEntry({ filter: { id } })` — fetches a single R2 object by key, returns full entry including body content
+
+Configured in `src/live.config.ts`:
 
 ```typescript
-interface KnowledgeClient {
-  getDocument(contentType: string, id: string): Promise<Document | null>
-  listEntries(params?: ListParams): Promise<ListResponse>
-  search(query: string, opts?: SearchParams): Promise<{ items: SearchResult[]; total: number }>
-  listGroups(): Promise<Array<{ id: string; title: string; description?: string }>>
-  listReleases(): Promise<Array<{ id: string; title: string; description?: string }>>
-}
-
-interface ListParams {
-  contentType?: string
-  group?: string
-  release?: string
-  limit?: number
-  offset?: number
-  sourcePath?: string   // filter by R2Document.path prefix, e.g. "docs/"
-}
-
-interface ListResponse { data: Document[]; total: number }
+const knowledge = defineLiveCollection({
+  loader: r2KnowledgeLoader(),
+});
+export const collections = { knowledge };
 ```
 
-Factory: `getKnowledgeClient()` returns a cached client. Tries service binding (`env.KNOWLEDGE_SERVER`) first, falls back to stub.
+Pages access data via:
+- `getLiveCollection("knowledge")` — returns all entries (no body content)
+- `getLiveEntry("knowledge", "content/{type}/{id}.json")` — returns single entry with body
+- `fromCollectionEntry(id, data)` — adapts entry data to garden `Document` interface
 
 ### Key Patterns
 
 - **SSR pages**: Use `export const prerender = false` + `Astro.response.status = 404` (not `return new Response(...)` — esbuild can't parse top-level returns with exports)
 - **Optional props**: Use conditional spread `{...(val != null && { prop: val })}` (strict `exactOptionalPropertyTypes` is enabled)
-- **RPC calls**: Always wrap with `safeCall(() => client.method(), fallback)` for graceful degradation
-- **Docs pages**: Use `sourcePath: "docs/"` filter, derive URL slug from `d.path` by stripping prefix/suffix
+- **Data loading**: Pages use `getLiveCollection("knowledge")` for listings and `getLiveEntry("knowledge", key)` for detail pages, wrapped in try/catch for graceful degradation
+- **Docs pages**: Filter collection entries by `d.path?.startsWith("docs/")`, derive URL slug from `d.path` by stripping prefix/suffix
 - **Type system**: ~22 content types grouped into categories: resource (pattern, practice, primitive, protocol, playbook), story (study, article, guide), reference (index, link, tag), data (person, group, project, place, gathering), plus file and question
 
 ## Prerequisites
@@ -101,13 +100,15 @@ npm run build     # Production build
 npm run check     # TypeScript checking (astro check)
 npm run test      # Vitest test suite
 npm run preview   # Preview production build
+npm run seed      # Sync remote R2 bucket to local (for wrangler dev)
+npm run seed:clean  # Clean local R2 state and re-sync
 ```
 
 ## Testing
 
 ```bash
 npm run test                              # Run all tests
-npx vitest run tests/lib/rpc-stub.test.ts # Single file
+npx vitest run tests/lib/types.test.ts    # Single file
 npx vitest                                # Watch mode
 ```
 

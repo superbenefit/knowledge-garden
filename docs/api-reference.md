@@ -4,7 +4,7 @@ All API endpoints are SSR-only (`prerender = false`) and return JSON responses. 
 
 ## GET /api/search
 
-Full-text search across all documents via the knowledge-server.
+**Currently stubbed.** Returns empty results. Full-text search via Cloudflare AI is planned but not yet implemented.
 
 **Query Parameters:**
 
@@ -14,38 +14,25 @@ Full-text search across all documents via the knowledge-server.
 | `type` | string | No | — | Filter by content type |
 | `limit` | number | No | 20 | Max results |
 
-**Response:** `SearchResult[]`
-
-```json
-[
-  {
-    "slug": "patterns/governance-primitives",
-    "title": "Governance Primitives",
-    "description": "A framework for...",
-    "type": "pattern",
-    "score": 0.95,
-    "highlights": ["matching text"]
-  }
-]
-```
+**Current Response:** `{ items: [], total: 0 }`
 
 **Errors:** Returns `400` if `q` is missing or less than 2 characters.
 
 ## GET /api/graph
 
-**Currently a stub.** Returns empty graph data. Graph visualization is not yet supported by the knowledge-server.
+**Currently a stub.** Returns empty graph data. Not yet implemented.
 
 **Response:** `{ nodes: [], links: [] }`
 
 ## GET /api/backlinks
 
-**Currently a stub.** Returns empty array. Backlink data is not yet supported by the knowledge-server.
+**Currently a stub.** Returns empty array. Not yet implemented.
 
 **Response:** `[]`
 
 ## GET /api/docs-tree
 
-Returns the hierarchical tree structure for docs navigation. Used by the DocsTreeNav sidebar component. Fetches documents via RPC using `sourcePath: "docs/"` filter, then builds a tree from file paths.
+Returns the hierarchical tree structure for docs navigation. Used by the DocsTreeNav sidebar component. Fetches all documents via the `knowledge` live collection, filters by `path.startsWith("docs/")`, then builds a tree from file paths.
 
 **Query Parameters:** None
 
@@ -68,7 +55,8 @@ Returns minimal document data for link preview popovers.
 
 | Param | Type | Required | Description |
 |-------|------|----------|-------------|
-| `slug` | string | Yes | Document slug |
+| `type` | string | Yes | Content type |
+| `id` | string | Yes | Document ID |
 
 **Response:**
 
@@ -83,45 +71,6 @@ Returns minimal document data for link preview popovers.
 
 **Errors:** Returns `404` if the document is not found.
 
-## RPC Client Interface
+## Data Layer
 
-The garden accesses the knowledge-server via `KnowledgeClient` (defined in `src/lib/rpc.ts`):
-
-```typescript
-interface KnowledgeClient {
-  getDocument(contentType: string, id: string): Promise<Document | null>
-  listEntries(params?: ListParams): Promise<ListResponse>
-  search(query: string, opts?: SearchParams): Promise<{ items: SearchResult[]; total: number }>
-  listGroups(): Promise<Array<{ id: string; title: string; description?: string }>>
-  listReleases(): Promise<Array<{ id: string; title: string; description?: string }>>
-}
-
-interface ListParams {
-  contentType?: string   // filter by content type
-  group?: string         // filter by group
-  release?: string       // filter by release
-  limit?: number         // pagination
-  offset?: number        // pagination
-  sourcePath?: string    // filter by R2Document.path prefix, e.g. "docs/"
-}
-
-interface ListResponse {
-  data: Document[]
-  total: number
-}
-
-interface SearchParams {
-  contentType?: string
-  group?: string
-  release?: string
-  limit?: number
-}
-```
-
-Factory: `getKnowledgeClient()` returns a cached client. Falls back to `createStubClient()` if the `KNOWLEDGE_SERVER` service binding is unavailable.
-
-Helper: `safeCall(fn, fallback)` wraps async calls with error handling.
-
-> **Server-side documentation:** The knowledge-server's REST API (including the
-> `sourcePath` query parameter) is documented in the knowledge-server repository at
-> `src/api/README.md`. The WorkerEntrypoint RPC interface is documented at `src/README.md`.
+API endpoints access content through Astro v6 live collections (`getLiveCollection` / `getLiveEntry` from `astro:content`). The underlying data is stored in the `KNOWLEDGE_BUCKET` R2 bucket. See [architecture.md](architecture.md) for details.

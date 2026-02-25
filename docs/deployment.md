@@ -5,7 +5,8 @@
 The site runs on Cloudflare Workers with the following setup:
 
 - **Worker**: `knowledge-garden` — serves the Astro site
-- **Service binding**: `KNOWLEDGE_SERVER` — RPC connection to the knowledge-server Worker
+- **R2 bucket**: `KNOWLEDGE_BUCKET` — stores content as JSON documents (`superbenefit-knowledge`)
+- **AI binding**: `AI` — Cloudflare Workers AI (for future search)
 - **Static assets**: Served from `dist/client/` via Workers Assets
 - **Compatibility**: `nodejs_compat` flag enabled, date `2025-01-01`
 
@@ -49,22 +50,25 @@ npx wrangler deploy
 npx wrangler deploy --config wrangler.staging.jsonc
 ```
 
-## Environment Variables
+## Worker Bindings
 
-The knowledge-server Worker is connected via service binding, not environment variables. The binding is configured in `wrangler.jsonc`:
+Content is accessed via R2 bucket binding, configured in `wrangler.jsonc`:
 
 ```jsonc
 {
-  "services": [
+  "r2_buckets": [
     {
-      "binding": "KNOWLEDGE_SERVER",
-      "service": "knowledge-server"
+      "binding": "KNOWLEDGE_BUCKET",
+      "bucket_name": "superbenefit-knowledge"
     }
-  ]
+  ],
+  "ai": {
+    "binding": "AI"
+  }
 }
 ```
 
-In local development, the RPC stub (`src/lib/rpc-stub.ts`) is used automatically — no service binding is needed.
+In local development, `wrangler dev` provides local R2 emulation via miniflare. Seed it with `npm run seed`.
 
 ## Build Output
 
@@ -76,7 +80,7 @@ dist/
     _astro/         Hashed Astro bundles (immutable cache)
     index.html      Pre-rendered pages
     sitemap-index.xml
-  _worker.js        Cloudflare Worker entry point
+  server/           Cloudflare Worker entry point + chunks
 ```
 
 Static assets under `/_astro/` are served with `Cache-Control: public, max-age=31536000, immutable` via the middleware.

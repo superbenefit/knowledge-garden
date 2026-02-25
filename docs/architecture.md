@@ -2,16 +2,17 @@
 
 ## Overview
 
-The Knowledge Garden is an Astro v6 hybrid site deployed on Cloudflare Workers. All content is served at runtime via RPC to a knowledge-server Worker using service bindings.
+The Knowledge Garden is an Astro v6 hybrid site deployed on Cloudflare Workers. All content is read directly from an R2 bucket via Astro v6 live collections.
 
 ## Content Delivery
 
 | Route | Source | Rendering | Status |
 |-------|--------|-----------|--------|
-| `/[type]/` | knowledge-server RPC | SSR (`prerender = false`) | Working |
-| `/docs/` | knowledge-server RPC (`sourcePath: "docs/"`) | SSR (`prerender = false`) | Working |
-| `/api/docs-tree` | knowledge-server RPC (`sourcePath: "docs/"`) | SSR | Working |
-| `/api/search`, `/api/preview` | knowledge-server RPC | SSR | Working |
+| `/[type]/` | R2 live collection (filter by `contentType`) | SSR (`prerender = false`) | Working |
+| `/docs/` | R2 live collection (filter by `path.startsWith("docs/")`) | SSR (`prerender = false`) | Working |
+| `/api/docs-tree` | R2 live collection (filter by path prefix) | SSR | Working |
+| `/api/search` | Stub | SSR | Returns `{ items: [], total: 0 }` (TODO: CF AI Search) |
+| `/api/preview` | R2 live entry (`getLiveEntry`) | SSR | Working |
 | `/api/backlinks` | Stub | SSR | Returns `[]` (not yet implemented) |
 | `/api/graph` | Stub | SSR | Returns `{ nodes: [], links: [] }` (not yet implemented) |
 
@@ -19,61 +20,51 @@ The Knowledge Garden is an Astro v6 hybrid site deployed on Cloudflare Workers. 
 
 **SSR pages** (most of the site) opt in with `export const prerender = false` and are rendered on each request by the Cloudflare Worker:
 - `src/pages/[type]/index.astro` and `src/pages/[type]/[id].astro` handle all content types
-- `src/pages/docs/index.astro` and `src/pages/docs/[...slug].astro` handle the docs section via `sourcePath` filter
+- `src/pages/docs/index.astro` and `src/pages/docs/[...slug].astro` handle the docs section, filtering by `path.startsWith("docs/")`
 
 **Redirect pages** at `src/pages/lexicon/`, `people/`, `groups/`, `projects/` redirect to the corresponding `[type]/` routes (e.g. `/lexicon` → `/tag`, `/people` → `/person`).
 
 **React islands** provide client-side interactivity. Components like SearchBar, GraphView, DarkMode, DocsTreeNav, FilterPanel, and PopoverPreview are hydrated on the client using Astro's `client:load` or `client:only="react"` directives.
 
-## RPC Layer
+## Data Layer
 
-The knowledge-server is a separate Cloudflare Worker accessed via the `KNOWLEDGE_SERVER` service binding (defined in `wrangler.jsonc`).
+Content is stored as JSON documents in the `KNOWLEDGE_BUCKET` R2 bucket under the `content/` prefix. Each document follows the `R2Document` schema from `@superbenefit/knowledge-schemas`.
 
-### Client interface (`KnowledgeClient` in `src/lib/rpc.ts`)
+### Live Collection Loader (`src/loaders/r2-knowledge-loader.ts`)
+
+The custom Astro v6 loader connects directly to R2:
+
+- `loadCollection()` — lists all `content/*` objects, returns entries with metadata only (body omitted for performance)
+- `loadEntry({ filter: { id } })` — fetches a single object, returns full entry including content body
+
+### Collection Configuration (`src/live.config.ts`)
+
+A single "knowledge" collection is registered using `defineLiveCollection()`. Type and path filtering happens at query time in pages.
+
+### Data Access Pattern
+
+Pages import from `astro:content`:
 
 ```typescript
-interface KnowledgeClient {
-  getDocument(contentType: string, id: string): Promise<Document | null>
-  listEntries(params?: ListParams): Promise<ListResponse>
-  search(query: string, opts?: SearchParams): Promise<{ items: SearchResult[]; total: number }>
-  listGroups(): Promise<Array<{ id: string; title: string; description?: string }>>
-  listReleases(): Promise<Array<{ id: string; title: string; description?: string }>>
-}
+import { getLiveCollection, getLiveEntry } from "astro:content";
+import { fromCollectionEntry } from "@/lib/types";
+
+// Listing: returns all entries (body omitted)
+const result = await getLiveCollection("knowledge");
+const docs = (result.entries ?? []).map(e => fromCollectionEntry(e.id, e.data));
+
+// Detail: returns single entry with body
+const result = await getLiveEntry("knowledge", `content/${type}/${id}.json`);
+const doc = fromCollectionEntry(result.entry.id, result.entry.data);
 ```
 
-### Parameters
+### Adapter: `fromCollectionEntry()`
 
-```typescript
-interface ListParams {
-  contentType?: string   // filter by content type
-  group?: string         // filter by group
-  release?: string       // filter by release
-  limit?: number         // pagination
-  offset?: number        // pagination
-  sourcePath?: string    // filter by R2Document.path prefix, e.g. "docs/"
-}
-
-interface SearchParams {
-  contentType?: string
-  group?: string
-  release?: string
-  limit?: number
-}
-```
-
-### Factory and helpers
-
-- `getKnowledgeClient()` — returns a cached client instance. Tries service binding first (`env.KNOWLEDGE_SERVER`), falls back to stub client
-- `safeCall(fn, fallback)` — wraps any async call with error handling, returns fallback on failure
-- Aliases for backward compatibility: `getKnowledgeServer` → `getKnowledgeClient`, `safeRPC` → `safeCall`
-
-In development without Worker bindings, `src/lib/rpc-stub.ts` provides a mock implementation with 11 sample documents covering pattern, playbook, tag, article, person, group, project, and docs-section types.
-
-The knowledge-server's own REST API is documented in the knowledge-server repository at `src/api/README.md`. The WorkerEntrypoint RPC interface (including `getDocumentByPath`) is documented at `src/README.md` in that repo.
+Converts live collection entry data to the garden `Document` interface. Extracts the document ID from the R2 key (e.g., `content/pattern/governance-primitives.json` becomes `governance-primitives`).
 
 ## Type System
 
-The `Document` interface (garden-facing, adapted from `R2Document` by `toDocument()`):
+The `Document` interface (garden-facing, adapted from R2 data by `fromCollectionEntry()`):
 
 ```typescript
 interface Document {
@@ -104,7 +95,7 @@ interface Document {
 
 Every document has a `type` (specific) and `category` (derived via `getCategory()`). Components like TypeBadge render differently based on category.
 
-The server's `R2Document` has a `path` field (e.g. `"data/resources/patterns/governance-primitives.md"`). `toDocument()` preserves it as an optional `path` field on `Document`. The docs section uses this path to derive URL slugs and determine section membership.
+The R2 object has a `path` field (e.g. `"docs/dao-primitives/index.md"`). `fromCollectionEntry()` preserves it as an optional `path` field on `Document`. The docs section uses this path to derive URL slugs and determine section membership.
 
 ## Middleware
 
@@ -117,8 +108,8 @@ The server's `R2Document` has a `path` field (e.g. `"data/resources/patterns/gov
 
 Two markdown pipelines exist:
 
-1. **Build-time** (Astro's built-in) — configured in `astro.config.mjs` with remark-gfm, remark-wiki-link-plus, remark-obsidian, rehype-raw, rehype-callouts, rehype-slug
-2. **Runtime** (`src/lib/markdown.ts`) — unified pipeline for rendering markdown body content from RPC responses. Uses the same remark/rehype plugins.
+1. **Build-time** (Astro's built-in) — configured in `astro.config.mjs` with remark-gfm, remark-obsidian, rehype-raw, rehype-callouts, rehype-slug
+2. **Runtime** (`src/lib/markdown.ts`) — unified pipeline for rendering markdown body content from R2 documents. Uses the same remark/rehype plugins.
 
 ## Project Structure
 
@@ -130,7 +121,7 @@ src/
     islands/        SearchBar, GraphView, DarkMode, DocsTreeNav, FilterPanel, PopoverPreview (React)
   pages/
     api/            search, graph, backlinks, docs-tree, preview
-    docs/           SSR docs pages (index.astro + [...slug].astro) via RPC sourcePath filter
+    docs/           SSR docs pages (index.astro + [...slug].astro) via R2 live collection, path-filtered
     [type]/         SSR content pages (index.astro + [id].astro)
     lexicon/        Redirect → /tag
     people/         Redirect → /person
@@ -138,14 +129,16 @@ src/
     projects/       Redirect → /project
     tags/           SSR tag pages
   lib/
-    types.ts        Document, R2Document, ContentType, ListParams, SearchResult
-    rpc.ts          getKnowledgeClient(), safeCall()
-    rpc-stub.ts     Mock RPC with sample data (11 documents incl. 4 docs-section)
+    types.ts        Document, ContentType, fromCollectionEntry adapter
+    docs-tree.ts    TreeNode interface + buildTree() for docs navigation
     markdown.ts     Runtime markdown renderer
+  loaders/
+    r2-knowledge-loader.ts  Astro live collection loader for R2 bucket
+  live.config.ts    Defines "knowledge" collection via defineLiveCollection
   styles/
     global.css      Tailwind v4 @theme tokens
   middleware.ts     Security headers, cache control
 tests/
-  lib/              Unit tests for rpc, markdown, types
+  lib/              Unit tests for types, markdown
   integration/      Build output verification (requires prior build)
 ```

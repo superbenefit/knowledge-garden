@@ -2,7 +2,7 @@
 
 ## Overview
 
-Content is authored in [Obsidian](https://obsidian.md/) in the knowledge-base repository and synced to R2 via the knowledge-server Worker. The garden fetches all content at runtime via RPC service bindings. The site supports Obsidian-specific markdown features including wiki-links, callouts, and frontmatter metadata.
+Content is authored in [Obsidian](https://obsidian.md/) in the knowledge-base repository and synced to R2. The garden reads content directly from the R2 bucket at runtime using Astro v6 live collections. The site supports Obsidian-specific markdown features including wiki-links, callouts, and frontmatter metadata.
 
 ## Frontmatter
 

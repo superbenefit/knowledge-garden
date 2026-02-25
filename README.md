@@ -8,8 +8,8 @@ Knowledge from the SuperBenefit community and its projects. This space is used t
 
 Built with **Astro v6** (hybrid rendering) deployed on **Cloudflare Workers**.
 
-- **SSR content** — All content types served at runtime via RPC to a knowledge-server Worker
-- **Docs section** — Published KB files under `docs/` served via RPC `sourcePath` filter
+- **SSR content** — All content types served at runtime from R2 via Astro v6 live collections
+- **Docs section** — Published KB files under `docs/` filtered by path prefix from the same collection
 - **React islands** — Search, graph visualization, dark mode toggle (client-side hydration)
 - **Tailwind v4** — Utility-first CSS with custom theme tokens
 
@@ -23,6 +23,7 @@ npm run dev     # Start dev server
 npm run build   # Production build
 npm run check   # TypeScript checking
 npm run test    # Run tests
+npm run seed    # Seed local R2 from remote (for dev)
 ```
 
 ## Project Structure
@@ -35,16 +36,17 @@ src/
     islands/      # SearchBar, GraphView, DarkMode, DocsTreeNav (React)
   pages/
     api/          # search, graph, backlinks, docs-tree, preview endpoints
-    docs/         # SSR docs pages (via RPC sourcePath filter)
+    docs/         # SSR docs pages (path-filtered from R2 live collection)
     [type]/       # SSR content pages (all content types)
     lexicon/      # Redirect → /tag
     people/       # Redirect → /person
     groups/       # Redirect → /group
     projects/     # Redirect → /project
-  lib/            # types, rpc client, markdown utils
+  lib/            # types, docs-tree, markdown utils
+  loaders/        # R2 knowledge loader (Astro live collection)
   styles/         # global.css (Tailwind v4 theme)
 ```
 
 ## Content
 
-Content is maintained using [Obsidian](https://obsidian.md/) in the knowledge-base repository and synced to R2 via the knowledge-server Worker. The garden fetches all content at runtime via RPC service bindings.
+Content is maintained using [Obsidian](https://obsidian.md/) in the knowledge-base repository and synced to R2. The garden reads content directly from the R2 bucket at runtime using Astro v6 live collections.

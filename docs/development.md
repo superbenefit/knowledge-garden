@@ -23,6 +23,8 @@ npm install
 | `npm run preview` | Preview production build locally |
 | `npm run check` | TypeScript checking via `astro check` |
 | `npm run test` | Run test suite via Vitest |
+| `npm run seed` | Sync remote R2 bucket to local (for wrangler dev) |
+| `npm run seed:clean` | Wipe local R2 state first, then sync |
 
 ## Local Development
 
@@ -30,7 +32,7 @@ npm install
 npm run dev
 ```
 
-The dev server starts at `http://localhost:4321`. It uses the RPC stub (`src/lib/rpc-stub.ts`) for knowledge-server data — no Cloudflare service bindings needed locally.
+The dev server starts at `http://localhost:4321`. It uses `wrangler dev` with local R2 emulation (miniflare). Seed the local bucket from the remote production bucket before first use.
 
 ### Hot Reload
 
@@ -38,9 +40,17 @@ Astro's dev server provides HMR for:
 - `.astro` components — instant refresh
 - `.tsx` React islands — fast refresh
 - `.css` styles — injected without page reload
-### Adding Sample Data
 
-Edit `src/lib/rpc-stub.ts` to add more mock documents for local development. The stub implements the full `KnowledgeClient` interface.
+### Seeding Local Data
+
+The local R2 bucket must be populated before running the dev server:
+
+```bash
+npm run seed          # Sync remote production R2 → local miniflare R2
+npm run seed:clean    # Wipe local R2 state first, then sync
+```
+
+Requires `wrangler login` authentication. The seed script downloads all `content/*` objects from the remote bucket and uploads them to the local miniflare R2 store.
 
 ## Testing
 
@@ -49,7 +59,7 @@ Edit `src/lib/rpc-stub.ts` to add more mock documents for local development. The
 npm run test
 
 # Run specific test file
-npx vitest run tests/lib/rpc-stub.test.ts
+npx vitest run tests/lib/types.test.ts
 
 # Watch mode
 npx vitest
@@ -60,10 +70,8 @@ npx vitest
 ```
 tests/
   lib/
-    rpc-stub.test.ts     RPC mock (12 tests)
-    rpc.test.ts           RPC client (5 tests)
+    types.test.ts         Type validation + fromCollectionEntry (23 tests)
     markdown.test.ts      Markdown rendering (6 tests)
-    types.test.ts         Type validation (5 tests)
   integration/
     build.test.ts         Build output verification (skipped by default)
 ```
@@ -81,10 +89,14 @@ All SSR pages follow this pattern:
 export const prerender = false;
 
 import ContentLayout from "@/components/layout/ContentLayout.astro";
-import { getKnowledgeClient, safeCall } from "@/lib/rpc";
+import { getLiveEntry } from "astro:content";
+import { fromCollectionEntry } from "@/lib/types";
 
-const client = getKnowledgeClient();
-const entry = await safeCall(() => client.getDocument(type, id), null);
+let entry = null;
+try {
+  const result = await getLiveEntry("knowledge", `content/${type}/${id}.json`);
+  if (result.entry) entry = fromCollectionEntry(result.entry.id, result.entry.data);
+} catch {}
 
 if (!entry) {
   Astro.response.status = 404;
@@ -128,7 +140,7 @@ interface Props {
 The `@/` alias maps to `src/`:
 
 ```typescript
-import { getKnowledgeClient } from "@/lib/rpc";
+import { fromCollectionEntry } from "@/lib/types";
 import ContentLayout from "@/components/layout/ContentLayout.astro";
 ```
 
