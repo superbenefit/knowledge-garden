@@ -13,8 +13,6 @@ export function r2KnowledgeLoader() {
           const item = await bucket.get(obj.key);
           if (!item) return null;
           const doc: R2Document = await item.json();
-          // Skip link-type entries — they are reference stubs, not content
-          if (doc.contentType === "link") return null;
           return {
             id: obj.key,
             data: {
