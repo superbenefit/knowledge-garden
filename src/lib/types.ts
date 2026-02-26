@@ -145,10 +145,15 @@ export function fromCollectionEntry(
   entryId: string,
   data: Record<string, unknown>,
 ): Document {
-  // Extract document id from R2 key: content/{type}/{id}.json → {id}
-  const docId = entryId
-    .replace(/^content\/[^/]+\//, "")
-    .replace(/\.json$/, "");
+  // Extract document id from R2 key:
+  //   content/{type}/{id}.json → {id}
+  //   indexes/{id}.json        → {id}
+  let docId: string;
+  if (entryId.startsWith("indexes/")) {
+    docId = entryId.replace(/^indexes\//, "").replace(/\.json$/, "");
+  } else {
+    docId = entryId.replace(/^content\/[^/]+\//, "").replace(/\.json$/, "");
+  }
   const ct = (data.contentType as string) || "file";
   return {
     id: docId,

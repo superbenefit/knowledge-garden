@@ -33,6 +33,7 @@ src/
     islands/      # SearchBar, GraphView, DarkMode, DocsTreeNav, FilterPanel, PopoverPreview (React)
   pages/
     api/          # search, graph, backlinks, docs-tree, preview
+    attachments/  # Serves binary assets (images, PDFs) from R2 attachments/ prefix
     docs/         # SSR docs pages — index.astro + [...slug].astro (path-filtered from R2)
     [type]/       # SSR content pages — index.astro + [id].astro
     lexicon/      # Redirect → /tag
@@ -54,9 +55,9 @@ src/
 
 ### Live Collection Loader (`src/loaders/r2-knowledge-loader.ts`)
 
-The loader reads JSON documents from the `KNOWLEDGE_BUCKET` R2 binding (prefix `content/`):
+The loader reads JSON documents from the `KNOWLEDGE_BUCKET` R2 binding (prefixes `content/` and `indexes/`):
 
-- `loadCollection()` — lists all R2 objects, returns entries with metadata (body omitted for performance)
+- `loadCollection()` — lists all R2 objects from both prefixes, returns entries with metadata (body omitted for performance)
 - `loadEntry({ filter: { id } })` — fetches a single R2 object by key, returns full entry including body content
 
 Configured in `src/live.config.ts`:
@@ -76,6 +77,7 @@ Pages access data via:
 ### Key Patterns
 
 - **SSR pages**: Use `export const prerender = false` + `Astro.response.status = 404` (not `return new Response(...)` — esbuild can't parse top-level returns with exports)
+- **No early returns in Astro frontmatter**: Never use `return;` in `.astro` frontmatter — Astro compiles it to `throw ;` which breaks esbuild dependency scanning. Instead, wrap the template in `{condition && (<markup />)}`
 - **Optional props**: Use conditional spread `{...(val != null && { prop: val })}` (strict `exactOptionalPropertyTypes` is enabled)
 - **Data loading**: Pages use `getLiveCollection("knowledge")` for listings and `getLiveEntry("knowledge", key)` for detail pages, wrapped in try/catch for graceful degradation
 - **Docs pages**: Filter collection entries by `d.path?.startsWith("docs/")`, derive URL slug from `d.path` by stripping prefix/suffix
@@ -95,13 +97,11 @@ npm install
 ## Commands
 
 ```bash
-npm run dev       # Astro dev server (port 4321)
+npm run dev       # Astro dev server (port 4321) — reads live R2 data (remote: true)
 npm run build     # Production build
 npm run check     # TypeScript checking (astro check)
 npm run test      # Vitest test suite
 npm run preview   # Preview production build
-npm run seed      # Sync remote R2 bucket to local (for wrangler dev)
-npm run seed:clean  # Clean local R2 state and re-sync
 ```
 
 ## Testing

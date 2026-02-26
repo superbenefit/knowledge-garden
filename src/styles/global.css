@@ -74,6 +74,21 @@ a:hover {
   color: var(--color-tertiary);
 }
 
+/* Keyboard navigation focus outlines */
+:focus-visible {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Subtle transitions on interactive elements */
+button,
+input,
+select,
+textarea {
+  transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+}
+
 ::selection {
   background-color: rgba(42, 82, 30, 0.2);
 }
@@ -115,6 +130,10 @@ html.dark body {
 
 html.dark ::selection {
   background-color: rgba(177, 132, 55, 0.3);
+}
+
+html.dark :focus-visible {
+  outline-color: var(--color-secondary);
 }
 
 /* ================================================================
@@ -187,11 +206,26 @@ html.dark ::selection {
 .header-logo .home-link {
   display: flex;
   align-items: center;
+  gap: 0.5rem;
   color: var(--color-dark);
 }
 
 .header-logo .home-link:hover {
   color: var(--color-tertiary);
+}
+
+.site-name {
+  font-family: var(--font-header);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: -0.01em;
+  display: none;
+}
+
+@media (min-width: 800px) {
+  .site-name {
+    display: inline;
+  }
 }
 
 .header-right {
@@ -295,6 +329,13 @@ html.dark ::selection {
   color: var(--color-tertiary);
 }
 
+/* Active nav link — mobile (left accent) */
+.nav-menu-content a.active {
+  color: var(--color-secondary);
+  background-color: var(--color-highlight);
+  box-shadow: inset 3px 0 0 var(--color-secondary);
+}
+
 @media (min-width: 800px) {
   .nav-menu {
     display: flex;
@@ -318,6 +359,16 @@ html.dark ::selection {
   .nav-menu-content a {
     padding: 0.25rem 0.5rem;
     border-radius: 0.25rem;
+  }
+
+  /* Active nav link — desktop (bottom border) */
+  .nav-menu-content a.active {
+    color: var(--color-secondary);
+    background-color: transparent;
+    box-shadow: none;
+    border-bottom: 2px solid var(--color-secondary);
+    border-radius: 0;
+    padding-bottom: calc(0.25rem - 2px);
   }
 }
 
@@ -592,16 +643,17 @@ html.dark ::selection {
   border: 1px solid var(--color-lightgray);
   background-color: var(--color-light);
   text-decoration: none;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
 }
 
 .browse-card:hover {
   border-color: var(--color-secondary);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
 }
 
 html.dark .browse-card:hover {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
 }
 
 .browse-card-title {
@@ -619,8 +671,14 @@ html.dark .browse-card:hover {
 
 .doc-list-item {
   display: block;
-  padding: 0.75rem 0;
+  padding: 0.75rem 0.5rem;
   border-bottom: 1px solid var(--color-lightgray);
+  border-radius: 0.25rem;
+  transition: background-color 0.15s ease;
+}
+
+.doc-list-item:hover {
+  background-color: var(--color-highlight);
 }
 
 .doc-list-item:last-child {

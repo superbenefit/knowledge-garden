@@ -7,9 +7,13 @@ export function r2KnowledgeLoader() {
 
     async loadCollection() {
       const bucket = env.KNOWLEDGE_BUCKET;
-      const listed = await bucket.list({ prefix: "content/" });
+      const [contentListed, indexListed] = await Promise.all([
+        bucket.list({ prefix: "content/" }),
+        bucket.list({ prefix: "indexes/" }),
+      ]);
+      const allObjects = [...contentListed.objects, ...indexListed.objects];
       const entries = await Promise.all(
-        listed.objects.map(async (obj: { key: string }) => {
+        allObjects.map(async (obj: { key: string }) => {
           const item = await bucket.get(obj.key);
           if (!item) return null;
           const doc: R2Document = await item.json();

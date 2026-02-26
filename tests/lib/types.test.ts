@@ -155,6 +155,17 @@ describe("types", () => {
       expect(doc.modified).toBeUndefined();
     });
 
+    it("extracts document id from indexes/ R2 key", () => {
+      const doc = fromCollectionEntry("indexes/my-index.json", {
+        contentType: "index",
+        title: "My Index",
+        path: "docs/my-index.md",
+      });
+      expect(doc.id).toBe("my-index");
+      expect(doc.type).toBe("index");
+      expect(doc.category).toBe("reference");
+    });
+
     it("passes through the full data as frontmatter", () => {
       const doc = fromCollectionEntry(entryId, baseData);
       expect(doc.frontmatter).toBe(baseData);

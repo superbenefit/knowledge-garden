@@ -5,17 +5,17 @@ interface Props {
 }
 
 const { tags, linkPrefix = "/tags" } = Astro.props;
-
-if (!tags || tags.length === 0) return;
 ---
 
-<div class="tag-list">
-  {tags.map((tag) => (
-    <a href={`${linkPrefix}/${tag}`} class="tag-chip">
-      {tag}
-    </a>
-  ))}
-</div>
+{tags && tags.length > 0 && (
+  <div class="tag-list">
+    {tags.map((tag) => (
+      <a href={`${linkPrefix}/${tag}`} class="tag-chip">
+        {tag}
+      </a>
+    ))}
+  </div>
+)}
 
 <style>
   .tag-list {

@@ -3,23 +3,33 @@ import ContentLayout from "@/components/layout/ContentLayout.astro";
 import { getLiveCollection } from "astro:content";
 import { fromCollectionEntry } from "@/lib/types";
 
-let docs: ReturnType<typeof fromCollectionEntry>[] = [];
+let allEntries: ReturnType<typeof fromCollectionEntry>[] = [];
 try {
   const result = await getLiveCollection("knowledge");
-  docs = (result.entries ?? [])
-    .map((e) => fromCollectionEntry(e.id, e.data))
-    .slice(0, 8);
+  allEntries = (result.entries ?? []).map((e) => fromCollectionEntry(e.id, e.data));
 } catch {}
 
+const counts: Record<string, number> = {
+  docs: allEntries.filter((d) => d.path?.startsWith("docs/")).length,
+  tag: allEntries.filter((d) => d.type === "tag").length,
+  link: allEntries.filter((d) => d.type === "link").length,
+  pattern: allEntries.filter((d) => d.type === "pattern").length,
+  person: allEntries.filter((d) => d.type === "person").length,
+  group: allEntries.filter((d) => d.type === "group").length,
+  project: allEntries.filter((d) => d.type === "project").length,
+};
+
 const browseItems = [
-  { title: "Docs", href: "/docs", desc: "Published documentation" },
-  { title: "Lexicon", href: "/tag", desc: "Concepts & definitions" },
-  { title: "Links", href: "/link", desc: "Curated link library" },
-  { title: "Patterns", href: "/pattern", desc: "Design patterns" },
-  { title: "People", href: "/person", desc: "Contributors" },
-  { title: "Groups", href: "/group", desc: "Working groups" },
-  { title: "Projects", href: "/project", desc: "Active projects" },
-];
+  { key: "docs", title: "Docs", href: "/docs", desc: "Published documentation" },
+  { key: "tag", title: "Lexicon", href: "/tag", desc: "Concepts & definitions" },
+  { key: "link", title: "Links", href: "/link", desc: "Curated link library" },
+  { key: "pattern", title: "Patterns", href: "/pattern", desc: "Design patterns" },
+  { key: "person", title: "People", href: "/person", desc: "Contributors" },
+  { key: "group", title: "Groups", href: "/group", desc: "Working groups" },
+  { key: "project", title: "Projects", href: "/project", desc: "Active projects" },
+].filter((item) => (counts[item.key] ?? 0) > 0);
+
+const recentDocs = allEntries.slice(0, 8);
 ---
 
 <ContentLayout
@@ -40,23 +50,25 @@ const browseItems = [
     </a>
   </div>
 
-  <section class="home-section">
-    <h2>Browse</h2>
-    <div class="browse-grid">
-      {browseItems.map((item) => (
-        <a href={item.href} class="browse-card">
-          <span class="browse-card-title">{item.title}</span>
-          <span class="browse-card-desc">{item.desc}</span>
-        </a>
-      ))}
-    </div>
-  </section>
+  {browseItems.length > 0 && (
+    <section class="home-section">
+      <h2>Browse</h2>
+      <div class="browse-grid">
+        {browseItems.map((item) => (
+          <a href={item.href} class="browse-card">
+            <span class="browse-card-title">{item.title} ({counts[item.key]})</span>
+            <span class="browse-card-desc">{item.desc}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
 
   <section class="home-section">
     <h2>Recent</h2>
-    {docs.length > 0 ? (
+    {recentDocs.length > 0 ? (
       <div>
-        {docs.map((doc) => (
+        {recentDocs.map((doc) => (
           <div class="doc-list-item">
             <a href={`/${doc.type}/${doc.id}`} class="doc-list-item-title">
               {doc.title}

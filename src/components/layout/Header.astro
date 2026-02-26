@@ -1,28 +1,39 @@
 ---
 import DarkModeToggle from "@/components/layout/DarkModeToggle.astro";
 
+const currentPath = Astro.url.pathname;
+
 const navLinks = [
-  { text: "Home", href: "/" },
   { text: "Docs", href: "/docs" },
   { text: "Links", href: "/link" },
   { text: "Lexicon", href: "/tag" },
 ];
+
+function isActive(href: string): boolean {
+  if (href === "/") return currentPath === "/";
+  return currentPath.startsWith(href);
+}
 ---
 
 <header class="site-header">
   <div class="header-container">
     <div class="header-logo">
       <a href="/" class="home-link" aria-label="Home">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
           <path d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z" />
         </svg>
+        <span class="site-name">Knowledge Garden</span>
       </a>
     </div>
 
     <nav id="nav-menu" class="nav-menu">
       <div class="nav-menu-content">
         {navLinks.map((link) => (
-          <a href={link.href}>{link.text}</a>
+          <a
+            href={link.href}
+            class:list={[{ active: isActive(link.href) }]}
+            {...(isActive(link.href) ? { "aria-current": "page" } : {})}
+          >{link.text}</a>
         ))}
       </div>
     </nav>

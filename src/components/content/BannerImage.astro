@@ -6,28 +6,32 @@ interface Props {
 
 const { banner, title = "Banner image" } = Astro.props;
 
-if (!banner) return;
+let src: string | undefined;
 
-let imagePath: string | null = null;
+if (banner) {
+  let imagePath: string | null = null;
 
-// Handle Obsidian wiki-link format: "![[attachments/image.webp]]"
-const wikiLinkMatch = banner.match(/!?\[\[(.+?)\]\]/);
-if (wikiLinkMatch && wikiLinkMatch[1]) {
-  imagePath = wikiLinkMatch[1];
-} else {
-  imagePath = banner;
+  // Handle Obsidian wiki-link format: "![[attachments/image.webp]]"
+  const wikiLinkMatch = banner.match(/!?\[\[(.+?)\]\]/);
+  if (wikiLinkMatch && wikiLinkMatch[1]) {
+    imagePath = wikiLinkMatch[1];
+  } else {
+    imagePath = banner;
+  }
+
+  if (imagePath) {
+    // External URLs stay as-is; internal paths get leading slashes stripped and prefixed with /
+    const isExternal = imagePath.startsWith("http");
+    src = isExternal ? imagePath : "/" + imagePath.replace(/^\/+/, "");
+  }
 }
-
-if (!imagePath) return;
-
-// External URLs stay as-is; internal paths get leading slashes stripped and prefixed with /
-const isExternal = imagePath.startsWith("http");
-const src = isExternal ? imagePath : "/" + imagePath.replace(/^\/+/, "");
 ---
 
-<div class="banner-image">
-  <img src={src} alt={title} loading="eager" />
-</div>
+{src && (
+  <div class="banner-image">
+    <img src={src} alt={title} loading="eager" />
+  </div>
+)}
 
 <style>
   .banner-image {

@@ -9,36 +9,37 @@ interface Props {
 
 const { license, author, authorUrl, title, date: _date } = Astro.props;
 
-if (!license) return;
-
 // Parse license string like "CC-BY-SA-4.0"
-const parts = license.toUpperCase().split("-");
+const parts = license ? license.toUpperCase().split("-") : [];
 const isCC = parts[0] === "CC";
-
-if (!isCC) return;
+const show = !!(license && isCC);
 
 // Extract CC components (BY, SA, NC, ND, ZERO)
-const components = parts.slice(1).filter((p) => !p.match(/^\d/));
-const version = parts.find((p) => p.match(/^\d/)) || "4.0";
+const components = show ? parts.slice(1).filter((p) => !p.match(/^\d/)) : [];
+const version = show ? (parts.find((p) => p.match(/^\d/)) || "4.0") : "4.0";
 
 // Handle CC0 / CC-ZERO
-const isZero = components.includes("ZERO") || components.includes("0") || license.toUpperCase().includes("CC0");
+const isZero = show && (components.includes("ZERO") || components.includes("0") || license!.toUpperCase().includes("CC0"));
 
 // Build license URL
-let licenseUrl: string;
-if (isZero) {
-  licenseUrl = `https://creativecommons.org/publicdomain/zero/${version}/`;
-} else {
-  const slug = components.join("-").toLowerCase();
-  licenseUrl = `https://creativecommons.org/licenses/${slug}/${version}/`;
+let licenseUrl = "";
+if (show) {
+  if (isZero) {
+    licenseUrl = `https://creativecommons.org/publicdomain/zero/${version}/`;
+  } else {
+    const slug = components.join("-").toLowerCase();
+    licenseUrl = `https://creativecommons.org/licenses/${slug}/${version}/`;
+  }
 }
 
 // Human-readable name
-let licenseName: string;
-if (isZero) {
-  licenseName = `CC0 ${version} Universal`;
-} else {
-  licenseName = `CC ${components.join("-")} ${version}`;
+let licenseName = "";
+if (show) {
+  if (isZero) {
+    licenseName = `CC0 ${version} Universal`;
+  } else {
+    licenseName = `CC ${components.join("-")} ${version}`;
+  }
 }
 
 // Shield badge components for icons
@@ -46,7 +47,7 @@ const badgeComponents = isZero ? ["zero"] : components.map((c) => c.toLowerCase(
 const authorDisplay = author || "the author";
 ---
 
-<div class="license-info">
+{show && <div class="license-info">
   <div class="license-icons">
     <a href={licenseUrl} target="_blank" rel="noopener noreferrer license" aria-label={licenseName}>
       <svg class="cc-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -87,7 +88,7 @@ const authorDisplay = author || "the author";
     {" "}is licensed under{" "}
     <a href={licenseUrl} target="_blank" rel="noopener noreferrer license">{licenseName}</a>.
   </p>
-</div>
+</div>}
 
 <style>
   .license-info {
