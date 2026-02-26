@@ -1,5 +1,3 @@
-export const prerender = false;
-
 import type { APIRoute } from "astro";
 import { env } from "cloudflare:workers";
 

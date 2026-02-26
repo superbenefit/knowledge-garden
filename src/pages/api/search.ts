@@ -1,5 +1,3 @@
-export const prerender = false;
-
 import type { APIRoute } from "astro";
 
 // TODO: implement with env.AI once CF AI Search API is confirmed

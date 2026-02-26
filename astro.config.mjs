@@ -11,6 +11,7 @@ import rehypeSlug from "rehype-slug";
 
 export default defineConfig({
   site: "https://knowledge.superbenefit.org",
+  output: "server",
   adapter: cloudflare(),
   integrations: [react(), sitemap()],
   vite: {
