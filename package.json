@@ -18,11 +18,11 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",
-    "@astrojs/cloudflare": "13.0.0-beta.9",
+    "@astrojs/cloudflare": "13.0.0-beta.11",
     "@astrojs/react": "5.0.0-beta.3",
     "@astrojs/sitemap": "^3.3.0",
     "@superbenefit/knowledge-schemas": "file:../knowledge-server/packages/schemas",
-    "astro": "6.0.0-beta.15",
+    "astro": "6.0.0-beta.17",
     "d3": "^7.9.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
