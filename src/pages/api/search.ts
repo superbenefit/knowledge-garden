@@ -21,8 +21,8 @@ export const GET: APIRoute = async ({ url }) => {
     const sources: Array<{
       filename: string;
       score: number;
-      content: string[];
-    }> = searchResult?.data?.sources ?? [];
+      content: Array<{ id: string; type: string; text: string }>;
+    }> = searchResult?.data ?? [];
 
     const items: SearchResult[] = [];
 
@@ -41,7 +41,7 @@ export const GET: APIRoute = async ({ url }) => {
       if (typeFilter && contentType !== typeFilter) continue;
 
       // Extract title from content if available, otherwise use id
-      const text = source.content?.[0] ?? "";
+      const text = source.content?.[0]?.text ?? "";
       const firstLine = text.split("\n")[0]?.trim() ?? "";
       const title = firstLine || id;
 
