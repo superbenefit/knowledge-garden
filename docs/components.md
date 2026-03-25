@@ -152,26 +152,6 @@ Sidebar widget showing a mini graph visualization for the current page.
 
 Located in `src/components/islands/`. Client-side interactive components hydrated via Astro directives.
 
-### SearchBar.tsx
-
-Search input with dropdown results. Fetches from `/api/search` with 300ms debounce. Supports Ctrl+K keyboard shortcut.
-
-| Prop | Type | Description |
-|------|------|-------------|
-| `initialQuery` | `string?` | Pre-filled search query |
-| `typeFilter` | `ContentType?` | Filter by content type |
-| `tagFilters` | `string[]?` | Filter by tags |
-| `showDropdown` | `boolean?` | Show results dropdown |
-| `onResults` | `(results, query) => void` | Callback for search results |
-
-**Hydration**: `client:load`
-
-### SearchPageClient.tsx
-
-Full-page search UI combining SearchBar + FilterPanel + results list. Used on `/search`.
-
-**Hydration**: `client:load`
-
 ### FilterPanel.tsx
 
 Type selector and tag filter chips. Manages active filter state.
@@ -201,7 +181,7 @@ Collapsible folder tree for docs navigation. Persists open/closed state to local
 
 | Prop | Type | Description |
 |------|------|-------------|
-| `items` | `TreeNode[]` | Tree data from `/api/docs-tree` |
+| `items` | `TreeNode[]` | Tree data passed from page |
 | `currentSlug` | `string?` | Currently active doc |
 
 **Hydration**: `client:load`
@@ -212,8 +192,21 @@ Toggle button for light/dark theme. Persists preference to localStorage. Adds/re
 
 **Hydration**: `client:load`
 
-### PopoverPreview.tsx
+## Search (Pagefind)
 
-Link hover preview popover. Fetches preview data from `/api/preview` on hover.
+Static search powered by Pagefind. The search index is built at compile time.
 
-**Hydration**: `client:load`
+### Search Component
+
+Located in `src/pages/search.astro`. Uses Pagefind's pre-built static index.
+
+**Usage:**
+
+```astro
+---
+import Search from "astro-pagefind/components/Search";
+---
+<Search />
+```
+
+No API endpoints or client-side fetching required. The Pagefind index is generated during the build and served as static assets.

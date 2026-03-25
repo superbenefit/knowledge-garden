@@ -7,81 +7,69 @@ import TypeBadge from "@/components/content/TypeBadge.astro";
 import TagList from "@/components/content/TagList.astro";
 import ContentMeta from "@/components/content/ContentMeta.astro";
 import TableOfContents from "@/components/content/TableOfContents.astro";
-import { getLiveEntry } from "astro:content";
+import { getCollection } from "astro:content";
 import { isContentType, TYPE_LABELS, fromCollectionEntry } from "@/lib/types";
 import { renderMarkdown, extractHeadings } from "@/lib/markdown";
 
+export async function getStaticPaths() {
+  const entries = await getCollection("knowledge");
+  return entries.map((e) => {
+    const doc = fromCollectionEntry(e.id, e.data);
+    return {
+      params: { type: doc.type, id: doc.id },
+      props: { entry: e },
+    };
+  });
+}
+
 const { type, id } = Astro.params;
+const { entry: entryProp } = Astro.props;
 
 if (!type || !id || !isContentType(type)) {
-  Astro.response.status = 404;
+  return Astro.redirect("/404");
 }
 
-let entry: ReturnType<typeof fromCollectionEntry> | null = null;
-if (type && id && isContentType(type)) {
-  try {
-    const result = await getLiveEntry("knowledge", `content/${type}/${id}.json`);
-    if (result.entry) {
-      entry = fromCollectionEntry(result.entry.id, result.entry.data);
-    }
-  } catch {}
-}
-
-if (!entry) {
-  Astro.response.status = 404;
-}
-
-const html = entry ? await renderMarkdown(entry.body) : "";
+const entry = fromCollectionEntry(entryProp.id, entryProp.data);
+const body = entryProp.data.body as string;
+const html = body ? await renderMarkdown(body) : "";
 const headings = html ? extractHeadings(html) : [];
-const typeLabel = type ? TYPE_LABELS[type as keyof typeof TYPE_LABELS] || type : "";
-const pageTitle = entry
-  ? `${entry.title} | ${typeLabel} | SuperBenefit`
-  : "Not Found | SuperBenefit";
+const typeLabel = TYPE_LABELS[type as keyof typeof TYPE_LABELS] || type;
+const pageTitle = `${entry.title} | ${typeLabel} | SuperBenefit`;
 ---
 
-<ContentLayout title={pageTitle} description={entry?.description} mobileDrawer={true}>
+<ContentLayout title={pageTitle} description={entry.description} mobileDrawer={true}>
   {headings.length > 0 && (
     <TableOfContents headings={headings} slot="sidebar-right" />
   )}
 
-  {!entry ? (
-    <div>
-      <h1>Not Found</h1>
-      <p>The {typeLabel.toLowerCase() || "content"} you're looking for doesn't exist.</p>
-      <a href={`/${type}`} style="color: var(--color-secondary); text-decoration: underline;">
-        Back to {typeLabel || "listing"}
-      </a>
-    </div>
-  ) : (
-    <div>
-      <Breadcrumbs url={Astro.url.pathname} />
+  <div>
+    <Breadcrumbs url={Astro.url.pathname} />
 
-      {entry.banner && (
-        <BannerImage banner={entry.banner} title={entry.title} />
+    {entry.banner && (
+      <BannerImage banner={entry.banner} title={entry.title} />
+    )}
+
+    <article style="margin-top: 1rem;">
+      <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.25rem;">
+        <h1 style="margin: 0;">{entry.title}</h1>
+        <TypeBadge type={entry.type} category={entry.category} />
+      </div>
+
+      <ContentMeta document={entry} />
+
+      {entry.description && (
+        <p style="font-size: 1.125rem; color: var(--color-darkgray); margin: 0 0 1.5rem 0;">
+          {entry.description}
+        </p>
       )}
 
-      <article style="margin-top: 1rem;">
-        <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.25rem;">
-          <h1 style="margin: 0;">{entry.title}</h1>
-          <TypeBadge type={entry.type} category={entry.category} />
+      {entry.tags.length > 0 && (
+        <div style="margin-bottom: 1.5rem;">
+          <TagList tags={entry.tags} />
         </div>
+      )}
 
-        <ContentMeta document={entry} />
-
-        {entry.description && (
-          <p style="font-size: 1.125rem; color: var(--color-darkgray); margin: 0 0 1.5rem 0;">
-            {entry.description}
-          </p>
-        )}
-
-        {entry.tags.length > 0 && (
-          <div style="margin-bottom: 1.5rem;">
-            <TagList tags={entry.tags} />
-          </div>
-        )}
-
-        <article class="content-body" set:html={html} />
-      </article>
-    </div>
-  )}
+      <article class="content-body" set:html={html} />
+    </article>
+  </div>
 </ContentLayout>

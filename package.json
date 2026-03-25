@@ -18,11 +18,10 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",
-    "@astrojs/cloudflare": "13.0.0-beta.11",
-    "@astrojs/react": "5.0.0-beta.3",
-    "@astrojs/sitemap": "^3.3.0",
+    "@astrojs/react": "5.0.1",
+    "@astrojs/sitemap": "3.7.1",
     "@superbenefit/knowledge-schemas": "file:../knowledge-server/packages/schemas",
-    "astro": "6.0.0-beta.17",
+    "astro": "6.0.8",
     "d3": "^7.9.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -38,11 +37,11 @@
     "unified": "^11.0.5"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "^4.0.0",
+    "@tailwindcss/vite": "4.2.2",
     "@types/d3": "^7.4.3",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "tailwindcss": "^4.0.0",
+    "tailwindcss": "4.2.2",
     "typescript": "^5.9.2",
     "vitest": "^3.0.0",
     "wrangler": "^4.0.0"

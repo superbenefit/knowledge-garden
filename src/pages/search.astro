@@ -1,11 +1,14 @@
 ---
 import ContentLayout from "@/components/layout/ContentLayout.astro";
-import Breadcrumbs from "@/components/content/Breadcrumbs.astro";
-import SearchPageClient from "@/components/islands/SearchPageClient";
 ---
 
-<ContentLayout title="Search | SuperBenefit Knowledge Garden" showRightSidebar={false} mobileDrawer={true}>
-  <Breadcrumbs url="/search" />
-  <h1 style="margin: 1rem 0 1.5rem 0;">Search</h1>
-  <SearchPageClient client:load />
+<ContentLayout
+  title="Search | SuperBenefit Knowledge Garden"
+  description="Search the SuperBenefit knowledge garden."
+  mobileDrawer={true}
+>
+  <div style="text-align: center; padding: 3rem;">
+    <h1>Search</h1>
+    <p style="color: var(--color-darkgray);">Search functionality is being migrated. Please use the browser's Ctrl+K shortcut or browse content via tags and categories.</p>
+  </div>
 </ContentLayout>

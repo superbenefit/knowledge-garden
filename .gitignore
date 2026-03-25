@@ -18,6 +18,6 @@ dist/
 # Logs
 *.log
 
-# Cartography (AI-generated codemaps)
-codemap.md
-.slim/
+# env
+.env
+.dev

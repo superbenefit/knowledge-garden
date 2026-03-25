@@ -1,5 +1,4 @@
 import { defineConfig } from "astro/config";
-import cloudflare from "@astrojs/cloudflare";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
@@ -11,8 +10,7 @@ import rehypeSlug from "rehype-slug";
 
 export default defineConfig({
   site: "https://knowledge.superbenefit.org",
-  output: "server",
-  adapter: cloudflare(),
+  output: "static",
   integrations: [react(), sitemap()],
   vite: {
     plugins: [tailwindcss()],
