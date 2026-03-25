@@ -8,6 +8,8 @@ on:
 jobs:
   check:
     runs-on: ubuntu-latest
+    env:
+      R2_BUCKET_URL: https://knowledge-bucket.superbenefit.dev
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -17,4 +19,4 @@ jobs:
       - run: npm ci
       - run: npx astro check
       - run: npx vitest run
-      - run: R2_BUCKET_URL=https://knowledge-bucket.superbenefit.dev npx astro build
+      - run: npx astro build
