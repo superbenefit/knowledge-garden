@@ -41,7 +41,7 @@
     "@types/d3": "^7.4.3",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "astro-pagefind": "file:node_modules/astro-pagefind-lib",
+    "astro-pagefind": "github:shishkin/astro-pagefind#main",
     "tailwindcss": "4.2.2",
     "typescript": "^5.9.2",
     "vitest": "^3.0.0",
