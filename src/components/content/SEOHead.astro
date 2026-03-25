@@ -49,4 +49,4 @@ const jsonLd =
 <meta name="twitter:image" content={imageUrl} />
 
 <!-- JSON-LD structured data (articles only) -->
-{jsonLd && <script type="application/ld+json" set:html={jsonLd} />}
+{jsonLd && <script is:inline type="application/ld+json" set:html={jsonLd} />}

@@ -2,27 +2,24 @@
 
 ## Infrastructure
 
-The site runs on Cloudflare Workers with the following setup:
+The site runs on Cloudflare Workers with static assets served via Workers Assets:
 
-- **Worker**: `knowledge-garden` — serves the Astro site
-- **R2 bucket**: `KNOWLEDGE_BUCKET` — stores content as JSON documents (`superbenefit-knowledge`)
-- **AI binding**: `AI` — Cloudflare Workers AI (for future search)
-- **Static assets**: Served from `dist/client/` via Workers Assets
-- **Compatibility**: `nodejs_compat` flag enabled, date `2025-01-01`
+- **Worker**: `knowledge-garden` — serves the Astro static site
+- **Static assets**: Served from `dist/` via Workers Assets (configured in `wrangler.jsonc`)
+- **Compatibility**: `nodejs_compat` flag enabled, date `2026-02-01`
 
 ## Configuration Files
 
 | File | Purpose |
 |------|---------|
-| `wrangler.jsonc` | Production Cloudflare config |
-| `wrangler.staging.jsonc` | Staging environment config |
+| `wrangler.jsonc` | Production Cloudflare Workers config |
 | `.dev.vars` | Local dev environment variables (gitignored) |
 
 ## CI/CD
 
 ### `.github/workflows/ci.yml`
 
-Runs on push/PR to `astro-v6` and `main`:
+Runs on push/PR to `main`:
 
 1. Install dependencies (`npm ci`)
 2. TypeScript check (`astro check`)
@@ -34,7 +31,7 @@ Runs on push/PR to `astro-v6` and `main`:
 Runs on push to `main`:
 
 1. Install dependencies
-2. Build
+2. Build (`npm run build`)
 3. Deploy to Cloudflare Workers (`wrangler deploy`)
 
 ## Manual Deployment
@@ -45,30 +42,17 @@ npm run build
 
 # Deploy to production
 npx wrangler deploy
-
-# Deploy to staging
-npx wrangler deploy --config wrangler.staging.jsonc
 ```
 
-## Worker Bindings
+## Environment Variables
 
-Content is accessed via R2 bucket binding, configured in `wrangler.jsonc`:
+Required environment variables (set in Cloudflare dashboard or `.dev.vars`):
 
-```jsonc
-{
-  "r2_buckets": [
-    {
-      "binding": "KNOWLEDGE_BUCKET",
-      "bucket_name": "superbenefit-knowledge"
-    }
-  ],
-  "ai": {
-    "binding": "AI"
-  }
-}
-```
+| Variable | Description |
+|----------|-------------|
+| `R2_BUCKET_URL` | URL to the R2 bucket (e.g., `https://knowledge-bucket.superbenefit.dev`) |
 
-In local development, `wrangler dev` provides local R2 emulation via miniflare. Seed it with `npm run seed`.
+The site fetches content from this R2 bucket at build time. No API tokens are needed since the bucket is configured with a public custom domain.
 
 ## Build Output
 
@@ -76,11 +60,11 @@ After `npm run build`:
 
 ```
 dist/
-  client/           Static assets (HTML, CSS, JS, images)
-    _astro/         Hashed Astro bundles (immutable cache)
-    index.html      Pre-rendered pages
-    sitemap-index.xml
-  server/           Cloudflare Worker entry point + chunks
+  index.html          Pre-rendered pages
+  _astro/             Hashed Astro bundles (immutable cache)
+  pagefind/           Static search index
+  attachments/        Downloaded binary assets
+  sitemap-index.xml
 ```
 
 Static assets under `/_astro/` are served with `Cache-Control: public, max-age=31536000, immutable` via the middleware.
@@ -89,5 +73,5 @@ Static assets under `/_astro/` are served with `Cache-Control: public, max-age=3
 
 - Node.js >= 22
 - npm
-- Wrangler CLI (`npm install -g wrangler` or use `npx`)
+- Wrangler CLI (`npx wrangler` or globally installed)
 - Cloudflare account with Workers enabled

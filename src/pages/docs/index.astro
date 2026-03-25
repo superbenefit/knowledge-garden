@@ -2,27 +2,16 @@
 import ContentLayout from "@/components/layout/ContentLayout.astro";
 import Breadcrumbs from "@/components/content/Breadcrumbs.astro";
 import ContentRenderer from "@/components/content/ContentRenderer.astro";
-import { getLiveCollection, getLiveEntry } from "astro:content";
+import { getCollection } from "astro:content";
 import { fromCollectionEntry } from "@/lib/types";
 import { buildTree, type TreeNode } from "@/lib/docs-tree";
 
-let allDocs: ReturnType<typeof fromCollectionEntry>[] = [];
-try {
-  const result = await getLiveCollection("knowledge");
-  allDocs = (result.entries ?? [])
-    .map((e) => fromCollectionEntry(e.id, e.data))
-    .filter((d) => d.path?.startsWith("docs/"));
-} catch {}
+const allDocs = (await getCollection("knowledge"))
+  .map((e) => fromCollectionEntry(e.id, e.data))
+  .filter((d) => d.path?.startsWith("docs/"));
 
-// Look for a root index.md to render as page content
 const indexMeta = allDocs.find((d) => d.path === "docs/index.md") ?? null;
-let indexBody = "";
-if (indexMeta) {
-  try {
-    const full = await getLiveEntry("knowledge", `content/${indexMeta.type}/${indexMeta.id}.json`);
-    if (full.entry) indexBody = (full.entry.data.body as string) || "";
-  } catch {}
-}
+const indexBody = indexMeta?.body ?? "";
 
 const adapted = allDocs
   .filter((d) => d.path)

@@ -163,10 +163,7 @@ function TreeItem({
   );
 }
 
-export default function DocsTreeNav({ items: initialItems, currentSlug }: DocsTreeNavProps) {
-  const [items, setItems] = useState<TreeNode[]>(initialItems ?? []);
-  const [loading, setLoading] = useState(!initialItems || initialItems.length === 0);
-
+export default function DocsTreeNav({ items, currentSlug }: DocsTreeNavProps) {
   const [openFolders, setOpenFolders] = useState<Set<string>>(() => {
     const initial = loadOpenState();
     if (currentSlug) {
@@ -177,23 +174,6 @@ export default function DocsTreeNav({ items: initialItems, currentSlug }: DocsTr
     }
     return initial;
   });
-
-  // Self-fetch when no items provided
-  useEffect(() => {
-    if (initialItems && initialItems.length > 0) {
-      setLoading(false);
-      return;
-    }
-    fetch("/api/docs-tree")
-      .then((r) => r.json())
-      .then((data: TreeNode[]) => {
-        setItems(data);
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-      });
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const toggleFolder = useCallback((slug: string) => {
     setOpenFolders((prev) => {
@@ -211,17 +191,9 @@ export default function DocsTreeNav({ items: initialItems, currentSlug }: DocsTr
     saveOpenState(openFolders);
   }, [openFolders]);
 
-  const sorted = sortNodes(items);
+  const sorted = sortNodes(items ?? []);
 
-  if (loading) {
-    return (
-      <nav style={{ fontSize: "0.8125rem", color: "var(--color-gray)" }}>
-        Loading...
-      </nav>
-    );
-  }
-
-  if (sorted.length === 0) return null;
+  if (!items || sorted.length === 0) return null;
 
   return (
     <nav style={{ fontSize: "0.8125rem" }}>

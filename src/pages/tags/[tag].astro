@@ -1,24 +1,31 @@
 ---
 import ContentLayout from "@/components/layout/ContentLayout.astro";
 import ReleaseContents from "@/components/content/ReleaseContents.astro";
-import { getLiveCollection } from "astro:content";
+import { getCollection } from "astro:content";
 import { fromCollectionEntry, type Document } from "@/lib/types";
 
-const tag = Astro.params.tag ?? "";
+export async function getStaticPaths() {
+  const entries = await getCollection("knowledge");
+  const allTags = new Set<string>();
+  for (const e of entries) {
+    const tags = e.data.tags;
+    if (Array.isArray(tags)) {
+      tags.forEach((t) => allTags.add(t as string));
+    }
+  }
+  return Array.from(allTags).map((tag) => ({ params: { tag } }));
+}
+
+const { tag } = Astro.params;
 
 if (!tag) {
-  Astro.response.status = 404;
+  return Astro.redirect("/404");
 }
 
-let documents: Document[] = [];
-if (tag) {
-  try {
-    const result = await getLiveCollection("knowledge");
-    documents = (result.entries ?? [])
-      .map((e) => fromCollectionEntry(e.id, e.data))
-      .filter((doc) => doc.tags && doc.tags.includes(tag));
-  } catch {}
-}
+const entries = await getCollection("knowledge");
+const documents: Document[] = entries
+  .map((e) => fromCollectionEntry(e.id, e.data))
+  .filter((doc) => doc.tags && doc.tags.includes(tag!));
 ---
 
 <ContentLayout title={`${tag} | Tags | SuperBenefit Knowledge Garden`} description={`Content tagged with "${tag}".`}>

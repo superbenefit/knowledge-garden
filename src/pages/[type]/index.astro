@@ -2,24 +2,28 @@
 
 import ContentLayout from "@/components/layout/ContentLayout.astro";
 import Breadcrumbs from "@/components/content/Breadcrumbs.astro";
-import { getLiveCollection } from "astro:content";
+import { getCollection } from "astro:content";
 import { isContentType, TYPE_LABELS, fromCollectionEntry } from "@/lib/types";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("knowledge");
+  const types = new Set<string>();
+  for (const e of entries) {
+    types.add(e.data.contentType as string);
+  }
+  return Array.from(types).map((type) => ({ params: { type } }));
+}
 
 const { type } = Astro.params;
 
 if (!type || !isContentType(type)) {
-  Astro.response.status = 404;
+  return Astro.redirect("/404");
 }
 
-let entries: ReturnType<typeof fromCollectionEntry>[] = [];
-if (type && isContentType(type)) {
-  try {
-    const result = await getLiveCollection("knowledge");
-    entries = (result.entries ?? [])
-      .map((e) => fromCollectionEntry(e.id, e.data))
-      .filter((d) => d.type === type);
-  } catch {}
-}
+const entries = await getCollection("knowledge");
+const docs = entries
+  .filter((e) => e.data.contentType === type)
+  .map((e) => fromCollectionEntry(e.id, e.data));
 
 const typeLabel = type ? TYPE_LABELS[type as keyof typeof TYPE_LABELS] || type : "";
 const pluralLabel = typeLabel + "s";
@@ -42,13 +46,13 @@ const isLink = type === "link";
       ? "Concepts and definitions in the SuperBenefit knowledge base."
       : isLink
         ? "Curated resources and references from across the web."
-        : `${entries.length} ${entries.length === 1 ? typeLabel.toLowerCase() : pluralLabel.toLowerCase()} in the knowledge garden.`}
+        : `${docs.length} ${docs.length === 1 ? typeLabel.toLowerCase() : pluralLabel.toLowerCase()} in the knowledge garden.`}
   </p>
 
-  {entries.length > 0 ? (
+  {docs.length > 0 ? (
     isTag ? (
       <div class="concept-grid">
-        {entries.map((entry) => (
+        {docs.map((entry) => (
           <a href={`/${entry.type}/${entry.id}`} class="concept-card">
             <span class="concept-card-title">{entry.title}</span>
             {entry.description && (
@@ -62,7 +66,7 @@ const isLink = type === "link";
       </div>
     ) : isLink ? (
       <div class="link-grid">
-        {entries.map((entry) => (
+        {docs.map((entry) => (
           <a href={`/${entry.type}/${entry.id}`} class="link-card">
             <div class="link-card-icon">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
@@ -78,7 +82,7 @@ const isLink = type === "link";
       </div>
     ) : (
       <div>
-        {entries.map((entry) => (
+        {docs.map((entry) => (
           <div class="doc-list-item">
             <a href={`/${entry.type}/${entry.id}`} class="doc-list-item-title">
               {entry.title}
@@ -112,7 +116,6 @@ const isLink = type === "link";
     margin: 0 0 2rem 0;
   }
 
-  /* Concept cards (tags/lexicon) */
   .concept-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -166,7 +169,6 @@ const isLink = type === "link";
     font-family: var(--font-header);
   }
 
-  /* Link cards */
   .link-grid {
     display: flex;
     flex-direction: column;

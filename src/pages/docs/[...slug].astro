@@ -6,39 +6,35 @@ import TypeBadge from "@/components/content/TypeBadge.astro";
 import TagList from "@/components/content/TagList.astro";
 import ContentMeta from "@/components/content/ContentMeta.astro";
 import TableOfContents from "@/components/content/TableOfContents.astro";
-import { getLiveCollection, getLiveEntry } from "astro:content";
+import { getCollection } from "astro:content";
 import { fromCollectionEntry, type Document } from "@/lib/types";
 import { renderMarkdown, extractHeadings } from "@/lib/markdown";
 
+export async function getStaticPaths() {
+  const entries = await getCollection("knowledge");
+  const docs = entries
+    .filter((e) => e.data.path?.startsWith("docs/"))
+    .map((e) => ({ id: e.id, data: e.data }));
+
+  return docs.map((e) => {
+    const slug = (e.data.path as string).replace(/^docs\//, "").replace(/\.md$/, "");
+    return {
+      params: { slug },
+      props: { entry: e },
+    };
+  });
+}
+
 const { slug } = Astro.params;
-const kbPath = `docs/${slug}.md`;
+const { entry: entryProp } = Astro.props;
 
-let allDocs: Document[] = [];
-try {
-  const result = await getLiveCollection("knowledge");
-  allDocs = (result.entries ?? [])
-    .map((e) => fromCollectionEntry(e.id, e.data))
-    .filter((d) => d.path?.startsWith("docs/"));
-} catch {}
+const entry = fromCollectionEntry(entryProp.id, entryProp.data);
+const body = entryProp.data.body as string;
 
-// Try exact match (lightweight — no body in collection listing)
-let entry = allDocs.find((d) => d.path === kbPath) ?? null;
+const allDocs: Document[] = (await getCollection("knowledge"))
+  .map((e) => fromCollectionEntry(e.id, e.data))
+  .filter((d) => d.path?.startsWith("docs/"));
 
-// Try as folder index (docs/slug/index.md)
-if (!entry) {
-  entry = allDocs.find((d) => d.path === `docs/${slug}/index.md`) ?? null;
-}
-
-// Fetch full entry with body for rendering
-let body = "";
-if (entry) {
-  try {
-    const full = await getLiveEntry("knowledge", `content/${entry.type}/${entry.id}.json`);
-    if (full.entry) body = (full.entry.data.body as string) || "";
-  } catch {}
-}
-
-// Check if this is a folder with children (exclude index.md itself)
 const childPrefix = `docs/${slug}/`;
 const children = allDocs
   .filter((d) => d.path?.startsWith(childPrefix) && d.path !== `docs/${slug}/index.md`)
@@ -52,7 +48,7 @@ const hasChildren = children.length > 0;
 const isFolderOnly = !entry && hasChildren;
 
 if (!entry && !isFolderOnly) {
-  Astro.response.status = 404;
+  return Astro.redirect("/404");
 }
 
 const html = body ? await renderMarkdown(body) : "";

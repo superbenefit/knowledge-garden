@@ -1,27 +1,7 @@
 {
-  "$schema": "node_modules/wrangler/config-schema.json",
   "name": "knowledge-garden",
-  "account_id": "c36c9a59f6251430c514f4fff55c3f4a",
   "compatibility_date": "2026-02-01",
-  "compatibility_flags": ["nodejs_compat"],
   "assets": {
-    "directory": "dist/client"
-  },
-  // remote: true on the R2 binding doesn't work with @astrojs/cloudflare beta yet
-  // (miniflare proxy returns 500). Use `npm run sync` to pull live data to local R2.
-  "r2_buckets": [
-    {
-      "binding": "KNOWLEDGE_BUCKET",
-      "bucket_name": "superbenefit-knowledge"
-    }
-  ],
-  "ai": {
-    "binding": "AI"
-  },
-  "observability": {
-    "logs": {
-      "enabled": true,
-      "invocation_logs": true
-    }
+    "directory": "./dist"
   }
 }

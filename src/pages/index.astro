@@ -1,13 +1,11 @@
 ---
 import ContentLayout from "@/components/layout/ContentLayout.astro";
-import { getLiveCollection } from "astro:content";
+import { getCollection } from "astro:content";
 import { fromCollectionEntry } from "@/lib/types";
 
-let allEntries: ReturnType<typeof fromCollectionEntry>[] = [];
-try {
-  const result = await getLiveCollection("knowledge");
-  allEntries = (result.entries ?? []).map((e) => fromCollectionEntry(e.id, e.data));
-} catch {}
+const allEntries = (await getCollection("knowledge")).map((e) =>
+  fromCollectionEntry(e.id, e.data),
+);
 
 const counts: Record<string, number> = {
   docs: allEntries.filter((d) => d.path?.startsWith("docs/")).length,

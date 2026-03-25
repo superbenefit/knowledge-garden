@@ -2,65 +2,63 @@
 
 ## Overview
 
-The Knowledge Garden is an Astro v6 hybrid site deployed on Cloudflare Workers. All content is read directly from an R2 bucket via Astro v6 live collections.
+The Knowledge Garden is an Astro v6 static site deployed on Cloudflare Workers. Content is loaded from an R2 bucket at build time via Astro content collections.
 
 ## Content Delivery
 
 | Route | Source | Rendering | Status |
 |-------|--------|-----------|--------|
-| `/[type]/` | R2 live collection (filter by `contentType`) | SSR (`prerender = false`) | Working |
-| `/docs/` | R2 live collection (filter by `path.startsWith("docs/")`) | SSR (`prerender = false`) | Working |
-| `/api/docs-tree` | R2 live collection (filter by path prefix) | SSR | Working |
-| `/api/search` | Stub | SSR | Returns `{ items: [], total: 0 }` (TODO: CF AI Search) |
-| `/api/preview` | R2 live entry (`getLiveEntry`) | SSR | Working |
-| `/api/backlinks` | Stub | SSR | Returns `[]` (not yet implemented) |
-| `/api/graph` | Stub | SSR | Returns `{ nodes: [], links: [] }` (not yet implemented) |
+| `/[type]/` | R2 content collection (filter by `contentType`) | Static (`getStaticPaths`) | Working |
+| `/docs/` | R2 content collection (filter by `path.startsWith("docs/")`) | Static | Working |
+| `/tags/[tag]/` | R2 content collection (filter by tags) | Static (`getStaticPaths`) | Working |
+| `/search` | Pagefind static index | Static | Working |
 
 ## Rendering Strategy
 
-**SSR pages** (most of the site) opt in with `export const prerender = false` and are rendered on each request by the Cloudflare Worker:
+**Static pages** (`output: "static"`) are pre-rendered at build time:
 - `src/pages/[type]/index.astro` and `src/pages/[type]/[id].astro` handle all content types
-- `src/pages/docs/index.astro` and `src/pages/docs/[...slug].astro` handle the docs section, filtering by `path.startsWith("docs/")`
+- `src/pages/docs/index.astro` and `src/pages/docs/[...slug].astro` handle the docs section
+- `src/pages/tags/[tag].astro` generates a page per tag
 
 **Redirect pages** at `src/pages/lexicon/`, `people/`, `groups/`, `projects/` redirect to the corresponding `[type]/` routes (e.g. `/lexicon` → `/tag`, `/people` → `/person`).
 
-**React islands** provide client-side interactivity. Components like SearchBar, GraphView, DarkMode, DocsTreeNav, FilterPanel, and PopoverPreview are hydrated on the client using Astro's `client:load` or `client:only="react"` directives.
+**React islands** provide client-side interactivity. Components like DocsTreeNav and DarkMode are hydrated using Astro's `client:load` directive.
 
 ## Data Layer
 
-Content is stored as JSON documents in the `KNOWLEDGE_BUCKET` R2 bucket under the `content/` prefix. Each document follows the `R2Document` schema from `@superbenefit/knowledge-schemas`.
+Content is stored as JSON documents in an R2 bucket under the `content/` prefix. Each document follows the `R2Document` schema from `@superbenefit/knowledge-schemas`.
 
-### Live Collection Loader (`src/loaders/r2-knowledge-loader.ts`)
+### Content Collection Loader (`src/loaders/r2-knowledge-loader.ts`)
 
-The custom Astro v6 loader connects directly to R2:
+The custom Astro loader connects to R2 via public fetch (no credentials needed):
 
-- `loadCollection()` — lists all `content/*` objects, returns entries with metadata only (body omitted for performance)
-- `loadEntry({ filter: { id } })` — fetches a single object, returns full entry including content body
+- `load()` — fetches a manifest from R2, then fetches all content objects in parallel
+- Downloads attachments to `public/attachments/` at build time
+- No API tokens required — uses public custom domain
 
-### Collection Configuration (`src/live.config.ts`)
+### Collection Configuration (`src/content.config.ts`)
 
-A single "knowledge" collection is registered using `defineLiveCollection()`. Type and path filtering happens at query time in pages.
+A single "knowledge" collection is registered using `defineCollection()`. Type and path filtering happens at query time in pages.
 
 ### Data Access Pattern
 
 Pages import from `astro:content`:
 
 ```typescript
-import { getLiveCollection, getLiveEntry } from "astro:content";
+import { getCollection } from "astro:content";
 import { fromCollectionEntry } from "@/lib/types";
 
-// Listing: returns all entries (body omitted)
-const result = await getLiveCollection("knowledge");
-const docs = (result.entries ?? []).map(e => fromCollectionEntry(e.id, e.data));
+// Listing: returns all entries (body included)
+const entries = await getCollection("knowledge");
+const docs = entries.map(e => fromCollectionEntry(e.id, e.data));
 
-// Detail: returns single entry with body
-const result = await getLiveEntry("knowledge", `content/${type}/${id}.json`);
-const doc = fromCollectionEntry(result.entry.id, result.entry.data);
+// Detail: entry is passed as prop from getStaticPaths()
+const entry = fromCollectionEntry(entryProp.id, entryProp.data);
 ```
 
 ### Adapter: `fromCollectionEntry()`
 
-Converts live collection entry data to the garden `Document` interface. Extracts the document ID from the R2 key (e.g., `content/pattern/governance-primitives.json` becomes `governance-primitives`).
+Converts content collection entry data to the garden `Document` interface. Extracts the document ID from the R2 key (e.g., `content/pattern/governance-primitives.json` becomes `governance-primitives`).
 
 ## Type System
 
@@ -95,14 +93,9 @@ interface Document {
 
 Every document has a `type` (specific) and `category` (derived via `getCategory()`). Components like TypeBadge render differently based on category.
 
-The R2 object has a `path` field (e.g. `"docs/dao-primitives/index.md"`). `fromCollectionEntry()` preserves it as an optional `path` field on `Document`. The docs section uses this path to derive URL slugs and determine section membership.
-
 ## Middleware
 
-`src/middleware.ts` runs on every SSR request and adds:
-
-- Security headers (X-Content-Type-Options, X-Frame-Options, Referrer-Policy)
-- Immutable cache headers for `/_astro/` static assets
+`src/middleware.ts` adds security headers and cache control for static assets.
 
 ## Markdown Processing
 
@@ -111,6 +104,13 @@ Two markdown pipelines exist:
 1. **Build-time** (Astro's built-in) — configured in `astro.config.mjs` with remark-gfm, remark-obsidian, rehype-raw, rehype-callouts, rehype-slug
 2. **Runtime** (`src/lib/markdown.ts`) — unified pipeline for rendering markdown body content from R2 documents. Uses the same remark/rehype plugins.
 
+## Search
+
+Search is handled by Pagefind, a static search library:
+- Index is built at compile time during `astro build`
+- Served as static assets under `/pagefind/`
+- No API endpoints required
+
 ## Project Structure
 
 ```
@@ -118,27 +118,27 @@ src/
   components/
     layout/         BaseLayout, ContentLayout, Header, Footer, Sidebar
     content/        TypeBadge, ReleaseCard, BackLinks, TagList, ToC, etc.
-    islands/        SearchBar, GraphView, DarkMode, DocsTreeNav, FilterPanel, PopoverPreview (React)
+    islands/        DocsTreeNav, DarkMode, GraphView, FilterPanel (React)
   pages/
-    api/            search, graph, backlinks, docs-tree, preview
-    docs/           SSR docs pages (index.astro + [...slug].astro) via R2 live collection, path-filtered
-    [type]/         SSR content pages (index.astro + [id].astro)
+    docs/           Static docs pages ([...slug].astro)
+    [type]/         Static content pages (index.astro + [id].astro)
     lexicon/        Redirect → /tag
     people/         Redirect → /person
     groups/         Redirect → /group
     projects/       Redirect → /project
-    tags/           SSR tag pages
+    tags/           Static tag pages
+    search.astro    Pagefind search UI
   lib/
     types.ts        Document, ContentType, fromCollectionEntry adapter
     docs-tree.ts    TreeNode interface + buildTree() for docs navigation
     markdown.ts     Runtime markdown renderer
   loaders/
-    r2-knowledge-loader.ts  Astro live collection loader for R2 bucket
-  live.config.ts    Defines "knowledge" collection via defineLiveCollection
+    r2-knowledge-loader.ts  Astro content loader for R2 bucket
+  content.config.ts Defines "knowledge" collection
   styles/
     global.css      Tailwind v4 @theme tokens
   middleware.ts     Security headers, cache control
 tests/
   lib/              Unit tests for types, markdown
-  integration/      Build output verification (requires prior build)
+  integration/      Build output verification (skipped by default)
 ```

@@ -1,55 +1,71 @@
-import type { R2Document } from "@superbenefit/knowledge-schemas";
-import { env } from "cloudflare:workers";
+import type { Loader } from "astro/loaders";
+import { mkdirSync, writeFileSync } from "node:fs";
+import { join, dirname } from "node:path";
 
-export function r2KnowledgeLoader() {
+interface Manifest {
+  metadata: {
+    keys: string[];
+    indexKeys: string[];
+    attachmentKeys: string[];
+  };
+}
+
+export function r2KnowledgeLoader({ bucketUrl }: { bucketUrl: string }): Loader {
   return {
     name: "r2-knowledge-loader",
+    async load({ store, logger }) {
+      if (!bucketUrl) {
+        throw new Error("R2_BUCKET_URL environment variable is not set");
+      }
 
-    async loadCollection() {
-      const bucket = env.KNOWLEDGE_BUCKET;
-      const [contentListed, indexListed] = await Promise.all([
-        bucket.list({ prefix: "content/" }),
-        bucket.list({ prefix: "indexes/" }),
-      ]);
-      const allObjects = [...contentListed.objects, ...indexListed.objects];
-      const entries = await Promise.all(
-        allObjects.map(async (obj: { key: string }) => {
-          const item = await bucket.get(obj.key);
-          if (!item) return null;
-          const doc: R2Document = await item.json();
-          return {
-            id: obj.key,
+      store.clear();
+
+      const manifestRes = await fetch(`${bucketUrl}/indexes/all-content.json`);
+      if (!manifestRes.ok) throw new Error(`Manifest fetch failed: ${manifestRes.status}`);
+      const manifest = (await manifestRes.json()) as Manifest;
+      const keys = manifest.metadata.keys as string[];
+      const indexKeys = (manifest.metadata.indexKeys as string[]) ?? [];
+      const attachmentKeys = (manifest.metadata.attachmentKeys as string[]) ?? [];
+      logger.info(`Manifest: ${keys.length} content keys, ${indexKeys.length} index keys, ${attachmentKeys.length} attachment keys`);
+
+      const allDocKeys = [...keys, ...indexKeys];
+      await Promise.all(
+        allDocKeys.map(async (key) => {
+          const res = await fetch(`${bucketUrl}/${key}`);
+          if (!res.ok) {
+            logger.warn(`Skipping ${key}: ${res.status}`);
+            return;
+          }
+          const doc = await res.json();
+          store.set({
+            id: key,
             data: {
               ...doc.metadata,
               contentType: doc.contentType,
               path: doc.path,
-              // Omit body in collection listing for performance.
-              // Use getLiveEntry() when the full body is needed.
-              body: "",
+              body: doc.content,
             },
-          };
+          });
         }),
       );
-      return {
-        entries: entries.filter(
-          (e): e is NonNullable<typeof e> => e !== null,
-        ),
-      };
-    },
 
-    async loadEntry({ filter }: { filter: { id: string } }) {
-      const item = await env.KNOWLEDGE_BUCKET.get(filter.id);
-      if (!item) return undefined;
-      const doc: R2Document = await item.json();
-      return {
-        id: filter.id,
-        data: {
-          ...doc.metadata,
-          contentType: doc.contentType,
-          path: doc.path,
-          body: doc.content,
-        },
-      };
+      const attachmentsDir = join(process.cwd(), "public", "attachments");
+      mkdirSync(attachmentsDir, { recursive: true });
+
+      for (const key of attachmentKeys) {
+        const res = await fetch(`${bucketUrl}/${key}`);
+        if (!res.ok) {
+          logger.warn(`Skipping attachment ${key}: ${res.status}`);
+          continue;
+        }
+        const buffer = await res.arrayBuffer();
+        const relativePath = key.replace(/^attachments\//, "");
+        const filePath = join(attachmentsDir, relativePath);
+        mkdirSync(dirname(filePath), { recursive: true });
+        writeFileSync(filePath, Buffer.from(buffer));
+      }
+
+      logger.info(`Loaded entries from R2`);
     },
   };
 }

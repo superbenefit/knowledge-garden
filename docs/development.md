@@ -10,7 +10,6 @@
 ```bash
 git clone https://github.com/superbenefit/knowledge-garden.git
 cd knowledge-garden
-git checkout astro-v6
 npm install
 ```
 
@@ -23,8 +22,6 @@ npm install
 | `npm run preview` | Preview production build locally |
 | `npm run check` | TypeScript checking via `astro check` |
 | `npm run test` | Run test suite via Vitest |
-| `npm run seed` | Sync remote R2 bucket to local (for wrangler dev) |
-| `npm run seed:clean` | Wipe local R2 state first, then sync |
 
 ## Local Development
 
@@ -32,7 +29,7 @@ npm install
 npm run dev
 ```
 
-The dev server starts at `http://localhost:4321`. It uses `wrangler dev` with local R2 emulation (miniflare). Seed the local bucket from the remote production bucket before first use.
+The dev server starts at `http://localhost:4321`. It fetches content from the R2 bucket at `R2_BUCKET_URL` (set in `.dev.vars`).
 
 ### Hot Reload
 
@@ -40,17 +37,6 @@ Astro's dev server provides HMR for:
 - `.astro` components — instant refresh
 - `.tsx` React islands — fast refresh
 - `.css` styles — injected without page reload
-
-### Seeding Local Data
-
-The local R2 bucket must be populated before running the dev server:
-
-```bash
-npm run seed          # Sync remote production R2 → local miniflare R2
-npm run seed:clean    # Wipe local R2 state first, then sync
-```
-
-Requires `wrangler login` authentication. The seed script downloads all `content/*` objects from the remote bucket and uploads them to the local miniflare R2 store.
 
 ## Testing
 
@@ -80,39 +66,31 @@ Integration tests are skipped by default because they require a prior `npm run b
 
 ## Project Conventions
 
-### SSR Pages
+### Static Pages with getStaticPaths
 
-All SSR pages follow this pattern:
+All content pages use `getStaticPaths()` to generate static routes at build time:
 
 ```astro
 ---
-export const prerender = false;
-
-import ContentLayout from "@/components/layout/ContentLayout.astro";
-import { getLiveEntry } from "astro:content";
+import { getCollection } from "astro:content";
 import { fromCollectionEntry } from "@/lib/types";
 
-let entry = null;
-try {
-  const result = await getLiveEntry("knowledge", `content/${type}/${id}.json`);
-  if (result.entry) entry = fromCollectionEntry(result.entry.id, result.entry.data);
-} catch {}
-
-if (!entry) {
-  Astro.response.status = 404;
+export async function getStaticPaths() {
+  const entries = await getCollection("knowledge");
+  return entries.map((e) => ({
+    params: { type: e.data.contentType, id: e.id },
+    props: { entry: e },
+  }));
 }
+
+const { entry } = Astro.props;
+const doc = fromCollectionEntry(entry.id, entry.data);
 ---
 
-<ContentLayout title={entry?.title ?? "Not Found"}>
-  {!entry ? (
-    <p>Not found.</p>
-  ) : (
-    <article>...</article>
-  )}
+<ContentLayout title={doc.title}>
+  <article>{doc.body}</article>
 </ContentLayout>
 ```
-
-Do **not** use `return new Response(...)` in `.astro` frontmatter — esbuild's dependency scanner cannot parse top-level returns alongside exports. Use `Astro.response.status` instead.
 
 ### Optional Props
 
@@ -176,6 +154,6 @@ Theme tokens are defined in `@theme` block. Key tokens:
 ## Debugging
 
 - `npm run check` — catches type errors across all `.astro` and `.ts` files
-- Dev server console shows request logs for SSR pages
+- Dev server console shows request logs
 - React islands errors appear in the browser console
 - Build errors are surfaced by `npm run build` with file and line references
