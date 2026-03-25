@@ -7,12 +7,11 @@ import remarkObsidian from "remark-obsidian";
 import rehypeRaw from "rehype-raw";
 import rehypeCallouts from "rehype-callouts";
 import rehypeSlug from "rehype-slug";
-import pagefind from "astro-pagefind";
 
 export default defineConfig({
   site: "https://knowledge.superbenefit.org",
   output: "static",
-  integrations: [react(), sitemap(), pagefind()],
+  integrations: [react(), sitemap()],
   vite: {
     plugins: [tailwindcss()],
   },
