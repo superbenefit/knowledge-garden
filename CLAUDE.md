@@ -1,7 +1,9 @@
 # Claude Project Instructions
 
 ## Project Overview
-This is a Quartz 4 static site generator project for the SuperBenefit Knowledge Garden. Quartz is built on top of Hugo and uses TypeScript/React for components.
+This is a Quartz 4 static site generator project for the SuperBenefit Knowledge Garden. Quartz is written in TypeScript and renders its components with Preact.
+
+> **This `v4` branch is the legacy Quartz site and is no longer developed.** The live site, `knowledge.superbenefit.org`, is built from the Astro 6 rewrite on the `astro-v6` branch, which has its own `CLAUDE.md`. Work on the Knowledge Garden goes there; change this branch only to maintain the old Quartz build.
 
 ## Key Principles
 
